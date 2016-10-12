@@ -15,6 +15,8 @@
 		FA97F87D1DABDED7006B426A /* Word.cpp in Sources */ = {isa = PBXBuildFile; fileRef = FA97F87B1DABDED7006B426A /* Word.cpp */; };
 		FA97F8811DAC39D9006B426A /* Line.cpp in Sources */ = {isa = PBXBuildFile; fileRef = FA97F87F1DAC39D9006B426A /* Line.cpp */; };
 		FA97F8841DAC3AA6006B426A /* Letter.cpp in Sources */ = {isa = PBXBuildFile; fileRef = FA97F8821DAC3AA6006B426A /* Letter.cpp */; };
+		FAAA205E1DAE522E007203FE /* CarousselManager.cpp in Sources */ = {isa = PBXBuildFile; fileRef = FAAA205C1DAE522E007203FE /* CarousselManager.cpp */; };
+		FAAA20611DAE5241007203FE /* CarousselContainer.cpp in Sources */ = {isa = PBXBuildFile; fileRef = FAAA205F1DAE5241007203FE /* CarousselContainer.cpp */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -65,6 +67,10 @@
 		FA97F8801DAC39D9006B426A /* Line.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = Line.hpp; sourceTree = "<group>"; };
 		FA97F8821DAC3AA6006B426A /* Letter.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Letter.cpp; sourceTree = "<group>"; };
 		FA97F8831DAC3AA6006B426A /* Letter.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = Letter.hpp; sourceTree = "<group>"; };
+		FAAA205C1DAE522E007203FE /* CarousselManager.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = CarousselManager.cpp; sourceTree = "<group>"; };
+		FAAA205D1DAE522E007203FE /* CarousselManager.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = CarousselManager.hpp; sourceTree = "<group>"; };
+		FAAA205F1DAE5241007203FE /* CarousselContainer.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = CarousselContainer.cpp; sourceTree = "<group>"; };
+		FAAA20601DAE5241007203FE /* CarousselContainer.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = CarousselContainer.hpp; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -130,6 +136,7 @@
 				FA97F8831DAC3AA6006B426A /* Letter.hpp */,
 				FA5E6E1C1DACC43B006A9B8C /* LetterEvent.cpp */,
 				FA5E6E1D1DACC43B006A9B8C /* LetterEvent.hpp */,
+				FAAA20621DAE5324007203FE /* Caroussel */,
 			);
 			path = src;
 			sourceTree = SOURCE_ROOT;
@@ -141,6 +148,17 @@
 				E4328143138ABC890047C5CB /* openFrameworksLib.xcodeproj */,
 			);
 			name = openFrameworks;
+			sourceTree = "<group>";
+		};
+		FAAA20621DAE5324007203FE /* Caroussel */ = {
+			isa = PBXGroup;
+			children = (
+				FAAA205C1DAE522E007203FE /* CarousselManager.cpp */,
+				FAAA205D1DAE522E007203FE /* CarousselManager.hpp */,
+				FAAA205F1DAE5241007203FE /* CarousselContainer.cpp */,
+				FAAA20601DAE5241007203FE /* CarousselContainer.hpp */,
+			);
+			name = Caroussel;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -232,9 +250,11 @@
 			files = (
 				FA97F8791DABC2C7006B426A /* Stream.cpp in Sources */,
 				FA97F87D1DABDED7006B426A /* Word.cpp in Sources */,
+				FAAA20611DAE5241007203FE /* CarousselContainer.cpp in Sources */,
 				E4B69E200A3A1BDC003C02F2 /* main.cpp in Sources */,
 				E4B69E210A3A1BDC003C02F2 /* ofApp.cpp in Sources */,
 				FA97F8811DAC39D9006B426A /* Line.cpp in Sources */,
+				FAAA205E1DAE522E007203FE /* CarousselManager.cpp in Sources */,
 				FA97F8841DAC3AA6006B426A /* Letter.cpp in Sources */,
 				FA5E6E1E1DACC43B006A9B8C /* LetterEvent.cpp in Sources */,
 			);

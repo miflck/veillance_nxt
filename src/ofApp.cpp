@@ -19,17 +19,22 @@ void ofApp::setup(){
     stream.setup();
     //stream.setData(data);
     stream.setFont(&font);
+    
+    cm.setup();
+    
 }
 
 //--------------------------------------------------------------
 void ofApp::update(){
     stream.update();
+    cm.update();
 
 }
 
 //--------------------------------------------------------------
 void ofApp::draw(){
     stream.draw();
+    cm.draw();
 
 }
 
@@ -46,11 +51,16 @@ void ofApp::keyPressed(int key){
         words.erase(words.begin());
 
     }
+    
+
 }
 
 //--------------------------------------------------------------
 void ofApp::keyReleased(int key){
-
+    if(key=='c'){
+        cm.cicle();
+    
+    }
 }
 
 //--------------------------------------------------------------
