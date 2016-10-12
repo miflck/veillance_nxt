@@ -7,3 +7,4 @@
 //
 
 #include "CarousselEvent.hpp"
+ofEvent <CarousselEvent> CarousselEvent::events;

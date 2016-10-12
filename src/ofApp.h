@@ -3,6 +3,7 @@
 #include "ofMain.h"
 #include "Stream.h"
 #include "CarousselManager.hpp"
+#include "CarousselEvent.hpp"
 
 class ofApp : public ofBaseApp{
 
@@ -26,7 +27,8 @@ class ofApp : public ofBaseApp{
     
     CarousselManager cm;
     
-    
+    vector<CarousselManager> cms;
+
     
         ofTrueTypeFont  font;
     
@@ -35,6 +37,9 @@ class ofApp : public ofBaseApp{
     
     
     vector<string> words;
+
+    
+    void carousselEvent(CarousselEvent &e);
 
     
     

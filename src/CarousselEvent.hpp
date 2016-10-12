@@ -11,4 +11,22 @@
 
 #include <stdio.h>
 
+
+
+#include "ofMain.h"
+//#include "Letter.hpp"
+//class Letter;
+
+class CarousselEvent : public ofEventArgs {
+    
+public:
+    string   message;
+    int   id;
+    CarousselEvent() {
+    }
+    static ofEvent <CarousselEvent> events;
+};
+
+
+
 #endif /* CarousselEvent_hpp */

@@ -17,6 +17,7 @@
 		FA97F8841DAC3AA6006B426A /* Letter.cpp in Sources */ = {isa = PBXBuildFile; fileRef = FA97F8821DAC3AA6006B426A /* Letter.cpp */; };
 		FAAA205E1DAE522E007203FE /* CarousselManager.cpp in Sources */ = {isa = PBXBuildFile; fileRef = FAAA205C1DAE522E007203FE /* CarousselManager.cpp */; };
 		FAAA20611DAE5241007203FE /* CarousselContainer.cpp in Sources */ = {isa = PBXBuildFile; fileRef = FAAA205F1DAE5241007203FE /* CarousselContainer.cpp */; };
+		FAAA20661DAE791D007203FE /* CarousselEvent.cpp in Sources */ = {isa = PBXBuildFile; fileRef = FAAA20641DAE791D007203FE /* CarousselEvent.cpp */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -71,6 +72,8 @@
 		FAAA205D1DAE522E007203FE /* CarousselManager.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = CarousselManager.hpp; sourceTree = "<group>"; };
 		FAAA205F1DAE5241007203FE /* CarousselContainer.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = CarousselContainer.cpp; sourceTree = "<group>"; };
 		FAAA20601DAE5241007203FE /* CarousselContainer.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = CarousselContainer.hpp; sourceTree = "<group>"; };
+		FAAA20641DAE791D007203FE /* CarousselEvent.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = CarousselEvent.cpp; sourceTree = "<group>"; };
+		FAAA20651DAE791D007203FE /* CarousselEvent.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = CarousselEvent.hpp; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -157,6 +160,8 @@
 				FAAA205D1DAE522E007203FE /* CarousselManager.hpp */,
 				FAAA205F1DAE5241007203FE /* CarousselContainer.cpp */,
 				FAAA20601DAE5241007203FE /* CarousselContainer.hpp */,
+				FAAA20641DAE791D007203FE /* CarousselEvent.cpp */,
+				FAAA20651DAE791D007203FE /* CarousselEvent.hpp */,
 			);
 			name = Caroussel;
 			sourceTree = "<group>";
@@ -252,6 +257,7 @@
 				FA97F87D1DABDED7006B426A /* Word.cpp in Sources */,
 				FAAA20611DAE5241007203FE /* CarousselContainer.cpp in Sources */,
 				E4B69E200A3A1BDC003C02F2 /* main.cpp in Sources */,
+				FAAA20661DAE791D007203FE /* CarousselEvent.cpp in Sources */,
 				E4B69E210A3A1BDC003C02F2 /* ofApp.cpp in Sources */,
 				FA97F8811DAC39D9006B426A /* Line.cpp in Sources */,
 				FAAA205E1DAE522E007203FE /* CarousselManager.cpp in Sources */,

@@ -13,17 +13,21 @@
 
 #include "ofMain.h"
 #include "CarousselContainer.hpp"
+#include "CarousselEvent.hpp"
 
 
 class CarousselManager {
     
 public:
     CarousselManager();
-    void setup();
+    void setup(ofVec2f _position,float _width,float _height);
     void update();
     void draw();
     
     vector<CarousselContainer>containers;
+    
+    ofVec2f position;
+    float width;
     
     float speed;
     void move(ofVec2f target, CarousselContainer *c);
@@ -39,7 +43,20 @@ public:
     
     
     int maxspeed;
+    
+    void setId(int _id);
+    
+    
+    vector<char>buffer;
+    void addMovement(char _c);
+
+    
+    
+    
 private:
+    
+    int id;
+    
 };
 
 

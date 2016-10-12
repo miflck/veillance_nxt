@@ -46,6 +46,8 @@ public:
     
     int id;
     
+    char c=' ';
+    
     
 private:
 };
