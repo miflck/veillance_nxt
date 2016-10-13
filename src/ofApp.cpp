@@ -29,7 +29,8 @@ void ofApp::setup(){
     
     
     int h=15;
-    int w=10;    int lines=floor(ofGetHeight()/h);
+    int w=10;
+    int lines=floor(ofGetHeight()/h);
     cout<<"lines"<<lines<<ofGetHeight()/h<<endl;
     for(int i = 0; i < lines; i++){
         CarousselManager cm;
