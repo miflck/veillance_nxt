@@ -2,8 +2,9 @@
 
 //--------------------------------------------------------------
 void ofApp::setup(){
-    ofSetVerticalSync(true);
-    ofSetFrameRate(30);
+    ofBackground(0);
+   // ofSetVerticalSync(true);
+    //ofSetFrameRate(60);
     font.load("Constantia.ttf", 30);
     
     ofBuffer buffer = ofBufferFromFile("heartofdarkness.txt");
@@ -27,15 +28,18 @@ void ofApp::setup(){
     float speed;
     
     
-    int h=40;
-    int lines=floor(ofGetHeight()/h);
-    cout<<lines<<ofGetHeight()/h<<endl;
+    int h=15;
+    int w=10;    int lines=floor(ofGetHeight()/h);
+    cout<<"lines"<<lines<<ofGetHeight()/h<<endl;
     for(int i = 0; i < lines; i++){
         CarousselManager cm;
         float p=ABS((ofGetHeight()/2)-((i*h)));
-        int dl= int(ofMap(p,0,ofGetHeight()/2,1,10));
-        cm.setup(ofVec2f(0,(i*h)),20*dl,h);
-        cm.maxspeed=minspeed*dl;
+        float dl= ofMap(p,0,ofGetHeight()/2,1,20);
+       // cm.setup(ofVec2f(0,(i*h)),ofRandom(7*dl,10*dl),h);
+        float r=ofRandom(0,1);
+        cm.setup(ofVec2f(0,(i*h)),w*dl+r,h);
+
+        cm.maxspeed=minspeed*dl+r;
         cm.setId(i);
         cms.push_back(cm);
     }
@@ -57,6 +61,10 @@ void ofApp::update(){
     for(int i=0;i<cms.size();i++){
         cms[i].update();
     }
+    
+    std::stringstream strm;
+    strm << "fps: " << ofGetFrameRate();
+    ofSetWindowTitle(strm.str());
     
 }
 
@@ -116,13 +124,20 @@ void ofApp::keyReleased(int key){
     if(key=='w'){
         //        cm.cicle();
         
-        string text="hello world";
+       // string text=" hello world";
         
-        for (auto ss : text){
-            string sss = "";
-            sss += ss;
-             cms[cms.size()-1].addMovement('sss');
+        for (auto line : data){
+            for (auto ss : line){
+                char sss = ss;
+                cms[cms.size()-1].addMovement(sss);
+            }
         }
+
+        
+      /*  for (auto ss : text){
+            char sss = ss;
+             cms[cms.size()-1].addMovement(sss);
+        }*/
 
         
         
@@ -179,13 +194,17 @@ void ofApp::dragEvent(ofDragInfo dragInfo){
 }
 
 void ofApp::carousselEvent(CarousselEvent &e){
-    if(e.id==cms.size()-1){
-        cout << "Caroussel Event: "+e.message <<" from "<<e.id<<endl;
-    }
+   
     if(e.message=="STOP"){
+        
+        
         //cout << "Caroussel Event: "+e.message <<" from "<<e.id<<endl;
         if(e.id>0){
-            cms[e.id-1].addMovement('h');
+            cms[e.id-1].addMovement(cms[e.id].getLastElementChar());
+            //cout << "Caroussel Event: "+e.message <<" from "<<e.id<<endl;
+          //  cout<<cms[e.id].getLastElementChar()<<endl;
+
+
         }}
 }
 

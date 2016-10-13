@@ -42,7 +42,7 @@ public:
     void cicle();
     
     
-    int maxspeed;
+    float maxspeed;
     
     void setId(int _id);
     
@@ -50,7 +50,7 @@ public:
     vector<char>buffer;
     void addMovement(char _c);
 
-    
+    char getLastElementChar();
     
     
 private:

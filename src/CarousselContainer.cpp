@@ -21,11 +21,11 @@ void CarousselContainer::update(){
 void CarousselContainer::draw(){
     ofPushMatrix();
     ofTranslate(position);
-    ofSetColor(255);
+    ofSetColor(255,20);
     ofDrawRectangle(bbox.x+2,bbox.y+2,bbox.getWidth()-2,bbox.getHeight()-2);
-    ofSetColor(0);
+    ofSetColor(0,0,255);
     //ofDrawBitmapString(ofToString(id), bbox.getCenter().x, bbox.getCenter().y);
-    ofDrawBitmapString(ofToString(c), bbox.getCenter().x, bbox.getCenter().y);
+    if(c!=' ')ofDrawBitmapString(c, bbox.getCenter().x, bbox.getCenter().y);
 
     ofPopMatrix();
 }
@@ -37,7 +37,7 @@ void CarousselContainer::setBoundingBox(ofVec3f _position, ofVec2f _dimension){
     dimension.set(_dimension);
     bbox.setWidth(_dimension.x);
     bbox.setHeight(_dimension.y);
-    cout<<dimension<<endl;
+    //cout<<dimension<<endl;
 
 
 }
@@ -69,5 +69,14 @@ void CarousselContainer::setTarget(ofVec2f _target){
 
 ofVec2f CarousselContainer::getTarget(){
     return target;
+}
+
+void CarousselContainer::setChar(char _c){
+    c=_c;
+}
+
+char CarousselContainer::getChar(){
+    return c;
+
 }
 

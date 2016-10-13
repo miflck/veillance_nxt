@@ -48,6 +48,8 @@ public:
     
     char c=' ';
     
+    char getChar();
+    void setChar(char _c);
     
 private:
 };

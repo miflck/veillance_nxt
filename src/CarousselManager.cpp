@@ -16,11 +16,11 @@ void CarousselManager::setup(ofVec2f _position,float _width,float _height){
     float l=_width;
     float h=_height;
     
-    maxspeed=2;
-    //maxspeed=int(l/10);
+   // maxspeed=2;
+    maxspeed=l/5;
     
     ofVec3f pos = ofVec3f(-l,position.y);
-    float dl=ceil(ofGetWidth()/l)+1;
+    float dl=ofGetWidth()/l+1;
     for(int i=0;i<dl;i++){
         CarousselContainer c;
         c.setBoundingBox(pos, ofVec2f(l,h));
@@ -100,8 +100,8 @@ void CarousselManager::cicle(){
 }
 
 void CarousselManager::startMoving(){
-    if(id==14)cout<<"startMoving"<<endl;
-    buffer.erase( buffer.begin() );
+  //  if(id==14)cout<<"startMoving "<<buffer[0]<<endl;
+    containers[containers.size()-1].setChar(buffer[0]);
     
     static CarousselEvent newEvent;
     newEvent.message = "START";
@@ -112,6 +112,7 @@ void CarousselManager::startMoving(){
     for(int i=1;i<containers.size();i++){
         containers[i].bIsMoving=true;
     }
+    buffer.erase( buffer.begin() );
 }
 
 void CarousselManager::stopMoving(){
@@ -169,3 +170,8 @@ void CarousselManager::addMovement(char _c){
     buffer.push_back(_c);
     cicle();
 }
+
+char CarousselManager::getLastElementChar(){
+    return containers[0].getChar();
+}
+
