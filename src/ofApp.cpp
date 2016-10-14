@@ -39,12 +39,32 @@ void ofApp::setup(){
     for(int i = 0; i < lines; i++){
         CarousselManager cm;
         float p=ABS((ofGetHeight()/2)-((i*h)));
-        double dl= int(ofMap(p*(p/2),0,ofGetHeight()/2*(ofGetHeight()/2/2),1,15)); //-> int = smooth bewegung, float stockt??
+       // double dl= int(ofMap(p*(p/2),0,ofGetHeight()/2*(ofGetHeight()/2/2),1,15)); //-> int = smooth bewegung, float stockt??
+        
+        float dl= ofMap(p*(p/2),0,ofGetHeight()/2*(ofGetHeight()/2/2),1,100); //-> int = smooth bewegung, float stockt??
+        float dW=w+dl;
+        
+       // s=v*t
+       // s/v=t
+        //v=s/t
+        
+        float time=w/minspeed;
+        
+        float dv=dW/time;
+        
+        
+        float speed=dv;//(w/minspeed)*dW;
+
+       // minspeed+
+        
        // cm.setup(ofVec2f(0,(i*h)),ofRandom(7*dl,10*dl),h);
         float r=ofRandom(0,50);
-        cm.setup(ofVec2f(0,(i*h)),w*dl,h);
+        cm.setup(ofVec2f(0,(i*h)),dW,h);
 
-        cm.maxspeed=minspeed*dl;
+        cm.maxspeed=speed;//minspeed*dl;
+        
+        
+        
         cm.setId(i);
         cms.push_back(cm);
     }

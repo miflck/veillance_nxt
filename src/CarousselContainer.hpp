@@ -51,6 +51,8 @@ public:
     char getChar();
     void setChar(char _c);
     
+    bool bDrawDebugRect=true;
+    
 private:
 };
 
