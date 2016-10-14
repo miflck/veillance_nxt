@@ -22,8 +22,8 @@ void CarousselContainer::draw(){
     ofPushMatrix();
     ofTranslate(position);
     ofSetColor(255,20);
-    ofDrawRectangle(bbox.x+2,bbox.y+2,bbox.getWidth()-2,bbox.getHeight()-2);
-    ofSetColor(0,0,255);
+ //   ofDrawRectangle(bbox.x+2,bbox.y+2,bbox.getWidth()-2,bbox.getHeight()-2);
+    ofSetColor(2000,200,255);
     //ofDrawBitmapString(ofToString(id), bbox.getCenter().x, bbox.getCenter().y);
     if(c!=' ')ofDrawBitmapString(c, bbox.getCenter().x, bbox.getCenter().y);
 

@@ -40,7 +40,10 @@ class ofApp : public ofBaseApp{
 
     
     void carousselEvent(CarousselEvent &e);
+    
+    bool bUpdate=true;
 
+    bool bDraw=true;
     
     
 		

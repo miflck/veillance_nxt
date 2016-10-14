@@ -42,7 +42,7 @@ public:
     void cicle();
     
     
-    float maxspeed;
+    double maxspeed;
     
     void setId(int _id);
     

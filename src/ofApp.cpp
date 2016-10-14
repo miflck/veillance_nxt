@@ -19,28 +19,32 @@ void ofApp::setup(){
             words.push_back(split[k]);
         }
     }
-    stream.setup();
+   // stream.setup();
     //stream.setData(data);
-    stream.setFont(&font);
+   // stream.setFont(&font);
     
     
     float minspeed=2;
     float speed;
     
     
-    int h=15;
+    int h=20;
     int w=10;
+    
+ //   h=50;
+ //   w=50;
+    
     int lines=floor(ofGetHeight()/h);
     cout<<"lines"<<lines<<ofGetHeight()/h<<endl;
     for(int i = 0; i < lines; i++){
         CarousselManager cm;
         float p=ABS((ofGetHeight()/2)-((i*h)));
-        float dl= ofMap(p,0,ofGetHeight()/2,1,20);
+        double dl= int(ofMap(p*(p/2),0,ofGetHeight()/2*(ofGetHeight()/2/2),1,15)); //-> int = smooth bewegung, float stockt??
        // cm.setup(ofVec2f(0,(i*h)),ofRandom(7*dl,10*dl),h);
-        float r=ofRandom(0,1);
-        cm.setup(ofVec2f(0,(i*h)),w*dl+r,h);
+        float r=ofRandom(0,50);
+        cm.setup(ofVec2f(0,(i*h)),w*dl,h);
 
-        cm.maxspeed=minspeed*dl+r;
+        cm.maxspeed=minspeed*dl;
         cm.setId(i);
         cms.push_back(cm);
     }
@@ -56,11 +60,12 @@ void ofApp::setup(){
 
 //--------------------------------------------------------------
 void ofApp::update(){
-    stream.update();
-    cm.update();
-    
+   // stream.update();
+   // cm.update();
+    if(bUpdate){
     for(int i=0;i<cms.size();i++){
         cms[i].update();
+    }
     }
     
     std::stringstream strm;
@@ -71,12 +76,13 @@ void ofApp::update(){
 
 //--------------------------------------------------------------
 void ofApp::draw(){
-    stream.draw();
+   // stream.draw();
     //cm.draw();
     
+    if(bDraw){
     for(int i=0;i<cms.size();i++){
         cms[i].draw();
-    }
+    }}
     
 }
 
@@ -119,6 +125,16 @@ void ofApp::keyReleased(int key){
         cms[cms.size()-1].addMovement('c');
         
         
+    }
+    
+    
+  
+    if(key=='u'){
+        bUpdate=!bUpdate;
+    }
+    
+    if(key=='d'){
+        bDraw=!bDraw;
     }
     
     
