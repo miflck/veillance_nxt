@@ -32,3 +32,8 @@ void Letter::draw(){
 void Letter::setData(char _data){
     data=_data;
 }
+
+
+char Letter::getData(){
+    return data;
+}

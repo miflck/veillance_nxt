@@ -80,6 +80,12 @@ void ofApp::setup(){
 
 //--------------------------------------------------------------
 void ofApp::update(){
+    
+    if(shouldAddFromLetterBuffer()){
+    
+        addLetterFromBuffer();
+    }
+    
    // stream.update();
    // cm.update();
     if(bUpdate){
@@ -143,6 +149,9 @@ void ofApp::keyReleased(int key){
     if(key=='c'){
         //        cm.cicle();
         cms[cms.size()-1].addMovement('c');
+        Letter l;
+        l.setData('c');
+        addLetter(l);
         
         
     }
@@ -166,9 +175,21 @@ void ofApp::keyReleased(int key){
         for (auto line : data){
             for (auto ss : line){
                 char sss = ss;
-                cms[cms.size()-1].addMovement(sss);
+             //   cms[cms.size()-1].addMovement(sss);
+                
+                
+                Letter l;
+                l.setData(sss);
+               // addLetter(l);
+                
+                letterbuffer.push_back(l);
+
+               
+                
+                
             }
         }
+        cout<<"new leterbuffer size"<<letterbuffer.size();
 
         
       /*  for (auto ss : text){
@@ -243,5 +264,52 @@ void ofApp::carousselEvent(CarousselEvent &e){
 
 
         }}
+    
+    
+    if(e.message=="START"){
+        
+        
+        //cout << "Caroussel Event: "+e.message <<" from "<<e.id<<endl;
+        if(e.id>0){
+            cms[e.id-1].addMovement(cms[e.id].getLastElementChar());
+            //cout << "Caroussel Event: "+e.message <<" from "<<e.id<<endl;
+            //  cout<<cms[e.id].getLastElementChar()<<endl;
+            
+            
+        }}
+
+    
+    
 }
 
+
+void ofApp::addLetter(Letter  _l){
+    
+    // string text=" hello world";
+    
+    
+        letters.push_back(_l);
+}
+
+
+bool ofApp::shouldAddFromLetterBuffer(){
+    bool add=false;
+    if(letterbuffer.size()>0)add=true;
+    return add;
+}
+
+void ofApp::addLetterBuffer(Letter  _l){
+    letterbuffer.push_back(_l);
+}
+
+void ofApp::addLetterFromBuffer(){
+    if(!cms[0].bIsMoving){
+        Letter l=letterbuffer[0];
+        letters.push_back(l);
+        cout<<l.getData()<<endl;
+        cms[cms.size()-1].addMovement(l.getData());
+        letterbuffer.erase(letterbuffer.begin());
+    }
+
+
+}

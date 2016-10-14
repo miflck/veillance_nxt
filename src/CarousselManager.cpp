@@ -167,6 +167,7 @@ void CarousselManager::setId(int _id){
 }
 
 void CarousselManager::addMovement(char _c){
+    cout<<"add "<<_c<<endl;
     buffer.push_back(_c);
     cicle();
 }

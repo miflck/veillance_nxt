@@ -4,6 +4,7 @@
 #include "Stream.h"
 #include "CarousselManager.hpp"
 #include "CarousselEvent.hpp"
+#include "Letter.hpp"
 
 class ofApp : public ofBaseApp{
 
@@ -44,6 +45,21 @@ class ofApp : public ofBaseApp{
     bool bUpdate=true;
 
     bool bDraw=true;
+    
+    
+    vector<Letter>letters;
+    void addLetter(Letter _l);
+    
+    
+    vector<Letter>letterbuffer;
+    void addLetterBuffer(Letter _l);
+
+    bool shouldAddFromLetterBuffer();
+    void addLetterFromBuffer();
+
+    
+
+
     
     
 		

@@ -29,7 +29,9 @@ public:
     void setFont(ofTrueTypeFont *f);
     
     void setData(char data);
-    string data;
+    char data;
+    
+    char getData();
     
    bool bRemove=false;
     
