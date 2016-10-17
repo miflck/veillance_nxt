@@ -172,6 +172,16 @@ void CarousselManager::addMovement(char _c){
     cicle();
 }
 
+
+void CarousselManager::addMovement(Letter *_l){
+    
+    cout<<"add "<<_l->getData()<<endl;
+    //letterbuffer.push_back(_l->getData());
+    cicle();
+}
+
+
+
 char CarousselManager::getLastElementChar(){
     return containers[0].getChar();
 }

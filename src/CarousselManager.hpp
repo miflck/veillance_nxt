@@ -16,6 +16,9 @@
 #include "CarousselEvent.hpp"
 
 
+#include "Letter.hpp"
+
+
 class CarousselManager {
     
 public:
@@ -48,8 +51,15 @@ public:
     
     
     vector<char>buffer;
+    
+    vector<Letter *>letterbuffer;
+    
     void addMovement(char _c);
 
+    void addMovement(Letter *l);
+
+    
+    
     char getLastElementChar();
     
     

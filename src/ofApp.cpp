@@ -40,41 +40,22 @@ void ofApp::setup(){
         CarousselManager cm;
         float p=ABS((ofGetHeight()/2)-((i*h)));
        // double dl= int(ofMap(p*(p/2),0,ofGetHeight()/2*(ofGetHeight()/2/2),1,15)); //-> int = smooth bewegung, float stockt??
-        
         float dl= ofMap(p*(p/2),0,ofGetHeight()/2*(ofGetHeight()/2/2),1,100); //-> int = smooth bewegung, float stockt??
         float dW=w+dl;
-        
        // s=v*t
        // s/v=t
         //v=s/t
-        
         float time=w/minspeed;
-        
         float dv=dW/time;
-        
-        
         float speed=dv;//(w/minspeed)*dW;
-
-       // minspeed+
-        
-       // cm.setup(ofVec2f(0,(i*h)),ofRandom(7*dl,10*dl),h);
         float r=ofRandom(0,50);
         cm.setup(ofVec2f(0,(i*h)),dW,h);
-
         cm.maxspeed=speed;//minspeed*dl;
-        
-        
-        
         cm.setId(i);
         cms.push_back(cm);
     }
     
-    
-    
-    // cm.setup(ofVec2f(0,10));
-    
     ofAddListener(CarousselEvent::events, this, &ofApp::carousselEvent);
-    
     
 }
 
@@ -82,12 +63,10 @@ void ofApp::setup(){
 void ofApp::update(){
     
     if(shouldAddFromLetterBuffer()){
-    
-        addLetterFromBuffer();
+      //  addLetterFromBuffer();
     }
     
    // stream.update();
-   // cm.update();
     if(bUpdate){
     for(int i=0;i<cms.size();i++){
         cms[i].update();
@@ -103,8 +82,6 @@ void ofApp::update(){
 //--------------------------------------------------------------
 void ofApp::draw(){
    // stream.draw();
-    //cm.draw();
-    
     if(bDraw){
     for(int i=0;i<cms.size();i++){
         cms[i].draw();
@@ -123,15 +100,11 @@ void ofApp::keyPressed(int key){
         w.setPosition(ofVec3f(ofGetWidth(),ofGetHeight(),0));
         stream.addWord(w);
         words.erase(words.begin());
-        
     }
     
 
     if(key=='C'){
-        //        cm.cicle();
         cms[cms.size()-1].addMovement('c');
-        
-        
     }
     
     
@@ -139,21 +112,12 @@ void ofApp::keyPressed(int key){
 
 //--------------------------------------------------------------
 void ofApp::keyReleased(int key){
-    if(key=='c'){
-        //        cm.cicle();
-     //   cms[cms.size()-1].addMovement('c');
-        
-        
-    }
     
     if(key=='c'){
-        //        cm.cicle();
         cms[cms.size()-1].addMovement('c');
         Letter l;
         l.setData('c');
         addLetter(l);
-        
-        
     }
     
     
@@ -168,14 +132,9 @@ void ofApp::keyReleased(int key){
     
     
     if(key=='w'){
-        //        cm.cicle();
-        
-       // string text=" hello world";
-        
-        for (auto line : data){
+             for (auto line : data){
             for (auto ss : line){
                 char sss = ss;
-             //   cms[cms.size()-1].addMovement(sss);
                 
                 
                 Letter l;
@@ -184,7 +143,8 @@ void ofApp::keyReleased(int key){
                 
                 letterbuffer.push_back(l);
 
-               
+                cms[cms.size()-1].addMovement(&l);
+
                 
                 
             }
@@ -256,7 +216,6 @@ void ofApp::carousselEvent(CarousselEvent &e){
     if(e.message=="STOP"){
         
         
-        //cout << "Caroussel Event: "+e.message <<" from "<<e.id<<endl;
         if(e.id>0){
             cms[e.id-1].addMovement(cms[e.id].getLastElementChar());
             //cout << "Caroussel Event: "+e.message <<" from "<<e.id<<endl;
@@ -271,7 +230,7 @@ void ofApp::carousselEvent(CarousselEvent &e){
         
         //cout << "Caroussel Event: "+e.message <<" from "<<e.id<<endl;
         if(e.id>0){
-            cms[e.id-1].addMovement(cms[e.id].getLastElementChar());
+          //  cms[e.id-1].addMovement(cms[e.id].getLastElementChar());
             //cout << "Caroussel Event: "+e.message <<" from "<<e.id<<endl;
             //  cout<<cms[e.id].getLastElementChar()<<endl;
             
