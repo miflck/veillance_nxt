@@ -35,8 +35,16 @@ public:
     
    bool bRemove=false;
     
+    ofVboMesh originalVboMesh;
+    ofVboMesh getOriginalVboMesh();
+    void makeOriginalVboMesh();
+    
+    
     
 private:
+    
+    ofVec2f position;
+    
 };
 
 

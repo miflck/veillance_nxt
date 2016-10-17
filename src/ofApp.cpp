@@ -5,7 +5,7 @@ void ofApp::setup(){
     ofBackground(0);
     // ofSetVerticalSync(true);
     ofSetFrameRate(60);
-    font.load("Constantia.ttf", 30);
+    font.load("Constantia.ttf", 10);
     
     ofBuffer buffer = ofBufferFromFile("heartofdarkness.txt");
     for (auto line : buffer.getLines()){
@@ -83,6 +83,23 @@ void ofApp::draw(){
         }
     }
     
+    
+    ofSetColor(255);
+    ofVboMesh m;
+    for(int i=0;i<letters.size();i++){
+        ofVboMesh ms=letters[i]->getOriginalVboMesh();
+        m.append(ms);
+    }
+    font.getFontTexture().bind();
+    ofPushMatrix();
+    ofTranslate(ofGetWidth()/2, ofGetHeight()/2);
+    m.draw();
+    
+    font.getFontTexture().unbind();
+
+    
+    
+    
 }
 
 //--------------------------------------------------------------
@@ -112,6 +129,8 @@ void ofApp::keyReleased(int key){
     if(key=='c'){
         Letter * l =new Letter();
         l->setData('c');
+        l->setFont(&font);
+
         addLetter(l);
         cms[cms.size()-1].addMovement(letters[letters.size()-1]);
     }
@@ -133,6 +152,8 @@ void ofApp::keyReleased(int key){
                 char sss = ss;
                 Letter * l =new Letter();
                 l->setData(sss);
+                l->setFont(&font);
+
                 addLetter(l);
 //                cms[cms.size()-1].addMovement(&l);
                 cms[cms.size()-1].addMovement(letters[letters.size()-1]);
