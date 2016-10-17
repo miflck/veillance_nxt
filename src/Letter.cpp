@@ -8,6 +8,7 @@
 
 #include "Letter.hpp"
 Letter::Letter(){
+    data=NULL;
 }
 
 void Letter::setup(){
@@ -24,7 +25,7 @@ void Letter::update(){
 }
 
 void Letter::draw(){
-    
+    ofDrawBitmapString(data, 0, 0);
     
 }
 

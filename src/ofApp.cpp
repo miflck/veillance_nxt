@@ -3,8 +3,8 @@
 //--------------------------------------------------------------
 void ofApp::setup(){
     ofBackground(0);
-   // ofSetVerticalSync(true);
-    //ofSetFrameRate(60);
+    // ofSetVerticalSync(true);
+    ofSetFrameRate(60);
     font.load("Constantia.ttf", 30);
     
     ofBuffer buffer = ofBufferFromFile("heartofdarkness.txt");
@@ -19,10 +19,6 @@ void ofApp::setup(){
             words.push_back(split[k]);
         }
     }
-   // stream.setup();
-    //stream.setData(data);
-   // stream.setFont(&font);
-    
     
     float minspeed=2;
     float speed;
@@ -31,19 +27,22 @@ void ofApp::setup(){
     int h=20;
     int w=10;
     
- //   h=50;
- //   w=50;
+    //   h=50;
+    //   w=50;
+    
+    
+    
     
     int lines=floor(ofGetHeight()/h);
     cout<<"lines"<<lines<<ofGetHeight()/h<<endl;
     for(int i = 0; i < lines; i++){
         CarousselManager cm;
         float p=ABS((ofGetHeight()/2)-((i*h)));
-       // double dl= int(ofMap(p*(p/2),0,ofGetHeight()/2*(ofGetHeight()/2/2),1,15)); //-> int = smooth bewegung, float stockt??
+        // double dl= int(ofMap(p*(p/2),0,ofGetHeight()/2*(ofGetHeight()/2/2),1,15)); //-> int = smooth bewegung, float stockt??
         float dl= ofMap(p*(p/2),0,ofGetHeight()/2*(ofGetHeight()/2/2),1,100); //-> int = smooth bewegung, float stockt??
         float dW=w+dl;
-       // s=v*t
-       // s/v=t
+        // s=v*t
+        // s/v=t
         //v=s/t
         float time=w/minspeed;
         float dv=dW/time;
@@ -61,17 +60,13 @@ void ofApp::setup(){
 
 //--------------------------------------------------------------
 void ofApp::update(){
-    
-    if(shouldAddFromLetterBuffer()){
-      //  addLetterFromBuffer();
-    }
-    
-   // stream.update();
     if(bUpdate){
-    for(int i=0;i<cms.size();i++){
-        cms[i].update();
+        for(int i=0;i<cms.size();i++){
+            cms[i].update();
+        }
     }
-    }
+  //  cout<<letters.size()<<endl;
+    
     
     std::stringstream strm;
     strm << "fps: " << ofGetFrameRate();
@@ -81,11 +76,12 @@ void ofApp::update(){
 
 //--------------------------------------------------------------
 void ofApp::draw(){
-   // stream.draw();
+    // stream.draw();
     if(bDraw){
-    for(int i=0;i<cms.size();i++){
-        cms[i].draw();
-    }}
+        for(int i=0;i<cms.size();i++){
+            cms[i].draw();
+        }
+    }
     
 }
 
@@ -102,9 +98,9 @@ void ofApp::keyPressed(int key){
         words.erase(words.begin());
     }
     
-
+    
     if(key=='C'){
-        cms[cms.size()-1].addMovement('c');
+        //cms[cms.size()-1].addMovement('c');
     }
     
     
@@ -114,14 +110,14 @@ void ofApp::keyPressed(int key){
 void ofApp::keyReleased(int key){
     
     if(key=='c'){
-        cms[cms.size()-1].addMovement('c');
-        Letter l;
-        l.setData('c');
+        Letter * l =new Letter();
+        l->setData('c');
         addLetter(l);
+        cms[cms.size()-1].addMovement(letters[letters.size()-1]);
     }
     
     
-  
+    
     if(key=='u'){
         bUpdate=!bUpdate;
     }
@@ -132,36 +128,18 @@ void ofApp::keyReleased(int key){
     
     
     if(key=='w'){
-             for (auto line : data){
+        for (auto line : data){
             for (auto ss : line){
                 char sss = ss;
-                
-                
-                Letter l;
-                l.setData(sss);
-               // addLetter(l);
-                
-                letterbuffer.push_back(l);
+                Letter * l =new Letter();
+                l->setData(sss);
+                addLetter(l);
+//                cms[cms.size()-1].addMovement(&l);
+                cms[cms.size()-1].addMovement(letters[letters.size()-1]);
 
-                cms[cms.size()-1].addMovement(&l);
-
-                
-                
             }
         }
         cout<<"new leterbuffer size"<<letterbuffer.size();
-
-        
-      /*  for (auto ss : text){
-            char sss = ss;
-             cms[cms.size()-1].addMovement(sss);
-        }*/
-
-        
-        
-       
-        
-        
     }
     
 }
@@ -212,16 +190,17 @@ void ofApp::dragEvent(ofDragInfo dragInfo){
 }
 
 void ofApp::carousselEvent(CarousselEvent &e){
-   
+    
     if(e.message=="STOP"){
         
         
         if(e.id>0){
-            cms[e.id-1].addMovement(cms[e.id].getLastElementChar());
+            if(cms[e.id].getLastElementPointer()!=nullptr){
+                cms[e.id-1].addMovement(cms[e.id].getLastElementPointer());}
             //cout << "Caroussel Event: "+e.message <<" from "<<e.id<<endl;
-          //  cout<<cms[e.id].getLastElementChar()<<endl;
-
-
+            //  cout<<cms[e.id].getLastElementChar()<<endl;
+            
+            
         }}
     
     
@@ -230,24 +209,20 @@ void ofApp::carousselEvent(CarousselEvent &e){
         
         //cout << "Caroussel Event: "+e.message <<" from "<<e.id<<endl;
         if(e.id>0){
-          //  cms[e.id-1].addMovement(cms[e.id].getLastElementChar());
+            //  cms[e.id-1].addMovement(cms[e.id].getLastElementChar());
             //cout << "Caroussel Event: "+e.message <<" from "<<e.id<<endl;
             //  cout<<cms[e.id].getLastElementChar()<<endl;
             
             
         }}
-
+    
     
     
 }
 
 
-void ofApp::addLetter(Letter  _l){
-    
-    // string text=" hello world";
-    
-    
-        letters.push_back(_l);
+void ofApp::addLetter(Letter *  _l){
+    letters.push_back(_l);
 }
 
 
@@ -261,14 +236,15 @@ void ofApp::addLetterBuffer(Letter  _l){
     letterbuffer.push_back(_l);
 }
 
-void ofApp::addLetterFromBuffer(){
-    if(!cms[0].bIsMoving){
-        Letter l=letterbuffer[0];
-        letters.push_back(l);
-        cout<<l.getData()<<endl;
-        cms[cms.size()-1].addMovement(l.getData());
-        letterbuffer.erase(letterbuffer.begin());
-    }
-
-
-}
+/*
+ void ofApp::addLetterFromBuffer(){
+ if(!cms[0].bIsMoving){
+ Letter l=letterbuffer[0];
+ letters.push_back(l);
+ cout<<l.getData()<<endl;
+ cms[cms.size()-1].addMovement(l.getData());
+ letterbuffer.erase(letterbuffer.begin());
+ }
+ 
+ 
+ }*/
