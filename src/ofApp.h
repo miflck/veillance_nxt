@@ -6,6 +6,7 @@
 #include "CarousselEvent.hpp"
 #include "Letter.hpp"
 #include "MovingWords.hpp"
+#include "WordManager.hpp"
 
 class ofApp : public ofBaseApp{
 
@@ -64,6 +65,7 @@ class ofApp : public ofBaseApp{
 
     
     MovingWords mw;
+    WordManager wm;
 
     
     

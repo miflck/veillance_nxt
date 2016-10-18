@@ -10,52 +10,24 @@
 Word::Word(){
 }
 
-void Word::setup(){
-    
+void Word::setup(int _index){
+    wordIndex=_index;
+    cout<<wordIndex<<endl;
+
 }
 
 void Word::update(){
-    float p=ABS(ofGetHeight()/2-position.y);
-    spacingFact=ofMap(p,0,ofGetHeight()/2,1,10);
-    
-    font->setLetterSpacing(spacingFact);
-    wordwidth = font->stringWidth(data);
-  
-
-
-    /*font->setLetterSpacing(spacingFact);
-     float fontWidth = font->stringWidth(data);
-
-    position.x-=speed;
-    if(position.x<-fontWidth){
-        position.x=ofGetWidth();
-        position.y-=font->getLineHeight();
-        spacingFact=ofMap(p,0,ofGetHeight()/2,1,10);
-        speed=ofMap(p,0,ofGetHeight()/2,1,10);
-    };*/
- 
 }
 
 void Word::draw(){
-    font->setLetterSpacing(spacingFact);
-
-    ofSetColor(0);
-    ofPushMatrix();
-   ofTranslate(position.x,position.y,position.z);
-   font->drawString(data, 0,0);
-    ofPopMatrix();
- ;
-}
+    }
 
 void Word::setData(string _data){
     data=_data;
-    makeLetters(data);
-    cout<<data<<endl;
 }
 
 void Word::setFont(ofTrueTypeFont *f){
     font=f;
-    
 }
 
 float Word::getWidth(){
@@ -69,14 +41,9 @@ ofVec3f Word::getPosition(){
 
 void Word::setPosition(ofVec3f pos){
     position.set(pos);
-    float p=ABS(ofGetHeight()/2-position.y);
-    spacingFact=ofMap(p,0,ofGetHeight()/2,1,10);
-    //font->setLetterSpacing(spacingFact);
-    speed=10;
+  }
 
-}
-
-
+/*
 void Word::makeLetters(string _datastring){
     ofVec3f position=ofVec3f(0,0,0);
     
@@ -109,6 +76,6 @@ void Word::makeLetters(string _datastring){
         letters.push_back(l);
         }
 }
-
+*/
 
 

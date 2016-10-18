@@ -16,13 +16,10 @@ void ofApp::setup(){
         data.push_back(line);
     }
     
-    for(int i = 0; i < data.size(); i++){
-        vector<string> split;
-        split = ofSplitString(data[i], " ");
-        for (int k=0;k<split.size();k++){
-            words.push_back(split[k]);
-        }
-    }
+    
+    
+    wm.setup();
+
     
     float minspeed=4;
     float speed;
@@ -63,6 +60,8 @@ void ofApp::setup(){
     
     
     
+    
+    
     mw.setup();
     mw.setFont(&bigfont);
     mw.setData("hallo");
@@ -85,6 +84,8 @@ void ofApp::update(){
     strm << "fps: " << ofGetFrameRate();
     ofSetWindowTitle(strm.str());
     
+    
+    wm.update();
     
     mw.update();
     
@@ -115,6 +116,10 @@ void ofApp::draw(){
     font.getFontTexture().unbind();
     ofPopMatrix();
     
+    
+    
+    wm.draw();
+    
     ofPushMatrix();
     //ofTranslate(ofGetWidth()/2, ofGetHeight()/2);
     // m.draw();
@@ -125,7 +130,7 @@ void ofApp::draw(){
 
 //--------------------------------------------------------------
 void ofApp::keyPressed(int key){
-    if(key=='a'){
+    /*if(key=='a'){
         Word w;
         string s=words[0];
         w.setup();
@@ -134,7 +139,7 @@ void ofApp::keyPressed(int key){
         w.setPosition(ofVec3f(ofGetWidth(),ofGetHeight(),0));
         stream.addWord(w);
         words.erase(words.begin());
-    }
+    }*/
     
     
     if(key=='C'){
@@ -168,6 +173,23 @@ void ofApp::keyReleased(int key){
     
     
     if(key=='w'){
+        
+        
+        
+        
+        for(auto text :data){
+            vector<string> split;
+            split = ofSplitString(text, " ");
+            for (auto w:split){
+                wm.addWord(w);
+            }
+        }
+        
+        
+        
+        
+        
+        
         for (auto line : data){
             for (auto ss : line){
                 char sss = ss;
