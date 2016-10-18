@@ -57,7 +57,7 @@ class ofApp : public ofBaseApp{
     bool shouldAddFromLetterBuffer();
     void addLetterFromBuffer();
 
-    
+    ofImage dot;
 
 
     

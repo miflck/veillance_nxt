@@ -7,6 +7,8 @@ void ofApp::setup(){
     ofSetFrameRate(60);
     font.load("Anonymous.ttf", 10);
     
+    dot.load("dot.png");
+    
     ofBuffer buffer = ofBufferFromFile("heartofdarkness.txt");
     for (auto line : buffer.getLines()){
         data.push_back(line);
@@ -96,8 +98,6 @@ void ofApp::draw(){
    // m.draw();
     
     font.getFontTexture().unbind();
-
-    
     
     
 }
