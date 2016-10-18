@@ -21,7 +21,10 @@ void MovingWords::setup(){
      angle=ofRandom(-90);
     t.rotate(angle, ofVec3f(0,0,1));
     target.set(t);
-    position.set(0,0,0);
+    startposition.set(ofRandom(ofGetWidth()/2-200,ofGetWidth()/2+200),ofGetHeight()/2,0);
+    //startposition.set(ofGetWidth()/2,ofGetHeight()/2,0);
+
+    position.set(startposition);
    // node.rotate(angle, ofVec3f(0,1,0));
     //node.roll(ofDegToRad(angle));
     //node.pan(ofDegToRad(angle));
@@ -34,7 +37,8 @@ void MovingWords::setup(){
     
 
     plane.set(100, 100);   ///dimensions for width and height in pixels
-    plane.setPosition(0, 0, 0); /// position in x y z
+    plane.setPosition(startposition); /// position in x y z
+
 
 }
 
@@ -53,12 +57,13 @@ void MovingWords::update(){
 }
 
 void MovingWords::draw(){
-    ofSetColor(255,0,0);
-    ofDrawLine(0,0,0, target.x, target.y, target.z);
+    ofSetColor(0,0,255,100);
+    ofDrawLine(startposition, target);
     ofNoFill();
   // geometry.draw();
 
     
+    ofSetColor(0,0,255);
 
 
     
@@ -66,7 +71,7 @@ void MovingWords::draw(){
 
     ofPushMatrix();
     ofTranslate(position);
-    font->drawString(data,0,0);
+   // font->drawString(data,0,0);
 
     ofQuaternion q;
     q=node.getGlobalOrientation();

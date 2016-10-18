@@ -33,6 +33,8 @@ class ofApp : public ofBaseApp{
 
     
         ofTrueTypeFont  font;
+    ofTrueTypeFont  bigfont;
+
     
     vector<string> data; //declare a vector of strings to store data
     Stream stream;

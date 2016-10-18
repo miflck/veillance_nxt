@@ -46,6 +46,8 @@ public:
     int maxspeed=1;
     
 private:
+    ofVec3f startposition;
+
     ofVec3f position;
     ofVec3f velocity;
     ofNode node;
