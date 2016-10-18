@@ -22,7 +22,7 @@ public:
     Word();
     
     
-    void setup();
+    void setup(int _index);
     void update();
     void draw();
     
@@ -37,20 +37,10 @@ public:
     ofVec3f getPosition();
     ofVec3f position;
     float getWidth();
-    
-    float spacingFact;
-    float speed;
-    
-    void moveTo(ofVec3f);
-    
     float wordwidth;
-    
-    
-    
     vector<Letter> letters;
-    void makeLetters(string _word);
     
-    
+    int wordIndex;
     
 private:
 };
