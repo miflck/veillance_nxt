@@ -58,12 +58,22 @@ void CarousselManager::move(){
         ofVec2f p=containers[i].getPosition();
         ofVec2f target=containers[i].getTarget();
         ofVec3f dist=target-p;
-        dist.limit(maxspeed);
-        p+=dist;
-        containers[i].setPosition(p);
-        if(p==target){
+        ofVec3f speed=dist;
+        speed.limit(maxspeed);
+        p+=speed;
+        
+        if(dist.length()<(maxspeed)+1){
+            p.set(target);
             containers[i].bIsMoving=false;
+
         }
+        
+    
+        
+        containers[i].setPosition(p);
+       /* if(p==target){
+            containers[i].bIsMoving=false;
+        }*/
     }
     
     //check if finished;
@@ -97,12 +107,10 @@ void CarousselManager::cicle(){
 }
 
 void CarousselManager::startMoving(){
-    //  if(id==14)cout<<"startMoving "<<buffer[0]<<endl;
+      if(id==14)cout<<"startMoving "<<buffer[0]<<endl;
     Letter * l=buffer[0];
     buffer.erase(buffer.begin());
-    cout<<l->getData()<<endl;
     containers[containers.size()-1].setLetterPointer(l);
-    
     
     
     static CarousselEvent newEvent;

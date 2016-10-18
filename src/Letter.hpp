@@ -24,6 +24,10 @@ public:
     void update();
     void draw();
     
+    ofFbo fboText;
+    ofRectangle textBounds;
+
+
     
     ofTrueTypeFont  *font;
     void setFont(ofTrueTypeFont *f);

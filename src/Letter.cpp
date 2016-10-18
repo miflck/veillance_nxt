@@ -20,6 +20,10 @@ void Letter::setup(){
     newEvent.letter     = this;
     ofNotifyEvent(LetterEvent::events, newEvent);
     
+    
+    ofRectangle textBounds = font->getStringBoundingBox("H", 0, 0);
+    fboText.allocate(textBounds.getWidth()+2, textBounds.getHeight()+2);
+    
 }
 
 void Letter::update(){
@@ -30,14 +34,20 @@ void Letter::update(){
 
 void Letter::draw(){
     ofSetColor(255,0,0);
-    font->drawString(ofToString(data), 0,0);
+    font->drawString(ofToString(data), 0,font->getStringBoundingBox("H", 0, 0).getHeight());
 
-    
+    /*fboText.begin();
+    ofClear(255, 255, 255, 0);
+    font->drawString(ofToString(data), 0, font->getStringBoundingBox("H", 0, 0).getHeight());
+    fboText.end();
+    fboText.draw(0, 0);*/
 }
 
 
 void Letter::setData(char _data){
     data=_data;
+  //  ofRectangle textBounds = font->getStringBoundingBox("H", 0, 0);
+  //  fboText.allocate(textBounds.getWidth()+2, textBounds.getHeight()+2);
 }
 
 
@@ -47,6 +57,8 @@ char Letter::getData(){
 
 void Letter::setFont(ofTrueTypeFont *f){
     font=f;
+     ofRectangle textBounds = font->getStringBoundingBox("H", 0, 0);
+    fboText.allocate(textBounds.getWidth()+2, textBounds.getHeight()+2);
     
 }
 

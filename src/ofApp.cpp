@@ -3,9 +3,9 @@
 //--------------------------------------------------------------
 void ofApp::setup(){
     ofBackground(0);
-    // ofSetVerticalSync(true);
+     ofSetVerticalSync(true);
     ofSetFrameRate(60);
-    font.load("Constantia.ttf", 10);
+    font.load("Anonymous.ttf", 10);
     
     ofBuffer buffer = ofBufferFromFile("heartofdarkness.txt");
     for (auto line : buffer.getLines()){
@@ -20,7 +20,7 @@ void ofApp::setup(){
         }
     }
     
-    float minspeed=2;
+    float minspeed=4;
     float speed;
     
     
@@ -39,7 +39,7 @@ void ofApp::setup(){
         CarousselManager cm;
         float p=ABS((ofGetHeight()/2)-((i*h)));
         // double dl= int(ofMap(p*(p/2),0,ofGetHeight()/2*(ofGetHeight()/2/2),1,15)); //-> int = smooth bewegung, float stockt??
-        float dl= ofMap(p*(p/2),0,ofGetHeight()/2*(ofGetHeight()/2/2),1,100); //-> int = smooth bewegung, float stockt??
+        float dl= ofMap(p*(p/4),0,ofGetHeight()/2*(ofGetHeight()/2/4),1,100); //-> int = smooth bewegung, float stockt??
         float dW=w+dl;
         // s=v*t
         // s/v=t
@@ -93,7 +93,7 @@ void ofApp::draw(){
     font.getFontTexture().bind();
     ofPushMatrix();
     ofTranslate(ofGetWidth()/2, ofGetHeight()/2);
-    m.draw();
+   // m.draw();
     
     font.getFontTexture().unbind();
 
@@ -216,8 +216,11 @@ void ofApp::carousselEvent(CarousselEvent &e){
         
         
         if(e.id>0){
-            if(cms[e.id].getLastElementPointer()!=nullptr){
-                cms[e.id-1].addMovement(cms[e.id].getLastElementPointer());}
+            Letter *l=cms[e.id].getLastElementPointer();
+            
+            if(l!=nullptr){
+                cms[e.id-1].addMovement(l);
+            }
             //cout << "Caroussel Event: "+e.message <<" from "<<e.id<<endl;
             //  cout<<cms[e.id].getLastElementChar()<<endl;
             

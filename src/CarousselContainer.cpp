@@ -29,7 +29,7 @@ void CarousselContainer::draw(){
     ofPushMatrix();
     ofTranslate(position);
     ofSetColor(255,100);
-  // ofDrawRectangle(bbox.x+2,bbox.y+2,bbox.getWidth()-2,bbox.getHeight()-2);
+   //ofDrawRectangle(bbox.x+2,bbox.y+2,bbox.getWidth()-2,bbox.getHeight()-2);
     ofSetColor(200,200,255);
     //ofDrawBitmapString(ofToString(id), bbox.getCenter().x, bbox.getCenter().y);
    // if(myLetter !=NULL){
@@ -41,16 +41,21 @@ void CarousselContainer::draw(){
     
     
     if(myLetter!=nullptr){
+        ofPushMatrix();
+        ofTranslate(dimension.x/2,dimension.y/2);
       //  cout<<id<<" letter "<<myLetter->getData()<<endl;
-        myLetter->draw();
+       myLetter->draw();
+        ofPopMatrix();
     }
+    ofSetColor(255, 0, 0,100);
+ //   if(bDrawDebugRect && id%20==0)ofDrawRectangle(bbox.getCenter().x, bbox.getCenter().y,10,10);
   //  if(bDrawDebugRect)ofDrawRectangle(bbox.getCenter().x, bbox.getCenter().y,10,10);
 
     ofPopMatrix();
     
     if(myLetter!=nullptr){
         //  cout<<id<<" letter "<<myLetter->getData()<<endl;
-        myLetter->draw();
+      //  myLetter->draw();
     }
     
 }
