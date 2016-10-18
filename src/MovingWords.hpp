@@ -10,5 +10,55 @@
 #define MovingWords_hpp
 
 #include <stdio.h>
+#include "ofMain.h"
+
+
+class MovingWords {
+    
+public:
+    MovingWords();
+    void setup();
+    void update();
+    void draw();
+    
+    void setData(string data);
+    string data;
+    string getData();
+    
+    ofTrueTypeFont  *font;
+    void setFont(ofTrueTypeFont *f);
+    ofRectangle textBounds;
+
+    bool bRemove=false;
+    
+    void setPosition(ofVec3f _p);
+    ofVec3f getPosition();
+    void setVelocity(ofVec3f _v);
+    ofVec3f getVelocity();
+    void setTarget(ofVec3f _t);
+    ofVec3f getTarget();
+    
+    
+    void move();
+    void startMoving();
+    void stopMoving();
+    bool bIsMoving=false;
+    int maxspeed=1;
+    
+private:
+    ofVec3f position;
+    ofVec3f velocity;
+    ofNode node;
+    ofVec3f target;
+    
+ofPlanePrimitive plane;
+    
+    ofBoxPrimitive geometry;
+
+    
+    
+    
+};
+
 
 #endif /* MovingWords_hpp */

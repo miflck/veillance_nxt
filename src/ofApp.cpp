@@ -58,6 +58,15 @@ void ofApp::setup(){
     
     ofAddListener(CarousselEvent::events, this, &ofApp::carousselEvent);
     
+    
+    
+    
+    mw.setup();
+    mw.setFont(&font);
+    mw.setData("hallo");
+    mw.startMoving();
+    
+    
 }
 
 //--------------------------------------------------------------
@@ -73,6 +82,9 @@ void ofApp::update(){
     std::stringstream strm;
     strm << "fps: " << ofGetFrameRate();
     ofSetWindowTitle(strm.str());
+    
+    
+    mw.update();
     
 }
 
@@ -96,9 +108,16 @@ void ofApp::draw(){
     ofPushMatrix();
     ofTranslate(ofGetWidth()/2, ofGetHeight()/2);
    // m.draw();
-    
+    mw.draw();
+
     font.getFontTexture().unbind();
+    ofPopMatrix();
     
+    ofPushMatrix();
+    ofTranslate(ofGetWidth()/2, ofGetHeight()/2);
+    // m.draw();
+    mw.draw();
+    ofPopMatrix();
     
 }
 

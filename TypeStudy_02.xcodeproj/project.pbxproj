@@ -143,8 +143,7 @@
 				FA5E6E1C1DACC43B006A9B8C /* LetterEvent.cpp */,
 				FA5E6E1D1DACC43B006A9B8C /* LetterEvent.hpp */,
 				FAAA20621DAE5324007203FE /* Caroussel */,
-				FA11BF7A1DB6459A00304BAD /* MovingWords.cpp */,
-				FA11BF7B1DB6459A00304BAD /* MovingWords.hpp */,
+				FA11BF7E1DB6461400304BAD /* Moving Words */,
 			);
 			path = src;
 			sourceTree = SOURCE_ROOT;
@@ -156,6 +155,15 @@
 				E4328143138ABC890047C5CB /* openFrameworksLib.xcodeproj */,
 			);
 			name = openFrameworks;
+			sourceTree = "<group>";
+		};
+		FA11BF7E1DB6461400304BAD /* Moving Words */ = {
+			isa = PBXGroup;
+			children = (
+				FA11BF7A1DB6459A00304BAD /* MovingWords.cpp */,
+				FA11BF7B1DB6459A00304BAD /* MovingWords.hpp */,
+			);
+			name = "Moving Words";
 			sourceTree = "<group>";
 		};
 		FAAA20621DAE5324007203FE /* Caroussel */ = {
