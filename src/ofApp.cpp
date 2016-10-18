@@ -5,7 +5,9 @@ void ofApp::setup(){
     ofBackground(0);
      ofSetVerticalSync(true);
     ofSetFrameRate(60);
-    font.load("Anonymous.ttf", 10);
+    font.load("FoundersGroteskMonoRegular.ttf", 10);
+    bigfont.load("FoundersGroteskMonoRegular.ttf", 50);
+
     
     dot.load("dot.png");
     
@@ -58,6 +60,15 @@ void ofApp::setup(){
     
     ofAddListener(CarousselEvent::events, this, &ofApp::carousselEvent);
     
+    
+    
+    
+    mw.setup();
+    mw.setFont(&bigfont);
+    mw.setData("hallo");
+    mw.startMoving();
+    
+    
 }
 
 //--------------------------------------------------------------
@@ -73,6 +84,9 @@ void ofApp::update(){
     std::stringstream strm;
     strm << "fps: " << ofGetFrameRate();
     ofSetWindowTitle(strm.str());
+    
+    
+    mw.update();
     
 }
 
@@ -96,9 +110,16 @@ void ofApp::draw(){
     ofPushMatrix();
     ofTranslate(ofGetWidth()/2, ofGetHeight()/2);
    // m.draw();
-    
+    mw.draw();
+
     font.getFontTexture().unbind();
+    ofPopMatrix();
     
+    ofPushMatrix();
+    //ofTranslate(ofGetWidth()/2, ofGetHeight()/2);
+    // m.draw();
+    mw.draw();
+    ofPopMatrix();
     
 }
 

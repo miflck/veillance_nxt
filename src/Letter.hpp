@@ -24,7 +24,6 @@ public:
     void update();
     void draw();
     
-    ofFbo fboText;
     ofRectangle textBounds;
 
 

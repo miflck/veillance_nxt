@@ -5,6 +5,7 @@
 #include "CarousselManager.hpp"
 #include "CarousselEvent.hpp"
 #include "Letter.hpp"
+#include "MovingWords.hpp"
 
 class ofApp : public ofBaseApp{
 
@@ -32,6 +33,8 @@ class ofApp : public ofBaseApp{
 
     
         ofTrueTypeFont  font;
+    ofTrueTypeFont  bigfont;
+
     
     vector<string> data; //declare a vector of strings to store data
     Stream stream;
@@ -59,6 +62,8 @@ class ofApp : public ofBaseApp{
 
     ofImage dot;
 
+    
+    MovingWords mw;
 
     
     

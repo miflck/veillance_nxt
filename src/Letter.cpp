@@ -22,7 +22,6 @@ void Letter::setup(){
     
     
     ofRectangle textBounds = font->getStringBoundingBox("H", 0, 0);
-    fboText.allocate(textBounds.getWidth()+2, textBounds.getHeight()+2);
     
 }
 
@@ -58,7 +57,6 @@ char Letter::getData(){
 void Letter::setFont(ofTrueTypeFont *f){
     font=f;
      ofRectangle textBounds = font->getStringBoundingBox("H", 0, 0);
-    fboText.allocate(textBounds.getWidth()+2, textBounds.getHeight()+2);
     
 }
 
