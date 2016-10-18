@@ -33,7 +33,7 @@ public:
     float width;
     
     float speed;
-    void move(ofVec2f target, CarousselContainer *c);
+  //  void move(ofVec2f target, CarousselContainer *c);
     void move();
 
     
@@ -50,22 +50,26 @@ public:
     void setId(int _id);
     
     
-    vector<char>buffer;
+    vector<Letter *>buffer;
     
-    vector<Letter *>letterbuffer;
+   // vector<Letter *>letterbuffer;
     
-    void addMovement(char _c);
+   // void addMovement(char _c);
 
     void addMovement(Letter *l);
 
     
     
     char getLastElementChar();
+    Letter* getLastElementPointer();
     
     
 private:
     
     int id;
+    
+   // Letter HackBaseLetter;
+
     
 };
 

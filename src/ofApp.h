@@ -47,8 +47,8 @@ class ofApp : public ofBaseApp{
     bool bDraw=true;
     
     
-    vector<Letter>letters;
-    void addLetter(Letter _l);
+    vector<Letter *>letters;
+    void addLetter(Letter * _l);
     
     
     vector<Letter>letterbuffer;
@@ -57,7 +57,7 @@ class ofApp : public ofBaseApp{
     bool shouldAddFromLetterBuffer();
     void addLetterFromBuffer();
 
-    
+    ofImage dot;
 
 
     

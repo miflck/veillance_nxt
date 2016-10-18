@@ -24,6 +24,10 @@ public:
     void update();
     void draw();
     
+    ofFbo fboText;
+    ofRectangle textBounds;
+
+
     
     ofTrueTypeFont  *font;
     void setFont(ofTrueTypeFont *f);
@@ -35,7 +39,16 @@ public:
     
    bool bRemove=false;
     
+    ofVboMesh originalVboMesh;
+    ofVboMesh getOriginalVboMesh();
+    void makeOriginalVboMesh();
+    
+    
+    
 private:
+    
+    ofVec2f position;
+    
 };
 
 

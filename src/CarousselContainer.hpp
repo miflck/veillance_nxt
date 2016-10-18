@@ -11,6 +11,7 @@
 
 #include <stdio.h>
 #include "ofMain.h"
+#include "Letter.hpp"
 
 
 class CarousselContainer{
@@ -51,7 +52,17 @@ public:
     char getChar();
     void setChar(char _c);
     
+    
+    
+    Letter*  myLetter=nullptr;
+    void setLetterPointer(Letter * _l);
+    Letter* getLetterPointer();
+    
+    
     bool bDrawDebugRect=true;
+    
+    bool bHasPointer=false;
+
     
 private:
 };
