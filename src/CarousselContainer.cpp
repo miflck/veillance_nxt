@@ -26,10 +26,12 @@ void CarousselContainer::update(){
 void CarousselContainer::draw(){
   //  if(id==0 && myLetter!=nullptr)   cout<<id<<" letter "<<myLetter->getData()<<endl;
 
+    
+    
     ofPushMatrix();
     ofTranslate(position);
-    ofSetColor(255,100);
-   //ofDrawRectangle(bbox.x+2,bbox.y+2,bbox.getWidth()-2,bbox.getHeight()-2);
+    ofSetColor(255);
+   ofDrawRectangle(bbox.x+2,bbox.y+2,bbox.getWidth()-2,bbox.getHeight()-2);
     ofSetColor(200,200,255);
     //ofDrawBitmapString(ofToString(id), bbox.getCenter().x, bbox.getCenter().y);
    // if(myLetter !=NULL){

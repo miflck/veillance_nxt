@@ -2,11 +2,10 @@
 
 #include "ofMain.h"
 #include "Stream.h"
-#include "CarousselManager.hpp"
-#include "CarousselEvent.hpp"
 #include "Letter.hpp"
 #include "MovingWords.hpp"
 #include "WordManager.hpp"
+#include "StreamManager.hpp"
 
 class ofApp : public ofBaseApp{
 
@@ -28,9 +27,7 @@ class ofApp : public ofBaseApp{
 		void gotMessage(ofMessage msg);
     
     
-    CarousselManager cm;
-    
-    vector<CarousselManager> cms;
+ 
 
     
         ofTrueTypeFont  font;
@@ -43,11 +40,8 @@ class ofApp : public ofBaseApp{
     
     vector<string> words;
 
-    
-    void carousselEvent(CarousselEvent &e);
-    
+        
     bool bUpdate=true;
-
     bool bDraw=true;
     
     

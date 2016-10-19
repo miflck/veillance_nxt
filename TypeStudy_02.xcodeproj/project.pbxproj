@@ -12,6 +12,7 @@
 		E4B69E210A3A1BDC003C02F2 /* ofApp.cpp in Sources */ = {isa = PBXBuildFile; fileRef = E4B69E1E0A3A1BDC003C02F2 /* ofApp.cpp */; };
 		FA11BF7C1DB6459A00304BAD /* MovingWords.cpp in Sources */ = {isa = PBXBuildFile; fileRef = FA11BF7A1DB6459A00304BAD /* MovingWords.cpp */; };
 		FA11BF851DB67AD700304BAD /* WordManager.cpp in Sources */ = {isa = PBXBuildFile; fileRef = FA11BF831DB67AD700304BAD /* WordManager.cpp */; };
+		FA11BF891DB684D700304BAD /* StreamManager.cpp in Sources */ = {isa = PBXBuildFile; fileRef = FA11BF871DB684D700304BAD /* StreamManager.cpp */; };
 		FA5E6E1E1DACC43B006A9B8C /* LetterEvent.cpp in Sources */ = {isa = PBXBuildFile; fileRef = FA5E6E1C1DACC43B006A9B8C /* LetterEvent.cpp */; };
 		FA97F8791DABC2C7006B426A /* Stream.cpp in Sources */ = {isa = PBXBuildFile; fileRef = FA97F8771DABC2C7006B426A /* Stream.cpp */; };
 		FA97F87D1DABDED7006B426A /* Word.cpp in Sources */ = {isa = PBXBuildFile; fileRef = FA97F87B1DABDED7006B426A /* Word.cpp */; };
@@ -64,6 +65,8 @@
 		FA11BF7B1DB6459A00304BAD /* MovingWords.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = MovingWords.hpp; sourceTree = "<group>"; };
 		FA11BF831DB67AD700304BAD /* WordManager.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = WordManager.cpp; sourceTree = "<group>"; };
 		FA11BF841DB67AD700304BAD /* WordManager.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = WordManager.hpp; sourceTree = "<group>"; };
+		FA11BF871DB684D700304BAD /* StreamManager.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = StreamManager.cpp; sourceTree = "<group>"; };
+		FA11BF881DB684D700304BAD /* StreamManager.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = StreamManager.hpp; sourceTree = "<group>"; };
 		FA5E6E1C1DACC43B006A9B8C /* LetterEvent.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = LetterEvent.cpp; sourceTree = "<group>"; };
 		FA5E6E1D1DACC43B006A9B8C /* LetterEvent.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = LetterEvent.hpp; sourceTree = "<group>"; };
 		FA97F8771DABC2C7006B426A /* Stream.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Stream.cpp; sourceTree = "<group>"; };
@@ -149,6 +152,8 @@
 				FA11BF7E1DB6461400304BAD /* Moving Words */,
 				FA11BF831DB67AD700304BAD /* WordManager.cpp */,
 				FA11BF841DB67AD700304BAD /* WordManager.hpp */,
+				FA11BF871DB684D700304BAD /* StreamManager.cpp */,
+				FA11BF881DB684D700304BAD /* StreamManager.hpp */,
 			);
 			path = src;
 			sourceTree = SOURCE_ROOT;
@@ -276,6 +281,7 @@
 				FAAA20611DAE5241007203FE /* CarousselContainer.cpp in Sources */,
 				FA11BF851DB67AD700304BAD /* WordManager.cpp in Sources */,
 				E4B69E200A3A1BDC003C02F2 /* main.cpp in Sources */,
+				FA11BF891DB684D700304BAD /* StreamManager.cpp in Sources */,
 				FAAA20661DAE791D007203FE /* CarousselEvent.cpp in Sources */,
 				E4B69E210A3A1BDC003C02F2 /* ofApp.cpp in Sources */,
 				FA97F8811DAC39D9006B426A /* Line.cpp in Sources */,
