@@ -65,12 +65,15 @@ public:
     void setIsDrawn(bool _b);
     
     
+    void setIsOnScreen(bool _s);
+    bool getIsOnScreen();
+    
 private:
     
     ofVec2f position;
     int wordId;
     bool bIsDrawn=true;
-    
+    bool bIsOnScreen=false;
     
     
 };

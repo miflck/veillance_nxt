@@ -45,7 +45,7 @@ public:
     void startMoving();
     void stopMoving();
     bool bIsMoving=false;
-    int maxspeed=1;
+    float maxspeed=1;
     
 private:
     ofVec3f startposition;

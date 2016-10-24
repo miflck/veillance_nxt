@@ -62,6 +62,8 @@ public:
     void setColor(ofColor _c);
     ofColor getColor();
     
+    bool checkIsOnScreen();
+    
     
 private:
     
@@ -75,7 +77,8 @@ private:
     int lifeTime;
     bool bIsAlive=false;
     
-    
+    bool bIsOnScreen=false;
+    bool wasOnScreen=false;
 };
 
 

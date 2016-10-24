@@ -15,14 +15,12 @@ MovingWords::MovingWords(){
 void MovingWords::setup(){
     ofVec3f t=ofVec3f(1,0,0);
     t*=ofRandom(3000,5000);
-    float angle=ofRandom(-80,-70);
+    float angleY=ofRandom(-80,-70);
    // angle=-45;
-    t.rotate(angle, ofVec3f(0,1,0));
-     angle=ofRandom(-90);
-    t.rotate(angle, ofVec3f(0,0,1));
+    t.rotate(angleY, ofVec3f(0,1,0));
+     float angleZ=ofRandom(-90);
+    t.rotate(angleZ, ofVec3f(0,0,1));
     target.set(t);
-    
-    
     
     startposition.set(ofRandom(ofGetWidth()/2-200,ofGetWidth()/2+200),ofGetHeight()/2,0);
     
@@ -32,13 +30,15 @@ void MovingWords::setup(){
    // node.rotate(angle, ofVec3f(0,1,0));
     //node.roll(ofDegToRad(angle));
     //node.pan(ofDegToRad(angle));
-    //node.lookAt(target);
+    node.lookAt(target);
     
-    node.rotate(angle, 0, 1, 0); // the rotation happens on the y axis
-    geometry.rotate(angle, 0, 1, 0); // the rotation happens on the y axis
-    geometry.rotate(angle, 0, 0, 1); // the rotation happens on the y axis
+   // node.rotate(angleY, 0, 1, 0); // the rotation happens on the y axis
+   // node.rotate(angleZ, 0, 0, 1); // the rotation happens on the y axis
 
-    
+    geometry.rotate(angleY, 0, 1, 0); // the rotation happens on the y axis
+    geometry.rotate(angleZ, 0, 0, 1); // the rotation happens on the y axis
+
+    maxspeed=ofRandom(1,2);
 
    // plane.set(100, 100);   ///dimensions for width and height in pixels
    // plane.setPosition(startposition); /// position in x y z
@@ -50,13 +50,16 @@ void MovingWords::update(){
     move();
   //node.pan(ofDegToRad(-2));
   //  geometry.rotate(dir, 0, 1, 0); // the rotation happens on the y axis
-    geometry.roll(ofDegToRad(angle));
-    geometry.pan(ofDegToRad(angle));
+    //geometry.roll(ofDegToRad(angle));
+    //geometry.pan(ofDegToRad(angle));
 
-    //angle+=0.01;
+    angle+=0.1;
     geometry.setPosition(position);
     node.setPosition(position);
-
+ node.lookAt(target);
+    
+    node.pan(180);
+    //node.roll(angle);
 
 }
 
@@ -64,41 +67,57 @@ void MovingWords::draw(){
     
     ofPushMatrix();
    // ofTranslate(ofGetWidth()/2,ofGetHeight()/2);
-    ofSetColor(0,0,255,100);
+    ofSetColor(0,0,255,200);
     ofDrawLine(startposition, target);
     ofNoFill();
   // geometry.draw();
 
     
-    ofSetColor(0,0,255);
+    ofSetColor(255,0,0);
 
 
     
-     //  node.draw();
+       node.draw();
+    ofSetColor(0,255,0);
 
+    
+    //node.pan(PI);
+    
     ofPushMatrix();
     ofTranslate(position);
    // font->drawString(data,0,0);
 
-    ofQuaternion q;
-    q=node.getGlobalOrientation();
     
-
     float angle;
     ofVec3f axis;//(0,0,1.0f);
-    q=geometry.getOrientationQuat();
-
-    q.getRotate(angle, axis);
-    ofRotate(angle, axis.x, axis.y, axis.z); // rotate with quaternion
     
+    ofQuaternion q;
+    q=node.getGlobalOrientation();
+    q.getRotate(angle, axis);
+
+    ofPushMatrix();
+    ofSetColor(0,0,255);
+
+    ofRotate(angle, axis.x, axis.y, axis.z); // rotate with quaternion
+     font->drawString(data,0,0);
+    ofPopMatrix();
+
+   // float angle;
+   // ofVec3f axis;//(0,0,1.0f);
+    //q=geometry.getOrientationQuat();
+
+    //q.getRotate(angle, axis);
+    //ofRotate(angle, axis.x, axis.y, axis.z); // rotate with quaternion
+    ofSetColor(0,0,255);
+
     ofNoFill();
-    ofDrawBox(0, 0, 0, 50); // OF 0.74: ofBox(0, 0, 0, 220);
-    ofDrawAxis(100);
+    //ofDrawBox(0, 0, 0, 50); // OF 0.74: ofBox(0, 0, 0, 220);
+    //ofDrawAxis(100);
     
     //node.rotate(q);
    // plane.drawWireframe();
 
-    font->drawString(data,0,0);
+   // font->drawString(data,0,0);
     ofPopMatrix();
     ofPopMatrix();
  

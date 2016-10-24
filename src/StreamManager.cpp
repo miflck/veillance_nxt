@@ -93,12 +93,14 @@ void StreamManager::draw(){
         }
         
         
-        for(auto movingWord:movingWords){
-            movingWord->draw();
-        }
+      
         
         for(auto letter:letters){
             letter->draw();
+        }
+        
+        for(auto movingWord:movingWords){
+            movingWord->draw();
         }
         
         

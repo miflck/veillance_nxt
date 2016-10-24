@@ -20,12 +20,22 @@ void Word::setup(int _index){
     
     myColor=ofColor(ofRandom(200,255),ofRandom(200,255),ofRandom(200,255));
     mySuggestionColor=ofColor(255,0,0);
-    bIsAlive=true;
+   // bIsAlive=true;
 
 }
 
 void Word::update(){
+    
     int now=ofGetElapsedTimeMillis();
+
+    if(!wasOnScreen){
+        bool isOnScreen=checkIsOnScreen();
+        lifeTime=ofGetElapsedTimeMillis()+int(ofRandom(20000,150000));
+        bIsAlive=true;
+        wasOnScreen=isOnScreen;
+    }
+    
+    
     if(bIsAlive && bIsSuggestion && now>lifeTime){
         bIsAlive=false;
         myColor=ofColor(0,0,0);
@@ -90,5 +100,16 @@ void Word::setColor(ofColor _c){
 ofColor Word::getColor(){
     return myColor;
 }
+
+
+bool Word::checkIsOnScreen(){
+    bool b=false;
+    if(myLetters.size()>1){
+     b= myLetters[myLetters.size()-1]->getIsOnScreen();
+    }
+    return b;
+
+}
+
 
 
