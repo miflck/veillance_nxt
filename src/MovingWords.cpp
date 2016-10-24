@@ -21,7 +21,11 @@ void MovingWords::setup(){
      angle=ofRandom(-90);
     t.rotate(angle, ofVec3f(0,0,1));
     target.set(t);
+    
+    
+    
     startposition.set(ofRandom(ofGetWidth()/2-200,ofGetWidth()/2+200),ofGetHeight()/2,0);
+    
     //startposition.set(ofGetWidth()/2,ofGetHeight()/2,0);
 
     position.set(startposition);
@@ -36,8 +40,8 @@ void MovingWords::setup(){
 
     
 
-    plane.set(100, 100);   ///dimensions for width and height in pixels
-    plane.setPosition(startposition); /// position in x y z
+   // plane.set(100, 100);   ///dimensions for width and height in pixels
+   // plane.setPosition(startposition); /// position in x y z
 
 
 }
@@ -49,7 +53,7 @@ void MovingWords::update(){
     geometry.roll(ofDegToRad(angle));
     geometry.pan(ofDegToRad(angle));
 
-    angle+=0.1;
+    //angle+=0.01;
     geometry.setPosition(position);
     node.setPosition(position);
 
@@ -57,6 +61,9 @@ void MovingWords::update(){
 }
 
 void MovingWords::draw(){
+    
+    ofPushMatrix();
+   // ofTranslate(ofGetWidth()/2,ofGetHeight()/2);
     ofSetColor(0,0,255,100);
     ofDrawLine(startposition, target);
     ofNoFill();
@@ -89,9 +96,10 @@ void MovingWords::draw(){
     ofDrawAxis(100);
     
     //node.rotate(q);
-    plane.drawWireframe();
+   // plane.drawWireframe();
 
     font->drawString(data,0,0);
+    ofPopMatrix();
     ofPopMatrix();
  
 
@@ -113,6 +121,13 @@ string MovingWords::getData(){
 void MovingWords::setFont(ofTrueTypeFont *f){
     font=f;
 }
+
+void MovingWords::setStartPosition(ofVec3f _p){
+    startposition.set(_p);
+    position.set(_p);
+    node.setGlobalPosition(position);
+}
+
 
 void MovingWords::setPosition(ofVec3f _p){
     position.set(_p);
@@ -162,6 +177,7 @@ void MovingWords::move(){
 void MovingWords::startMoving(){
     bIsMoving=true;
 
+    cout<<startposition<<endl;
 }
 
 void MovingWords::stopMoving(){

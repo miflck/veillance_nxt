@@ -15,11 +15,18 @@ void CarousselContainer::setup(){
 }
 
 void CarousselContainer::update(){
+    
    // cout<<dimension<<endl;
     //cout<<"data"<<myLetter->getData()<<endl;
   //  myLetter->getData();
     
  //   if(id==0 && myLetter!=nullptr)   cout<<id<<" letter "<<myLetter->getData()<<endl;
+    
+    ofVec2f p=ofVec2f(position.x,position.y);
+    //cout<<"pos"<<p<<endl;
+     if(myLetter!=nullptr){
+         myLetter->setPosition(p);
+     }
 
 }
 
@@ -46,7 +53,7 @@ void CarousselContainer::draw(){
         ofPushMatrix();
         ofTranslate(dimension.x/2,dimension.y/2);
       //  cout<<id<<" letter "<<myLetter->getData()<<endl;
-       myLetter->draw();
+      // myLetter->draw();
         ofPopMatrix();
     }
     ofSetColor(255, 0, 0,100);

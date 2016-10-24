@@ -34,8 +34,8 @@ public:
     
     
     //DATA
-    string data; //declare a vector of strings to store data
     void setData(string _data);
+    string getMyData();
     
     void addLetterPointer(Letter * _l);
     vector<Letter *> myLetters;
@@ -64,6 +64,10 @@ public:
     
     
 private:
+    
+    
+    string data; //declare a vector of strings to store data
+
     
   bool  bIsMovingWord=false;
   bool  bIsSuggestion=false;

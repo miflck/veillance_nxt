@@ -31,6 +31,8 @@ public:
 
     bool bRemove=false;
     
+    
+    void setStartPosition(ofVec3f _p);
     void setPosition(ofVec3f _p);
     ofVec3f getPosition();
     void setVelocity(ofVec3f _v);

@@ -35,9 +35,12 @@ void Letter::update(){
 void Letter::draw(){
     
     if(bIsDrawn){ // only draw if is not moving word;
+        ofPushMatrix();
+        ofTranslate(position);
     ofColor c=myWordPointer->getColor();
    ofSetColor(c);
     font->drawString(ofToString(data), 0,font->getStringBoundingBox("H", 0, 0).getHeight());
+        ofPopMatrix();
     }
     /*fboText.begin();
     ofClear(255, 255, 255, 0);

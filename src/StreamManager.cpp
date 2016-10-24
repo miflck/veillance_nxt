@@ -72,8 +72,16 @@ void StreamManager::update(){
         for(auto word:words){
            word->update();
         }
-
         
+        for(auto movingWord:movingWords){
+            movingWord->update();
+        }
+
+        for(auto letter:letters){
+            letter->update();
+        }
+        
+      
         
     }
 }
@@ -83,6 +91,17 @@ void StreamManager::draw(){
         for(int i=0;i<cms.size();i++){
             cms[i].draw();
         }
+        
+        
+        for(auto movingWord:movingWords){
+            movingWord->draw();
+        }
+        
+        for(auto letter:letters){
+            letter->draw();
+        }
+        
+        
     }
 
 }
@@ -124,11 +143,11 @@ void StreamManager::addData(string _s){
     Word * w=new Word();
     w->setup(wordcounter);
     w->setData(_s);
-    int lifeTime=int(ofRandom(10000,50000));
+    int lifeTime=ofGetElapsedTimeMillis()+int(ofRandom(10000,50000));
     w->setLifeTime(lifeTime);
     
     float r=ofRandom(0,1);
-    if(r<0.2)w->setIsSuggestion(true);
+    if(r<0.2 && _s!=" ")w->setIsSuggestion(true);
     
     for (auto ss : _s){
         char c = ss;
@@ -167,6 +186,22 @@ void StreamManager::addLetter(Letter *  _l){
 void StreamManager::setDebug(bool debug){
 
 }
+
+
+void StreamManager::addMovingWord(Word *_w){
+    
+    MovingWords *mw=new MovingWords();
+    mw->setup();
+    mw->setFont(&bigfont);
+    mw->setData(_w->getMyData());
+    cout<<"startpos from word"<<_w->getPosition()<<endl;
+
+    mw->setStartPosition(_w->getPosition());
+    mw->startMoving();
+    movingWords.push_back(mw);
+
+}
+
 
 
 /*

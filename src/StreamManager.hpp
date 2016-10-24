@@ -51,7 +51,6 @@ public:
     
     // DATA
     void addData(string _s);
-    
     void addWord(string _s);
 
     
@@ -64,8 +63,8 @@ public:
 
     
     //Moving Words
-    vector<MovingWords> movingWords;
-
+    vector<MovingWords *> movingWords;
+    void addMovingWord(Word * _w);
     
     
     

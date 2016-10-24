@@ -8,13 +8,15 @@
 
 #include "Word.h"
 #include "Letter.hpp"
+#include "StreamManager.hpp"
+
 Word::Word(){
 }
 
 void Word::setup(int _index){
     cout<<"index"<<_index<<endl;
     wordIndex=_index;
-    lifeTime=int(ofRandom(50000,200000));
+    lifeTime=ofGetElapsedTimeMillis()+int(ofRandom(50000,200000));
     
     myColor=ofColor(ofRandom(200,255),ofRandom(200,255),ofRandom(200,255));
     mySuggestionColor=ofColor(255,0,0);
@@ -27,6 +29,8 @@ void Word::update(){
     if(bIsAlive && bIsSuggestion && now>lifeTime){
         bIsAlive=false;
         myColor=ofColor(0,0,0);
+        STM->addMovingWord(this);
+        
         for(auto letter:myLetters){
             letter->setIsDrawn(false);
         }
@@ -40,6 +44,10 @@ void Word::setData(string _data){
     data=_data;
 }
 
+string Word::getMyData(){
+    return data;
+}
+
 void Word::setFont(ofTrueTypeFont *f){
     font=f;
 }
@@ -49,6 +57,8 @@ float Word::getWidth(){
 };
 
 ofVec3f Word::getPosition(){
+    ofVec2f p=myLetters[0]->getPosition();
+    position.set(p);
     return position;
 
 }
