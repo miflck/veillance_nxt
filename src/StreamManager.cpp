@@ -68,6 +68,13 @@ void StreamManager::update(){
         for(int i=0;i<cms.size();i++){
             cms[i].update();
         }
+        
+        for(auto word:words){
+           word->update();
+        }
+
+        
+        
     }
 }
 
@@ -114,23 +121,51 @@ bool StreamManager::isInitialized(){
 
 
 void StreamManager::addData(string _s){
+    Word * w=new Word();
+    w->setup(wordcounter);
+    w->setData(_s);
+    int lifeTime=int(ofRandom(10000,50000));
+    w->setLifeTime(lifeTime);
     
+    float r=ofRandom(0,1);
+    if(r<0.2)w->setIsSuggestion(true);
     
     for (auto ss : _s){
-        
         char c = ss;
          Letter * l =new Letter();
          l->setData(c);
          l->setFont(&font);
+        l->setWordId(wordcounter);
+        l->setWordPointer(w);
          addLetter(l);
         cms[cms.size()-1].addMovement(letters[letters.size()-1]);
+        w->addLetterPointer(l);
     }
-    cout<<"letters Size "<<letters.size()<<endl;
+    
+    
+    words.push_back(w);
+    cout<<"words size "<<words.size()<<" letters Size "<<letters.size()<<endl;
+    wordcounter++; // debug id
+}
+
+
+void StreamManager::addWord(string _s){
+    Word *w;
+    w->setup(words.size());
+    w->setData(_s);
+    words.push_back(w);
 }
 
 
 void StreamManager::addLetter(Letter *  _l){
     letters.push_back(_l);
+}
+
+
+
+
+void StreamManager::setDebug(bool debug){
+
 }
 
 

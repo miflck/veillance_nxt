@@ -9,12 +9,18 @@
 #ifndef Letter_hpp
 #define Letter_hpp
 
+#pragma once
+
+
 #include <stdio.h>
 
 #include <stdio.h>
 #include "ofMain.h"
 #include "LetterEvent.hpp"
 
+
+
+class Word;
 
 class Letter {
     
@@ -42,11 +48,30 @@ public:
     ofVboMesh getOriginalVboMesh();
     void makeOriginalVboMesh();
     
+    void setWordId(int _id);
+    int getWordId();
+    
+    void setDebug(bool debug);
+    bool debug=false;
+    
+    
+    Word * myWordPointer;
+    void setWordPointer(Word * w);
+    
+    
+    void setPosition(ofVec2f p);
+    ofVec2f getPosition();
+    
+    void setIsDrawn(bool _b);
     
     
 private:
     
     ofVec2f position;
+    int wordId;
+    bool bIsDrawn=true;
+    
+    
     
 };
 

@@ -135,9 +135,22 @@ void ofApp::keyReleased(int key){
     if(key=='w'){
         
         
+        
         for (auto line : data){
-            STM->addData(line);
+            vector<string> split;
+            split = ofSplitString(line, " ");
+            
+            for (auto word : split){
+                STM->addData(word);
+                STM->addData(" "); // add space
+            }
+            
+            // STM->addData(line);
         }
+        
+        
+        
+        
 //        cout<<"new leterbuffer size"<<letterbuffer.size();
 
         

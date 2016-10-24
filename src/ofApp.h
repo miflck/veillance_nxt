@@ -30,7 +30,7 @@ class ofApp : public ofBaseApp{
  
 
     
-        ofTrueTypeFont  font;
+    ofTrueTypeFont  font;
     ofTrueTypeFont  bigfont;
 
     

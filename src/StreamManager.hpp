@@ -20,6 +20,10 @@
 #include "Letter.hpp"
 
 
+#include "MovingWords.hpp"
+
+
+
 //for convenience
 #define STM StreamManager::getInstance()
 
@@ -48,12 +52,21 @@ public:
     // DATA
     void addData(string _s);
     
+    void addWord(string _s);
+
+    
+    
     //LETTER
     vector<Letter *>letters;
     void addLetter(Letter * _l);
     
-    vector<Word> words;
+    vector<Word *> words;
 
+    
+    //Moving Words
+    vector<MovingWords> movingWords;
+
+    
     
     
     //FONT
@@ -68,10 +81,16 @@ public:
     bool bDraw=true;
     
     
+    bool debug;
+    void setDebug(bool debug);
+    
+    
 private:
     StreamManager();
     static StreamManager* instance;
     bool initialized;
+    int wordcounter=0;
+    
 };
 
 

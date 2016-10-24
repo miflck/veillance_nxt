@@ -7,6 +7,7 @@
 //
 
 #include "Letter.hpp"
+#include "Word.h"
 Letter::Letter(){
     data=NULL;
     
@@ -32,9 +33,12 @@ void Letter::update(){
 }
 
 void Letter::draw(){
-    ofSetColor(255,0,0);
+    
+    if(bIsDrawn){ // only draw if is not moving word;
+    ofColor c=myWordPointer->getColor();
+   ofSetColor(c);
     font->drawString(ofToString(data), 0,font->getStringBoundingBox("H", 0, 0).getHeight());
-
+    }
     /*fboText.begin();
     ofClear(255, 255, 255, 0);
     font->drawString(ofToString(data), 0, font->getStringBoundingBox("H", 0, 0).getHeight());
@@ -49,6 +53,14 @@ void Letter::setData(char _data){
   //  fboText.allocate(textBounds.getWidth()+2, textBounds.getHeight()+2);
 }
 
+void Letter::setWordId(int _id){
+    wordId=_id;
+}
+
+int Letter::getWordId(){
+    return wordId;
+}
+
 
 char Letter::getData(){
     return data;
@@ -59,6 +71,34 @@ void Letter::setFont(ofTrueTypeFont *f){
      ofRectangle textBounds = font->getStringBoundingBox("H", 0, 0);
     
 }
+
+
+
+void Letter::setIsDrawn(bool _b){
+    bIsDrawn=_b;
+}
+
+
+
+void Letter::setDebug(bool _debug){
+    debug=_debug;
+}
+
+
+void Letter::setWordPointer(Word *_w){
+    myWordPointer=_w;
+}
+
+
+void Letter::setPosition(ofVec2f _p){
+    position.set(_p);
+}
+
+ofVec2f Letter::getPosition(){
+    return position;
+}
+
+
 
 void Letter::makeOriginalVboMesh(){
 

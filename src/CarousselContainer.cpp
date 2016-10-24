@@ -31,7 +31,7 @@ void CarousselContainer::draw(){
     ofPushMatrix();
     ofTranslate(position);
     ofSetColor(255);
-   ofDrawRectangle(bbox.x+2,bbox.y+2,bbox.getWidth()-2,bbox.getHeight()-2);
+  if(debug) ofDrawRectangle(bbox.x+2,bbox.y+2,bbox.getWidth()-2,bbox.getHeight()-2);
     ofSetColor(200,200,255);
     //ofDrawBitmapString(ofToString(id), bbox.getCenter().x, bbox.getCenter().y);
    // if(myLetter !=NULL){
@@ -121,5 +121,13 @@ void CarousselContainer::setLetterPointer(Letter *_l){
 Letter* CarousselContainer::getLetterPointer(){
         return myLetter;
 }
+
+
+
+
+void CarousselContainer::setDebug(bool _debug){
+    debug=_debug;
+}
+
 
 

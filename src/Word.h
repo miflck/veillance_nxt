@@ -6,15 +6,21 @@
 //
 //
 
+
+#pragma once
+
+
+
 #ifndef Word_h
 #define Word_h
 
 #include <stdio.h>
 
 #include "ofMain.h"
-#include "Letter.hpp"
+//#include "Letter.hpp"
 #include "LetterEvent.hpp"
 
+class Letter;
 
 class Word {
     
@@ -31,6 +37,9 @@ public:
     string data; //declare a vector of strings to store data
     void setData(string _data);
     
+    void addLetterPointer(Letter * _l);
+    vector<Letter *> myLetters;
+
     ofTrueTypeFont  *font;
     void setFont(ofTrueTypeFont *f);
     void setPosition(ofVec3f pos);
@@ -38,11 +47,31 @@ public:
     ofVec3f position;
     float getWidth();
     float wordwidth;
-    vector<Letter> letters;
     
-    int wordIndex;
+    
+    int wordIndex=0;
+    
+    void setLifeTime(int _lifeTime);
+    
+    
+    void setIsSuggestion(bool _s);
+    
+    ofColor myColor;
+    ofColor mySuggestionColor;
+
+    void setColor(ofColor _c);
+    ofColor getColor();
+    
     
 private:
+    
+  bool  bIsMovingWord=false;
+  bool  bIsSuggestion=false;
+    
+    int lifeTime;
+    bool bIsAlive=false;
+    
+    
 };
 
 
