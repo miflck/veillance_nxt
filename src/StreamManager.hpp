@@ -84,6 +84,9 @@ public:
     void setDebug(bool debug);
     
     
+    static bool shouldRemoveMovingWord(MovingWords *mw); // why static
+    
+    
 private:
     StreamManager();
     static StreamManager* instance;

@@ -47,6 +47,11 @@ public:
     bool bIsMoving=false;
     float maxspeed=1;
     
+    
+    void setIsAlive(bool _b);
+    bool checkIsAlive();
+    
+    
 private:
     ofVec3f startposition;
 
@@ -59,7 +64,17 @@ ofPlanePrimitive plane;
     
     ofBoxPrimitive geometry;
 
+    bool bIsAlive=false;
     
+    int maxdistance;
+    
+    float rollspeed;
+    float panspeed;
+    float tiltspeed;
+    
+    float rollangle;
+    float panangle;
+    float tiltangle;
     
     
 };

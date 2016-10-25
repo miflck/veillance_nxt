@@ -38,12 +38,25 @@ void MovingWords::setup(){
     geometry.rotate(angleY, 0, 1, 0); // the rotation happens on the y axis
     geometry.rotate(angleZ, 0, 0, 1); // the rotation happens on the y axis
 
-    maxspeed=ofRandom(1,2);
+    maxspeed=ofRandom(0.5,1);
 
    // plane.set(100, 100);   ///dimensions for width and height in pixels
    // plane.setPosition(startposition); /// position in x y z
 
+    maxdistance=2000;
+    setIsAlive(true);
+    
+    rollangle=0;
+    panangle=0;
+    tiltangle=0;
+    
+    
+    
+    rollspeed=ofRandom(0.01,0.1);
+    panspeed=ofRandom(0.01,0.1);
+    tiltspeed=ofRandom(0.01,0.1);
 
+    
 }
 
 void MovingWords::update(){
@@ -53,13 +66,25 @@ void MovingWords::update(){
     //geometry.roll(ofDegToRad(angle));
     //geometry.pan(ofDegToRad(angle));
 
-    angle+=0.1;
+    //angle+=ofRandom(0.5);
+    
+    rollangle+=rollspeed;
+    panangle+=panspeed;
+    tiltangle+=tiltspeed;
+    
     geometry.setPosition(position);
     node.setPosition(position);
- node.lookAt(target);
+    node.lookAt(target);
+    node.pan(180+panangle);
+    node.roll(rollangle);
+    node.tilt(tiltangle);
     
-    node.pan(180);
-    //node.roll(angle);
+    
+    if(position.length()>maxdistance){
+        setIsAlive(false);
+    }
+    
+    
 
 }
 
@@ -67,7 +92,7 @@ void MovingWords::draw(){
     
     ofPushMatrix();
    // ofTranslate(ofGetWidth()/2,ofGetHeight()/2);
-    ofSetColor(0,0,255,200);
+    ofSetColor(0,0,255,1w00);
     ofDrawLine(startposition, target);
     ofNoFill();
   // geometry.draw();
@@ -202,3 +227,15 @@ void MovingWords::startMoving(){
 void MovingWords::stopMoving(){
     bIsMoving=false;
 }
+
+void MovingWords::setIsAlive(bool _b){
+    bIsAlive=_b;
+
+}
+
+bool MovingWords::checkIsAlive(){
+    return bIsAlive;
+}
+
+
+

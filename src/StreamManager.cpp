@@ -29,7 +29,7 @@ void StreamManager::initialize() {
     cout<<"init StreamManager"<<endl;
     
     font.load("FoundersGroteskMonoRegular.ttf", 10);
-    bigfont.load("FoundersGroteskMonoRegular.ttf", 50);
+    bigfont.load("FoundersGroteskMonoBold.ttf", 30);
     
     
     float minspeed=2;
@@ -75,19 +75,28 @@ void StreamManager::update(){
         
         for(auto movingWord:movingWords){
             movingWord->update();
+          
         }
 
         for(auto letter:letters){
             letter->update();
         }
         
-      
         
+        // check if we want to remove the bullet
+        for (int i=0;i<movingWords.size();i++){
+            if(shouldRemoveMovingWord(movingWords[i])){
+                delete (movingWords[i]);
+                movingWords.erase(movingWords.begin()+i);
+            }
+        }        
     }
 }
 
 void StreamManager::draw(){
     if(bDraw){
+      //  ofBackground(0); // this matters
+
         for(int i=0;i<cms.size();i++){
             cms[i].draw();
         }
@@ -99,9 +108,12 @@ void StreamManager::draw(){
             letter->draw();
         }
         
+      //  ofEnableBlendMode(OF_BLENDMODE_ADD);
+
         for(auto movingWord:movingWords){
             movingWord->draw();
         }
+       // ofDisableBlendMode();
         
         
     }
@@ -204,6 +216,20 @@ void StreamManager::addMovingWord(Word *_w){
 
 }
 
+
+bool StreamManager::shouldRemoveMovingWord(MovingWords *mv){
+    if(!mv->checkIsAlive()) return true;
+    bool bRemove = false;
+    
+    // get the rectangle of the OF world
+    ofRectangle rec = ofGetCurrentViewport();
+    
+/*    if(rec.inside(mv->getPosition()) == false) {
+        mv->setIsAlive(false);
+        bRemove = true;
+    }*/ //not working
+    return bRemove;
+}
 
 
 /*
