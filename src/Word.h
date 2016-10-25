@@ -6,15 +6,21 @@
 //
 //
 
+
+#pragma once
+
+
+
 #ifndef Word_h
 #define Word_h
 
 #include <stdio.h>
 
 #include "ofMain.h"
-#include "Letter.hpp"
+//#include "Letter.hpp"
 #include "LetterEvent.hpp"
 
+class Letter;
 
 class Word {
     
@@ -22,37 +28,57 @@ public:
     Word();
     
     
-    void setup();
+    void setup(int _index);
     void update();
     void draw();
     
     
     //DATA
-    string data; //declare a vector of strings to store data
     void setData(string _data);
+    string getMyData();
     
+    void addLetterPointer(Letter * _l);
+    vector<Letter *> myLetters;
+
     ofTrueTypeFont  *font;
     void setFont(ofTrueTypeFont *f);
     void setPosition(ofVec3f pos);
     ofVec3f getPosition();
     ofVec3f position;
     float getWidth();
-    
-    float spacingFact;
-    float speed;
-    
-    void moveTo(ofVec3f);
-    
     float wordwidth;
     
     
+    int wordIndex=0;
     
-    vector<Letter> letters;
-    void makeLetters(string _word);
+    void setLifeTime(int _lifeTime);
     
+    
+    void setIsSuggestion(bool _s);
+    
+    ofColor myColor;
+    ofColor mySuggestionColor;
+
+    void setColor(ofColor _c);
+    ofColor getColor();
+    
+    bool checkIsOnScreen();
     
     
 private:
+    
+    
+    string data; //declare a vector of strings to store data
+
+    
+  bool  bIsMovingWord=false;
+  bool  bIsSuggestion=false;
+    
+    int lifeTime;
+    bool bIsAlive=false;
+    
+    bool bIsOnScreen=false;
+    bool wasOnScreen=false;
 };
 
 

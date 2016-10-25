@@ -7,55 +7,59 @@
 //
 
 #include "Word.h"
+#include "Letter.hpp"
+#include "StreamManager.hpp"
+
 Word::Word(){
 }
 
-void Word::setup(){
+void Word::setup(int _index){
+    cout<<"index"<<_index<<endl;
+    wordIndex=_index;
+    lifeTime=ofGetElapsedTimeMillis()+int(ofRandom(50000,200000));
     
+    myColor=ofColor(ofRandom(200,255),ofRandom(200,255),ofRandom(200,255));
+    mySuggestionColor=ofColor(255,0,0);
+   // bIsAlive=true;
+
 }
 
 void Word::update(){
-    float p=ABS(ofGetHeight()/2-position.y);
-    spacingFact=ofMap(p,0,ofGetHeight()/2,1,10);
     
-    font->setLetterSpacing(spacingFact);
-    wordwidth = font->stringWidth(data);
-  
+    int now=ofGetElapsedTimeMillis();
 
-
-    /*font->setLetterSpacing(spacingFact);
-     float fontWidth = font->stringWidth(data);
-
-    position.x-=speed;
-    if(position.x<-fontWidth){
-        position.x=ofGetWidth();
-        position.y-=font->getLineHeight();
-        spacingFact=ofMap(p,0,ofGetHeight()/2,1,10);
-        speed=ofMap(p,0,ofGetHeight()/2,1,10);
-    };*/
- 
+    if(!wasOnScreen){
+        bool isOnScreen=checkIsOnScreen();
+        lifeTime=ofGetElapsedTimeMillis()+int(ofRandom(20000,150000));
+        bIsAlive=true;
+        wasOnScreen=isOnScreen;
+    }
+    
+    
+    if(bIsAlive && bIsSuggestion && now>lifeTime){
+        bIsAlive=false;
+        myColor=ofColor(0,0,0);
+        STM->addMovingWord(this);
+        
+        for(auto letter:myLetters){
+            letter->setIsDrawn(false);
+        }
+    }
 }
 
 void Word::draw(){
-    font->setLetterSpacing(spacingFact);
-
-    ofSetColor(0);
-    ofPushMatrix();
-   ofTranslate(position.x,position.y,position.z);
-   font->drawString(data, 0,0);
-    ofPopMatrix();
- ;
-}
+    }
 
 void Word::setData(string _data){
     data=_data;
-    makeLetters(data);
-    cout<<data<<endl;
+}
+
+string Word::getMyData(){
+    return data;
 }
 
 void Word::setFont(ofTrueTypeFont *f){
     font=f;
-    
 }
 
 float Word::getWidth(){
@@ -63,51 +67,48 @@ float Word::getWidth(){
 };
 
 ofVec3f Word::getPosition(){
+    ofVec2f p=myLetters[0]->getPosition();
+    position.set(p);
     return position;
 
 }
 
 void Word::setPosition(ofVec3f pos){
     position.set(pos);
-    float p=ABS(ofGetHeight()/2-position.y);
-    spacingFact=ofMap(p,0,ofGetHeight()/2,1,10);
-    //font->setLetterSpacing(spacingFact);
-    speed=10;
+  }
 
+void Word::setLifeTime(int _lifeTime){
+    lifeTime=_lifeTime;
 }
 
 
-void Word::makeLetters(string _datastring){
-    ofVec3f position=ofVec3f(0,0,0);
-    
-    //font.setKerning(true);
-    
-    string s = _datastring;
-    float x = 0;
-    float y = 0;
-    
-    vector < ofRectangle > rects;
-    for (auto ss : s){
-        string sss = "";
-        sss += ss;
-        ofRectangle r = font->getStringBoundingBox(sss, x, y);
-        //cout << x << " " << r.x << endl;
-        if (ss == ' '){
-            //r.width = 10;
-            r=font->getStringBoundingBox("H", x, y);
-        }
-        r.x = x;
-        rects.push_back(r);
-        float dx = x - r.x;
-        ofNoFill();
-        //ofRect(r);
-        ofFill();
-        x = (r.x + r.width);
-        Letter l;
-        l.setup();
-        l.setData(ss);
-        letters.push_back(l);
-        }
+void Word::setIsSuggestion(bool _s){
+    bIsSuggestion=_s;
+    if(bIsSuggestion)myColor=mySuggestionColor;
+}
+
+
+void Word::addLetterPointer(Letter *_l){
+    myLetters.push_back(_l);
+}
+
+
+void Word::setColor(ofColor _c){
+    myColor=_c;
+}
+
+ofColor Word::getColor(){
+    return myColor;
+}
+
+
+bool Word::checkIsOnScreen(){
+    bool b=false;
+    if(myLetters.size()>1){
+     b= myLetters[myLetters.size()-1]->getIsOnScreen();
+    }
+    return b;
+
 }
 
 

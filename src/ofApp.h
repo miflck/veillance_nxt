@@ -2,6 +2,10 @@
 
 #include "ofMain.h"
 #include "Stream.h"
+#include "Letter.hpp"
+#include "MovingWords.hpp"
+#include "WordManager.hpp"
+#include "StreamManager.hpp"
 
 class ofApp : public ofBaseApp{
 
@@ -23,14 +27,39 @@ class ofApp : public ofBaseApp{
 		void gotMessage(ofMessage msg);
     
     
+ 
+
     
-        ofTrueTypeFont  font;
+    ofTrueTypeFont  font;
+    ofTrueTypeFont  bigfont;
+
     
     vector<string> data; //declare a vector of strings to store data
     Stream stream;
     
     
     vector<string> words;
+
+        
+    bool bUpdate=true;
+    bool bDraw=true;
+    
+    
+    vector<Letter *>letters;
+    void addLetter(Letter * _l);
+    
+    
+    vector<Letter>letterbuffer;
+    void addLetterBuffer(Letter _l);
+
+    bool shouldAddFromLetterBuffer();
+    void addLetterFromBuffer();
+
+    ofImage dot;
+
+    
+    MovingWords mw;
+    WordManager wm;
 
     
     
