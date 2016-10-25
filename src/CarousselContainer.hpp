@@ -64,7 +64,12 @@ public:
     bool bHasPointer=false;
 
     
+    void setDebug(bool _debug);
+    
 private:
+    
+    bool debug=false;
+    
 };
 
 #endif /* CarousselContainer_hpp */

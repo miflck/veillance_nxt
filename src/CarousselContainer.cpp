@@ -15,21 +15,30 @@ void CarousselContainer::setup(){
 }
 
 void CarousselContainer::update(){
+    
    // cout<<dimension<<endl;
     //cout<<"data"<<myLetter->getData()<<endl;
   //  myLetter->getData();
     
  //   if(id==0 && myLetter!=nullptr)   cout<<id<<" letter "<<myLetter->getData()<<endl;
+    
+    ofVec2f p=ofVec2f(position.x,position.y);
+    //cout<<"pos"<<p<<endl;
+     if(myLetter!=nullptr){
+         myLetter->setPosition(p);
+     }
 
 }
 
 void CarousselContainer::draw(){
   //  if(id==0 && myLetter!=nullptr)   cout<<id<<" letter "<<myLetter->getData()<<endl;
 
+    
+    
     ofPushMatrix();
     ofTranslate(position);
-    ofSetColor(255,100);
-   //ofDrawRectangle(bbox.x+2,bbox.y+2,bbox.getWidth()-2,bbox.getHeight()-2);
+    ofSetColor(255);
+  if(debug) ofDrawRectangle(bbox.x+2,bbox.y+2,bbox.getWidth()-2,bbox.getHeight()-2);
     ofSetColor(200,200,255);
     //ofDrawBitmapString(ofToString(id), bbox.getCenter().x, bbox.getCenter().y);
    // if(myLetter !=NULL){
@@ -44,7 +53,7 @@ void CarousselContainer::draw(){
         ofPushMatrix();
         ofTranslate(dimension.x/2,dimension.y/2);
       //  cout<<id<<" letter "<<myLetter->getData()<<endl;
-       myLetter->draw();
+      // myLetter->draw();
         ofPopMatrix();
     }
     ofSetColor(255, 0, 0,100);
@@ -119,5 +128,13 @@ void CarousselContainer::setLetterPointer(Letter *_l){
 Letter* CarousselContainer::getLetterPointer(){
         return myLetter;
 }
+
+
+
+
+void CarousselContainer::setDebug(bool _debug){
+    debug=_debug;
+}
+
 
 

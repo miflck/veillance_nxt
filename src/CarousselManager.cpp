@@ -107,8 +107,9 @@ void CarousselManager::cicle(){
 }
 
 void CarousselManager::startMoving(){
-      if(id==14)cout<<"startMoving "<<buffer[0]<<endl;
+     // if(id==14)cout<<"startMoving "<<buffer[0]<<endl;
     Letter * l=buffer[0];
+    l->setIsOnScreen(true);
     buffer.erase(buffer.begin());
     containers[containers.size()-1].setLetterPointer(l);
     

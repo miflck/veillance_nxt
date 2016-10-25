@@ -1,7 +1,14 @@
 #include "ofApp.h"
+#include "StreamManager.hpp"
+
 
 //--------------------------------------------------------------
 void ofApp::setup(){
+    
+    
+    STM->initialize();
+
+    
     ofBackground(0);
      ofSetVerticalSync(true);
     ofSetFrameRate(60);
@@ -19,48 +26,6 @@ void ofApp::setup(){
     
     
     wm.setup();
-
-    
-    float minspeed=4;
-    float speed;
-    
-    
-    int h=20;
-    int w=10;
-    
-    //   h=50;
-    //   w=50;
-    
-    
-    
-    
-    int lines=floor(ofGetHeight()/h);
-    cout<<"lines"<<lines<<ofGetHeight()/h<<endl;
-    for(int i = 0; i < lines; i++){
-        CarousselManager cm;
-        float p=ABS((ofGetHeight()/2)-((i*h)));
-        // double dl= int(ofMap(p*(p/2),0,ofGetHeight()/2*(ofGetHeight()/2/2),1,15)); //-> int = smooth bewegung, float stockt??
-        float dl= ofMap(p*(p/4),0,ofGetHeight()/2*(ofGetHeight()/2/4),1,100); //-> int = smooth bewegung, float stockt??
-        float dW=w+dl;
-        // s=v*t
-        // s/v=t
-        //v=s/t
-        float time=w/minspeed;
-        float dv=dW/time;
-        float speed=dv;//(w/minspeed)*dW;
-        float r=ofRandom(0,50);
-        cm.setup(ofVec2f(0,(i*h)),dW,h);
-        cm.maxspeed=speed;//minspeed*dl;
-        cm.setId(i);
-        cms.push_back(cm);
-    }
-    
-    ofAddListener(CarousselEvent::events, this, &ofApp::carousselEvent);
-    
-    
-    
-    
-    
     
     mw.setup();
     mw.setFont(&bigfont);
@@ -72,21 +37,14 @@ void ofApp::setup(){
 
 //--------------------------------------------------------------
 void ofApp::update(){
-    if(bUpdate){
-        for(int i=0;i<cms.size();i++){
-            cms[i].update();
-        }
-    }
-  //  cout<<letters.size()<<endl;
-    
+ 
+    STM->update();
     
     std::stringstream strm;
     strm << "fps: " << ofGetFrameRate();
     ofSetWindowTitle(strm.str());
     
-    
     wm.update();
-    
     mw.update();
     
 }
@@ -94,15 +52,9 @@ void ofApp::update(){
 //--------------------------------------------------------------
 void ofApp::draw(){
     // stream.draw();
-    if(bDraw){
-        for(int i=0;i<cms.size();i++){
-            cms[i].draw();
-        }
-    }
-    
     
     ofSetColor(255);
-    ofVboMesh m;
+   /* ofVboMesh m;
     for(int i=0;i<letters.size();i++){
         ofVboMesh ms=letters[i]->getOriginalVboMesh();
         m.append(ms);
@@ -112,18 +64,23 @@ void ofApp::draw(){
     ofTranslate(ofGetWidth()/2, ofGetHeight()/2);
    // m.draw();
     mw.draw();
+ 
 
     font.getFontTexture().unbind();
     ofPopMatrix();
+       */
     
     
+    
+    STM->draw();
+
     
     wm.draw();
     
     ofPushMatrix();
     //ofTranslate(ofGetWidth()/2, ofGetHeight()/2);
     // m.draw();
-    mw.draw();
+   // mw.draw();
     ofPopMatrix();
     
 }
@@ -142,9 +99,7 @@ void ofApp::keyPressed(int key){
     }*/
     
     
-    if(key=='C'){
-        //cms[cms.size()-1].addMovement('c');
-    }
+   
     
     
 }
@@ -153,12 +108,17 @@ void ofApp::keyPressed(int key){
 void ofApp::keyReleased(int key){
     
     if(key=='c'){
-        Letter * l =new Letter();
+      /*  Letter * l =new Letter();
         l->setData('c');
         l->setFont(&font);
 
-        addLetter(l);
-        cms[cms.size()-1].addMovement(letters[letters.size()-1]);
+        addLetter(l);*/
+       // cms[cms.size()-1].addMovement(letters[letters.size()-1]);
+        
+        
+        STM->addData("hello");
+        
+        
     }
     
     
@@ -176,7 +136,26 @@ void ofApp::keyReleased(int key){
         
         
         
+        for (auto line : data){
+            vector<string> split;
+            split = ofSplitString(line, " ");
+            
+            for (auto word : split){
+                STM->addData(word);
+                STM->addData(" "); // add space
+            }
+            
+            // STM->addData(line);
+        }
         
+        
+        
+        
+//        cout<<"new leterbuffer size"<<letterbuffer.size();
+
+        
+        
+        /*
         for(auto text :data){
             vector<string> split;
             split = ofSplitString(text, " ");
@@ -204,6 +183,7 @@ void ofApp::keyReleased(int key){
             }
         }
         cout<<"new leterbuffer size"<<letterbuffer.size();
+         */
     }
     
 }
@@ -253,39 +233,6 @@ void ofApp::dragEvent(ofDragInfo dragInfo){
     
 }
 
-void ofApp::carousselEvent(CarousselEvent &e){
-    
-    if(e.message=="STOP"){
-        
-        
-        if(e.id>0){
-            Letter *l=cms[e.id].getLastElementPointer();
-            
-            if(l!=nullptr){
-                cms[e.id-1].addMovement(l);
-            }
-            //cout << "Caroussel Event: "+e.message <<" from "<<e.id<<endl;
-            //  cout<<cms[e.id].getLastElementChar()<<endl;
-            
-            
-        }}
-    
-    
-    if(e.message=="START"){
-        
-        
-        //cout << "Caroussel Event: "+e.message <<" from "<<e.id<<endl;
-        if(e.id>0){
-            //  cms[e.id-1].addMovement(cms[e.id].getLastElementChar());
-            //cout << "Caroussel Event: "+e.message <<" from "<<e.id<<endl;
-            //  cout<<cms[e.id].getLastElementChar()<<endl;
-            
-            
-        }}
-    
-    
-    
-}
 
 
 void ofApp::addLetter(Letter *  _l){

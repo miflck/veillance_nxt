@@ -31,6 +31,8 @@ public:
 
     bool bRemove=false;
     
+    
+    void setStartPosition(ofVec3f _p);
     void setPosition(ofVec3f _p);
     ofVec3f getPosition();
     void setVelocity(ofVec3f _v);
@@ -43,7 +45,12 @@ public:
     void startMoving();
     void stopMoving();
     bool bIsMoving=false;
-    int maxspeed=1;
+    float maxspeed=1;
+    
+    
+    void setIsAlive(bool _b);
+    bool checkIsAlive();
+    
     
 private:
     ofVec3f startposition;
@@ -57,7 +64,17 @@ ofPlanePrimitive plane;
     
     ofBoxPrimitive geometry;
 
+    bool bIsAlive=false;
     
+    int maxdistance;
+    
+    float rollspeed;
+    float panspeed;
+    float tiltspeed;
+    
+    float rollangle;
+    float panangle;
+    float tiltangle;
     
     
 };
