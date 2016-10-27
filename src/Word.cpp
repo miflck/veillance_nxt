@@ -18,8 +18,10 @@ void Word::setup(int _index){
     wordIndex=_index;
     lifeTime=ofGetElapsedTimeMillis()+int(ofRandom(50000,200000));
     
-    myColor=ofColor(ofRandom(200,255),ofRandom(200,255),ofRandom(200,255));
-    mySuggestionColor=ofColor(255,0,0);
+   // myColor=ofColor(ofRandom(200,255),ofRandom(200,255),ofRandom(200,255));
+    myColor=ofColor(0,0,255);
+
+    mySuggestionColor=ofColor(0,191,255);
    // bIsAlive=true;
 
 }

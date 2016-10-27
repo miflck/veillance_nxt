@@ -92,8 +92,8 @@ void MovingWords::draw(){
     
     ofPushMatrix();
    // ofTranslate(ofGetWidth()/2,ofGetHeight()/2);
-    ofSetColor(0,0,255,1w00);
-    ofDrawLine(startposition, target);
+    ofSetColor(0,0,255,100);
+    //ofDrawLine(startposition, target);
     ofNoFill();
   // geometry.draw();
 
@@ -102,7 +102,7 @@ void MovingWords::draw(){
 
 
     
-       node.draw();
+     //  node.draw();
     ofSetColor(0,255,0);
 
     
@@ -121,9 +121,10 @@ void MovingWords::draw(){
     q.getRotate(angle, axis);
 
     ofPushMatrix();
-    ofSetColor(0,0,255);
+    ofSetColor(0,191,255);
 
     ofRotate(angle, axis.x, axis.y, axis.z); // rotate with quaternion
+    //name = ofUTF8::toUpper(name);
      font->drawString(data,0,0);
     ofPopMatrix();
 
@@ -154,7 +155,7 @@ void MovingWords::draw(){
 
 
 void MovingWords::setData(string _data){
-    data=_data;
+    data=ofToUpper(_data);
 }
 
 
@@ -221,7 +222,7 @@ void MovingWords::move(){
 void MovingWords::startMoving(){
     bIsMoving=true;
 
-    cout<<startposition<<endl;
+  //  cout<<startposition<<endl;
 }
 
 void MovingWords::stopMoving(){

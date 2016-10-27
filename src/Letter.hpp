@@ -40,6 +40,8 @@ public:
     void setData(char data);
     char data;
     
+    string myString;
+    
     char getData();
     
    bool bRemove=false;

@@ -40,7 +40,7 @@ void Letter::draw(){
             ofTranslate(position);
             ofColor c=myWordPointer->getColor();
             ofSetColor(c);
-            font->drawString(ofToString(data), 0,font->getStringBoundingBox("H", 0, 0).getHeight());
+            font->drawString(myString, 0,font->getStringBoundingBox("H", 0, 0).getHeight());
             ofPopMatrix();
         }
     }
@@ -54,6 +54,7 @@ void Letter::draw(){
 
 void Letter::setData(char _data){
     data=_data;
+    myString=ofToUpper(ofToString(_data));
     //  ofRectangle textBounds = font->getStringBoundingBox("H", 0, 0);
     //  fboText.allocate(textBounds.getWidth()+2, textBounds.getHeight()+2);
 }
