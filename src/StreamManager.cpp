@@ -37,6 +37,9 @@ void StreamManager::initialize() {
     int h=20;
     int w=10;
     
+    
+  
+    
     int lines=floor(ofGetHeight()/h);
     cout<<"lines"<<lines<<ofGetHeight()/h<<endl;
     for(int i = 0; i < lines; i++){
@@ -104,16 +107,27 @@ void StreamManager::draw(){
         
       
         
+        
+        ofVboMesh m;
         for(auto letter:letters){
-            letter->draw();
+            ofVboMesh ms=letter->getUpdatedVboMesh();
+            m.append(ms);
         }
         
-      //  ofEnableBlendMode(OF_BLENDMODE_ADD);
+        font.getFontTexture().bind();
+        m.draw();
+        font.getFontTexture().unbind();
+
+        
+        
+        for(auto letter:letters){
+           //letter->draw();
+        }
+        
 
         for(auto movingWord:movingWords){
             movingWord->draw();
         }
-       // ofDisableBlendMode();
         
         
     }
@@ -166,8 +180,8 @@ void StreamManager::addData(string _s){
     for (auto ss : _s){
         char c = ss;
          Letter * l =new Letter();
+        l->setFont(&font);
          l->setData(c);
-         l->setFont(&font);
         l->setWordId(wordcounter);
         l->setWordPointer(w);
          addLetter(l);
@@ -197,7 +211,11 @@ void StreamManager::addLetter(Letter *  _l){
 
 
 
-void StreamManager::setDebug(bool debug){
+void StreamManager::setDebug(bool _debug){
+    debug=_debug;
+    for(int i=0;i<cms.size();i++){
+        cms[i].setDebugDraw(_debug);
+    }
 
 }
 

@@ -46,9 +46,7 @@ public:
     
    bool bRemove=false;
     
-    ofVboMesh originalVboMesh;
-    ofVboMesh getOriginalVboMesh();
-    void makeOriginalVboMesh();
+    ofVboMesh getUpdatedVboMesh();
     
     void setWordId(int _id);
     int getWordId();
@@ -76,6 +74,10 @@ private:
     int wordId;
     bool bIsDrawn=true;
     bool bIsOnScreen=false;
+    
+    
+    ofNode node;
+    ofMesh letterMesh;
     
     
 };
