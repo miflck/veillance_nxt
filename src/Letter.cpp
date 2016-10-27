@@ -24,8 +24,8 @@ void Letter::setup(){
 }
 
 void Letter::update(){
-    
-}
+    angle+=0.5;
+    if(angle>360)angle=360;}
 
 void Letter::draw(){
     if(bIsOnScreen){//check if is on screen
@@ -97,6 +97,7 @@ ofVec2f Letter::getPosition(){
 
 void Letter::setIsOnScreen(bool _s){
     bIsOnScreen=_s;
+    angle=0;
     
 }
 
@@ -108,7 +109,7 @@ bool Letter::getIsOnScreen(){
 
 
 ofVboMesh Letter::getUpdatedVboMesh(){
-    
+    node.roll(ofDegToRad(angle));
     ofVboMesh vbom;
     if(bIsOnScreen){//check if is on screen
         

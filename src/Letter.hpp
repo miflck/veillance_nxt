@@ -78,6 +78,7 @@ private:
     
     ofNode node;
     ofMesh letterMesh;
+    float angle=0;
     
     
 };
