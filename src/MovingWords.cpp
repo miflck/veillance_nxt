@@ -13,6 +13,11 @@ MovingWords::MovingWords(){
 
 
 void MovingWords::setup(){
+    
+    
+    bIsOnScreen=true;
+    
+    
     ofVec3f t=ofVec3f(1,0,0);
     t*=ofRandom(3000,5000);
     float angleY=ofRandom(-80,-70);
@@ -76,6 +81,7 @@ void MovingWords::update(){
     node.setPosition(position);
     node.lookAt(target);
     node.pan(180+panangle);
+    
     node.roll(rollangle);
     node.tilt(tiltangle);
     
@@ -238,5 +244,22 @@ bool MovingWords::checkIsAlive(){
     return bIsAlive;
 }
 
+
+ofVboMesh MovingWords::getUpdatedVboMesh(){
+
+    // node.roll(ofDegToRad(angle));
+    vbom.clear();
+    if(bIsOnScreen){//check if is on screen
+        letterMesh = font->getStringMesh(data, 0, 0);
+        vector<ofVec3f>& verts = letterMesh.getVertices();
+        for(int j=0; j <  verts.size() ; j++){
+            letterMesh.setVertex(j,verts[j]*node.getGlobalTransformMatrix());
+          //  letterMesh.addColor(myWordPointer->getColor());
+        }
+        vbom.append(letterMesh);
+    }
+    return vbom;
+
+}
 
 

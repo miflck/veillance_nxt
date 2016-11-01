@@ -41,6 +41,11 @@ public:
     void draw();
     
     
+    //Mesh
+    ofVboMesh drawMesh;
+
+    
+    
     
     // CAROUSSEL
     CarousselManager cm;

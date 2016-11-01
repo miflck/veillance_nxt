@@ -37,6 +37,9 @@ void StreamManager::initialize() {
     int h=20;
     int w=10;
     
+    
+  
+    
     int lines=floor(ofGetHeight()/h);
     cout<<"lines"<<lines<<ofGetHeight()/h<<endl;
     for(int i = 0; i < lines; i++){
@@ -104,16 +107,39 @@ void StreamManager::draw(){
         
       
         
+        
+        drawMesh.clear();
         for(auto letter:letters){
-            letter->draw();
+           // ofVboMesh ms=letter->getUpdatedVboMesh();
+            drawMesh.append(letter->getUpdatedVboMesh());
         }
         
-      //  ofEnableBlendMode(OF_BLENDMODE_ADD);
+               
+        font.getFontTexture().bind();
+        drawMesh.draw();
+        font.getFontTexture().unbind();
 
-        for(auto movingWord:movingWords){
-            movingWord->draw();
+        //drawMesh.drawInstanced(OF_MESH_WIREFRAME,5);
+        
+        for(auto letter:letters){
+           //letter->draw();
         }
-       // ofDisableBlendMode();
+        
+
+        ofVboMesh m;
+        for(auto movingWord:movingWords){
+            // movingWord->draw();
+            m.append(movingWord->getUpdatedVboMesh());
+        }
+        
+        bigfont.getFontTexture().bind();
+        m.draw();
+        bigfont.getFontTexture().unbind();
+        
+        
+        for(auto movingWord:movingWords){
+           // movingWord->draw();
+        }
         
         
     }
@@ -132,6 +158,10 @@ void StreamManager::carousselEvent(CarousselEvent &e){
                 cms[e.id-1].addMovement(l);
             }
         }
+        
+        
+        
+        
     }
     
     
@@ -166,8 +196,8 @@ void StreamManager::addData(string _s){
     for (auto ss : _s){
         char c = ss;
          Letter * l =new Letter();
+        l->setFont(&font);
          l->setData(c);
-         l->setFont(&font);
         l->setWordId(wordcounter);
         l->setWordPointer(w);
          addLetter(l);
@@ -197,7 +227,11 @@ void StreamManager::addLetter(Letter *  _l){
 
 
 
-void StreamManager::setDebug(bool debug){
+void StreamManager::setDebug(bool _debug){
+    debug=_debug;
+    for(int i=0;i<cms.size();i++){
+        cms[i].setDebugDraw(_debug);
+    }
 
 }
 

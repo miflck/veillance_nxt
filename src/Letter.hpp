@@ -41,14 +41,13 @@ public:
     char data;
     
     string myString;
+    string getString();
     
     char getData();
     
    bool bRemove=false;
     
-    ofVboMesh originalVboMesh;
-    ofVboMesh getOriginalVboMesh();
-    void makeOriginalVboMesh();
+    ofVboMesh getUpdatedVboMesh();
     
     void setWordId(int _id);
     int getWordId();
@@ -76,6 +75,14 @@ private:
     int wordId;
     bool bIsDrawn=true;
     bool bIsOnScreen=false;
+    
+    
+    ofNode node;
+    ofVboMesh letterMesh;
+    float angle=0;
+    
+    ofVboMesh vbom;
+
     
     
 };

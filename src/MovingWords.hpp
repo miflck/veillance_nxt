@@ -52,16 +52,22 @@ public:
     bool checkIsAlive();
     
     
+    
+    ofVboMesh getUpdatedVboMesh();
+
+    
+    
 private:
+    
+    bool bIsOnScreen;
+    
     ofVec3f startposition;
 
     ofVec3f position;
     ofVec3f velocity;
     ofNode node;
     ofVec3f target;
-    
-ofPlanePrimitive plane;
-    
+    ofPlanePrimitive plane;    
     ofBoxPrimitive geometry;
 
     bool bIsAlive=false;
@@ -75,6 +81,11 @@ ofPlanePrimitive plane;
     float rollangle;
     float panangle;
     float tiltangle;
+    
+    
+    ofVboMesh vbom;
+    ofVboMesh letterMesh;
+
     
     
 };

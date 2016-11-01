@@ -128,7 +128,13 @@ void ofApp::keyReleased(int key){
     }
     
     if(key=='d'){
-        bDraw=!bDraw;
+       // bDraw=!bDraw;
+        STM->setDebug(false);
+    }
+    
+    if(key=='D'){
+        // bDraw=!bDraw;
+        STM->setDebug(true);
     }
     
     
@@ -144,8 +150,6 @@ void ofApp::keyReleased(int key){
                 STM->addData(word);
                 STM->addData(" "); // add space
             }
-            
-            // STM->addData(line);
         }
         
         

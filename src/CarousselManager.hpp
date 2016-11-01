@@ -63,10 +63,14 @@ public:
     char getLastElementChar();
     Letter* getLastElementPointer();
     
+    void setDebugDraw(bool _b);
+    
+    
     
 private:
     
     int id;
+    bool bDebugDraw=false;
     
    // Letter HackBaseLetter;
 

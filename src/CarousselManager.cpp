@@ -44,11 +44,11 @@ void CarousselManager::update(){
 }
 
 void CarousselManager::draw(){
-    // ofDrawLine(0,position.y, ofGetWidth(), position.y);
-    for(int i=0;i<containers.size();i++){
-        containers[i].draw();
+    if(bDebugDraw){
+        for(int i=0;i<containers.size();i++){
+            containers[i].draw();
+        }
     }
-    
 }
 
 
@@ -166,3 +166,10 @@ char CarousselManager::getLastElementChar(){
 Letter* CarousselManager::getLastElementPointer(){
     return containers[0].getLetterPointer();
 }
+
+
+
+void CarousselManager::setDebugDraw(bool _d){
+    bDebugDraw=_d;
+};
+
