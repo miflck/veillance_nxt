@@ -24,8 +24,11 @@ void Letter::setup(){
 }
 
 void Letter::update(){
-    angle+=0.5;
-    if(angle>360)angle=360;}
+    if(bIsOnScreen){//check if is on screen
+        angle+=0.5;
+        if(angle>360)angle=360;
+    }
+}
 
 void Letter::draw(){
     if(bIsOnScreen){//check if is on screen
@@ -59,6 +62,12 @@ int Letter::getWordId(){
 char Letter::getData(){
     return data;
 }
+
+
+string Letter::getString(){
+    return myString;
+}
+
 
 void Letter::setFont(ofTrueTypeFont *f){
     font=f;
@@ -109,10 +118,9 @@ bool Letter::getIsOnScreen(){
 
 
 ofVboMesh Letter::getUpdatedVboMesh(){
-    node.roll(ofDegToRad(angle));
-    ofVboMesh vbom;
+    // node.roll(ofDegToRad(angle));
+    vbom.clear();
     if(bIsOnScreen){//check if is on screen
-        
         letterMesh = font->getStringMesh(myString, 0, 0);
         vector<ofVec3f>& verts = letterMesh.getVertices();
         for(int j=0; j <  verts.size() ; j++){

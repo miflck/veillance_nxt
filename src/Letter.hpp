@@ -41,6 +41,7 @@ public:
     char data;
     
     string myString;
+    string getString();
     
     char getData();
     
@@ -77,8 +78,11 @@ private:
     
     
     ofNode node;
-    ofMesh letterMesh;
+    ofVboMesh letterMesh;
     float angle=0;
+    
+    ofVboMesh vbom;
+
     
     
 };

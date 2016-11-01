@@ -108,25 +108,37 @@ void StreamManager::draw(){
       
         
         
-        ofVboMesh m;
+        drawMesh.clear();
         for(auto letter:letters){
-            ofVboMesh ms=letter->getUpdatedVboMesh();
-            m.append(ms);
+           // ofVboMesh ms=letter->getUpdatedVboMesh();
+            drawMesh.append(letter->getUpdatedVboMesh());
         }
         
+               
         font.getFontTexture().bind();
-        m.draw();
+        drawMesh.draw();
         font.getFontTexture().unbind();
 
-        
+        //drawMesh.drawInstanced(OF_MESH_WIREFRAME,5);
         
         for(auto letter:letters){
            //letter->draw();
         }
         
 
+        ofVboMesh m;
         for(auto movingWord:movingWords){
-            movingWord->draw();
+            // movingWord->draw();
+            m.append(movingWord->getUpdatedVboMesh());
+        }
+        
+        bigfont.getFontTexture().bind();
+        m.draw();
+        bigfont.getFontTexture().unbind();
+        
+        
+        for(auto movingWord:movingWords){
+           // movingWord->draw();
         }
         
         
@@ -146,6 +158,10 @@ void StreamManager::carousselEvent(CarousselEvent &e){
                 cms[e.id-1].addMovement(l);
             }
         }
+        
+        
+        
+        
     }
     
     
