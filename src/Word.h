@@ -45,6 +45,11 @@ public:
     void setPosition(ofVec3f pos);
     ofVec3f getPosition();
     ofVec3f position;
+    ofVec3f velocity;
+    ofVec3f getVelocity();
+    void setVelocity(ofVec3f _v);
+    
+    
     float getWidth();
     float wordwidth;
     
@@ -57,7 +62,11 @@ public:
     void setIsSuggestion(bool _s);
     
     ofColor myColor;
+    ofColor myInitColor;
+
     ofColor mySuggestionColor;
+    ofColor targetColor;
+
 
     void setColor(ofColor _c);
     ofColor getColor();
@@ -73,10 +82,19 @@ public:
     
     void setIsDrawn(bool _isDrawn);
     
+    void startColorLerp();
+    void stopColorLerp();
+    void lerpColor();
+    
+    
+    
 private:
     
     
     string data; //declare a vector of strings to store data
+    float lerpColorAmount;
+    
+    int lifespan;
 
     
   bool  bIsMovingWord=false;
@@ -87,6 +105,9 @@ private:
     
     bool bIsOnScreen=false;
     bool wasOnScreen=false;
+    
+    bool bIsColorLerp=false;
+    
 };
 
 

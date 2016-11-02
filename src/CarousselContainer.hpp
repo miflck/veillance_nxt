@@ -37,6 +37,10 @@ public:
     void setPosition(ofVec2f _pos);
     ofVec2f getPosition();
     
+    
+    void setVelocity(ofVec2f _v);
+    
+    
     void setTarget(ofVec2f _target);
     ofVec2f getTarget();
     ofVec2f target;
@@ -69,6 +73,7 @@ public:
 private:
     
     bool debug=false;
+    ofVec2f velocity;
     
 };
 

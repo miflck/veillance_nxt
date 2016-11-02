@@ -18,6 +18,7 @@ void CarousselContainer::update(){
     ofVec2f p=ofVec2f(position.x,position.y);
      if(myLetter!=nullptr){
          myLetter->setPosition(p);
+         myLetter->setVelocity(velocity);
      }
 }
 
@@ -93,6 +94,9 @@ Letter* CarousselContainer::getLetterPointer(){
 }
 
 
+void CarousselContainer::setVelocity(ofVec2f _v){
+    velocity.set(_v);
+}
 
 
 void CarousselContainer::setDebug(bool _debug){

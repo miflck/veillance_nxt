@@ -63,6 +63,9 @@ public:
     void setPosition(ofVec2f p);
     ofVec2f getPosition();
     
+    void setVelocity(ofVec2f _v);
+    ofVec2f getVelocity();
+    
     void setIsDrawn(bool _b);
     
     
@@ -72,6 +75,7 @@ public:
 private:
     
     ofVec2f position;
+    ofVec2f velocity;
     int wordId;
     bool bIsDrawn=true;
     bool bIsOnScreen=false;

@@ -302,6 +302,7 @@ void StreamManager::addMovingWord(Word *_w){
     cout<<"startpos from word"<<_w->getPosition()<<endl;
 
     mw->setStartPosition(_w->getPosition());
+    mw->setInitVelocity(_w->getVelocity());
     mw->startMoving();
     movingWords.push_back(mw);
 
