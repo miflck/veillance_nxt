@@ -183,7 +183,62 @@ bool StreamManager::isInitialized(){
 }
 
 
-void StreamManager::addData(string _s){
+void StreamManager::addData(string _s, int _fragmentId){
+    
+    
+    Fragment * f=new Fragment();
+    f->setFragmentId(_fragmentId);
+     vector<string> split;
+     split = ofSplitString(_s, " ");
+    cout<<_s<<split.size()<<endl;
+  
+    for (auto word : split){
+         Word * w=new Word();
+         w->setup(wordcounter);
+         w->setData(word);
+         int lifeTime=ofGetElapsedTimeMillis()+int(ofRandom(10000,50000));
+         w->setLifeTime(lifeTime);
+         
+         float r=ofRandom(0,1);
+         if(r<0.2 && word!=" ")w->setIsSuggestion(true);
+         
+         
+         
+        
+         for (auto ss : word){
+             char c = ss;
+             Letter * l =new Letter();
+             l->setFont(&font);
+             l->setData(c);
+             l->setWordId(wordcounter);
+             l->setWordPointer(w);
+             addLetter(l);
+             cms[cms.size()-1].addMovement(letters[letters.size()-1]);
+             w->addLetterPointer(l);
+             f->addLetterPointer(l);
+
+         }
+        
+        // ADD SPACE
+        Letter * l =new Letter();
+        l->setFont(&font);
+        l->setData(' ');
+        l->setWordId(wordcounter);
+        l->setWordPointer(w);
+        addLetter(l);
+        cms[cms.size()-1].addMovement(letters[letters.size()-1]);
+        w->addLetterPointer(l);
+        f->addLetterPointer(l);
+        
+        words.push_back(w);
+        f->addWordPointer(w);
+        wordcounter++; // debug id
+     
+     }
+    fragments.push_back(f);
+    
+    /*
+    
     Word * w=new Word();
     w->setup(wordcounter);
     w->setData(_s);
@@ -208,7 +263,7 @@ void StreamManager::addData(string _s){
     
     words.push_back(w);
     cout<<"words size "<<words.size()<<" letters Size "<<letters.size()<<endl;
-    wordcounter++; // debug id
+    wordcounter++; // debug id*/
 }
 
 
@@ -238,6 +293,8 @@ void StreamManager::setDebug(bool _debug){
 
 void StreamManager::addMovingWord(Word *_w){
     
+    _w->setIsDrawn(false);
+    
     MovingWords *mw=new MovingWords();
     mw->setup();
     mw->setFont(&bigfont);
@@ -263,6 +320,49 @@ bool StreamManager::shouldRemoveMovingWord(MovingWords *mv){
         bRemove = true;
     }*/ //not working
     return bRemove;
+}
+
+
+void StreamManager::makeMovingWordByFragmentId(int _id, int _wordIndex){
+    Fragment *f=getFragmentById(_id);
+    cout<<f->getNumWords()<<endl;
+    Word *w =f->getWordByIndex(_wordIndex);
+    cout<<w->getIndex()<<endl;
+    if(w!=nullptr){
+    addMovingWord(w);
+    }
+    
+}
+
+
+Fragment* StreamManager::getFragmentById(int _id){
+    for(auto fragment:fragments){
+        if (_id==fragment->getFragmentId()){
+            return fragment;
+            break;
+        }
+    }
+    return nullptr;
+}
+
+
+
+void StreamManager::makeRandomMovingWord(){
+    int fragmentid=int(ofRandom(0,fragments.size()));
+    cout<<fragmentid<<endl;
+    Fragment *f=getFragmentById(fragmentid);
+    int wI=int(ofRandom(f->getNumWords()));
+    cout<<"Word index "<<wI;
+    Word *w =f->getWordByIndex(wI);
+    cout<<"is on screen"<<w->checkIsOnScreen()<<endl;
+    if(w!=nullptr && w->checkIsOnScreen()){
+        addMovingWord(w);
+        cout<<"making moving word"<<endl;
+    }else {
+        cout<<"another try"<<endl;
+
+        makeRandomMovingWord();
+    }
 }
 
 

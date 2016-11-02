@@ -21,6 +21,7 @@
 		FAAA205E1DAE522E007203FE /* CarousselManager.cpp in Sources */ = {isa = PBXBuildFile; fileRef = FAAA205C1DAE522E007203FE /* CarousselManager.cpp */; };
 		FAAA20611DAE5241007203FE /* CarousselContainer.cpp in Sources */ = {isa = PBXBuildFile; fileRef = FAAA205F1DAE5241007203FE /* CarousselContainer.cpp */; };
 		FAAA20661DAE791D007203FE /* CarousselEvent.cpp in Sources */ = {isa = PBXBuildFile; fileRef = FAAA20641DAE791D007203FE /* CarousselEvent.cpp */; };
+		FACF9CAC1DC87EE900A1F1C1 /* Fragment.cpp in Sources */ = {isa = PBXBuildFile; fileRef = FACF9CAA1DC87EE900A1F1C1 /* Fragment.cpp */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -83,6 +84,8 @@
 		FAAA20601DAE5241007203FE /* CarousselContainer.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = CarousselContainer.hpp; sourceTree = "<group>"; };
 		FAAA20641DAE791D007203FE /* CarousselEvent.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = CarousselEvent.cpp; sourceTree = "<group>"; };
 		FAAA20651DAE791D007203FE /* CarousselEvent.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = CarousselEvent.hpp; sourceTree = "<group>"; };
+		FACF9CAA1DC87EE900A1F1C1 /* Fragment.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Fragment.cpp; sourceTree = "<group>"; };
+		FACF9CAB1DC87EE900A1F1C1 /* Fragment.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = Fragment.hpp; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -154,6 +157,8 @@
 				FA11BF841DB67AD700304BAD /* WordManager.hpp */,
 				FA11BF871DB684D700304BAD /* StreamManager.cpp */,
 				FA11BF881DB684D700304BAD /* StreamManager.hpp */,
+				FACF9CAA1DC87EE900A1F1C1 /* Fragment.cpp */,
+				FACF9CAB1DC87EE900A1F1C1 /* Fragment.hpp */,
 			);
 			path = src;
 			sourceTree = SOURCE_ROOT;
@@ -287,6 +292,7 @@
 				FA97F8811DAC39D9006B426A /* Line.cpp in Sources */,
 				FAAA205E1DAE522E007203FE /* CarousselManager.cpp in Sources */,
 				FA97F8841DAC3AA6006B426A /* Letter.cpp in Sources */,
+				FACF9CAC1DC87EE900A1F1C1 /* Fragment.cpp in Sources */,
 				FA11BF7C1DB6459A00304BAD /* MovingWords.cpp in Sources */,
 				FA5E6E1E1DACC43B006A9B8C /* LetterEvent.cpp in Sources */,
 			);

@@ -65,6 +65,14 @@ public:
     bool checkIsOnScreen();
     
     
+    void makeMovingWord();
+    
+    
+    int getIndex();
+    
+    
+    void setIsDrawn(bool _isDrawn);
+    
 private:
     
     

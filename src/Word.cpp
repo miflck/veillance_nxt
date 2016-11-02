@@ -14,7 +14,7 @@ Word::Word(){
 }
 
 void Word::setup(int _index){
-    cout<<"index"<<_index<<endl;
+    //cout<<"index"<<_index<<endl;
     wordIndex=_index;
     lifeTime=ofGetElapsedTimeMillis()+int(ofRandom(50000,200000));
     
@@ -39,15 +39,23 @@ void Word::update(){
     
     
     if(bIsAlive && bIsSuggestion && now>lifeTime){
-        bIsAlive=false;
+       /* bIsAlive=false;
         myColor=ofColor(0,0,0);
         STM->addMovingWord(this);
         
         for(auto letter:myLetters){
             letter->setIsDrawn(false);
-        }
+        }*/
+        
+        makeMovingWord();
+        
     }
 }
+
+
+
+
+
 
 void Word::draw(){
     }
@@ -104,6 +112,20 @@ ofColor Word::getColor(){
 }
 
 
+void Word::makeMovingWord(){
+    
+    bIsAlive=false;
+    myColor=ofColor(0,0,0);
+    STM->addMovingWord(this);
+    
+   /* for(auto letter:myLetters){
+        letter->setIsDrawn(false);
+    }*/
+    
+    
+}
+
+
 bool Word::checkIsOnScreen(){
     bool b=false;
     if(myLetters.size()>1){
@@ -113,5 +135,12 @@ bool Word::checkIsOnScreen(){
 
 }
 
+int Word::getIndex(){
+    return wordIndex;
+}
 
-
+void Word::setIsDrawn(bool _isDrawn){
+    for(auto letter:myLetters){
+        letter->setIsDrawn(_isDrawn);
+    }
+}
