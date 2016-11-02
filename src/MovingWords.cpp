@@ -71,7 +71,7 @@ void MovingWords::setup(){
 
     
 
-    
+    lookat.set(position+ofVec3f(0,0,1));
     
 }
 
@@ -88,9 +88,9 @@ void MovingWords::update(){
     panangle+=panspeed;
     tiltangle+=tiltspeed;
     
-   
-   
-   // node.lookAt(target);
+        lookat.set(position+ofVec3f(0,0,1));
+
+    node.lookAt(lookat);
     node.pan(180+panangle);
     node.roll(rollangle);
     node.tilt(tiltangle);
@@ -280,7 +280,7 @@ bool MovingWords::checkIsAlive(){
 
 
 ofVboMesh MovingWords::getUpdatedVboMesh(){
-    scalefact=ofLerp(scalefact,1,0.001);
+    scalefact=ofLerp(scalefact,1,0.00001);
     node.setScale(scalefact);
     
     spacingFact=ofLerp(spacingFact,1.2,0.1);

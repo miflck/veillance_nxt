@@ -104,6 +104,8 @@ private:
     float scalefact;
     float spacingFact;
     
+    ofVec3f lookat;
+    
     
 };
 

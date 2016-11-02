@@ -29,7 +29,7 @@ void StreamManager::initialize() {
     cout<<"init StreamManager"<<endl;
     
     font.load("FoundersGroteskMonoRegular.ttf", 10);
-    bigfont.load("FoundersGroteskMonoBold.ttf", 30);
+    bigfont.load("FoundersGroteskMonoRegular.ttf", 30);
     
     
     float minspeed=2;
