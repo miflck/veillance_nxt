@@ -78,6 +78,9 @@ public:
     void addMovingWord(Word * _w);
     
     
+    //Background
+    ofImage bkg;
+    
     
     //FONT
     

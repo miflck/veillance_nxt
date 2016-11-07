@@ -31,8 +31,13 @@ void StreamManager::initialize() {
     font.load("FoundersGroteskMonoRegular.ttf", 10);
     bigfont.load("FoundersGroteskMonoRegular.ttf", 30);
     
+    bkg.load("bkg_3.png");
     
-    float minspeed=2;
+    
+    
+    //float minspeed=2;
+    float minspeed=10;
+
     float speed;
     int h=20;
     int w=10;
@@ -60,6 +65,10 @@ void StreamManager::initialize() {
         cms.push_back(cm);
     }
     ofAddListener(CarousselEvent::events, this, &StreamManager::carousselEvent);
+    
+    ofEnableAlphaBlending();
+
+    
 
 }
 
@@ -104,7 +113,10 @@ void StreamManager::draw(){
             cms[i].draw();
         }
         
-        
+      
+       /* for(auto word:words){
+            word->draw();
+        }*/
       
         
         
@@ -121,9 +133,9 @@ void StreamManager::draw(){
 
         //drawMesh.drawInstanced(OF_MESH_WIREFRAME,5);
         
-        for(auto letter:letters){
-           //letter->draw();
-        }
+        /*for(auto letter:letters){
+           letter->draw();
+        }*/
         
 
         ofVboMesh m;

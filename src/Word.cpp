@@ -69,6 +69,10 @@ void Word::update(){
 
 
 void Word::draw(){
+    ofSetColor(255,0,0);
+    if(getPosition().length()>3){
+        STM->bkg.draw(getPosition(),500,200);
+    }
     }
 
 void Word::setData(string _data){

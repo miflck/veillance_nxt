@@ -8,6 +8,10 @@
 
 #include "Letter.hpp"
 #include "Word.h"
+
+#include "StreamManager.hpp"
+
+
 Letter::Letter(){
     data=NULL;
     
@@ -32,14 +36,17 @@ void Letter::update(){
 
 void Letter::draw(){
     if(bIsOnScreen){//check if is on screen
-        if(bIsDrawn){ // only draw if is not moving word;
+       /* if(bIsDrawn){ // only draw if is not moving word;
             ofPushMatrix();
             ofTranslate(position);
             ofColor c=myWordPointer->getColor();
             ofSetColor(c);
             font->drawString(myString, 0,font->getStringBoundingBox("H", 0, 0).getHeight());
             ofPopMatrix();
-        }
+        }*/
+        
+      
+        
     }
 }
 
