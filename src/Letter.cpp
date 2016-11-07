@@ -114,6 +114,13 @@ bool Letter::getIsOnScreen(){
     return bIsOnScreen;
 }
 
+void Letter::setVelocity(ofVec2f _v){
+    velocity.set(_v);
+}
+
+ofVec2f Letter::getVelocity(){
+    return velocity;
+}
 
 
 

@@ -36,6 +36,10 @@ public:
     void setPosition(ofVec3f _p);
     ofVec3f getPosition();
     void setVelocity(ofVec3f _v);
+    
+    
+    void setInitVelocity(ofVec3f _v);
+
     ofVec3f getVelocity();
     void setTarget(ofVec3f _t);
     ofVec3f getTarget();
@@ -57,6 +61,9 @@ public:
 
     
     
+    
+    
+    
 private:
     
     bool bIsOnScreen;
@@ -65,6 +72,12 @@ private:
 
     ofVec3f position;
     ofVec3f velocity;
+    
+    ofVec3f initvelocity;
+
+    
+    ofVec3f acceleration;
+
     ofNode node;
     ofVec3f target;
     ofPlanePrimitive plane;    
@@ -85,7 +98,13 @@ private:
     
     ofVboMesh vbom;
     ofVboMesh letterMesh;
-
+    
+    ofColor myColor;
+    
+    float scalefact;
+    float spacingFact;
+    
+    ofVec3f lookat;
     
     
 };

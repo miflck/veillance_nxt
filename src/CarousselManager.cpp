@@ -57,13 +57,14 @@ void CarousselManager::move(){
     for(int i=0;i<containers.size();i++){
         ofVec2f p=containers[i].getPosition();
         ofVec2f target=containers[i].getTarget();
-        ofVec3f dist=target-p;
-        ofVec3f speed=dist;
+        ofVec2f dist=target-p;
+        ofVec2f speed=dist;
         speed.limit(maxspeed);
         p+=speed;
         
         if(dist.length()<(maxspeed)+1){
             p.set(target);
+            speed.set(ofVec2f(0,0));
             containers[i].bIsMoving=false;
 
         }
@@ -71,6 +72,7 @@ void CarousselManager::move(){
     
         
         containers[i].setPosition(p);
+        containers[i].setVelocity(speed);
        /* if(p==target){
             containers[i].bIsMoving=false;
         }*/

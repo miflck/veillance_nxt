@@ -116,8 +116,21 @@ void ofApp::keyReleased(int key){
        // cms[cms.size()-1].addMovement(letters[letters.size()-1]);
         
         
-        STM->addData("hello");
+        STM->addData("hello", fragmentId);
+        fragmentId++;
+
         
+    }
+    
+    
+    if(key=='F'){
+        STM->makeMovingWordByFragmentId(0,0);
+    
+    }
+    
+    
+    if(key=='f'){
+        STM->makeRandomMovingWord();
         
     }
     
@@ -143,13 +156,17 @@ void ofApp::keyReleased(int key){
         
         
         for (auto line : data){
-            vector<string> split;
+            
+             STM->addData(line,fragmentId);
+            fragmentId++;
+            
+           /* vector<string> split;
             split = ofSplitString(line, " ");
             
             for (auto word : split){
                 STM->addData(word);
                 STM->addData(" "); // add space
-            }
+            }*/
         }
         
         

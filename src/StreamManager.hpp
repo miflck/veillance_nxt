@@ -20,6 +20,9 @@
 #include "Letter.hpp"
 
 
+#include "Fragment.hpp"
+
+
 #include "MovingWords.hpp"
 
 
@@ -55,9 +58,12 @@ public:
     
     
     // DATA
-    void addData(string _s);
+    void addData(string _s, int _fragmentId);
     void addWord(string _s);
 
+    vector<Fragment *> fragments;
+
+    
     
     
     //LETTER
@@ -84,12 +90,17 @@ public:
     bool bUpdate=true;
     bool bDraw=true;
     
-    
     bool debug;
     void setDebug(bool debug);
     
-    
     static bool shouldRemoveMovingWord(MovingWords *mw); // why static
+    
+    
+    Fragment* getFragmentById(int _id);
+    void makeMovingWordByFragmentId(int _id,int _wordindex);
+    
+    void makeRandomMovingWord();
+    
     
     
 private:
