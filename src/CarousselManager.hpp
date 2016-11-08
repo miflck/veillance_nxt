@@ -23,9 +23,15 @@ class CarousselManager {
     
 public:
     CarousselManager();
-    void setup(ofVec2f _position,float _width,float _height);
+    void setup(ofVec2f _position,float _mywidth, float _myheight, float _width,float _height);
     void update();
     void draw();
+    
+    
+    
+    
+    
+    
     
     vector<CarousselContainer>containers;
     
@@ -71,6 +77,10 @@ private:
     
     int id;
     bool bDebugDraw=false;
+    
+    float mywidth;
+    float myheight;
+    
     
    // Letter HackBaseLetter;
 

@@ -9,6 +9,11 @@
 #include "StreamManager.hpp"
 
 
+//int viewportwidth=1920;
+int viewportwidth=770;
+
+
+
 StreamManager* StreamManager::instance = 0;
 
 StreamManager* StreamManager::getInstance() {
@@ -29,14 +34,14 @@ void StreamManager::initialize() {
     cout<<"init StreamManager"<<endl;
     
     font.load("FoundersGroteskMonoRegular.ttf", 10);
-    bigfont.load("FoundersGroteskMonoRegular.ttf", 30);
+    bigfont.load("FoundersGroteskMonoBold.ttf", 60);
     
     bkg.load("bkg_3.png");
     
     
     
+    float minspeed=2;
     //float minspeed=2;
-    float minspeed=10;
 
     float speed;
     int h=20;
@@ -59,7 +64,7 @@ void StreamManager::initialize() {
         float dv=dW/time;
         float speed=dv;//(w/minspeed)*dW;
         float r=ofRandom(0,50);
-        cm.setup(ofVec2f(0,(i*h)),dW,h);
+        cm.setup(ofVec2f(0,(i*h)),viewportwidth,ofGetHeight(),dW,h);
         cm.maxspeed=speed;//minspeed*dl;
         cm.setId(i);
         cms.push_back(cm);
@@ -69,6 +74,53 @@ void StreamManager::initialize() {
     ofEnableAlphaBlending();
 
     
+    
+    viewFront.x = 0;
+    viewFront.y = 0;
+    viewFront.width = ofGetWidth()/2;
+    viewFront.height = ofGetHeight();
+
+    
+    viewBack.x = ofGetWidth()/2;
+    viewBack.y = 0;
+    viewBack.width = ofGetWidth()/2;
+    viewBack.height = ofGetHeight();
+    
+    /*
+    for(int i=0; i<2; i++) {
+        cam[i].resetTransform();
+        cam[i].setFov(60);
+        cam[i].clearParent();
+        }
+
+    */
+    
+    
+    
+    
+    
+    cam[0].setVFlip(true);
+    cam[0].setFov(60);
+
+   
+    // cam[0].setNearClip(10);
+
+    cam[0].setPosition(viewportwidth/2, ofGetHeight()/2, 500);
+    
+    
+  //  cam[0].lookAt(ofVec3f(0,0,0));
+    cam[1].setVFlip(true);
+    cam[1].setNearClip(10);
+    cam[1].setPosition(viewportwidth/2, ofGetHeight()/2, 200);
+    cam[1].pan(180);
+    
+    
+ /*   backgroundFbo.allocate(viewportwidth, ofGetHeight(),GL_RGBA);
+    backgroundFbo.begin();
+    ofClear(255,255,255, 0);
+    backgroundFbo.end();
+//backgroundFbo.clear();
+  */
 
 }
 
@@ -95,7 +147,7 @@ void StreamManager::update(){
         }
         
         
-        // check if we want to remove the bullet
+        // check if we want to remove the words
         for (int i=0;i<movingWords.size();i++){
             if(shouldRemoveMovingWord(movingWords[i])){
                 delete (movingWords[i]);
@@ -103,15 +155,36 @@ void StreamManager::update(){
             }
         }        
     }
+    
+    
+   /* backgroundFbo.begin();
+  //  ofEnableAlphaBlending();
+  //  ofClear(0,0,0,2);
+    ofSetColor(255,0,0);
+    ofCircle(ofRandom(0,1000), ofGetMouseY(), 20);
+    // ofClearAlpha();
+    backgroundFbo.end();*/
+    
 }
 
 void StreamManager::draw(){
     if(bDraw){
       //  ofBackground(0); // this matters
 
+        
+        cam[0].begin(viewFront);
+   
+
+
         for(int i=0;i<cms.size();i++){
             cms[i].draw();
         }
+        
+       // cam[1].begin();
+    
+
+
+       
         
       
        /* for(auto word:words){
@@ -130,6 +203,22 @@ void StreamManager::draw(){
         font.getFontTexture().bind();
         drawMesh.draw();
         font.getFontTexture().unbind();
+        
+        
+        
+        
+        ofVboMesh m;
+        for(auto movingWord:movingWords){
+            // movingWord->draw();
+            m.append(movingWord->getUpdatedVboMesh());
+        }
+        bigfont.getFontTexture().bind();
+        m.draw();
+        bigfont.getFontTexture().unbind();
+        
+        cam[0].end();
+   
+
 
         //drawMesh.drawInstanced(OF_MESH_WIREFRAME,5);
         
@@ -137,8 +226,11 @@ void StreamManager::draw(){
            letter->draw();
         }*/
         
+        
+       // cam[1].end();
 
-        ofVboMesh m;
+
+       /* ofVboMesh m;
         for(auto movingWord:movingWords){
             // movingWord->draw();
             m.append(movingWord->getUpdatedVboMesh());
@@ -148,12 +240,21 @@ void StreamManager::draw(){
         m.draw();
         bigfont.getFontTexture().unbind();
         
-        
+       
         for(auto movingWord:movingWords){
            // movingWord->draw();
         }
         
+        */
         
+        cam[1].begin(viewBack);
+        bigfont.getFontTexture().bind();
+        m.draw();
+        bigfont.getFontTexture().unbind();
+        cam[1].end();
+        
+       // backgroundFbo.draw(0,0);
+
     }
 
 }

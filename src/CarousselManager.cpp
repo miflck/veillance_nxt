@@ -10,9 +10,12 @@
 CarousselManager::CarousselManager(){
 }
 
-void CarousselManager::setup(ofVec2f _position,float _width,float _height){
+void CarousselManager::setup(ofVec2f _position,float _mywidth, float _myheight, float _width,float _height){
     position.set(_position);
     
+    
+    mywidth=_mywidth;
+    myheight=_myheight;
     
     float l=_width;
     float h=_height;
@@ -20,7 +23,7 @@ void CarousselManager::setup(ofVec2f _position,float _width,float _height){
     maxspeed=15;//;l/5;
     
     ofVec3f pos = ofVec3f(-l,position.y);
-    float dl=ofGetWidth()/l+1;
+    float dl=mywidth/l+1;
     for(int i=0;i<dl;i++){
         CarousselContainer c;
         c.setBoundingBox(pos, ofVec2f(l,h));

@@ -106,11 +106,21 @@ public:
     
     
     
+    ofCamera cam[2];
+    ofRectangle viewFront;
+    ofRectangle viewBack;
+
+    
+    ofFbo backgroundFbo;
+
+    
 private:
     StreamManager();
     static StreamManager* instance;
     bool initialized;
     int wordcounter=0;
+    
+    
     
 };
 
