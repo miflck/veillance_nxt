@@ -10,7 +10,9 @@
 
 
 //int viewportwidth=1920;
-int viewportwidth=770;
+int viewportwidth=1280; //WXGA
+
+//int viewportwidth=770;
 
 
 
@@ -33,15 +35,15 @@ void StreamManager::initialize() {
     initialized=true;
     cout<<"init StreamManager"<<endl;
     
-    font.load("FoundersGroteskMonoRegular.ttf", 10);
+    font.load("FoundersGroteskMonoBold.ttf", 10);
     bigfont.load("FoundersGroteskMonoBold.ttf", 60);
     
     bkg.load("bkg_3.png");
     
     
     
-    float minspeed=2;
-    //float minspeed=2;
+   // float minspeed=2;
+    float minspeed=20;
 
     float speed;
     int h=20;
@@ -105,22 +107,28 @@ void StreamManager::initialize() {
    
     // cam[0].setNearClip(10);
 
-    cam[0].setPosition(viewportwidth/2, ofGetHeight()/2, 500);
+//    cam[0].setPosition(viewportwidth/2, ofGetHeight()/2, 500);
+    float d=cam[0].getImagePlaneDistance(viewFront);
+
+    cam[0].setPosition(viewportwidth/2, ofGetHeight()/2, d);
+
     
+    cout<<d<<endl;
     
   //  cam[0].lookAt(ofVec3f(0,0,0));
     cam[1].setVFlip(true);
     cam[1].setNearClip(10);
-    cam[1].setPosition(viewportwidth/2, ofGetHeight()/2, 200);
+   // cam[1].setPosition(viewportwidth/2, ofGetHeight()/2, 200);
+    cam[1].setPosition(viewportwidth/2, ofGetHeight()/2, d-200);
+
     cam[1].pan(180);
     
     
- /*   backgroundFbo.allocate(viewportwidth, ofGetHeight(),GL_RGBA);
+   backgroundFbo.allocate(viewportwidth, ofGetHeight(),GL_RGBA);
     backgroundFbo.begin();
     ofClear(255,255,255, 0);
     backgroundFbo.end();
-//backgroundFbo.clear();
-  */
+  
 
 }
 
@@ -153,21 +161,60 @@ void StreamManager::update(){
                 delete (movingWords[i]);
                 movingWords.erase(movingWords.begin()+i);
             }
-        }        
+        }
+        
+        
+        for (int i=0;i<letters.size();i++){
+            if(shouldRemoveLetter(letters[i])){
+                delete (letters[i]);
+                letters.erase(letters.begin()+i);
+            }
+        }
+        
+        
+        
     }
     
     
-   /* backgroundFbo.begin();
-  //  ofEnableAlphaBlending();
-  //  ofClear(0,0,0,2);
-    ofSetColor(255,0,0);
-    ofCircle(ofRandom(0,1000), ofGetMouseY(), 20);
-    // ofClearAlpha();
-    backgroundFbo.end();*/
     
+   /* float alpha = ofMap(ofGetMouseX(), 0, ofGetWidth(), 0, 255);
+    backgroundFbo.begin();
+    /*
+    for(auto letter:letters){
+        ofSetColor(255,0,0);
+        bkg.draw(letter->getPosition().x,letter->getPosition().y);
+    }*/
+    
+  /*  ofSetColor(255,255,255, alpha);
+    ofDrawRectangle(0,0,400,400);
+    backgroundFbo.end();
+    */
+    
+    
+    
+    
+    backgroundFbo.begin();
+    ofSetColor(0,0,0);
+    ofEnableBlendMode(OF_BLENDMODE_ALPHA);
+
+    ofEnableAlphaBlending();
+   // ofDrawRectangle(0, 0, backgroundFbo.getWidth(), backgroundFbo.getHeight());
+   ofDisableBlendMode();
+   // ofClear(0,0,0,100);
+
+
+    backgroundFbo.end();
+
+    
+ 
+ 
 }
 
 void StreamManager::draw(){
+    
+    //backgroundFbo.draw(0,0);
+
+    
     if(bDraw){
       //  ofBackground(0); // this matters
 
@@ -187,9 +234,14 @@ void StreamManager::draw(){
        
         
       
-       /* for(auto word:words){
-            word->draw();
-        }*/
+        for(auto word:words){
+           word->draw();
+        }
+        
+        
+        for(auto fragment:fragments){
+         //      fragment->draw();
+        }
       
         
         
@@ -222,9 +274,9 @@ void StreamManager::draw(){
 
         //drawMesh.drawInstanced(OF_MESH_WIREFRAME,5);
         
-        /*for(auto letter:letters){
+        for(auto letter:letters){
            letter->draw();
-        }*/
+        }
         
         
        // cam[1].end();
@@ -253,7 +305,9 @@ void StreamManager::draw(){
         bigfont.getFontTexture().unbind();
         cam[1].end();
         
-       // backgroundFbo.draw(0,0);
+        
+        
+
 
     }
 
@@ -270,6 +324,16 @@ void StreamManager::carousselEvent(CarousselEvent &e){
             if(l!=nullptr){
                 cms[e.id-1].addMovement(l);
             }
+        }
+        
+        if(e.id==0){
+            
+            Letter *l=cms[e.id].getLastElementPointer();
+            if(l!=nullptr){
+                l->setBRemove(true);
+            }
+            
+        
         }
         
         
@@ -435,6 +499,14 @@ bool StreamManager::shouldRemoveMovingWord(MovingWords *mv){
     }*/ //not working
     return bRemove;
 }
+
+
+bool StreamManager::shouldRemoveLetter(Letter *l){
+    return l->getBRemove();
+
+}
+
+
 
 
 void StreamManager::makeMovingWordByFragmentId(int _id, int _wordIndex){

@@ -293,8 +293,9 @@ void MovingWords::startMoving(){
 
 void MovingWords::stopMoving(){
     
-  /*  STM->backgroundFbo.begin();
-    ofPushMatrix();
+ /*  STM->backgroundFbo.begin();
+    STM->bkg.draw(ofRandom(ofGetWidth()/2),ofRandom(ofGetHeight()/2));
+   /* ofPushMatrix();
     ofTranslate(position);
     // font->drawString(data,0,0);
     
@@ -312,11 +313,11 @@ void MovingWords::stopMoving(){
     //name = ofUTF8::toUpper(name);
     font->drawString(data,0,0);
     ofPopMatrix();
-    
+    */
 
     
     
-    STM->backgroundFbo.end();*/
+   // STM->backgroundFbo.end();
     //bIsAlive=false;
     bIsMoving=false;
 }

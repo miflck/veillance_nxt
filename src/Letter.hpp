@@ -45,7 +45,6 @@ public:
     
     char getData();
     
-   bool bRemove=false;
     
     ofVboMesh getUpdatedVboMesh();
     
@@ -72,7 +71,13 @@ public:
     void setIsOnScreen(bool _s);
     bool getIsOnScreen();
     
+    void setBRemove(bool _b);
+    bool getBRemove();
+    
+    
 private:
+    bool bRemove=false;
+
     
     ofVec2f position;
     ofVec2f velocity;

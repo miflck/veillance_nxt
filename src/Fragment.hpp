@@ -38,6 +38,9 @@ public:
     int getFragmentId();
     int getNumWords();
     
+    
+    ofRectangle getBoundingBox();
+    
     Word * getWordByIndex(int _index);
 
 private:

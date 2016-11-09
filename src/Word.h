@@ -49,6 +49,10 @@ public:
     ofVec3f getVelocity();
     void setVelocity(ofVec3f _v);
     
+    ofRectangle boundingbox;
+    
+    ofRectangle getBoundingBox();
+    
     
     float getWidth();
     float wordwidth;
@@ -66,6 +70,7 @@ public:
 
     ofColor mySuggestionColor;
     ofColor targetColor;
+    ofColor randomColor;
 
 
     void setColor(ofColor _c);

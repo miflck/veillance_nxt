@@ -35,7 +35,15 @@ void Letter::update(){
 }
 
 void Letter::draw(){
-    if(bIsOnScreen){//check if is on screen
+
+    
+    if(bIsOnScreen){
+        
+              
+        
+        
+        
+        //check if is on screen
        /* if(bIsDrawn){ // only draw if is not moving word;
             ofPushMatrix();
             ofTranslate(position);
@@ -119,6 +127,17 @@ void Letter::setIsOnScreen(bool _s){
 
 bool Letter::getIsOnScreen(){
     return bIsOnScreen;
+}
+
+
+
+
+void Letter::setBRemove(bool _b){
+    bRemove=_b;
+}
+
+bool Letter::getBRemove(){
+    return bRemove;
 }
 
 void Letter::setVelocity(ofVec2f _v){
