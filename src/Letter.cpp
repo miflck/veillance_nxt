@@ -134,6 +134,7 @@ bool Letter::getIsOnScreen(){
 
 void Letter::setBRemove(bool _b){
     bRemove=_b;
+    if(bRemove)myWordPointer->unregisterLetter(this);
 }
 
 bool Letter::getBRemove(){

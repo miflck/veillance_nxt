@@ -141,6 +141,16 @@ void StreamManager::update(){
             cms[i].update();
         }
         
+        
+        
+        for (int i=0;i<words.size();i++){
+            if(words[i]->getBRemove()){
+                delete (words[i]);
+                words.erase(words.begin()+i);
+            }
+        }
+        
+        
         for(auto word:words){
            word->update();
         }
@@ -170,6 +180,9 @@ void StreamManager::update(){
                 letters.erase(letters.begin()+i);
             }
         }
+        
+        
+        
         
         
         

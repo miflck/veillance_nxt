@@ -169,6 +169,25 @@ void Word::addLetterPointer(Letter *_l){
 }
 
 
+void Word::registerLetter(Letter *_l){
+    myLetters.push_back(_l);
+}
+
+void Word::unregisterLetter(Letter *_l){
+    auto it = std::find(myLetters.begin(), myLetters.end(), _l);
+    if (it != myLetters.end()) { myLetters.erase(it); }
+    
+    
+    if(myLetters.size()==0){
+        setBRemove(true);
+        cout<<"remove word"<<data<<endl;
+    }
+    
+   /// myLetters.push_back(_l);
+}
+
+
+
 void Word::setColor(ofColor _c){
     myColor=_c;
 }
@@ -223,6 +242,24 @@ void Word::lerpColor(){
         }
     }
 }
+
+
+
+void Word::setBRemove(bool _r){
+    bRemove=_r;
+}
+
+bool Word::getBRemove(){
+    return bRemove;
+}
+
+
+bool Word::checkShouldRemove(){
+    bool b=false;
+    if(myLetters.size()==0)b = true;
+    return b;
+}
+
 
 
 bool Word::checkIsOnScreen(){

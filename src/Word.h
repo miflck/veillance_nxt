@@ -38,6 +38,12 @@ public:
     string getMyData();
     
     void addLetterPointer(Letter * _l);
+    void removeLetterPointer(Letter * _l);
+    
+    void registerLetter(Letter * _l);
+    void unregisterLetter(Letter * _l);
+    
+
     vector<Letter *> myLetters;
 
     ofTrueTypeFont  *font;
@@ -92,9 +98,16 @@ public:
     void lerpColor();
     
     
+    void setBRemove(bool _r);
+    bool getBRemove();
+    
+    bool checkShouldRemove();
+    
+    
     
 private:
     
+    bool bRemove=false;
     
     string data; //declare a vector of strings to store data
     float lerpColorAmount;
