@@ -180,10 +180,15 @@ void Word::unregisterLetter(Letter *_l){
     
     if(myLetters.size()==0){
         setBRemove(true);
-        cout<<"remove word"<<data<<endl;
+        myFragmentPointer->unregisterWord(this);
+       // cout<<"remove word"<<data<<endl;
     }
     
    /// myLetters.push_back(_l);
+}
+
+void Word::setFragmentPointer(Fragment *_f){
+    myFragmentPointer=_f;
 }
 
 

@@ -21,6 +21,7 @@
 #include "LetterEvent.hpp"
 
 class Letter;
+class Fragment;
 
 class Word {
     
@@ -43,6 +44,9 @@ public:
     void registerLetter(Letter * _l);
     void unregisterLetter(Letter * _l);
     
+    Fragment * myFragmentPointer;
+    void setFragmentPointer(Fragment * _f);
+
 
     vector<Letter *> myLetters;
 

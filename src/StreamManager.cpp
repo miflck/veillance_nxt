@@ -10,7 +10,8 @@
 
 
 //int viewportwidth=1920;
-int viewportwidth=1280; //WXGA
+//int viewportwidth=1280; //WXGA
+int viewportwidth=1920/2; //WXGA
 
 //int viewportwidth=770;
 
@@ -53,7 +54,7 @@ void StreamManager::initialize() {
   
     
     int lines=floor(ofGetHeight()/h);
-    cout<<"lines"<<lines<<ofGetHeight()/h<<endl;
+    cout<<"lines"<<lines<<endl;
     for(int i = 0; i < lines; i++){
         CarousselManager cm;
         float p=ABS((ofGetHeight()/2)-((i*h)));
@@ -143,10 +144,28 @@ void StreamManager::update(){
         
         
         
+    
+        
+        
+        for (int i=0;i<fragments.size();i++){
+            if(fragments[i]->getBRemove()){
+                cout<<"-- Remove Fragment--"<<fragments[i]->getFragmentId()<<endl;
+                delete (fragments[i]);
+                fragments.erase(fragments.begin()+i);
+            }
+        }
+        
         for (int i=0;i<words.size();i++){
             if(words[i]->getBRemove()){
                 delete (words[i]);
                 words.erase(words.begin()+i);
+            }
+        }
+        
+        for (int i=0;i<letters.size();i++){
+            if(shouldRemoveLetter(letters[i])){
+                delete (letters[i]);
+                letters.erase(letters.begin()+i);
             }
         }
         
@@ -174,12 +193,7 @@ void StreamManager::update(){
         }
         
         
-        for (int i=0;i<letters.size();i++){
-            if(shouldRemoveLetter(letters[i])){
-                delete (letters[i]);
-                letters.erase(letters.begin()+i);
-            }
-        }
+       
         
         
         
@@ -225,7 +239,7 @@ void StreamManager::update(){
 
 void StreamManager::draw(){
     
-    //backgroundFbo.draw(0,0);
+    backgroundFbo.draw(0,0);
 
     
     if(bDraw){
@@ -388,25 +402,24 @@ void StreamManager::addData(string _s, int _fragmentId){
          w->setData(word);
          int lifeTime=ofGetElapsedTimeMillis()+int(ofRandom(10000,50000));
          w->setLifeTime(lifeTime);
+        w->setFragmentPointer(f);
          
          float r=ofRandom(0,1);
          if(r<0.2 && word!=" ")w->setIsSuggestion(true);
          
-         
-         
         
-         for (auto ss : word){
+    for (auto ss : word){
              char c = ss;
              Letter * l =new Letter();
              l->setFont(&font);
              l->setData(c);
              l->setWordId(wordcounter);
              l->setWordPointer(w);
+                l->setFragmentPointer(f);
              addLetter(l);
              cms[cms.size()-1].addMovement(letters[letters.size()-1]);
-             w->addLetterPointer(l);
-             f->addLetterPointer(l);
-
+             w->registerLetter(l);
+             f->registerLetter(l);
          }
         
         // ADD SPACE
@@ -415,13 +428,15 @@ void StreamManager::addData(string _s, int _fragmentId){
         l->setData(' ');
         l->setWordId(wordcounter);
         l->setWordPointer(w);
+        l->setFragmentPointer(f);
+
         addLetter(l);
         cms[cms.size()-1].addMovement(letters[letters.size()-1]);
-        w->addLetterPointer(l);
-        f->addLetterPointer(l);
-        
+        w->registerLetter(l);
+        f->registerLetter(l);
         words.push_back(w);
-        f->addWordPointer(w);
+        
+        f->registerWord(w);
         wordcounter++; // debug id
      
      }
@@ -547,9 +562,10 @@ Fragment* StreamManager::getFragmentById(int _id){
 
 
 void StreamManager::makeRandomMovingWord(){
-    int fragmentid=int(ofRandom(0,fragments.size()));
-    cout<<fragmentid<<endl;
-    Fragment *f=getFragmentById(fragmentid);
+    int n=int(ofRandom(0,fragments.size()));
+   // cout<<fragmentid<<endl;
+    Fragment *f=fragments[n]; //getFragmentById(fragmentid);
+    cout<<f->getFragmentId()<<endl;
     int wI=int(ofRandom(f->getNumWords()));
     cout<<"Word index "<<wI;
     Word *w =f->getWordByIndex(wI);

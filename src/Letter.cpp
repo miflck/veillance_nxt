@@ -8,6 +8,7 @@
 
 #include "Letter.hpp"
 #include "Word.h"
+#include "Fragment.hpp"
 
 #include "StreamManager.hpp"
 
@@ -24,6 +25,7 @@ void Letter::setup(){
     newEvent.letter     = this;
     ofNotifyEvent(LetterEvent::events, newEvent);
     ofRectangle textBounds = font->getStringBoundingBox("H", 0, 0);
+    bIsOnScreen=false;
     
 }
 
@@ -108,6 +110,12 @@ void Letter::setWordPointer(Word *_w){
 }
 
 
+void Letter::setFragmentPointer(Fragment *_f){
+    myFragmentPointer=_f;
+}
+
+
+
 void Letter::setPosition(ofVec2f _p){
     position.set(_p);
     node.setGlobalPosition(position);
@@ -134,7 +142,10 @@ bool Letter::getIsOnScreen(){
 
 void Letter::setBRemove(bool _b){
     bRemove=_b;
-    if(bRemove)myWordPointer->unregisterLetter(this);
+    if(bRemove){
+      myWordPointer->unregisterLetter(this);
+        myFragmentPointer->unregisterLetter(this);
+    }
 }
 
 bool Letter::getBRemove(){

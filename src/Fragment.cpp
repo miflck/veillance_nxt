@@ -58,6 +58,50 @@ void Fragment::addLetterPointer(Letter *_l){
 }
 
 
+void Fragment::registerLetter(Letter *_l){
+    myLetters.push_back(_l);
+}
+
+void Fragment::unregisterLetter(Letter *_l){
+    auto it = std::find(myLetters.begin(), myLetters.end(), _l);
+    if (it != myLetters.end()) { myLetters.erase(it); }
+    
+    
+    if(myLetters.size()==0){
+        setBRemove(true);
+    }
+    
+    /// myLetters.push_back(_l);
+}
+
+
+void Fragment::unregisterWord(Word *_w){
+    auto it = std::find(myWords.begin(), myWords.end(), _w);
+    if (it != myWords.end()) { myWords.erase(it); }
+    
+    
+    if(myWords.size()==0){
+        setBRemove(true);
+    }
+    
+    /// myLetters.push_back(_l);
+}
+
+
+void Fragment::registerWord(Word *_w){
+    myWords.push_back(_w);
+}
+
+
+void Fragment::setBRemove(bool _b){
+    bRemove=_b;
+}
+
+bool Fragment::getBRemove(){
+    return bRemove;
+}
+
+
 void Fragment::addWordPointer(Word *_w){
     myWords.push_back(_w);
 }
