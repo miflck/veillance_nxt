@@ -12,7 +12,6 @@
 #include <stdio.h>
 #include "ofMain.h"
 #include "Word.h"
-#include "WordManager.hpp"
 
 
 #include "CarousselManager.hpp"
