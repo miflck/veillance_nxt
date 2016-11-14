@@ -46,8 +46,8 @@ void SceneManager::initialize() {
     
     
     
- //   float minspeed=2;
-    float minspeed=20;
+    float minspeed=2;
+  //  float minspeed=20;
 
     float speed;
     int h=20;
@@ -257,7 +257,7 @@ void SceneManager::update(){
 void SceneManager::draw(){
     ofEnableBlendMode(OF_BLENDMODE_ALPHA);
 
-   backgroundFbo.draw(0,0);
+  if(debug) backgroundFbo.draw(0,0);
 
     
     if(bDraw){
@@ -271,7 +271,6 @@ void SceneManager::draw(){
         
         backgroundFbo.begin();
         ofEnableAlphaBlending();
-
         for(int i=0;i<cms.size();i++){
             cms[i].draw();
         }
@@ -448,6 +447,7 @@ void SceneManager::addDataFromBuffer(){
 
     
     Fragment * f=new Fragment();
+    f->setup();
     f->setFragmentId(m.uuid);
     vector<string> split;
     split = ofSplitString(m.text, " ");
@@ -505,6 +505,7 @@ void SceneManager::addDataFromBuffer(){
 void SceneManager::addData(string _s, int _fragmentId){
     
     Fragment * f=new Fragment();
+    f->setup();
     f->setFragmentId(_fragmentId);
      vector<string> split;
      split = ofSplitString(_s, " ");

@@ -35,7 +35,7 @@ void CarousselContainer::draw(){
       
         c=myLetter->getBackgroundColor();
     }
-    ofSetColor(c,30);
+    ofSetColor(c,200);
 
     
     ofFill();

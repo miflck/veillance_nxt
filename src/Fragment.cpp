@@ -16,6 +16,13 @@ Fragment::Fragment(){
 
 
 void Fragment::setup(){
+    
+
+    backgroundColor=ofColor(ofRandom(50,255),ofRandom(50,255),ofRandom(50,255));
+    myColor=ofColor(0,0,255);
+    myInitColor=ofColor(0,0,255);
+    
+    targetColor=ofColor(0,0,255);
 
 
 }
@@ -130,4 +137,22 @@ Word* Fragment::getWordByIndex(int _index){
         return myWords[_index];
     }else return nullptr;
 }
+
+
+
+void Fragment::setColor(ofColor _c){
+    myColor=_c;
+}
+
+
+ofColor Fragment::getColor(){
+    return myColor;
+}
+
+ofColor Fragment::getBackgroundColor(){
+    return backgroundColor;
+}
+
+
+
 

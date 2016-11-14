@@ -205,7 +205,8 @@ ofColor Word::getColor(){
 }
 
 ofColor Word::getBackgroundColor(){
-    return backgroundColor;
+    ofColor c=myFragmentPointer->getBackgroundColor();
+    return c;//backgroundColor;
 }
 
 
