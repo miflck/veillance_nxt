@@ -64,6 +64,8 @@ void Letter::draw(){
 void Letter::setData(char _data){
     data=_data;
     myString=ofToUpper(ofToString(_data));
+  //  myString=ofToString(_data);
+
     letterMesh = font->getStringMesh(myString, 0, 0);
 }
 

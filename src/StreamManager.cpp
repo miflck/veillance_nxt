@@ -46,12 +46,14 @@ void StreamManager::initialize() {
     
     
     
-    float minspeed=2;
-   // float minspeed=20;
+   // float minspeed=2;
+    float minspeed=1000;
 
     float speed;
     int h=20;
-    int w=10;
+   // int w=10;
+    int w=20;
+
     
     
   

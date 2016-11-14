@@ -20,7 +20,7 @@ void CarousselManager::setup(ofVec2f _position,float _mywidth, float _myheight, 
     float l=_width;
     float h=_height;
     
-    maxspeed=15;//;l/5;
+    maxspeed=300;//;l/5;
     
     ofVec3f pos = ofVec3f(-l,position.y);
     float dl=mywidth/l+1;
