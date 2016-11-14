@@ -12,13 +12,11 @@
 //int viewportwidth=1920;
 int viewportwidth=1280; //WXGA
 //int viewportwidth=1920/2; //WXGA
-
 //int viewportwidth=770;
 
 
 
 SceneManager* SceneManager::instance = 0;
-
 SceneManager* SceneManager::getInstance() {
     if (!instance) {
         instance = new SceneManager();
@@ -41,22 +39,20 @@ void SceneManager::initialize() {
     */
     font.load("FoundersGroteskMonoBold.ttf", 10);
     bigfont.load("FoundersGroteskMonoBold.ttf", 60);
-    
+   
+    /*
     bkg.load("bkg_3.png");
+    */
     
     
     
-    float minspeed=2;
-  //  float minspeed=20;
+    // CAROUSSEL
+    //These are the animationcontrollers of the background. Each one controlls a Line
 
+    float minspeed=2;
     float speed;
     int h=20;
     int w=10;
-   // int w=20;
-
-    
-    
-  
     
     int lines=floor(ofGetHeight()/h);
     cout<<"lines"<<lines<<endl;
@@ -65,75 +61,57 @@ void SceneManager::initialize() {
         float p=ABS((ofGetHeight()/2)-((i*h)));
         float dl= ofMap(p*(p/4),0,ofGetHeight()/2*(ofGetHeight()/2/4),1,100); 
         float dW=w+dl;
-        // s=v*t
-        // s/v=t
-        //v=s/t
+        // s=v*t  s/v=t  v=s/t
         float time=w/minspeed;
         float dv=dW/time;
-        float speed=dv;//(w/minspeed)*dW;
+        float speed=dv;
         float r=ofRandom(0,50);
         cm.setup(ofVec2f(0,(i*h)),viewportwidth,ofGetHeight(),dW,h);
-        cm.maxspeed=speed;//minspeed*dl;
+        cm.maxspeed=speed;
         cm.setId(i);
         cms.push_back(cm);
     }
+    
+    // Event listener for the Carousselevents. Tells the Scenemanager when to feed the buffer or move one line up etc
     ofAddListener(CarousselEvent::events, this, &SceneManager::carousselEvent);
-    
-    ofEnableAlphaBlending();
 
+
+    // CAMERA AND VIEWPORTS
     
-    
+    //Viewports
     viewFront.x = 0;
     viewFront.y = 0;
     viewFront.width = ofGetWidth()/2;
     viewFront.height = ofGetHeight();
 
-    
     viewBack.x = ofGetWidth()/2;
     viewBack.y = 0;
     viewBack.width = ofGetWidth()/2;
     viewBack.height = ofGetHeight();
     
-    /*
-    for(int i=0; i<2; i++) {
-        cam[i].resetTransform();
-        cam[i].setFov(60);
-        cam[i].clearParent();
-        }
-
-    */
-    
-    
-    
-    
-    
+    // Camera
     cam[0].setVFlip(true);
     cam[0].setFov(60);
-
-   
-    // cam[0].setNearClip(10);
-
-//    cam[0].setPosition(viewportwidth/2, ofGetHeight()/2, 500);
     float d=cam[0].getImagePlaneDistance(viewFront);
-
     cam[0].setPosition(viewportwidth/2, ofGetHeight()/2, d);
 
     
-    cout<<d<<endl;
-    
-  //  cam[0].lookAt(ofVec3f(0,0,0));
     cam[1].setVFlip(true);
     cam[1].setNearClip(10);
-   // cam[1].setPosition(viewportwidth/2, ofGetHeight()/2, 200);
     cam[1].setPosition(viewportwidth/2, ofGetHeight()/2, d-200);
-
     cam[1].pan(180);
     
     
-   backgroundFbo.allocate(viewportwidth, ofGetHeight(),GL_RGBA);
+    // BACKGROUNDCOLOR
+    // Background FBO for Backgroundcolorstuff.
+    backgroundFbo.allocate(viewportwidth, ofGetHeight(),GL_RGBA);
     backgroundFbo.begin();
     ofClear(255,255,255, 0);
     backgroundFbo.end();
+    
+    
+    ofEnableAlphaBlending();
+
   
 
 }
@@ -143,7 +121,7 @@ void SceneManager::initialize() {
 
 void SceneManager::update(){
     
-    // Check if add data
+    // Check if we have to feed data from Buffer to Caroussel
     if(bIsReadyForData){
         bIsReadyForData=false;
         addDataFromBuffer();
@@ -151,14 +129,15 @@ void SceneManager::update(){
     
     
     
-    
-    
     if(bUpdate){
+        
+        // UPDATE CAROUSSEL
         for(int i=0;i<cms.size();i++){
             cms[i].update();
         }
         
      
+        // REMOVE STUFF FROM SCREEN AND MEMORY
         
          for (int i=0;i<letters.size();i++){
             if(letters[i]->getBRemove()){
@@ -185,7 +164,7 @@ void SceneManager::update(){
 
         
     
-        
+        //UPDATE
         
         for(auto word:words){
            word->update();
@@ -210,43 +189,19 @@ void SceneManager::update(){
         }
         
         
-       
-        
-        
-        
-        
-        
-        
     }
     
     
     
-   /* float alpha = ofMap(ofGetMouseX(), 0, ofGetWidth(), 0, 255);
+    
+    // ADD BLACK SQUARE TO BACKGROUNDCOLOR
     backgroundFbo.begin();
-    /*
-    for(auto letter:letters){
-        ofSetColor(255,0,0);
-        bkg.draw(letter->getPosition().x,letter->getPosition().y);
-    }*/
-    
-  /*  ofSetColor(255,255,255, alpha);
-    ofDrawRectangle(0,0,400,400);
-    backgroundFbo.end();
-    */
-    
-    
-    
-    
-    backgroundFbo.begin();
-    ofSetColor(0,0,0,1);
+    ofSetColor(0,0,0,10);
     ofEnableBlendMode(OF_BLENDMODE_ALPHA);
 
     ofEnableAlphaBlending();
-   // ofDrawRectangle(0, 0, backgroundFbo.getWidth(), backgroundFbo.getHeight());
+    ofDrawRectangle(0, 0, backgroundFbo.getWidth(), backgroundFbo.getHeight());
    ofDisableBlendMode();
-   // ofClear(0,0,0,100);
-
-
     backgroundFbo.end();
 
     
@@ -256,18 +211,13 @@ void SceneManager::update(){
 
 void SceneManager::draw(){
     ofEnableBlendMode(OF_BLENDMODE_ALPHA);
-
   if(debug) backgroundFbo.draw(0,0);
 
     
     if(bDraw){
-      //  ofBackground(0); // this matters
-
         
         cam[0].begin(viewFront);
-        
         ofEnableBlendMode(OF_BLENDMODE_ADD);
-
         
         backgroundFbo.begin();
         ofEnableAlphaBlending();
@@ -276,7 +226,6 @@ void SceneManager::draw(){
         }
         backgroundFbo.end();
 
-       // cam[1].begin();
     
 
 
@@ -289,7 +238,7 @@ void SceneManager::draw(){
         
         
         for(auto fragment:fragments){
-         //      fragment->draw();
+         // fragment->draw();
         }
       
         
@@ -309,23 +258,18 @@ void SceneManager::draw(){
         ofEnableBlendMode(OF_BLENDMODE_ADD);
         ofVboMesh m;
         for(auto movingWord:movingWords){
-            // movingWord->draw();
             m.append(movingWord->getUpdatedVboMesh());
         }
         bigfont.getFontTexture().bind();
         m.draw();
         bigfont.getFontTexture().unbind();
-        
         cam[0].end();
    
-
-
-        //drawMesh.drawInstanced(OF_MESH_WIREFRAME,5);
-        
+        /*
         for(auto letter:letters){
            letter->draw();
         }
-        
+        */
         
        // cam[1].end();
 
@@ -370,10 +314,8 @@ void SceneManager::draw(){
 void SceneManager::carousselEvent(CarousselEvent &e){
    
     if(e.message=="STOP"){
-        
         if(e.id>0){
             Letter *l=cms[e.id].getLastElementPointer();
-            
             if(l!=nullptr){
                 cms[e.id-1].addMovement(l);
             }
@@ -381,25 +323,11 @@ void SceneManager::carousselEvent(CarousselEvent &e){
         
         if(e.id==0){
             Letter *l=cms[e.id].getLastElementPointer();
-            
             auto it = std::find(letters.begin(), letters.end(), l);
             if (it != letters.end()) {
-                
                 int i= it - letters.begin();
                 if(i>0)letters[i-1]->setBRemove(true);
-               // (*it)->setBRemove(true);
-              //  letters.erase(--it);
             }
-            
-            
-           // letters[0]->setBRemove(true);
-            
-            
-            /*if(l!=nullptr){
-                l->setBRemove(true);
-            }*/
-            
-            
         }
         
     }
@@ -671,17 +599,7 @@ void SceneManager::makeRandomMovingWord(){
 
 void SceneManager::addMessage(message _m){
     messageBuffer.push_back(_m);
-    cout<<messageBuffer.size()<<endl;
+    cout<<"Message Buffer Size: "<<messageBuffer.size()<<endl;
 
 }
 
-
-/*
-void SceneManager::addWord(string _s){
-    Word w;
-    w.setup(words.size());
-    w.setData(_s);
-    words.push_back(w);
-}
-
-*/
