@@ -16,13 +16,23 @@
 #include "CarousselEvent.hpp"
 
 
+#include "Letter.hpp"
+
+
+
 class CarousselManager {
     
 public:
     CarousselManager();
-    void setup(ofVec2f _position,float _width,float _height);
+    void setup(ofVec2f _position,float _mywidth, float _myheight, float _width,float _height);
     void update();
     void draw();
+    
+    
+    
+    
+    
+    
     
     vector<CarousselContainer>containers;
     
@@ -30,7 +40,7 @@ public:
     float width;
     
     float speed;
-    void move(ofVec2f target, CarousselContainer *c);
+  //  void move(ofVec2f target, CarousselContainer *c);
     void move();
 
     
@@ -39,23 +49,45 @@ public:
     bool bIsMoving=false;
     ofVec2f target;
     
+    
+    void checkBuffer();
+    
     void cicle();
     
     
-    float maxspeed;
+    double maxspeed;
     
     void setId(int _id);
     
     
-    vector<char>buffer;
-    void addMovement(char _c);
+    vector<Letter *>buffer;
+    
+   // vector<Letter *>letterbuffer;
+    
+   // void addMovement(char _c);
 
+    void addMovement(Letter *l);
+
+    
+    
     char getLastElementChar();
+    Letter* getLastElementPointer();
+    
+    void setDebugDraw(bool _b);
+    
     
     
 private:
     
     int id;
+    bool bDebugDraw=false;
+    
+    float mywidth;
+    float myheight;
+    
+    
+   // Letter HackBaseLetter;
+
     
 };
 

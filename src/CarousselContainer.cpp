@@ -7,6 +7,8 @@
 //
 
 #include "CarousselContainer.hpp"
+#include "SceneManager.hpp"
+
 CarousselContainer::CarousselContainer(){
 }
 
@@ -15,19 +17,37 @@ void CarousselContainer::setup(){
 }
 
 void CarousselContainer::update(){
-   // cout<<dimension<<endl;
+    ofVec2f p=ofVec2f(position.x+bbox.getWidth()/2,position.y+10);
+     if(myLetter!=nullptr){
+         myLetter->setPosition(p);
+         myLetter->setVelocity(velocity);
+     }
 }
 
 void CarousselContainer::draw(){
+    ofPushStyle();
     ofPushMatrix();
     ofTranslate(position);
-    ofSetColor(255,20);
-    ofDrawRectangle(bbox.x+2,bbox.y+2,bbox.getWidth()-2,bbox.getHeight()-2);
-    ofSetColor(0,0,255);
-    //ofDrawBitmapString(ofToString(id), bbox.getCenter().x, bbox.getCenter().y);
-    if(c!=' ')ofDrawBitmapString(c, bbox.getCenter().x, bbox.getCenter().y);
+    //ofColor c=ofColor(255,100);
+    ofColor c=ofColor(0);
+
+    if(myLetter!=nullptr){
+      
+        c=myLetter->getBackgroundColor();
+    }
+    ofSetColor(c,200);
+
+    
+    ofFill();
+   // ofDrawRectangle(bbox.x+2,bbox.y+2,bbox.getWidth()-2,bbox.getHeight()-2);
+    
+    
+    ofDrawRectangle(bbox.x+1,bbox.y,bbox.getWidth()-5,bbox.getHeight());
+    
+  
 
     ofPopMatrix();
+    ofPopStyle();
 }
 
 
@@ -79,4 +99,26 @@ char CarousselContainer::getChar(){
     return c;
 
 }
+
+void CarousselContainer::setLetterPointer(Letter *_l){
+    myLetter= _l;
+    bHasPointer=true;
+ //   cout<<"data "<<ofToString(myLetter->getData())<<endl;
+    
+}
+Letter* CarousselContainer::getLetterPointer(){
+        return myLetter;
+}
+
+
+void CarousselContainer::setVelocity(ofVec2f _v){
+    velocity.set(_v);
+}
+
+
+void CarousselContainer::setDebug(bool _debug){
+    debug=_debug;
+}
+
+
 

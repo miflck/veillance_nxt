@@ -1,9 +1,10 @@
 #pragma once
 
 #include "ofMain.h"
-#include "Stream.h"
-#include "CarousselManager.hpp"
-#include "CarousselEvent.hpp"
+#include "SceneManager.hpp"
+
+#include "IOManager.hpp"
+
 
 class ofApp : public ofBaseApp{
 
@@ -25,23 +26,26 @@ class ofApp : public ofBaseApp{
 		void gotMessage(ofMessage msg);
     
     
-    CarousselManager cm;
-    
-    vector<CarousselManager> cms;
+ 
 
     
-        ofTrueTypeFont  font;
+    ofTrueTypeFont  font;
+    ofTrueTypeFont  bigfont;
+
     
     vector<string> data; //declare a vector of strings to store data
-    Stream stream;
     
     
-    vector<string> words;
-
-    
-    void carousselEvent(CarousselEvent &e);
-
+    IOManager IOmanager;
     
     
+    
+    
+    
+    bool bUpdate=true;
+    bool bDraw=true;
+  
+    //debug
+    int fragmentId;    
 		
 };
