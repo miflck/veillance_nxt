@@ -36,6 +36,10 @@ public:
     void setPosition(ofVec3f _p);
     ofVec3f getPosition();
     void setVelocity(ofVec3f _v);
+    
+    
+    void setInitVelocity(ofVec3f _v);
+
     ofVec3f getVelocity();
     void setTarget(ofVec3f _t);
     ofVec3f getTarget();
@@ -45,23 +49,39 @@ public:
     void startMoving();
     void stopMoving();
     bool bIsMoving=false;
-    float maxspeed=1;
+    float maxspeed=10;
     
     
     void setIsAlive(bool _b);
     bool checkIsAlive();
     
     
+    
+    ofVboMesh getUpdatedVboMesh();
+
+    
+    ofColor myColor;
+
+    
+    
+    
 private:
+    
+    bool bIsOnScreen;
+    
     ofVec3f startposition;
 
     ofVec3f position;
     ofVec3f velocity;
+    
+    ofVec3f initvelocity;
+
+    
+    ofVec3f acceleration;
+
     ofNode node;
     ofVec3f target;
-    
-ofPlanePrimitive plane;
-    
+    ofPlanePrimitive plane;    
     ofBoxPrimitive geometry;
 
     bool bIsAlive=false;
@@ -75,6 +95,16 @@ ofPlanePrimitive plane;
     float rollangle;
     float panangle;
     float tiltangle;
+    
+    
+    ofVboMesh vbom;
+    ofVboMesh letterMesh;
+    
+    
+    float scalefact;
+    float spacingFact;
+    
+    ofVec3f lookat;
     
     
 };

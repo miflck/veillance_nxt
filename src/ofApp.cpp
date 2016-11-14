@@ -18,7 +18,7 @@ void ofApp::setup(){
     
     dot.load("dot.png");
     
-    ofBuffer buffer = ofBufferFromFile("heartofdarkness.txt");
+    ofBuffer buffer = ofBufferFromFile("heartofdarkness 2.txt");
     for (auto line : buffer.getLines()){
         data.push_back(line);
     }
@@ -116,8 +116,21 @@ void ofApp::keyReleased(int key){
        // cms[cms.size()-1].addMovement(letters[letters.size()-1]);
         
         
-        STM->addData("hello");
+        STM->addData("hello", fragmentId);
+        fragmentId++;
+
         
+    }
+    
+    
+    if(key=='F'){
+        STM->makeMovingWordByFragmentId(0,0);
+    
+    }
+    
+    
+    if(key=='f'){
+        STM->makeRandomMovingWord();
         
     }
     
@@ -128,7 +141,13 @@ void ofApp::keyReleased(int key){
     }
     
     if(key=='d'){
-        bDraw=!bDraw;
+       // bDraw=!bDraw;
+        STM->setDebug(false);
+    }
+    
+    if(key=='D'){
+        // bDraw=!bDraw;
+        STM->setDebug(true);
     }
     
     
@@ -137,15 +156,17 @@ void ofApp::keyReleased(int key){
         
         
         for (auto line : data){
-            vector<string> split;
+            
+             STM->addData(line,fragmentId);
+            fragmentId++;
+            
+           /* vector<string> split;
             split = ofSplitString(line, " ");
             
             for (auto word : split){
                 STM->addData(word);
                 STM->addData(" "); // add space
-            }
-            
-            // STM->addData(line);
+            }*/
         }
         
         

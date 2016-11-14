@@ -10,9 +10,12 @@
 CarousselManager::CarousselManager(){
 }
 
-void CarousselManager::setup(ofVec2f _position,float _width,float _height){
+void CarousselManager::setup(ofVec2f _position,float _mywidth, float _myheight, float _width,float _height){
     position.set(_position);
     
+    
+    mywidth=_mywidth;
+    myheight=_myheight;
     
     float l=_width;
     float h=_height;
@@ -20,7 +23,7 @@ void CarousselManager::setup(ofVec2f _position,float _width,float _height){
     maxspeed=15;//;l/5;
     
     ofVec3f pos = ofVec3f(-l,position.y);
-    float dl=ofGetWidth()/l+1;
+    float dl=mywidth/l+1;
     for(int i=0;i<dl;i++){
         CarousselContainer c;
         c.setBoundingBox(pos, ofVec2f(l,h));
@@ -44,11 +47,11 @@ void CarousselManager::update(){
 }
 
 void CarousselManager::draw(){
-    // ofDrawLine(0,position.y, ofGetWidth(), position.y);
-    for(int i=0;i<containers.size();i++){
-        containers[i].draw();
+    if(bDebugDraw){
+        for(int i=0;i<containers.size();i++){
+            containers[i].draw();
+        }
     }
-    
 }
 
 
@@ -57,13 +60,14 @@ void CarousselManager::move(){
     for(int i=0;i<containers.size();i++){
         ofVec2f p=containers[i].getPosition();
         ofVec2f target=containers[i].getTarget();
-        ofVec3f dist=target-p;
-        ofVec3f speed=dist;
+        ofVec2f dist=target-p;
+        ofVec2f speed=dist;
         speed.limit(maxspeed);
         p+=speed;
         
         if(dist.length()<(maxspeed)+1){
             p.set(target);
+            speed.set(ofVec2f(0,0));
             containers[i].bIsMoving=false;
 
         }
@@ -71,6 +75,7 @@ void CarousselManager::move(){
     
         
         containers[i].setPosition(p);
+        containers[i].setVelocity(speed);
        /* if(p==target){
             containers[i].bIsMoving=false;
         }*/
@@ -166,3 +171,10 @@ char CarousselManager::getLastElementChar(){
 Letter* CarousselManager::getLastElementPointer(){
     return containers[0].getLetterPointer();
 }
+
+
+
+void CarousselManager::setDebugDraw(bool _d){
+    bDebugDraw=_d;
+};
+

@@ -14,13 +14,12 @@
 		FA11BF851DB67AD700304BAD /* WordManager.cpp in Sources */ = {isa = PBXBuildFile; fileRef = FA11BF831DB67AD700304BAD /* WordManager.cpp */; };
 		FA11BF891DB684D700304BAD /* StreamManager.cpp in Sources */ = {isa = PBXBuildFile; fileRef = FA11BF871DB684D700304BAD /* StreamManager.cpp */; };
 		FA5E6E1E1DACC43B006A9B8C /* LetterEvent.cpp in Sources */ = {isa = PBXBuildFile; fileRef = FA5E6E1C1DACC43B006A9B8C /* LetterEvent.cpp */; };
-		FA97F8791DABC2C7006B426A /* Stream.cpp in Sources */ = {isa = PBXBuildFile; fileRef = FA97F8771DABC2C7006B426A /* Stream.cpp */; };
 		FA97F87D1DABDED7006B426A /* Word.cpp in Sources */ = {isa = PBXBuildFile; fileRef = FA97F87B1DABDED7006B426A /* Word.cpp */; };
-		FA97F8811DAC39D9006B426A /* Line.cpp in Sources */ = {isa = PBXBuildFile; fileRef = FA97F87F1DAC39D9006B426A /* Line.cpp */; };
 		FA97F8841DAC3AA6006B426A /* Letter.cpp in Sources */ = {isa = PBXBuildFile; fileRef = FA97F8821DAC3AA6006B426A /* Letter.cpp */; };
 		FAAA205E1DAE522E007203FE /* CarousselManager.cpp in Sources */ = {isa = PBXBuildFile; fileRef = FAAA205C1DAE522E007203FE /* CarousselManager.cpp */; };
 		FAAA20611DAE5241007203FE /* CarousselContainer.cpp in Sources */ = {isa = PBXBuildFile; fileRef = FAAA205F1DAE5241007203FE /* CarousselContainer.cpp */; };
 		FAAA20661DAE791D007203FE /* CarousselEvent.cpp in Sources */ = {isa = PBXBuildFile; fileRef = FAAA20641DAE791D007203FE /* CarousselEvent.cpp */; };
+		FACF9CAC1DC87EE900A1F1C1 /* Fragment.cpp in Sources */ = {isa = PBXBuildFile; fileRef = FACF9CAA1DC87EE900A1F1C1 /* Fragment.cpp */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -69,12 +68,8 @@
 		FA11BF881DB684D700304BAD /* StreamManager.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = StreamManager.hpp; sourceTree = "<group>"; };
 		FA5E6E1C1DACC43B006A9B8C /* LetterEvent.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = LetterEvent.cpp; sourceTree = "<group>"; };
 		FA5E6E1D1DACC43B006A9B8C /* LetterEvent.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = LetterEvent.hpp; sourceTree = "<group>"; };
-		FA97F8771DABC2C7006B426A /* Stream.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Stream.cpp; sourceTree = "<group>"; };
-		FA97F8781DABC2C7006B426A /* Stream.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Stream.h; sourceTree = "<group>"; };
 		FA97F87B1DABDED7006B426A /* Word.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Word.cpp; sourceTree = "<group>"; };
 		FA97F87C1DABDED7006B426A /* Word.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Word.h; sourceTree = "<group>"; };
-		FA97F87F1DAC39D9006B426A /* Line.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Line.cpp; sourceTree = "<group>"; };
-		FA97F8801DAC39D9006B426A /* Line.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = Line.hpp; sourceTree = "<group>"; };
 		FA97F8821DAC3AA6006B426A /* Letter.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Letter.cpp; sourceTree = "<group>"; };
 		FA97F8831DAC3AA6006B426A /* Letter.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = Letter.hpp; sourceTree = "<group>"; };
 		FAAA205C1DAE522E007203FE /* CarousselManager.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = CarousselManager.cpp; sourceTree = "<group>"; };
@@ -83,6 +78,8 @@
 		FAAA20601DAE5241007203FE /* CarousselContainer.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = CarousselContainer.hpp; sourceTree = "<group>"; };
 		FAAA20641DAE791D007203FE /* CarousselEvent.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = CarousselEvent.cpp; sourceTree = "<group>"; };
 		FAAA20651DAE791D007203FE /* CarousselEvent.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = CarousselEvent.hpp; sourceTree = "<group>"; };
+		FACF9CAA1DC87EE900A1F1C1 /* Fragment.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Fragment.cpp; sourceTree = "<group>"; };
+		FACF9CAB1DC87EE900A1F1C1 /* Fragment.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = Fragment.hpp; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -138,12 +135,8 @@
 				E4B69E1D0A3A1BDC003C02F2 /* main.cpp */,
 				FA97F87C1DABDED7006B426A /* Word.h */,
 				FA97F87B1DABDED7006B426A /* Word.cpp */,
-				FA97F8781DABC2C7006B426A /* Stream.h */,
-				FA97F8771DABC2C7006B426A /* Stream.cpp */,
 				E4B69E1F0A3A1BDC003C02F2 /* ofApp.h */,
 				E4B69E1E0A3A1BDC003C02F2 /* ofApp.cpp */,
-				FA97F87F1DAC39D9006B426A /* Line.cpp */,
-				FA97F8801DAC39D9006B426A /* Line.hpp */,
 				FA97F8821DAC3AA6006B426A /* Letter.cpp */,
 				FA97F8831DAC3AA6006B426A /* Letter.hpp */,
 				FA5E6E1C1DACC43B006A9B8C /* LetterEvent.cpp */,
@@ -154,6 +147,8 @@
 				FA11BF841DB67AD700304BAD /* WordManager.hpp */,
 				FA11BF871DB684D700304BAD /* StreamManager.cpp */,
 				FA11BF881DB684D700304BAD /* StreamManager.hpp */,
+				FACF9CAA1DC87EE900A1F1C1 /* Fragment.cpp */,
+				FACF9CAB1DC87EE900A1F1C1 /* Fragment.hpp */,
 			);
 			path = src;
 			sourceTree = SOURCE_ROOT;
@@ -276,7 +271,6 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				FA97F8791DABC2C7006B426A /* Stream.cpp in Sources */,
 				FA97F87D1DABDED7006B426A /* Word.cpp in Sources */,
 				FAAA20611DAE5241007203FE /* CarousselContainer.cpp in Sources */,
 				FA11BF851DB67AD700304BAD /* WordManager.cpp in Sources */,
@@ -284,9 +278,9 @@
 				FA11BF891DB684D700304BAD /* StreamManager.cpp in Sources */,
 				FAAA20661DAE791D007203FE /* CarousselEvent.cpp in Sources */,
 				E4B69E210A3A1BDC003C02F2 /* ofApp.cpp in Sources */,
-				FA97F8811DAC39D9006B426A /* Line.cpp in Sources */,
 				FAAA205E1DAE522E007203FE /* CarousselManager.cpp in Sources */,
 				FA97F8841DAC3AA6006B426A /* Letter.cpp in Sources */,
+				FACF9CAC1DC87EE900A1F1C1 /* Fragment.cpp in Sources */,
 				FA11BF7C1DB6459A00304BAD /* MovingWords.cpp in Sources */,
 				FA5E6E1E1DACC43B006A9B8C /* LetterEvent.cpp in Sources */,
 			);

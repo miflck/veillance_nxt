@@ -21,6 +21,7 @@
 #include "LetterEvent.hpp"
 
 class Letter;
+class Fragment;
 
 class Word {
     
@@ -38,6 +39,15 @@ public:
     string getMyData();
     
     void addLetterPointer(Letter * _l);
+    void removeLetterPointer(Letter * _l);
+    
+    void registerLetter(Letter * _l);
+    void unregisterLetter(Letter * _l);
+    
+    Fragment * myFragmentPointer;
+    void setFragmentPointer(Fragment * _f);
+
+
     vector<Letter *> myLetters;
 
     ofTrueTypeFont  *font;
@@ -45,6 +55,15 @@ public:
     void setPosition(ofVec3f pos);
     ofVec3f getPosition();
     ofVec3f position;
+    ofVec3f velocity;
+    ofVec3f getVelocity();
+    void setVelocity(ofVec3f _v);
+    
+    ofRectangle boundingbox;
+    
+    ofRectangle getBoundingBox();
+    
+    
     float getWidth();
     float wordwidth;
     
@@ -57,18 +76,51 @@ public:
     void setIsSuggestion(bool _s);
     
     ofColor myColor;
-    ofColor mySuggestionColor;
+    ofColor myInitColor;
 
-    void setColor(ofColor _c);
+    ofColor mySuggestionColor;
+    ofColor targetColor;
+    ofColor backgroundColor;
+
+
     ofColor getColor();
+    ofColor getBackgroundColor();
+
+    
+    
+    void setColor(ofColor _c);
     
     bool checkIsOnScreen();
     
     
+    void makeMovingWord();
+    
+    
+    int getIndex();
+    
+    
+    void setIsDrawn(bool _isDrawn);
+    
+    void startColorLerp();
+    void stopColorLerp();
+    void lerpColor();
+    
+    
+    void setBRemove(bool _r);
+    bool getBRemove();
+    
+    bool checkShouldRemove();
+    
+    
+    
 private:
     
+    bool bRemove=false;
     
     string data; //declare a vector of strings to store data
+    float lerpColorAmount;
+    
+    int lifespan;
 
     
   bool  bIsMovingWord=false;
@@ -79,6 +131,9 @@ private:
     
     bool bIsOnScreen=false;
     bool wasOnScreen=false;
+    
+    bool bIsColorLerp=false;
+    
 };
 
 

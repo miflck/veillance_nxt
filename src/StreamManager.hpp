@@ -20,6 +20,9 @@
 #include "Letter.hpp"
 
 
+#include "Fragment.hpp"
+
+
 #include "MovingWords.hpp"
 
 
@@ -41,6 +44,11 @@ public:
     void draw();
     
     
+    //Mesh
+    ofVboMesh drawMesh;
+
+    
+    
     
     // CAROUSSEL
     CarousselManager cm;
@@ -50,9 +58,12 @@ public:
     
     
     // DATA
-    void addData(string _s);
+    void addData(string _s, int _fragmentId);
     void addWord(string _s);
 
+    vector<Fragment *> fragments;
+
+    
     
     
     //LETTER
@@ -67,6 +78,9 @@ public:
     void addMovingWord(Word * _w);
     
     
+    //Background
+    ofImage bkg;
+    
     
     //FONT
     
@@ -79,19 +93,38 @@ public:
     bool bUpdate=true;
     bool bDraw=true;
     
-    
     bool debug;
     void setDebug(bool debug);
     
-    
     static bool shouldRemoveMovingWord(MovingWords *mw); // why static
     
+    
+    static bool shouldRemoveLetter(Letter *l); // why static
+
+    
+    
+    Fragment* getFragmentById(int _id);
+    void makeMovingWordByFragmentId(int _id,int _wordindex);
+    
+    void makeRandomMovingWord();
+    
+    
+    
+    ofCamera cam[2];
+    ofRectangle viewFront;
+    ofRectangle viewBack;
+
+    
+    ofFbo backgroundFbo;
+
     
 private:
     StreamManager();
     static StreamManager* instance;
     bool initialized;
     int wordcounter=0;
+    
+    
     
 };
 

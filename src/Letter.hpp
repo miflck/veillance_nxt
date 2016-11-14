@@ -21,6 +21,7 @@
 
 
 class Word;
+class Fragment;
 
 class Letter {
     
@@ -40,13 +41,13 @@ public:
     void setData(char data);
     char data;
     
+    string myString;
+    string getString();
+    
     char getData();
     
-   bool bRemove=false;
     
-    ofVboMesh originalVboMesh;
-    ofVboMesh getOriginalVboMesh();
-    void makeOriginalVboMesh();
+    ofVboMesh getUpdatedVboMesh();
     
     void setWordId(int _id);
     int getWordId();
@@ -59,8 +60,15 @@ public:
     void setWordPointer(Word * w);
     
     
+    Fragment * myFragmentPointer;
+    void setFragmentPointer(Fragment * f);
+    
+    
     void setPosition(ofVec2f p);
     ofVec2f getPosition();
+    
+    void setVelocity(ofVec2f _v);
+    ofVec2f getVelocity();
     
     void setIsDrawn(bool _b);
     
@@ -68,12 +76,32 @@ public:
     void setIsOnScreen(bool _s);
     bool getIsOnScreen();
     
+    void setBRemove(bool _b);
+    bool getBRemove();
+    
+    
+    ofColor getColor();
+    ofColor getBackgroundColor();
+
+    
+    
 private:
+    bool bRemove=false;
+
     
     ofVec2f position;
+    ofVec2f velocity;
     int wordId;
     bool bIsDrawn=true;
     bool bIsOnScreen=false;
+    
+    
+    ofNode node;
+    ofVboMesh letterMesh;
+    float angle=0;
+    
+    ofVboMesh vbom;
+
     
     
 };

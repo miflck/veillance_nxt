@@ -1,7 +1,6 @@
 #pragma once
 
 #include "ofMain.h"
-#include "Stream.h"
 #include "Letter.hpp"
 #include "MovingWords.hpp"
 #include "WordManager.hpp"
@@ -35,19 +34,14 @@ class ofApp : public ofBaseApp{
 
     
     vector<string> data; //declare a vector of strings to store data
-    Stream stream;
-    
     
     vector<string> words;
-
-        
+    
     bool bUpdate=true;
     bool bDraw=true;
     
-    
     vector<Letter *>letters;
     void addLetter(Letter * _l);
-    
     
     vector<Letter>letterbuffer;
     void addLetterBuffer(Letter _l);
@@ -57,11 +51,10 @@ class ofApp : public ofBaseApp{
 
     ofImage dot;
 
-    
     MovingWords mw;
     WordManager wm;
 
-    
-    
+    //debug
+    int fragmentId;    
 		
 };

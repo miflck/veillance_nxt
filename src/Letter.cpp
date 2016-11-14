@@ -8,6 +8,11 @@
 
 #include "Letter.hpp"
 #include "Word.h"
+#include "Fragment.hpp"
+
+#include "StreamManager.hpp"
+
+
 Letter::Letter(){
     data=NULL;
     
@@ -15,47 +20,51 @@ Letter::Letter(){
 
 void Letter::setup(){
     position.set(ofRandom(100,500),ofRandom(100,500));
-    
     static LetterEvent newEvent;
     newEvent.message = "New Letter";
     newEvent.letter     = this;
     ofNotifyEvent(LetterEvent::events, newEvent);
-    
-    
     ofRectangle textBounds = font->getStringBoundingBox("H", 0, 0);
+    bIsOnScreen=false;
     
 }
 
 void Letter::update(){
-    //  move();
-    //node.pan(ofRandom(5));
-    //  makeOriginalVboMesh();
+    if(bIsOnScreen){//check if is on screen
+        angle+=0.5;
+        if(angle>360)angle=360;
+    }
 }
 
 void Letter::draw(){
+
     
-    if(bIsOnScreen){//check if is on screen
-        if(bIsDrawn){ // only draw if is not moving word;
+    if(bIsOnScreen){
+        
+              
+        
+        
+        
+        //check if is on screen
+       /* if(bIsDrawn){ // only draw if is not moving word;
             ofPushMatrix();
             ofTranslate(position);
             ofColor c=myWordPointer->getColor();
             ofSetColor(c);
-            font->drawString(ofToString(data), 0,font->getStringBoundingBox("H", 0, 0).getHeight());
+            font->drawString(myString, 0,font->getStringBoundingBox("H", 0, 0).getHeight());
             ofPopMatrix();
-        }
+        }*/
+        
+      
+        
     }
-    /*fboText.begin();
-     ofClear(255, 255, 255, 0);
-     font->drawString(ofToString(data), 0, font->getStringBoundingBox("H", 0, 0).getHeight());
-     fboText.end();
-     fboText.draw(0, 0);*/
 }
 
 
 void Letter::setData(char _data){
     data=_data;
-    //  ofRectangle textBounds = font->getStringBoundingBox("H", 0, 0);
-    //  fboText.allocate(textBounds.getWidth()+2, textBounds.getHeight()+2);
+    myString=ofToUpper(ofToString(_data));
+    letterMesh = font->getStringMesh(myString, 0, 0);
 }
 
 void Letter::setWordId(int _id){
@@ -70,6 +79,12 @@ int Letter::getWordId(){
 char Letter::getData(){
     return data;
 }
+
+
+string Letter::getString(){
+    return myString;
+}
+
 
 void Letter::setFont(ofTrueTypeFont *f){
     font=f;
@@ -95,8 +110,16 @@ void Letter::setWordPointer(Word *_w){
 }
 
 
+void Letter::setFragmentPointer(Fragment *_f){
+    myFragmentPointer=_f;
+}
+
+
+
 void Letter::setPosition(ofVec2f _p){
     position.set(_p);
+    node.setGlobalPosition(position);
+    
 }
 
 ofVec2f Letter::getPosition(){
@@ -106,6 +129,7 @@ ofVec2f Letter::getPosition(){
 
 void Letter::setIsOnScreen(bool _s){
     bIsOnScreen=_s;
+    angle=0;
     
 }
 
@@ -115,19 +139,51 @@ bool Letter::getIsOnScreen(){
 
 
 
-void Letter::makeOriginalVboMesh(){
-    
-    ofMesh tmesh;
-    tmesh = font->getStringMesh(ofToString(data), 0, 0);
-    
-    vector<ofVec3f>& verts = tmesh.getVertices();
-    
-    for(int j=0; j <  verts.size() ; j++){
-        tmesh.setVertex(j,verts[j]);//*node.getGlobalTransformMatrix());
+
+void Letter::setBRemove(bool _b){
+    bRemove=_b;
+    if(bRemove){
+      myWordPointer->unregisterLetter(this);
+        myFragmentPointer->unregisterLetter(this);
     }
-    originalVboMesh.append(tmesh);
 }
 
-ofVboMesh Letter::getOriginalVboMesh(){
-    return originalVboMesh;
+bool Letter::getBRemove(){
+    return bRemove;
 }
+
+void Letter::setVelocity(ofVec2f _v){
+    velocity.set(_v);
+}
+
+ofVec2f Letter::getVelocity(){
+    return velocity;
+}
+
+
+
+ofVboMesh Letter::getUpdatedVboMesh(){
+    // node.roll(ofDegToRad(angle));
+    vbom.clear();
+    if(bIsOnScreen){//check if is on screen
+        letterMesh = font->getStringMesh(myString, 0, 0);
+        vector<ofVec3f>& verts = letterMesh.getVertices();
+        for(int j=0; j <  verts.size() ; j++){
+            letterMesh.setVertex(j,verts[j]*node.getGlobalTransformMatrix());
+            letterMesh.addColor(myWordPointer->getColor());
+          //  letterMesh.addColor(255);
+
+        }
+        vbom.append(letterMesh);
+    }
+    return vbom;
+    
+}
+
+ofColor Letter::getColor(){
+    return myWordPointer->getColor();
+}
+ofColor Letter::getBackgroundColor(){
+    return myWordPointer->getBackgroundColor();
+}
+
