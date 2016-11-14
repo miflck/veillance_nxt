@@ -46,13 +46,13 @@ void StreamManager::initialize() {
     
     
     
-   // float minspeed=2;
-    float minspeed=1000;
+ //   float minspeed=2;
+    float minspeed=20;
 
     float speed;
     int h=20;
-   // int w=10;
-    int w=20;
+    int w=10;
+   // int w=20;
 
     
     
@@ -142,24 +142,32 @@ void StreamManager::initialize() {
 
 
 void StreamManager::update(){
+    
+    // Check if add data
+    if(bIsReadyForData){
+        bIsReadyForData=false;
+        addDataFromBuffer();
+    }
+    
+    
+    
+    
+    
     if(bUpdate){
         for(int i=0;i<cms.size();i++){
             cms[i].update();
         }
         
+     
         
-        
-    
-        
-        
-        for (int i=0;i<fragments.size();i++){
-            if(fragments[i]->getBRemove()){
-                cout<<"-- Remove Fragment--"<<fragments[i]->getFragmentId()<<endl;
-                delete (fragments[i]);
-                fragments.erase(fragments.begin()+i);
+         for (int i=0;i<letters.size();i++){
+            if(letters[i]->getBRemove()){
+                delete (letters[i]);
+                letters.erase(letters.begin()+i);
             }
         }
         
+    
         for (int i=0;i<words.size();i++){
             if(words[i]->getBRemove()){
                 delete (words[i]);
@@ -167,12 +175,16 @@ void StreamManager::update(){
             }
         }
         
-        for (int i=0;i<letters.size();i++){
-            if(shouldRemoveLetter(letters[i])){
-                delete (letters[i]);
-                letters.erase(letters.begin()+i);
+        for (int i=0;i<fragments.size();i++){
+            if(fragments[i]->getBRemove()){
+                delete (fragments[i]);
+                fragments.erase(fragments.begin()+i);
             }
         }
+        
+
+        
+    
         
         
         for(auto word:words){
@@ -357,26 +369,39 @@ void StreamManager::draw(){
 
 
 void StreamManager::carousselEvent(CarousselEvent &e){
+   
     if(e.message=="STOP"){
+        
         if(e.id>0){
             Letter *l=cms[e.id].getLastElementPointer();
+            
             if(l!=nullptr){
                 cms[e.id-1].addMovement(l);
             }
         }
         
         if(e.id==0){
-            
             Letter *l=cms[e.id].getLastElementPointer();
-            if(l!=nullptr){
-                l->setBRemove(true);
+            
+            auto it = std::find(letters.begin(), letters.end(), l);
+            if (it != letters.end()) {
+                
+                int i= it - letters.begin();
+                if(i>0)letters[i-1]->setBRemove(true);
+               // (*it)->setBRemove(true);
+              //  letters.erase(--it);
             }
             
-        
+            
+           // letters[0]->setBRemove(true);
+            
+            
+            /*if(l!=nullptr){
+                l->setBRemove(true);
+            }*/
+            
+            
         }
-        
-        
-        
         
     }
     
@@ -384,6 +409,14 @@ void StreamManager::carousselEvent(CarousselEvent &e){
     if(e.message=="START"){
         if(e.id>0){
             //  cms[e.id-1].addMovement(cms[e.id].getLastElementChar());
+        }
+    }
+    
+    
+    if(e.message=="BUFFER EMPTY"){
+        if(e.id==cms.size()-1){
+            bIsReadyForData=true;
+            
         }
     }
 }
@@ -399,8 +432,77 @@ bool StreamManager::isInitialized(){
 }
 
 
-void StreamManager::addData(string _s, int _fragmentId){
+
+
+void StreamManager::addDataFromBuffer(){
     
+    if(messageBuffer.size()==0){
+        bIsReadyForData=true;
+    return;
+    }
+    
+    
+    message m=messageBuffer[0];
+    messageBuffer.erase(messageBuffer.begin());
+    cout<<"left in messageBuffer "<<messageBuffer.size()<<endl;
+
+    
+    Fragment * f=new Fragment();
+    f->setFragmentId(m.uuid);
+    vector<string> split;
+    split = ofSplitString(m.text, " ");
+    //cout<<_s<<split.size()<<endl;
+    
+    for (auto word : split){
+        Word * w=new Word();
+        w->setup(wordcounter);
+        w->setData(word);
+        int lifeTime=ofGetElapsedTimeMillis()+int(ofRandom(10000,50000));
+        w->setLifeTime(lifeTime);
+        w->setFragmentPointer(f);
+        
+        float r=ofRandom(0,1);
+        if(r<0.2 && word!=" ")w->setIsSuggestion(true);
+        
+        
+        for (auto ss : word){
+            char c = ss;
+            Letter * l =new Letter();
+            l->setFont(&font);
+            l->setData(c);
+            l->setWordId(wordcounter);
+            l->setWordPointer(w);
+            l->setFragmentPointer(f);
+            addLetter(l);
+            cms[cms.size()-1].addMovement(letters[letters.size()-1]);
+            w->registerLetter(l);
+            f->registerLetter(l);
+        }
+        
+        // ADD SPACE
+        Letter * l =new Letter();
+        l->setFont(&font);
+        l->setData(' ');
+        l->setWordId(wordcounter);
+        l->setWordPointer(w);
+        l->setFragmentPointer(f);
+        
+        addLetter(l);
+        cms[cms.size()-1].addMovement(letters[letters.size()-1]);
+        w->registerLetter(l);
+        f->registerLetter(l);
+        words.push_back(w);
+        
+        f->registerWord(w);
+        wordcounter++; // debug id
+        
+    }
+    fragments.push_back(f);
+
+}
+
+
+void StreamManager::addData(string _s, int _fragmentId){
     
     Fragment * f=new Fragment();
     f->setFragmentId(_fragmentId);
@@ -453,34 +555,6 @@ void StreamManager::addData(string _s, int _fragmentId){
      
      }
     fragments.push_back(f);
-    
-    /*
-    
-    Word * w=new Word();
-    w->setup(wordcounter);
-    w->setData(_s);
-    int lifeTime=ofGetElapsedTimeMillis()+int(ofRandom(10000,50000));
-    w->setLifeTime(lifeTime);
-    
-    float r=ofRandom(0,1);
-    if(r<0.2 && _s!=" ")w->setIsSuggestion(true);
-    
-    for (auto ss : _s){
-        char c = ss;
-         Letter * l =new Letter();
-        l->setFont(&font);
-         l->setData(c);
-        l->setWordId(wordcounter);
-        l->setWordPointer(w);
-         addLetter(l);
-        cms[cms.size()-1].addMovement(letters[letters.size()-1]);
-        w->addLetterPointer(l);
-    }
-    
-    
-    words.push_back(w);
-    cout<<"words size "<<words.size()<<" letters Size "<<letters.size()<<endl;
-    wordcounter++; // debug id*/
 }
 
 
@@ -591,6 +665,13 @@ void StreamManager::makeRandomMovingWord(){
 
         makeRandomMovingWord();
     }
+}
+
+
+void StreamManager::addMessage(message _m){
+    messageBuffer.push_back(_m);
+    cout<<messageBuffer.size()<<endl;
+
 }
 
 

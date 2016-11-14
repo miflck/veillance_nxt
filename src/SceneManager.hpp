@@ -32,6 +32,20 @@
 
 
 
+
+struct message {
+    int uuid;
+    string name;
+    string type;
+    string text;
+};
+
+
+
+
+
+
+
 class StreamManager {
     
 public:
@@ -58,6 +72,11 @@ public:
     
     
     // DATA
+    
+    void addDataFromBuffer();
+
+    
+    
     void addData(string _s, int _fragmentId);
     void addWord(string _s);
 
@@ -86,6 +105,18 @@ public:
     
     ofTrueTypeFont  font;
     ofTrueTypeFont  bigfont;
+    
+    
+    
+    
+    
+    
+    //BUFFER
+    
+    vector <message> messageBuffer;
+    void addMessage(message _m);
+    
+    
     
     
     
@@ -123,6 +154,9 @@ private:
     static StreamManager* instance;
     bool initialized;
     int wordcounter=0;
+    
+    
+    bool bIsReadyForData=true;
     
     
     
