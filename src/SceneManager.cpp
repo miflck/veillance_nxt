@@ -552,7 +552,6 @@ bool SceneManager::shouldRemoveLetter(Letter *l){
 
 
 
-
 void SceneManager::makeMovingWordByFragmentId(int _id, int _wordIndex){
     Fragment *f=getFragmentById(_id);
     cout<<f->getNumWords()<<endl;
@@ -561,7 +560,6 @@ void SceneManager::makeMovingWordByFragmentId(int _id, int _wordIndex){
     if(w!=nullptr){
     addMovingWord(w);
     }
-    
 }
 
 
@@ -591,7 +589,6 @@ void SceneManager::makeRandomMovingWord(){
         cout<<"making moving word"<<endl;
     }else {
         cout<<"another try"<<endl;
-
         makeRandomMovingWord();
     }
 }
