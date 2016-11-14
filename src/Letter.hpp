@@ -80,6 +80,11 @@ public:
     bool getBRemove();
     
     
+    ofColor getColor();
+    ofColor getBackgroundColor();
+
+    
+    
 private:
     bool bRemove=false;
 

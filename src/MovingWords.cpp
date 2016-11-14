@@ -28,7 +28,7 @@ void MovingWords::setup(){
     t.rotate(angleZ, ofVec3f(0,0,1));
     
     
-    t.set(ofGetWidth()/4+ofRandom(-200,200),ofGetHeight()/2+ofRandom(-200,200),1300);
+    t.set(ofGetWidth()/4+ofRandom(-200,200),ofGetHeight()/2+ofRandom(-200,200),2000);
     target.set(t);
 
     startposition.set(ofRandom(ofGetWidth()/2-200,ofGetWidth()/2+200),ofGetHeight()/2,0);
@@ -41,7 +41,7 @@ void MovingWords::setup(){
     //node.pan(ofDegToRad(angle));
     //node.lookAt(target);
     
-    scalefact=0.3;
+    scalefact=0.2;
     
     node.setScale(scalefact);
     
@@ -85,7 +85,7 @@ void MovingWords::setup(){
 
 void MovingWords::update(){
     
-    
+
    
     
     
@@ -199,7 +199,7 @@ void MovingWords::setStartPosition(ofVec3f _p){
     
     
     float p=ABS((ofGetHeight()/2)-((position.y)));
-    float dl= ofMap(p*(p/4),0,ofGetHeight()/2*(ofGetHeight()/2/4),1,30);
+    float dl= ofMap(p*(p/4),0,ofGetHeight()/2*(ofGetHeight()/2/4),1,10);
     spacingFact=dl;
     font->setLetterSpacing(spacingFact);
     
@@ -333,10 +333,10 @@ bool MovingWords::checkIsAlive(){
 
 
 ofVboMesh MovingWords::getUpdatedVboMesh(){
-    scalefact=ofLerp(scalefact,1,0.00001);
+    scalefact=ofLerp(scalefact,1,0.001);
     node.setScale(scalefact);
     
-    spacingFact=ofLerp(spacingFact,1.2,0.1);
+    spacingFact=ofLerp(spacingFact,1.2,0.01);
     
     font->setLetterSpacing(spacingFact);
     vbom.clear();

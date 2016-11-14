@@ -18,7 +18,7 @@ void Word::setup(int _index){
     wordIndex=_index;
     lifeTime=ofGetElapsedTimeMillis()+int(ofRandom(50000,200000));
     
-   randomColor=ofColor(ofRandom(50,255),ofRandom(50,255),ofRandom(50,255));
+   backgroundColor=ofColor(ofRandom(50,255),ofRandom(50,255),ofRandom(50,255));
     myColor=ofColor(0,0,255);
     myInitColor=ofColor(0,0,255);
 
@@ -69,7 +69,7 @@ void Word::update(){
 
 
 void Word::draw(){
-    ofSetColor(randomColor,100);
+    ofSetColor(backgroundColor,100);
     if(getPosition().length()>3){
         STM->backgroundFbo.begin();
         ofEnableBlendMode(OF_BLENDMODE_ALPHA);
@@ -197,9 +197,15 @@ void Word::setColor(ofColor _c){
     myColor=_c;
 }
 
+
 ofColor Word::getColor(){
     return myColor;
 }
+
+ofColor Word::getBackgroundColor(){
+    return backgroundColor;
+}
+
 
 
 void Word::makeMovingWord(){

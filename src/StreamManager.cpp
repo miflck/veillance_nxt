@@ -10,8 +10,8 @@
 
 
 //int viewportwidth=1920;
-//int viewportwidth=1280; //WXGA
-int viewportwidth=1920/2; //WXGA
+int viewportwidth=1280; //WXGA
+//int viewportwidth=1920/2; //WXGA
 
 //int viewportwidth=770;
 
@@ -36,6 +36,9 @@ void StreamManager::initialize() {
     initialized=true;
     cout<<"init StreamManager"<<endl;
     
+  /*  font.load("FoundersGroteskMonoRegular.ttf", 10);
+    bigfont.load("FoundersGroteskMonoRegular.ttf", 60);
+    */
     font.load("FoundersGroteskMonoBold.ttf", 10);
     bigfont.load("FoundersGroteskMonoBold.ttf", 60);
     
@@ -43,8 +46,8 @@ void StreamManager::initialize() {
     
     
     
-   // float minspeed=2;
-    float minspeed=20;
+    float minspeed=2;
+   // float minspeed=20;
 
     float speed;
     int h=20;
@@ -221,7 +224,7 @@ void StreamManager::update(){
     
     
     backgroundFbo.begin();
-    ofSetColor(0,0,0);
+    ofSetColor(0,0,0,1);
     ofEnableBlendMode(OF_BLENDMODE_ALPHA);
 
     ofEnableAlphaBlending();
@@ -238,8 +241,9 @@ void StreamManager::update(){
 }
 
 void StreamManager::draw(){
-    
-    backgroundFbo.draw(0,0);
+    ofEnableBlendMode(OF_BLENDMODE_ALPHA);
+
+   backgroundFbo.draw(0,0);
 
     
     if(bDraw){
@@ -247,13 +251,18 @@ void StreamManager::draw(){
 
         
         cam[0].begin(viewFront);
-   
+        
+        ofEnableBlendMode(OF_BLENDMODE_ADD);
 
+        
+        backgroundFbo.begin();
+        ofEnableAlphaBlending();
 
         for(int i=0;i<cms.size();i++){
             cms[i].draw();
         }
-        
+        backgroundFbo.end();
+
        // cam[1].begin();
     
 
@@ -262,7 +271,7 @@ void StreamManager::draw(){
         
       
         for(auto word:words){
-           word->draw();
+          // word->draw();
         }
         
         
@@ -278,14 +287,13 @@ void StreamManager::draw(){
             drawMesh.append(letter->getUpdatedVboMesh());
         }
         
-               
+
+        
         font.getFontTexture().bind();
         drawMesh.draw();
         font.getFontTexture().unbind();
         
-        
-        
-        
+        ofEnableBlendMode(OF_BLENDMODE_ADD);
         ofVboMesh m;
         for(auto movingWord:movingWords){
             // movingWord->draw();
@@ -326,6 +334,8 @@ void StreamManager::draw(){
         
         */
         
+        ofEnableBlendMode(OF_BLENDMODE_ADD);
+
         cam[1].begin(viewBack);
         bigfont.getFontTexture().bind();
         m.draw();
@@ -502,6 +512,7 @@ void StreamManager::addMovingWord(Word *_w){
     
     MovingWords *mw=new MovingWords();
     mw->setup();
+   // mw->myColor=_w->getBackgroundColor();
     mw->setFont(&bigfont);
     mw->setData(_w->getMyData());
     cout<<"startpos from word"<<_w->getPosition()<<endl;

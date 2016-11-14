@@ -19,6 +19,7 @@
 #include "Letter.hpp"
 
 
+
 class CarousselManager {
     
 public:

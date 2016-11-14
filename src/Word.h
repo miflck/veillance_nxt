@@ -80,11 +80,15 @@ public:
 
     ofColor mySuggestionColor;
     ofColor targetColor;
-    ofColor randomColor;
+    ofColor backgroundColor;
 
 
-    void setColor(ofColor _c);
     ofColor getColor();
+    ofColor getBackgroundColor();
+
+    
+    
+    void setColor(ofColor _c);
     
     bool checkIsOnScreen();
     

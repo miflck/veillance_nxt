@@ -171,10 +171,19 @@ ofVboMesh Letter::getUpdatedVboMesh(){
         for(int j=0; j <  verts.size() ; j++){
             letterMesh.setVertex(j,verts[j]*node.getGlobalTransformMatrix());
             letterMesh.addColor(myWordPointer->getColor());
+          //  letterMesh.addColor(255);
+
         }
         vbom.append(letterMesh);
     }
     return vbom;
     
+}
+
+ofColor Letter::getColor(){
+    return myWordPointer->getColor();
+}
+ofColor Letter::getBackgroundColor(){
+    return myWordPointer->getBackgroundColor();
 }
 

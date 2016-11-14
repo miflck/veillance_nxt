@@ -60,7 +60,8 @@ public:
     ofVboMesh getUpdatedVboMesh();
 
     
-    
+    ofColor myColor;
+
     
     
     
@@ -99,7 +100,6 @@ private:
     ofVboMesh vbom;
     ofVboMesh letterMesh;
     
-    ofColor myColor;
     
     float scalefact;
     float spacingFact;
