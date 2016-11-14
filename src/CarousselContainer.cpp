@@ -7,7 +7,7 @@
 //
 
 #include "CarousselContainer.hpp"
-#include "StreamManager.hpp"
+#include "SceneManager.hpp"
 
 CarousselContainer::CarousselContainer(){
 }
@@ -35,7 +35,7 @@ void CarousselContainer::draw(){
       
         c=myLetter->getBackgroundColor();
     }
-    ofSetColor(c,30);
+    ofSetColor(c,200);
 
     
     ofFill();

@@ -10,7 +10,7 @@
 #include "Word.h"
 #include "Fragment.hpp"
 
-#include "StreamManager.hpp"
+#include "SceneManager.hpp"
 
 
 Letter::Letter(){
@@ -26,6 +26,7 @@ void Letter::setup(){
     ofNotifyEvent(LetterEvent::events, newEvent);
     ofRectangle textBounds = font->getStringBoundingBox("H", 0, 0);
     bIsOnScreen=false;
+    node.clearParent();
     
 }
 
@@ -37,25 +38,25 @@ void Letter::update(){
 }
 
 void Letter::draw(){
-
+    
     
     if(bIsOnScreen){
         
-              
+        
         
         
         
         //check if is on screen
-       /* if(bIsDrawn){ // only draw if is not moving word;
-            ofPushMatrix();
-            ofTranslate(position);
-            ofColor c=myWordPointer->getColor();
-            ofSetColor(c);
-            font->drawString(myString, 0,font->getStringBoundingBox("H", 0, 0).getHeight());
-            ofPopMatrix();
-        }*/
+        /* if(bIsDrawn){ // only draw if is not moving word;
+         ofPushMatrix();
+         ofTranslate(position);
+         ofColor c=myWordPointer->getColor();
+         ofSetColor(c);
+         font->drawString(myString, 0,font->getStringBoundingBox("H", 0, 0).getHeight());
+         ofPopMatrix();
+         }*/
         
-      
+        
         
     }
 }
@@ -64,6 +65,8 @@ void Letter::draw(){
 void Letter::setData(char _data){
     data=_data;
     myString=ofToUpper(ofToString(_data));
+    //  myString=ofToString(_data);
+    
     letterMesh = font->getStringMesh(myString, 0, 0);
 }
 
@@ -117,9 +120,10 @@ void Letter::setFragmentPointer(Fragment *_f){
 
 
 void Letter::setPosition(ofVec2f _p){
-    position.set(_p);
-    node.setGlobalPosition(position);
-    
+    if(getIsOnScreen()){
+        position.set(_p);
+        node.setGlobalPosition(position);
+    }
 }
 
 ofVec2f Letter::getPosition(){
@@ -143,7 +147,8 @@ bool Letter::getIsOnScreen(){
 void Letter::setBRemove(bool _b){
     bRemove=_b;
     if(bRemove){
-      myWordPointer->unregisterLetter(this);
+        //cout<<"remove letter"<<myString<<endl;
+        myWordPointer->unregisterLetter(this);
         myFragmentPointer->unregisterLetter(this);
     }
 }
@@ -171,8 +176,8 @@ ofVboMesh Letter::getUpdatedVboMesh(){
         for(int j=0; j <  verts.size() ; j++){
             letterMesh.setVertex(j,verts[j]*node.getGlobalTransformMatrix());
             letterMesh.addColor(myWordPointer->getColor());
-          //  letterMesh.addColor(255);
-
+            //  letterMesh.addColor(255);
+            
         }
         vbom.append(letterMesh);
     }
@@ -184,6 +189,11 @@ ofColor Letter::getColor(){
     return myWordPointer->getColor();
 }
 ofColor Letter::getBackgroundColor(){
-    return myWordPointer->getBackgroundColor();
+    if(getIsOnScreen()&&myWordPointer!=nullptr){
+        return myWordPointer->getBackgroundColor();
+    }
+    else{
+        return(ofColor(255,0,0));
+    }
 }
 

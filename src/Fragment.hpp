@@ -53,6 +53,12 @@ public:
   
     
     
+    ofColor getColor();
+    ofColor getBackgroundColor();
+    void setColor(ofColor _c);
+    
+    
+    
 
 private:
     int fragmentId;
@@ -60,6 +66,13 @@ private:
     
     
     vector<Letter *> myLetters;
+    
+    
+    ofColor myColor;
+    ofColor myInitColor;
+    
+    ofColor targetColor;
+    ofColor backgroundColor;
 
 
 

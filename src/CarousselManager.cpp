@@ -20,7 +20,7 @@ void CarousselManager::setup(ofVec2f _position,float _mywidth, float _myheight, 
     float l=_width;
     float h=_height;
     
-    maxspeed=15;//;l/5;
+    maxspeed=300;//;l/5;
     
     ofVec3f pos = ofVec3f(-l,position.y);
     float dl=mywidth/l+1;
@@ -69,10 +69,7 @@ void CarousselManager::move(){
             p.set(target);
             speed.set(ofVec2f(0,0));
             containers[i].bIsMoving=false;
-
         }
-        
-    
         
         containers[i].setPosition(p);
         containers[i].setVelocity(speed);
@@ -112,12 +109,10 @@ void CarousselManager::cicle(){
 }
 
 void CarousselManager::startMoving(){
-     // if(id==14)cout<<"startMoving "<<buffer[0]<<endl;
     Letter * l=buffer[0];
     l->setIsOnScreen(true);
     buffer.erase(buffer.begin());
     containers[containers.size()-1].setLetterPointer(l);
-    
     
     static CarousselEvent newEvent;
     newEvent.message = "START";
@@ -132,21 +127,30 @@ void CarousselManager::startMoving(){
 
 void CarousselManager::stopMoving(){
     bIsMoving=false;
-    // cout<<"System stopped"<<endl;
-    
-    
     static CarousselEvent newEvent;
     newEvent.message = "STOP";
     newEvent.id=id;
     ofNotifyEvent(CarousselEvent::events, newEvent);
-    
-    
+    checkBuffer();
+}
+
+
+void CarousselManager::checkBuffer(){
     //check if we have some movement in buffer
+    if(!bIsMoving){
     if(buffer.size()>0){
-        //   cout<<id<<" "<<buffer.size()<<endl;
         cicle();
+    }else{
+        static CarousselEvent newEvent;
+        newEvent.message = "BUFFER EMPTY";
+        newEvent.id=id;
+        ofNotifyEvent(CarousselEvent::events, newEvent);
+        
     }
-    
+    }
+
+
+
 }
 
 
