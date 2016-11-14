@@ -45,5 +45,8 @@ public:
     void setPause(bool p);
     
     bool pause;
+    
+    int myid;
+    
 };
 #endif

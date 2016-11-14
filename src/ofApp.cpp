@@ -1,5 +1,5 @@
 #include "ofApp.h"
-#include "StreamManager.hpp"
+#include "SceneManager.hpp"
 
 
 //--------------------------------------------------------------
@@ -15,7 +15,7 @@ void ofApp::setup(){
      ofSetVerticalSync(true);
     ofSetFrameRate(60);
 
-    ofBuffer buffer = ofBufferFromFile("heartofdarkness 2.txt");
+    ofBuffer buffer = ofBufferFromFile("heartofdarkness 3.txt");
     for (auto line : buffer.getLines()){
         data.push_back(line);
     }
@@ -42,11 +42,7 @@ void ofApp::update(){
 
 //--------------------------------------------------------------
 void ofApp::draw(){
-    // stream.draw();
-    
     ofSetColor(255);
-    
-    
     STM->draw();
 }
 

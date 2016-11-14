@@ -49,6 +49,9 @@ public:
     bool bIsMoving=false;
     ofVec2f target;
     
+    
+    void checkBuffer();
+    
     void cicle();
     
     

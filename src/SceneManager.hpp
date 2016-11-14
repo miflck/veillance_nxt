@@ -1,13 +1,13 @@
 //
-//  StreamManager.hpp
+//  SceneManager.hpp
 //  TypeStudy_02
 //
 //  Created by Flückiger Michael on 18.10.16.
 //
 //
 
-#ifndef StreamManager_hpp
-#define StreamManager_hpp
+#ifndef SceneManager_hpp
+#define SceneManager_hpp
 
 #include <stdio.h>
 #include "ofMain.h"
@@ -28,7 +28,7 @@
 
 
 //for convenience
-#define STM StreamManager::getInstance()
+#define STM SceneManager::getInstance()
 
 
 
@@ -46,10 +46,10 @@ struct message {
 
 
 
-class StreamManager {
+class SceneManager {
     
 public:
-    static StreamManager* getInstance();
+    static SceneManager* getInstance();
     void initialize();
     bool isInitialized();
     
@@ -150,8 +150,8 @@ public:
 
     
 private:
-    StreamManager();
-    static StreamManager* instance;
+    SceneManager();
+    static SceneManager* instance;
     bool initialized;
     int wordcounter=0;
     
@@ -163,4 +163,4 @@ private:
 };
 
 
-#endif /* StreamManager_hpp */
+#endif /* SceneManager_hpp */

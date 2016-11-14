@@ -7,7 +7,7 @@
 //
 
 #include "CarousselContainer.hpp"
-#include "StreamManager.hpp"
+#include "SceneManager.hpp"
 
 CarousselContainer::CarousselContainer(){
 }

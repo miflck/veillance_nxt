@@ -8,7 +8,7 @@
 float angle=0;
 
 #include "MovingWords.hpp"
-#include "StreamManager.hpp"
+#include "SceneManager.hpp"
 MovingWords::MovingWords(){
 }
 

@@ -1,7 +1,7 @@
 #pragma once
 
 #include "ofMain.h"
-#include "StreamManager.hpp"
+#include "SceneManager.hpp"
 
 #include "IOManager.hpp"
 

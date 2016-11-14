@@ -8,7 +8,7 @@
 
 #include "IOManager.hpp"
 
-#include "StreamManager.hpp"
+#include "SceneManager.hpp"
 
 IOManager::IOManager(){
     
@@ -29,18 +29,27 @@ void IOManager::setup(){
     ofSetLogLevel(OF_LOG_ERROR);
     
     pause=true;
+    
+    myid=0;
 
 
 }
 
 void IOManager::update(){
     
-    cout<<stringbuff.size()<<endl;
+   // cout<<stringbuff.size()<<endl;
     
     if ( stringbuff.size() > 0 ){
-    STM->addData(stringbuff[0],ofRandom(1000));
+        
+        
+        
+        
+        
+    STM->addData(stringbuff[0],myid);
             stringbuff.erase(stringbuff.begin());
+        myid++;
     }
+    
     
     
     /*if ( buff.size() != 0 ){
@@ -95,17 +104,30 @@ void IOManager::onMessage( ofxLibwebsockets::Event& args ){
     
     
     if ( !args.json.isNull() ){
+        
+        
             if(args.json["Type"]=="User"){
+                
+                
+                message m;
+                m.name=args.json["Name"].asString();
+                m.type=args.json["Type"].asString();
+                m.text=args.json["Text"].asString();
+                m.uuid=args.json["Id"].asInt();
+                
+                STM->addMessage(m);
+
+                
            // cout<<args.json["Text"]<<endl;
            string data= args.json["Text"].asString();
                // data.erase(std::remove_if(data.begin(), data.end(), " \" "), data.end());
 
                 
             int id= args.json["Id"].asInt();
-           cout<<"Data "<<data<<" Id "<<id<<endl;
+         //  cout<<"Data "<<data<<" Id "<<id<<endl;
             //STM->addData(data,id);
                 
-            stringbuff.push_back(data);
+           // stringbuff.push_back(data);
 
 
             

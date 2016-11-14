@@ -8,7 +8,7 @@
 
 #include "Word.h"
 #include "Letter.hpp"
-#include "StreamManager.hpp"
+#include "SceneManager.hpp"
 
 Word::Word(){
 }
@@ -174,6 +174,8 @@ void Word::registerLetter(Letter *_l){
 }
 
 void Word::unregisterLetter(Letter *_l){
+   
+   // cout<<" unregister letter from word  with pointer"<<myFragmentPointer->getFragmentId()<<endl;
     auto it = std::find(myLetters.begin(), myLetters.end(), _l);
     if (it != myLetters.end()) { myLetters.erase(it); }
     
@@ -181,7 +183,7 @@ void Word::unregisterLetter(Letter *_l){
     if(myLetters.size()==0){
         setBRemove(true);
         myFragmentPointer->unregisterWord(this);
-       // cout<<"remove word"<<data<<endl;
+     //   cout<<"remove word"<<data<<endl;
     }
     
    /// myLetters.push_back(_l);
@@ -275,7 +277,7 @@ bool Word::checkShouldRemove(){
 
 bool Word::checkIsOnScreen(){
     bool b=false;
-    if(myLetters.size()>1){
+    if(myLetters.size()>0){
      b= myLetters[myLetters.size()-1]->getIsOnScreen();
     }
     return b;

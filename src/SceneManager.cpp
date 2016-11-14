@@ -1,12 +1,12 @@
 //
-//  StreamManager.cpp
+//  SceneManager.cpp
 //  TypeStudy_02
 //
 //  Created by Flückiger Michael on 18.10.16.
 //
 //
 
-#include "StreamManager.hpp"
+#include "SceneManager.hpp"
 
 
 //int viewportwidth=1920;
@@ -17,24 +17,24 @@ int viewportwidth=1280; //WXGA
 
 
 
-StreamManager* StreamManager::instance = 0;
+SceneManager* SceneManager::instance = 0;
 
-StreamManager* StreamManager::getInstance() {
+SceneManager* SceneManager::getInstance() {
     if (!instance) {
-        instance = new StreamManager();
+        instance = new SceneManager();
     }
     return instance;
 }
 
 
-StreamManager::StreamManager(){
+SceneManager::SceneManager(){
 }
 
 
-void StreamManager::initialize() {
+void SceneManager::initialize() {
     
     initialized=true;
-    cout<<"init StreamManager"<<endl;
+    cout<<"init SceneManager"<<endl;
     
   /*  font.load("FoundersGroteskMonoRegular.ttf", 10);
     bigfont.load("FoundersGroteskMonoRegular.ttf", 60);
@@ -77,7 +77,7 @@ void StreamManager::initialize() {
         cm.setId(i);
         cms.push_back(cm);
     }
-    ofAddListener(CarousselEvent::events, this, &StreamManager::carousselEvent);
+    ofAddListener(CarousselEvent::events, this, &SceneManager::carousselEvent);
     
     ofEnableAlphaBlending();
 
@@ -141,7 +141,7 @@ void StreamManager::initialize() {
 
 
 
-void StreamManager::update(){
+void SceneManager::update(){
     
     // Check if add data
     if(bIsReadyForData){
@@ -254,7 +254,7 @@ void StreamManager::update(){
  
 }
 
-void StreamManager::draw(){
+void SceneManager::draw(){
     ofEnableBlendMode(OF_BLENDMODE_ALPHA);
 
    backgroundFbo.draw(0,0);
@@ -368,7 +368,7 @@ void StreamManager::draw(){
 
 
 
-void StreamManager::carousselEvent(CarousselEvent &e){
+void SceneManager::carousselEvent(CarousselEvent &e){
    
     if(e.message=="STOP"){
         
@@ -427,14 +427,14 @@ void StreamManager::carousselEvent(CarousselEvent &e){
 
 
 
-bool StreamManager::isInitialized(){
+bool SceneManager::isInitialized(){
     return initialized;
 }
 
 
 
 
-void StreamManager::addDataFromBuffer(){
+void SceneManager::addDataFromBuffer(){
     
     if(messageBuffer.size()==0){
         bIsReadyForData=true;
@@ -502,7 +502,7 @@ void StreamManager::addDataFromBuffer(){
 }
 
 
-void StreamManager::addData(string _s, int _fragmentId){
+void SceneManager::addData(string _s, int _fragmentId){
     
     Fragment * f=new Fragment();
     f->setFragmentId(_fragmentId);
@@ -558,7 +558,7 @@ void StreamManager::addData(string _s, int _fragmentId){
 }
 
 
-void StreamManager::addWord(string _s){
+void SceneManager::addWord(string _s){
     Word *w;
     w->setup(words.size());
     w->setData(_s);
@@ -566,14 +566,14 @@ void StreamManager::addWord(string _s){
 }
 
 
-void StreamManager::addLetter(Letter *  _l){
+void SceneManager::addLetter(Letter *  _l){
     letters.push_back(_l);
 }
 
 
 
 
-void StreamManager::setDebug(bool _debug){
+void SceneManager::setDebug(bool _debug){
     debug=_debug;
     for(int i=0;i<cms.size();i++){
         cms[i].setDebugDraw(_debug);
@@ -582,7 +582,7 @@ void StreamManager::setDebug(bool _debug){
 }
 
 
-void StreamManager::addMovingWord(Word *_w){
+void SceneManager::addMovingWord(Word *_w){
     
     _w->setIsDrawn(false);
     
@@ -601,7 +601,7 @@ void StreamManager::addMovingWord(Word *_w){
 }
 
 
-bool StreamManager::shouldRemoveMovingWord(MovingWords *mv){
+bool SceneManager::shouldRemoveMovingWord(MovingWords *mv){
     if(!mv->checkIsAlive()) return true;
     bool bRemove = false;
     
@@ -616,7 +616,7 @@ bool StreamManager::shouldRemoveMovingWord(MovingWords *mv){
 }
 
 
-bool StreamManager::shouldRemoveLetter(Letter *l){
+bool SceneManager::shouldRemoveLetter(Letter *l){
     return l->getBRemove();
 
 }
@@ -624,7 +624,7 @@ bool StreamManager::shouldRemoveLetter(Letter *l){
 
 
 
-void StreamManager::makeMovingWordByFragmentId(int _id, int _wordIndex){
+void SceneManager::makeMovingWordByFragmentId(int _id, int _wordIndex){
     Fragment *f=getFragmentById(_id);
     cout<<f->getNumWords()<<endl;
     Word *w =f->getWordByIndex(_wordIndex);
@@ -636,7 +636,7 @@ void StreamManager::makeMovingWordByFragmentId(int _id, int _wordIndex){
 }
 
 
-Fragment* StreamManager::getFragmentById(int _id){
+Fragment* SceneManager::getFragmentById(int _id){
     for(auto fragment:fragments){
         if (_id==fragment->getFragmentId()){
             return fragment;
@@ -648,7 +648,7 @@ Fragment* StreamManager::getFragmentById(int _id){
 
 
 
-void StreamManager::makeRandomMovingWord(){
+void SceneManager::makeRandomMovingWord(){
     int n=int(ofRandom(0,fragments.size()));
    // cout<<fragmentid<<endl;
     Fragment *f=fragments[n]; //getFragmentById(fragmentid);
@@ -668,7 +668,7 @@ void StreamManager::makeRandomMovingWord(){
 }
 
 
-void StreamManager::addMessage(message _m){
+void SceneManager::addMessage(message _m){
     messageBuffer.push_back(_m);
     cout<<messageBuffer.size()<<endl;
 
@@ -676,7 +676,7 @@ void StreamManager::addMessage(message _m){
 
 
 /*
-void StreamManager::addWord(string _s){
+void SceneManager::addWord(string _s){
     Word w;
     w.setup(words.size());
     w.setData(_s);
