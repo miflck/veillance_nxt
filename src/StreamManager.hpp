@@ -99,6 +99,10 @@ public:
     static bool shouldRemoveMovingWord(MovingWords *mw); // why static
     
     
+    static bool shouldRemoveLetter(Letter *l); // why static
+
+    
+    
     Fragment* getFragmentById(int _id);
     void makeMovingWordByFragmentId(int _id,int _wordindex);
     
@@ -106,11 +110,21 @@ public:
     
     
     
+    ofCamera cam[2];
+    ofRectangle viewFront;
+    ofRectangle viewBack;
+
+    
+    ofFbo backgroundFbo;
+
+    
 private:
     StreamManager();
     static StreamManager* instance;
     bool initialized;
     int wordcounter=0;
+    
+    
     
 };
 

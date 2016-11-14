@@ -8,6 +8,7 @@
 
 #include "Letter.hpp"
 #include "Word.h"
+#include "Fragment.hpp"
 
 #include "StreamManager.hpp"
 
@@ -24,6 +25,7 @@ void Letter::setup(){
     newEvent.letter     = this;
     ofNotifyEvent(LetterEvent::events, newEvent);
     ofRectangle textBounds = font->getStringBoundingBox("H", 0, 0);
+    bIsOnScreen=false;
     
 }
 
@@ -35,7 +37,15 @@ void Letter::update(){
 }
 
 void Letter::draw(){
-    if(bIsOnScreen){//check if is on screen
+
+    
+    if(bIsOnScreen){
+        
+              
+        
+        
+        
+        //check if is on screen
        /* if(bIsDrawn){ // only draw if is not moving word;
             ofPushMatrix();
             ofTranslate(position);
@@ -100,6 +110,12 @@ void Letter::setWordPointer(Word *_w){
 }
 
 
+void Letter::setFragmentPointer(Fragment *_f){
+    myFragmentPointer=_f;
+}
+
+
+
 void Letter::setPosition(ofVec2f _p){
     position.set(_p);
     node.setGlobalPosition(position);
@@ -121,6 +137,21 @@ bool Letter::getIsOnScreen(){
     return bIsOnScreen;
 }
 
+
+
+
+void Letter::setBRemove(bool _b){
+    bRemove=_b;
+    if(bRemove){
+      myWordPointer->unregisterLetter(this);
+        myFragmentPointer->unregisterLetter(this);
+    }
+}
+
+bool Letter::getBRemove(){
+    return bRemove;
+}
+
 void Letter::setVelocity(ofVec2f _v){
     velocity.set(_v);
 }
@@ -140,10 +171,19 @@ ofVboMesh Letter::getUpdatedVboMesh(){
         for(int j=0; j <  verts.size() ; j++){
             letterMesh.setVertex(j,verts[j]*node.getGlobalTransformMatrix());
             letterMesh.addColor(myWordPointer->getColor());
+          //  letterMesh.addColor(255);
+
         }
         vbom.append(letterMesh);
     }
     return vbom;
     
+}
+
+ofColor Letter::getColor(){
+    return myWordPointer->getColor();
+}
+ofColor Letter::getBackgroundColor(){
+    return myWordPointer->getBackgroundColor();
 }
 

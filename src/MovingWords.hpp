@@ -49,7 +49,7 @@ public:
     void startMoving();
     void stopMoving();
     bool bIsMoving=false;
-    float maxspeed=1;
+    float maxspeed=10;
     
     
     void setIsAlive(bool _b);
@@ -60,7 +60,8 @@ public:
     ofVboMesh getUpdatedVboMesh();
 
     
-    
+    ofColor myColor;
+
     
     
     
@@ -99,7 +100,6 @@ private:
     ofVboMesh vbom;
     ofVboMesh letterMesh;
     
-    ofColor myColor;
     
     float scalefact;
     float spacingFact;

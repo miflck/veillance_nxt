@@ -9,6 +9,14 @@
 #include "StreamManager.hpp"
 
 
+//int viewportwidth=1920;
+int viewportwidth=1280; //WXGA
+//int viewportwidth=1920/2; //WXGA
+
+//int viewportwidth=770;
+
+
+
 StreamManager* StreamManager::instance = 0;
 
 StreamManager* StreamManager::getInstance() {
@@ -28,15 +36,18 @@ void StreamManager::initialize() {
     initialized=true;
     cout<<"init StreamManager"<<endl;
     
-    font.load("FoundersGroteskMonoRegular.ttf", 10);
-    bigfont.load("FoundersGroteskMonoRegular.ttf", 30);
+  /*  font.load("FoundersGroteskMonoRegular.ttf", 10);
+    bigfont.load("FoundersGroteskMonoRegular.ttf", 60);
+    */
+    font.load("FoundersGroteskMonoBold.ttf", 10);
+    bigfont.load("FoundersGroteskMonoBold.ttf", 60);
     
     bkg.load("bkg_3.png");
     
     
     
-    //float minspeed=2;
-    float minspeed=10;
+    float minspeed=2;
+   // float minspeed=20;
 
     float speed;
     int h=20;
@@ -46,7 +57,7 @@ void StreamManager::initialize() {
   
     
     int lines=floor(ofGetHeight()/h);
-    cout<<"lines"<<lines<<ofGetHeight()/h<<endl;
+    cout<<"lines"<<lines<<endl;
     for(int i = 0; i < lines; i++){
         CarousselManager cm;
         float p=ABS((ofGetHeight()/2)-((i*h)));
@@ -59,7 +70,7 @@ void StreamManager::initialize() {
         float dv=dW/time;
         float speed=dv;//(w/minspeed)*dW;
         float r=ofRandom(0,50);
-        cm.setup(ofVec2f(0,(i*h)),dW,h);
+        cm.setup(ofVec2f(0,(i*h)),viewportwidth,ofGetHeight(),dW,h);
         cm.maxspeed=speed;//minspeed*dl;
         cm.setId(i);
         cms.push_back(cm);
@@ -69,6 +80,59 @@ void StreamManager::initialize() {
     ofEnableAlphaBlending();
 
     
+    
+    viewFront.x = 0;
+    viewFront.y = 0;
+    viewFront.width = ofGetWidth()/2;
+    viewFront.height = ofGetHeight();
+
+    
+    viewBack.x = ofGetWidth()/2;
+    viewBack.y = 0;
+    viewBack.width = ofGetWidth()/2;
+    viewBack.height = ofGetHeight();
+    
+    /*
+    for(int i=0; i<2; i++) {
+        cam[i].resetTransform();
+        cam[i].setFov(60);
+        cam[i].clearParent();
+        }
+
+    */
+    
+    
+    
+    
+    
+    cam[0].setVFlip(true);
+    cam[0].setFov(60);
+
+   
+    // cam[0].setNearClip(10);
+
+//    cam[0].setPosition(viewportwidth/2, ofGetHeight()/2, 500);
+    float d=cam[0].getImagePlaneDistance(viewFront);
+
+    cam[0].setPosition(viewportwidth/2, ofGetHeight()/2, d);
+
+    
+    cout<<d<<endl;
+    
+  //  cam[0].lookAt(ofVec3f(0,0,0));
+    cam[1].setVFlip(true);
+    cam[1].setNearClip(10);
+   // cam[1].setPosition(viewportwidth/2, ofGetHeight()/2, 200);
+    cam[1].setPosition(viewportwidth/2, ofGetHeight()/2, d-200);
+
+    cam[1].pan(180);
+    
+    
+   backgroundFbo.allocate(viewportwidth, ofGetHeight(),GL_RGBA);
+    backgroundFbo.begin();
+    ofClear(255,255,255, 0);
+    backgroundFbo.end();
+  
 
 }
 
@@ -80,6 +144,34 @@ void StreamManager::update(){
         for(int i=0;i<cms.size();i++){
             cms[i].update();
         }
+        
+        
+        
+    
+        
+        
+        for (int i=0;i<fragments.size();i++){
+            if(fragments[i]->getBRemove()){
+                cout<<"-- Remove Fragment--"<<fragments[i]->getFragmentId()<<endl;
+                delete (fragments[i]);
+                fragments.erase(fragments.begin()+i);
+            }
+        }
+        
+        for (int i=0;i<words.size();i++){
+            if(words[i]->getBRemove()){
+                delete (words[i]);
+                words.erase(words.begin()+i);
+            }
+        }
+        
+        for (int i=0;i<letters.size();i++){
+            if(shouldRemoveLetter(letters[i])){
+                delete (letters[i]);
+                letters.erase(letters.begin()+i);
+            }
+        }
+        
         
         for(auto word:words){
            word->update();
@@ -95,28 +187,97 @@ void StreamManager::update(){
         }
         
         
-        // check if we want to remove the bullet
+        // check if we want to remove the words
         for (int i=0;i<movingWords.size();i++){
             if(shouldRemoveMovingWord(movingWords[i])){
                 delete (movingWords[i]);
                 movingWords.erase(movingWords.begin()+i);
             }
-        }        
+        }
+        
+        
+       
+        
+        
+        
+        
+        
+        
     }
+    
+    
+    
+   /* float alpha = ofMap(ofGetMouseX(), 0, ofGetWidth(), 0, 255);
+    backgroundFbo.begin();
+    /*
+    for(auto letter:letters){
+        ofSetColor(255,0,0);
+        bkg.draw(letter->getPosition().x,letter->getPosition().y);
+    }*/
+    
+  /*  ofSetColor(255,255,255, alpha);
+    ofDrawRectangle(0,0,400,400);
+    backgroundFbo.end();
+    */
+    
+    
+    
+    
+    backgroundFbo.begin();
+    ofSetColor(0,0,0,1);
+    ofEnableBlendMode(OF_BLENDMODE_ALPHA);
+
+    ofEnableAlphaBlending();
+   // ofDrawRectangle(0, 0, backgroundFbo.getWidth(), backgroundFbo.getHeight());
+   ofDisableBlendMode();
+   // ofClear(0,0,0,100);
+
+
+    backgroundFbo.end();
+
+    
+ 
+ 
 }
 
 void StreamManager::draw(){
+    ofEnableBlendMode(OF_BLENDMODE_ALPHA);
+
+   backgroundFbo.draw(0,0);
+
+    
     if(bDraw){
       //  ofBackground(0); // this matters
+
+        
+        cam[0].begin(viewFront);
+        
+        ofEnableBlendMode(OF_BLENDMODE_ADD);
+
+        
+        backgroundFbo.begin();
+        ofEnableAlphaBlending();
 
         for(int i=0;i<cms.size();i++){
             cms[i].draw();
         }
+        backgroundFbo.end();
+
+       // cam[1].begin();
+    
+
+
+       
         
       
-       /* for(auto word:words){
-            word->draw();
-        }*/
+        for(auto word:words){
+          // word->draw();
+        }
+        
+        
+        for(auto fragment:fragments){
+         //      fragment->draw();
+        }
       
         
         
@@ -126,19 +287,37 @@ void StreamManager::draw(){
             drawMesh.append(letter->getUpdatedVboMesh());
         }
         
-               
+
+        
         font.getFontTexture().bind();
         drawMesh.draw();
         font.getFontTexture().unbind();
+        
+        ofEnableBlendMode(OF_BLENDMODE_ADD);
+        ofVboMesh m;
+        for(auto movingWord:movingWords){
+            // movingWord->draw();
+            m.append(movingWord->getUpdatedVboMesh());
+        }
+        bigfont.getFontTexture().bind();
+        m.draw();
+        bigfont.getFontTexture().unbind();
+        
+        cam[0].end();
+   
+
 
         //drawMesh.drawInstanced(OF_MESH_WIREFRAME,5);
         
-        /*for(auto letter:letters){
+        for(auto letter:letters){
            letter->draw();
-        }*/
+        }
         
+        
+       // cam[1].end();
 
-        ofVboMesh m;
+
+       /* ofVboMesh m;
         for(auto movingWord:movingWords){
             // movingWord->draw();
             m.append(movingWord->getUpdatedVboMesh());
@@ -148,12 +327,25 @@ void StreamManager::draw(){
         m.draw();
         bigfont.getFontTexture().unbind();
         
-        
+       
         for(auto movingWord:movingWords){
            // movingWord->draw();
         }
         
+        */
         
+        ofEnableBlendMode(OF_BLENDMODE_ADD);
+
+        cam[1].begin(viewBack);
+        bigfont.getFontTexture().bind();
+        m.draw();
+        bigfont.getFontTexture().unbind();
+        cam[1].end();
+        
+        
+        
+
+
     }
 
 }
@@ -169,6 +361,16 @@ void StreamManager::carousselEvent(CarousselEvent &e){
             if(l!=nullptr){
                 cms[e.id-1].addMovement(l);
             }
+        }
+        
+        if(e.id==0){
+            
+            Letter *l=cms[e.id].getLastElementPointer();
+            if(l!=nullptr){
+                l->setBRemove(true);
+            }
+            
+        
         }
         
         
@@ -210,25 +412,24 @@ void StreamManager::addData(string _s, int _fragmentId){
          w->setData(word);
          int lifeTime=ofGetElapsedTimeMillis()+int(ofRandom(10000,50000));
          w->setLifeTime(lifeTime);
+        w->setFragmentPointer(f);
          
          float r=ofRandom(0,1);
          if(r<0.2 && word!=" ")w->setIsSuggestion(true);
          
-         
-         
         
-         for (auto ss : word){
+    for (auto ss : word){
              char c = ss;
              Letter * l =new Letter();
              l->setFont(&font);
              l->setData(c);
              l->setWordId(wordcounter);
              l->setWordPointer(w);
+                l->setFragmentPointer(f);
              addLetter(l);
              cms[cms.size()-1].addMovement(letters[letters.size()-1]);
-             w->addLetterPointer(l);
-             f->addLetterPointer(l);
-
+             w->registerLetter(l);
+             f->registerLetter(l);
          }
         
         // ADD SPACE
@@ -237,13 +438,15 @@ void StreamManager::addData(string _s, int _fragmentId){
         l->setData(' ');
         l->setWordId(wordcounter);
         l->setWordPointer(w);
+        l->setFragmentPointer(f);
+
         addLetter(l);
         cms[cms.size()-1].addMovement(letters[letters.size()-1]);
-        w->addLetterPointer(l);
-        f->addLetterPointer(l);
-        
+        w->registerLetter(l);
+        f->registerLetter(l);
         words.push_back(w);
-        f->addWordPointer(w);
+        
+        f->registerWord(w);
         wordcounter++; // debug id
      
      }
@@ -309,6 +512,7 @@ void StreamManager::addMovingWord(Word *_w){
     
     MovingWords *mw=new MovingWords();
     mw->setup();
+   // mw->myColor=_w->getBackgroundColor();
     mw->setFont(&bigfont);
     mw->setData(_w->getMyData());
     cout<<"startpos from word"<<_w->getPosition()<<endl;
@@ -336,6 +540,14 @@ bool StreamManager::shouldRemoveMovingWord(MovingWords *mv){
 }
 
 
+bool StreamManager::shouldRemoveLetter(Letter *l){
+    return l->getBRemove();
+
+}
+
+
+
+
 void StreamManager::makeMovingWordByFragmentId(int _id, int _wordIndex){
     Fragment *f=getFragmentById(_id);
     cout<<f->getNumWords()<<endl;
@@ -361,9 +573,10 @@ Fragment* StreamManager::getFragmentById(int _id){
 
 
 void StreamManager::makeRandomMovingWord(){
-    int fragmentid=int(ofRandom(0,fragments.size()));
-    cout<<fragmentid<<endl;
-    Fragment *f=getFragmentById(fragmentid);
+    int n=int(ofRandom(0,fragments.size()));
+   // cout<<fragmentid<<endl;
+    Fragment *f=fragments[n]; //getFragmentById(fragmentid);
+    cout<<f->getFragmentId()<<endl;
     int wI=int(ofRandom(f->getNumWords()));
     cout<<"Word index "<<wI;
     Word *w =f->getWordByIndex(wI);

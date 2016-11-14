@@ -8,6 +8,7 @@
 float angle=0;
 
 #include "MovingWords.hpp"
+#include "StreamManager.hpp"
 MovingWords::MovingWords(){
 }
 
@@ -25,8 +26,11 @@ void MovingWords::setup(){
     t.rotate(angleY, ofVec3f(0,1,0));
      float angleZ=ofRandom(-90);
     t.rotate(angleZ, ofVec3f(0,0,1));
-    target.set(t);
     
+    
+    t.set(ofGetWidth()/4+ofRandom(-200,200),ofGetHeight()/2+ofRandom(-200,200),2000);
+    target.set(t);
+
     startposition.set(ofRandom(ofGetWidth()/2-200,ofGetWidth()/2+200),ofGetHeight()/2,0);
     
     //startposition.set(ofGetWidth()/2,ofGetHeight()/2,0);
@@ -37,7 +41,7 @@ void MovingWords::setup(){
     //node.pan(ofDegToRad(angle));
     //node.lookAt(target);
     
-    scalefact=0.3;
+    scalefact=0.2;
     
     node.setScale(scalefact);
     
@@ -48,8 +52,12 @@ void MovingWords::setup(){
     geometry.rotate(angleY, 0, 1, 0); // the rotation happens on the y axis
     geometry.rotate(angleZ, 0, 0, 1); // the rotation happens on the y axis
 
-    maxspeed=ofRandom(0.5,1);
+    //maxspeed=ofRandom(0.5,1);
 
+    
+    maxspeed=ofRandom(5);
+
+    
    // plane.set(100, 100);   ///dimensions for width and height in pixels
    // plane.setPosition(startposition); /// position in x y z
 
@@ -77,7 +85,7 @@ void MovingWords::setup(){
 
 void MovingWords::update(){
     
-    
+
    
     
     
@@ -97,10 +105,10 @@ void MovingWords::update(){
     }
     
     
-    if(position.length()>maxdistance){
+  /*  if(position.length()>maxdistance){
         setIsAlive(false);
     }
-    
+    */
     
 
 }
@@ -191,7 +199,7 @@ void MovingWords::setStartPosition(ofVec3f _p){
     
     
     float p=ABS((ofGetHeight()/2)-((position.y)));
-    float dl= ofMap(p*(p/4),0,ofGetHeight()/2*(ofGetHeight()/2/4),1,30);
+    float dl= ofMap(p*(p/4),0,ofGetHeight()/2*(ofGetHeight()/2/4),1,10);
     spacingFact=dl;
     font->setLetterSpacing(spacingFact);
     
@@ -231,8 +239,17 @@ ofVec3f MovingWords::getTarget(){
 
 
 void MovingWords::move(){
+    
+    
     if(bIsMoving){
+        
+        
+        
         ofVec3f p=position;
+        
+        
+      ///  if(p.z>700)setTarget(ofVec3f(2880,ofGetHeight()/2,0));
+        
         ofVec3f t=target;
         ofVec3f dist=t-p;
         ofVec3f acceleration=dist;
@@ -256,6 +273,15 @@ void MovingWords::move(){
         }
         position.set(p);
     }
+    
+    
+    STM->backgroundFbo.begin();
+    
+  //  ofSetColor(255,0,0,20);
+   // ofCircle(ofRandom(0,1000),ofRandom(0,1000), 10);
+    STM->backgroundFbo.end();
+    
+    
 }
 
 
@@ -266,6 +292,33 @@ void MovingWords::startMoving(){
 }
 
 void MovingWords::stopMoving(){
+    
+ /*  STM->backgroundFbo.begin();
+    STM->bkg.draw(ofRandom(ofGetWidth()/2),ofRandom(ofGetHeight()/2));
+   /* ofPushMatrix();
+    ofTranslate(position);
+    // font->drawString(data,0,0);
+    
+    
+    float angle;
+    ofVec3f axis;//(0,0,1.0f);
+    
+    ofQuaternion q;
+    q=node.getGlobalOrientation();
+    q.getRotate(angle, axis);
+    
+    ofSetColor(0,191,255);
+    
+    ofRotate(angle, axis.x, axis.y, axis.z); // rotate with quaternion
+    //name = ofUTF8::toUpper(name);
+    font->drawString(data,0,0);
+    ofPopMatrix();
+    */
+
+    
+    
+   // STM->backgroundFbo.end();
+    //bIsAlive=false;
     bIsMoving=false;
 }
 
@@ -280,10 +333,10 @@ bool MovingWords::checkIsAlive(){
 
 
 ofVboMesh MovingWords::getUpdatedVboMesh(){
-    scalefact=ofLerp(scalefact,1,0.00001);
+    scalefact=ofLerp(scalefact,1,0.001);
     node.setScale(scalefact);
     
-    spacingFact=ofLerp(spacingFact,1.2,0.1);
+    spacingFact=ofLerp(spacingFact,1.2,0.01);
     
     font->setLetterSpacing(spacingFact);
     vbom.clear();

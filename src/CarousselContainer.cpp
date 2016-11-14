@@ -7,6 +7,8 @@
 //
 
 #include "CarousselContainer.hpp"
+#include "StreamManager.hpp"
+
 CarousselContainer::CarousselContainer(){
 }
 
@@ -15,7 +17,7 @@ void CarousselContainer::setup(){
 }
 
 void CarousselContainer::update(){
-    ofVec2f p=ofVec2f(position.x,position.y);
+    ofVec2f p=ofVec2f(position.x+bbox.getWidth()/2,position.y+10);
      if(myLetter!=nullptr){
          myLetter->setPosition(p);
          myLetter->setVelocity(velocity);
@@ -26,9 +28,24 @@ void CarousselContainer::draw(){
     ofPushStyle();
     ofPushMatrix();
     ofTranslate(position);
-    ofSetColor(255,100);
+    //ofColor c=ofColor(255,100);
+    ofColor c=ofColor(0);
+
+    if(myLetter!=nullptr){
+      
+        c=myLetter->getBackgroundColor();
+    }
+    ofSetColor(c,30);
+
+    
     ofFill();
-    ofDrawRectangle(bbox.x+2,bbox.y+2,bbox.getWidth()-2,bbox.getHeight()-2);
+   // ofDrawRectangle(bbox.x+2,bbox.y+2,bbox.getWidth()-2,bbox.getHeight()-2);
+    
+    
+    ofDrawRectangle(bbox.x+1,bbox.y,bbox.getWidth()-5,bbox.getHeight());
+    
+  
+
     ofPopMatrix();
     ofPopStyle();
 }

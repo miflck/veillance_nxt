@@ -18,7 +18,7 @@ void ofApp::setup(){
     
     dot.load("dot.png");
     
-    ofBuffer buffer = ofBufferFromFile("heartofdarkness.txt");
+    ofBuffer buffer = ofBufferFromFile("heartofdarkness 2.txt");
     for (auto line : buffer.getLines()){
         data.push_back(line);
     }

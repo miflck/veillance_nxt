@@ -28,7 +28,14 @@ public:
 
 
     void addLetterPointer(Letter * _l);
-    vector<Letter *> myLetters;
+    
+    void registerLetter(Letter * _l);
+    void unregisterLetter(Letter * _l);
+    
+    
+    void registerWord(Word * _w);
+    void unregisterWord(Word * _w);
+    
 
     void addWordPointer(Word * _w);
     vector<Word *> myWords;
@@ -38,10 +45,22 @@ public:
     int getFragmentId();
     int getNumWords();
     
+    ofRectangle getBoundingBox();
     Word * getWordByIndex(int _index);
+    
+    void setBRemove(bool _r);
+    bool getBRemove();
+  
+    
+    
 
 private:
     int fragmentId;
+    bool bRemove=false;
+    
+    
+    vector<Letter *> myLetters;
+
 
 
 

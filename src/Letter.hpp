@@ -21,6 +21,7 @@
 
 
 class Word;
+class Fragment;
 
 class Letter {
     
@@ -45,7 +46,6 @@ public:
     
     char getData();
     
-   bool bRemove=false;
     
     ofVboMesh getUpdatedVboMesh();
     
@@ -60,6 +60,10 @@ public:
     void setWordPointer(Word * w);
     
     
+    Fragment * myFragmentPointer;
+    void setFragmentPointer(Fragment * f);
+    
+    
     void setPosition(ofVec2f p);
     ofVec2f getPosition();
     
@@ -72,7 +76,18 @@ public:
     void setIsOnScreen(bool _s);
     bool getIsOnScreen();
     
+    void setBRemove(bool _b);
+    bool getBRemove();
+    
+    
+    ofColor getColor();
+    ofColor getBackgroundColor();
+
+    
+    
 private:
+    bool bRemove=false;
+
     
     ofVec2f position;
     ofVec2f velocity;
