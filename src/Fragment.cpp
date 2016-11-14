@@ -8,7 +8,7 @@
 
 #include "Fragment.hpp"
 #include "Letter.hpp"
-#include "StreamManager.hpp"
+#include "SceneManager.hpp"
 
 
 Fragment::Fragment(){
@@ -16,6 +16,13 @@ Fragment::Fragment(){
 
 
 void Fragment::setup(){
+    
+
+    backgroundColor=ofColor(ofRandom(50,255),ofRandom(50,255),ofRandom(50,255));
+    myColor=ofColor(0,0,255);
+    myInitColor=ofColor(0,0,255);
+    
+    targetColor=ofColor(0,0,255);
 
 
 }
@@ -63,15 +70,22 @@ void Fragment::registerLetter(Letter *_l){
 }
 
 void Fragment::unregisterLetter(Letter *_l){
-    auto it = std::find(myLetters.begin(), myLetters.end(), _l);
-    if (it != myLetters.end()) { myLetters.erase(it); }
     
+ //   cout<<"unregister from fragment "<<fragmentId<<" "<<myLetters.size()<<" "<<myWords.size()<<endl;
+    
+    
+    auto it = std::find(myLetters.begin(), myLetters.end(), _l);
+    if (it != myLetters.end()) {
+        myLetters.erase(it);
+    }
+    
+   // cout<<"letters now "<<fragmentId<<" "<<myLetters.size()<<endl;
+
     
     if(myLetters.size()==0){
         setBRemove(true);
     }
     
-    /// myLetters.push_back(_l);
 }
 
 
@@ -81,7 +95,7 @@ void Fragment::unregisterWord(Word *_w){
     
     
     if(myWords.size()==0){
-        setBRemove(true);
+      //  setBRemove(true);
     }
     
     /// myLetters.push_back(_l);
@@ -123,4 +137,22 @@ Word* Fragment::getWordByIndex(int _index){
         return myWords[_index];
     }else return nullptr;
 }
+
+
+
+void Fragment::setColor(ofColor _c){
+    myColor=_c;
+}
+
+
+ofColor Fragment::getColor(){
+    return myColor;
+}
+
+ofColor Fragment::getBackgroundColor(){
+    return backgroundColor;
+}
+
+
+
 
