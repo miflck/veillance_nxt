@@ -145,6 +145,17 @@ int User::getNumWords(){
     return myWords.size();
 }
 
+int User::getNumWordsOnScreen(){
+    int n=0;
+    
+    for(auto w:myWords){
+        if(w->checkIsOnScreen())n++;
+    }
+    
+    return n;
+
+}
+
 
 int User::getNumLetters(){
     return myLetters.size();

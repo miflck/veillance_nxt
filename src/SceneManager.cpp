@@ -276,7 +276,7 @@ void SceneManager::update(){
     //Sound
     
     if(users.size()>0){
-       int w= users[0]->getNumWords();
+       int w= users[0]->getNumWordsOnScreen();
   
         SoundM->user1wordcount.set(w);
       }

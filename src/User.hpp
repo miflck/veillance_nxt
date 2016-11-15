@@ -64,6 +64,8 @@ public:
     string getUserName();
     
     
+    int getNumWordsOnScreen();
+    
     
 
 private:
