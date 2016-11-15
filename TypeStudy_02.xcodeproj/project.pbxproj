@@ -29,6 +29,7 @@
 		F3AD9E2A2E56B6AF32A0BDAF /* Server.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 5D95092D59E7A34C9DB7823E /* Server.cpp */; };
 		F53951BC8E9FD6B834B4BF13 /* SceneManager.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 7287E7D3F081AC7FD566078A /* SceneManager.cpp */; };
 		FAB4EABC1DDB6CE600A5E61E /* User.cpp in Sources */ = {isa = PBXBuildFile; fileRef = FAB4EABA1DDB6CE600A5E61E /* User.cpp */; };
+		FAB4EABF1DDB77CC00A5E61E /* SoundManager.cpp in Sources */ = {isa = PBXBuildFile; fileRef = FAB4EABD1DDB77CC00A5E61E /* SoundManager.cpp */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -111,6 +112,8 @@
 		F11BA8009F1346D2F4A449FD /* Word.h */ = {isa = PBXFileReference; explicitFileType = sourcecode.c.h; fileEncoding = 30; name = Word.h; path = src/Word.h; sourceTree = SOURCE_ROOT; };
 		FAB4EABA1DDB6CE600A5E61E /* User.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = User.cpp; sourceTree = "<group>"; };
 		FAB4EABB1DDB6CE600A5E61E /* User.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = User.hpp; sourceTree = "<group>"; };
+		FAB4EABD1DDB77CC00A5E61E /* SoundManager.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = SoundManager.cpp; sourceTree = "<group>"; };
+		FAB4EABE1DDB77CC00A5E61E /* SoundManager.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = SoundManager.hpp; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -284,6 +287,8 @@
 				2C50F14C0E9F19764F11A1D0 /* MovingWords.hpp */,
 				7287E7D3F081AC7FD566078A /* SceneManager.cpp */,
 				9D9FB8259BCBAAA4DE3E71A1 /* SceneManager.hpp */,
+				FAB4EABD1DDB77CC00A5E61E /* SoundManager.cpp */,
+				FAB4EABE1DDB77CC00A5E61E /* SoundManager.hpp */,
 			);
 			path = src;
 			sourceTree = SOURCE_ROOT;
@@ -433,6 +438,7 @@
 				FAB4EABC1DDB6CE600A5E61E /* User.cpp in Sources */,
 				F3AD9E2A2E56B6AF32A0BDAF /* Server.cpp in Sources */,
 				CCD326ED8E01272042317DD2 /* Util.cpp in Sources */,
+				FAB4EABF1DDB77CC00A5E61E /* SoundManager.cpp in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
