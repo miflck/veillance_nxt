@@ -71,6 +71,17 @@ public:
     int myDockingNode=0;
     
     
+    // timer
+    void setLifeTime(int _t);
+    void setLifeSpan(int _t);
+    int getLifeTime();
+    int getRestLifeTime();
+    void startLifeTimer();
+    void stopLifeTimer();
+
+    
+    
+    
     
 private:
     
@@ -79,9 +90,11 @@ private:
     ofRectangle boundingBox;
 
     
+    int lifetime;
+    int lifespan;
+    bool bIsLifetimeRunning=false;
     
     bool bIsOnScreen;
-    
     ofVec3f startposition;
 
     ofVec3f position;
@@ -115,6 +128,9 @@ private:
     float spacingFact;
     
     ofVec3f lookat;
+    
+    
+    bool bIsRotating=true;
     
     
 };

@@ -114,6 +114,10 @@ public:
     
     //Background
     ofImage bkg;
+    ofFbo backgroundFbo;
+    ofFbo secondScreenbackgroundFbo;
+
+
     
     
     //FONT
@@ -167,7 +171,6 @@ public:
     ofRectangle viewBack;
 
     
-    ofFbo backgroundFbo;
 
     
 private:

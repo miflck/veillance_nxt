@@ -110,6 +110,11 @@ void SceneManager::initialize() {
     backgroundFbo.end();
     
     
+    
+    secondScreenbackgroundFbo.allocate(viewportwidth, ofGetHeight(),GL_RGBA);
+    secondScreenbackgroundFbo.begin();
+    ofClear(255,255,255, 0);
+    secondScreenbackgroundFbo.end();
     ofEnableAlphaBlending();
 
   
@@ -137,7 +142,7 @@ void SceneManager::update(){
             action a=actionBuffer[i];
             if(tryMakeMovingWordByFragmentId(a.uuid,a.startwordcounter) || tryMakeMovingWordByFragmentId(a.uuid,a.endwordcounter)){
             actionBuffer.erase(actionBuffer.begin()+i);
-                cout<<"actionbuffer "<<actionBuffer.size()<<endl;
+              //  cout<<"actionbuffer "<<actionBuffer.size()<<endl;
 
             }
         }
@@ -251,7 +256,19 @@ void SceneManager::update(){
    ofDisableBlendMode();
     backgroundFbo.end();
 
+    // ADD BLACK SQUARE TO BACKGROUNDCOLOR
+    secondScreenbackgroundFbo.begin();
+  // ofClear(0,0,0,1);
+
+    // ofEnableBlendMode(OF_BLENDMODE_ALPHA);
+    ofSetColor(0,0,0,5);
+    ofEnableAlphaBlending();
+    if(ofGetFrameNum()%10==0)ofDrawRectangle(0, 0, backgroundFbo.getWidth(), backgroundFbo.getHeight());
+    //ofDisableBlendMode();
     
+    
+
+    secondScreenbackgroundFbo.end();
  
  
 }
@@ -259,6 +276,8 @@ void SceneManager::update(){
 void SceneManager::draw(){
     ofEnableBlendMode(OF_BLENDMODE_ALPHA);
   if(debug) backgroundFbo.draw(0,0);
+   secondScreenbackgroundFbo.draw(viewportwidth,0);
+
 
     
     if(bDraw){
@@ -273,6 +292,8 @@ void SceneManager::draw(){
         }
         backgroundFbo.end();
 
+    
+        
     
 
 
@@ -338,21 +359,49 @@ void SceneManager::draw(){
         
         */
         
+        
+        
+        
+        
+        
+       /* ofEnableBlendMode(OF_BLENDMODE_ALPHA);
+        secondScreenbackgroundFbo.begin();
+        cam[1].begin();
+        bigfont.getFontTexture().bind();
+        m.draw();
+        bigfont.getFontTexture().unbind();
+        cam[1].end();
+        secondScreenbackgroundFbo.end();
+        */
+        
+        
         ofEnableBlendMode(OF_BLENDMODE_ADD);
+        
 
         cam[1].begin(viewBack);
+
         bigfont.getFontTexture().bind();
         m.draw();
         bigfont.getFontTexture().unbind();
         
-        ofSetColor(255,0,0);
+        
+   
+        
+        
+        
+       /* ofSetColor(255,0,0);
             for (int i=0;i<movingWords.size();i++){
                 ofVec3f t;
                 t.set(movingWords[i]->getDockPoint());
                 ofDrawBox(t, 10);
-            }
+            }*/
         
+
         cam[1].end();
+        
+        
+
+
         
 
 
@@ -424,7 +473,7 @@ void SceneManager::addDataFromBuffer(){
     
     message m=messageBuffer[0];
     messageBuffer.erase(messageBuffer.begin());
-    cout<<"left in messageBuffer "<<messageBuffer.size()<<endl;
+ //   cout<<"left in messageBuffer "<<messageBuffer.size()<<endl;
 
     
     Fragment * f=new Fragment();
@@ -570,23 +619,25 @@ void SceneManager::addMovingWord(Word *_w){
     
     MovingWords *mw=new MovingWords();
     mw->setup();
+    mw->setLifeSpan(50000);
     
-    /*
+    
     if(movingWordPositions.size()>0){
         int i=int(ofRandom(movingWordPositions.size()));
         mw->setTarget(movingWordPositions[i]);
         movingWordPositions.erase(movingWordPositions.begin()+i);
-    }*/
+    }
     
+    /*
     if(movingWords.size()>10){
         int i=int(ofRandom(movingWords.size()));
         mw->myDockingNode=i;
-    }
+    }*/
     
    // mw->myColor=_w->getBackgroundColor();
     mw->setFont(&bigfont);
     mw->setData(_w->getMyData());
-    cout<<"startpos from word"<<_w->getPosition()<<endl;
+    //cout<<"startpos from word"<<_w->getPosition()<<endl;
 
     mw->setStartPosition(_w->getPosition());
     mw->setInitVelocity(_w->getVelocity());
@@ -670,7 +721,7 @@ bool SceneManager::tryMakeMovingWordByFragmentId(int _id, int _wordIndex){
         if(w!=nullptr && w->checkIsOnScreen()){
             w->myColor=ofColor(0,0,0);
             addMovingWord(w);
-            cout<<"making moving word from actionbuffer"<<endl;
+            //cout<<"making moving word from actionbuffer"<<endl;
             canDo=true;
         }else {
             
@@ -684,14 +735,14 @@ bool SceneManager::tryMakeMovingWordByFragmentId(int _id, int _wordIndex){
 
 void SceneManager::addMessage(message _m){
     messageBuffer.push_back(_m);
-    cout<<"Message Buffer Size: "<<messageBuffer.size()<<endl;
+   // cout<<"Message Buffer Size: "<<messageBuffer.size()<<endl;
 
 }
 
 
 void SceneManager::addAction(action _a){
     actionBuffer.push_back(_a);
-    cout<<"Action Buffer Size: "<<actionBuffer.size()<<endl;
+   // cout<<"Action Buffer Size: "<<actionBuffer.size()<<endl;
     
 }
 
