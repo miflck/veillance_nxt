@@ -11,15 +11,15 @@
 
 #include <stdio.h>
 #include "ofMain.h"
-#include "Word.h"
 
 
 #include "CarousselManager.hpp"
 #include "CarousselEvent.hpp"
-#include "Letter.hpp"
 
-
+#include "User.hpp"
 #include "Fragment.hpp"
+#include "Word.h"
+#include "Letter.hpp"
 
 
 #include "MovingWords.hpp"
@@ -34,7 +34,7 @@
 
 struct message {
     int uuid;
-    string name;
+    string username;
     string type;
     string text;
 };
@@ -94,18 +94,21 @@ public:
 
     
     
+    //User
+    vector<User *>users;
+    void addUser(User * _l);
+    User * getUserByUsername(string _name);
+    
     
     //LETTER
     vector<Letter *>letters;
     void addLetter(Letter * _l);
-    
     vector<Word *> words;
 
     
     //Moving Words
     vector<MovingWords *> movingWords;
     void addMovingWord(Word * _w);
-    
     vector <ofVec3f> movingWordPositions;
 
     

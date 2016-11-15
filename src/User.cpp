@@ -6,16 +6,16 @@
 //
 //
 
-#include "Fragment.hpp"
+#include "User.hpp"
 #include "Letter.hpp"
 #include "SceneManager.hpp"
 
 
-Fragment::Fragment(){
+User::User(){
 }
 
 
-void Fragment::setup(){
+void User::setup(){
     
 
     backgroundColor=ofColor(ofRandom(50,255),ofRandom(50,255),ofRandom(50,255));
@@ -28,24 +28,14 @@ void Fragment::setup(){
 }
 
 
-void Fragment::update(){
+void User::update(){
 
 }
 
 
-void Fragment::draw(){
+void User::draw(){
 
     STM->backgroundFbo.begin();
-    
-    ofDrawRectangle(getBoundingBox().getPosition(), getBoundingBox().width,getBoundingBox().height);
-    
-    /*ofSetColor(255,0,0,100);
-     //STM->bkg.draw(getPosition(),getBoundingBox().width,200);
-     ofDrawRectangle(getPosition().x,getPosition().y-30, getBoundingBox().width-10,60);
-     ofDrawRectangle(getPosition().x,getPosition().y-10, getBoundingBox().width-10,20);
-     ofDrawRectangle(getPosition().x,getPosition().y-5, getBoundingBox().width-10,20);*/
-    
-    //STM->bkg.draw(getPosition().x,getPosition().y-50,100,200);
     
     
     STM->backgroundFbo.end();
@@ -53,23 +43,18 @@ void Fragment::draw(){
 }
 
 
-ofRectangle Fragment::getBoundingBox(){
-    ofVec2f p=myLetters[0]->getPosition();
-    ofVec2f p2=myLetters[myLetters.size()-1]->getPosition();
-    return ofRectangle(p,p2);
-}
 
 
-void Fragment::addLetterPointer(Letter *_l){
+void User::addLetterPointer(Letter *_l){
     myLetters.push_back(_l);
 }
 
 
-void Fragment::registerLetter(Letter *_l){
+void User::registerLetter(Letter *_l){
     myLetters.push_back(_l);
 }
 
-void Fragment::unregisterLetter(Letter *_l){
+void User::unregisterLetter(Letter *_l){
     
  //   cout<<"unregister from fragment "<<fragmentId<<" "<<myLetters.size()<<" "<<myWords.size()<<endl;
     
@@ -89,7 +74,7 @@ void Fragment::unregisterLetter(Letter *_l){
 }
 
 
-void Fragment::unregisterWord(Word *_w){
+void User::unregisterWord(Word *_w){
     auto it = std::find(myWords.begin(), myWords.end(), _w);
     if (it != myWords.end()) { myWords.erase(it); }
     
@@ -102,54 +87,80 @@ void Fragment::unregisterWord(Word *_w){
 }
 
 
-void Fragment::registerWord(Word *_w){
+void User::registerWord(Word *_w){
     myWords.push_back(_w);
 }
 
 
-void Fragment::setBRemove(bool _b){
+
+
+
+void User::registerFragment(Fragment *_f){
+    myFragments.push_back(_f);
+}
+
+void User::unregisterFragment(Fragment *_f){
+    auto it = std::find(myFragments.begin(), myFragments.end(), _f);
+    if (it != myFragments.end()) { myFragments.erase(it); }
+    if(myFragments.size()==0){
+        setBRemove(true);
+        cout<<"user "<<username<<"can be removed"<<endl;
+    }
+}
+
+
+
+void User::setBRemove(bool _b){
     bRemove=_b;
 }
 
-bool Fragment::getBRemove(){
+bool User::getBRemove(){
     return bRemove;
 }
 
 
-void Fragment::addWordPointer(Word *_w){
+void User::addWordPointer(Word *_w){
     myWords.push_back(_w);
 }
 
-void Fragment::setFragmentId(int _id){
-    fragmentId=_id;
+
+void User::setUserName(string _name){
+    username=_name;
 }
 
-int Fragment::getFragmentId(){
-    return fragmentId;
+string User::getUserName(){
+    return username;
 }
 
-int Fragment::getNumWords(){
+
+void User::setUserId(int _id){
+   userId=_id;
+}
+
+int User::getUserId(){
+    return userId;
+}
+
+int User::getNumWords(){
     return myWords.size();
 }
 
-Word* Fragment::getWordByIndex(int _index){
-    if(_index<getNumWords()){
-        return myWords[_index];
-    }else return nullptr;
+
+int User::getNumLetters(){
+    return myLetters.size();
 }
 
 
-
-void Fragment::setColor(ofColor _c){
+void User::setColor(ofColor _c){
     myColor=_c;
 }
 
 
-ofColor Fragment::getColor(){
+ofColor User::getColor(){
     return myColor;
 }
 
-ofColor Fragment::getBackgroundColor(){
+ofColor User::getBackgroundColor(){
     return backgroundColor;
 }
 

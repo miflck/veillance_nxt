@@ -9,6 +9,7 @@
 #include "Letter.hpp"
 #include "Word.h"
 #include "Fragment.hpp"
+#include "User.hpp"
 
 #include "SceneManager.hpp"
 
@@ -118,6 +119,11 @@ void Letter::setFragmentPointer(Fragment *_f){
 }
 
 
+void Letter::setUserPointer(User *_u){
+    myUserPointer=_u;
+}
+
+
 
 void Letter::setPosition(ofVec2f _p){
     if(getIsOnScreen()){
@@ -150,6 +156,8 @@ void Letter::setBRemove(bool _b){
         //cout<<"remove letter"<<myString<<endl;
         myWordPointer->unregisterLetter(this);
         myFragmentPointer->unregisterLetter(this);
+        myUserPointer->unregisterLetter(this);
+        
     }
 }
 

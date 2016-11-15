@@ -6,20 +6,21 @@
 //
 //
 
-#ifndef Fragment_hpp
-#define Fragment_hpp
+#ifndef User_hpp
+#define User_hpp
 
 #include <stdio.h>
 #include "ofMain.h"
 
 class Letter;
 class Word;
+class Fragment;
 
 
-class Fragment {
+class User {
     
 public:
-    Fragment();
+    User();
     void setup();
     void update();
     void draw();
@@ -29,44 +30,53 @@ public:
 
     void addLetterPointer(Letter * _l);
     
+    
+    // Register stuff
+    void registerFragment(Fragment * _f);
+    void unregisterFragment(Fragment * _f);
+    
+    
     void registerLetter(Letter * _l);
     void unregisterLetter(Letter * _l);
-    
     
     void registerWord(Word * _w);
     void unregisterWord(Word * _w);
     
 
     void addWordPointer(Word * _w);
-    vector<Word *> myWords;
 
-    void setFragmentId(int _id);
     
-    int getFragmentId();
+    
+    void setUserId(int _id);
+    int getUserId();
     int getNumWords();
-    
-    ofRectangle getBoundingBox();
-    Word * getWordByIndex(int _index);
-    
+    int getNumLetters();
+
     void setBRemove(bool _r);
     bool getBRemove();
   
-    
-    
     ofColor getColor();
     ofColor getBackgroundColor();
     void setColor(ofColor _c);
     
     
+    void setUserName(string _name);
+    string getUserName();
+    
+    
     
 
 private:
-    int fragmentId;
+    
+    string username;
+    
+    int userId;
     bool bRemove=false;
     
-    
+    vector<Fragment *> myFragments;
     vector<Letter *> myLetters;
-    
+    vector<Word *> myWords;
+
     
     ofColor myColor;
     ofColor myInitColor;
@@ -79,4 +89,4 @@ private:
 
 };
 
-#endif /* Fragment_hpp */
+#endif /* User_hpp */

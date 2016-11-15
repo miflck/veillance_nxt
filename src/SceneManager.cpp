@@ -473,12 +473,25 @@ void SceneManager::addDataFromBuffer(){
     
     message m=messageBuffer[0];
     messageBuffer.erase(messageBuffer.begin());
- //   cout<<"left in messageBuffer "<<messageBuffer.size()<<endl;
+    
+    
+    User * u=getUserByUsername(m.username);
+    if(u==nullptr){
+        cout<<"*********** user not existing ********"<<endl;
+        u=new User();
+        u->setup();
+        u->setUserName(m.username);
+    }else{
+        cout<<"*********** existing user ********"<<u->getUserName()<<endl;
 
+    }
     
     Fragment * f=new Fragment();
+    
     f->setup();
     f->setFragmentId(m.uuid);
+    f->setUserPointer(u);
+    
     vector<string> split;
     split = ofSplitString(m.text, " ");
     //cout<<_s<<split.size()<<endl;
@@ -489,11 +502,12 @@ void SceneManager::addDataFromBuffer(){
         w->setData(word);
         int lifeTime=ofGetElapsedTimeMillis()+int(ofRandom(10000,50000));
         w->setLifeTime(lifeTime);
+        
         w->setFragmentPointer(f);
+        w->setUserPointer(u);
         
         float r=ofRandom(0,1);
         if(r<0.2 && word!=" ")w->setIsSuggestion(true);
-        
         
         for (auto ss : word){
             char c = ss;
@@ -503,10 +517,12 @@ void SceneManager::addDataFromBuffer(){
             l->setWordId(wordcounter);
             l->setWordPointer(w);
             l->setFragmentPointer(f);
+            l->setUserPointer(u);
             addLetter(l);
             cms[cms.size()-1].addMovement(letters[letters.size()-1]);
             w->registerLetter(l);
             f->registerLetter(l);
+            u->registerLetter(l);
         }
         
         // ADD SPACE
@@ -516,18 +532,27 @@ void SceneManager::addDataFromBuffer(){
         l->setWordId(wordcounter);
         l->setWordPointer(w);
         l->setFragmentPointer(f);
-        
+        l->setUserPointer(u);
+
         addLetter(l);
         cms[cms.size()-1].addMovement(letters[letters.size()-1]);
+
         w->registerLetter(l);
         f->registerLetter(l);
+        u->registerLetter(l);
+
         words.push_back(w);
         
         f->registerWord(w);
+        u->registerWord(w);
+
         wordcounter++; // debug id
         
     }
     fragments.push_back(f);
+    u->registerFragment(f);
+
+    users.push_back(u);
 
 }
 
@@ -729,6 +754,33 @@ bool SceneManager::tryMakeMovingWordByFragmentId(int _id, int _wordIndex){
     }
     return canDo;
   }
+
+
+
+
+
+User * SceneManager::getUserByUsername(string _name){
+
+        for(auto user:users){
+            if (_name==user->getUserName()){
+                return user;
+                break;
+            }
+        }
+        return nullptr;
+
+
+}
+
+
+
+
+
+
+
+
+
+
 
 
 

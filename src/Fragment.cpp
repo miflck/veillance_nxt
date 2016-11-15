@@ -83,6 +83,7 @@ void Fragment::unregisterLetter(Letter *_l){
 
     
     if(myLetters.size()==0){
+        myUserPointer->unregisterFragment(this);
         setBRemove(true);
     }
     
@@ -153,6 +154,8 @@ ofColor Fragment::getBackgroundColor(){
     return backgroundColor;
 }
 
-
+void Fragment::setUserPointer(User *_u){
+    myUserPointer=_u;
+}
 
 

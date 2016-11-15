@@ -28,6 +28,7 @@
 		F1AC6AEFB9B93C6AC45C9CA8 /* Events.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 34A70E2C091020EE93F6B1CE /* Events.cpp */; };
 		F3AD9E2A2E56B6AF32A0BDAF /* Server.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 5D95092D59E7A34C9DB7823E /* Server.cpp */; };
 		F53951BC8E9FD6B834B4BF13 /* SceneManager.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 7287E7D3F081AC7FD566078A /* SceneManager.cpp */; };
+		FAB4EABC1DDB6CE600A5E61E /* User.cpp in Sources */ = {isa = PBXBuildFile; fileRef = FAB4EABA1DDB6CE600A5E61E /* User.cpp */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -108,6 +109,8 @@
 		EDF52649DEB8D25CA011EB41 /* Connection.cpp */ = {isa = PBXFileReference; explicitFileType = sourcecode.cpp.cpp; fileEncoding = 30; name = Connection.cpp; path = ../../../addons/ofxLibwebsockets/libs/ofxLibwebsockets/src/Connection.cpp; sourceTree = SOURCE_ROOT; };
 		EE5E38D74C62B19279B65BC7 /* Client.cpp */ = {isa = PBXFileReference; explicitFileType = sourcecode.cpp.cpp; fileEncoding = 30; name = Client.cpp; path = ../../../addons/ofxLibwebsockets/libs/ofxLibwebsockets/src/Client.cpp; sourceTree = SOURCE_ROOT; };
 		F11BA8009F1346D2F4A449FD /* Word.h */ = {isa = PBXFileReference; explicitFileType = sourcecode.c.h; fileEncoding = 30; name = Word.h; path = src/Word.h; sourceTree = SOURCE_ROOT; };
+		FAB4EABA1DDB6CE600A5E61E /* User.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = User.cpp; sourceTree = "<group>"; };
+		FAB4EABB1DDB6CE600A5E61E /* User.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = User.hpp; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -273,6 +276,8 @@
 				E4B69E1F0A3A1BDC003C02F2 /* ofApp.h */,
 				FA2389D21DD9B19D006E3BE8 /* Caroussel */,
 				FA2389D31DD9B1B6006E3BE8 /* Fragments_Letters_etc */,
+				FAB4EABA1DDB6CE600A5E61E /* User.cpp */,
+				FAB4EABB1DDB6CE600A5E61E /* User.hpp */,
 				CB12D2602935492A04A59107 /* IOManager.cpp */,
 				94BE744954B55BD36ADC6C99 /* IOManager.hpp */,
 				5489F82C437EA9599501023A /* MovingWords.cpp */,
@@ -425,6 +430,7 @@
 				F1AC6AEFB9B93C6AC45C9CA8 /* Events.cpp in Sources */,
 				86135253DC7909CA8590E157 /* Protocol.cpp in Sources */,
 				6D73A566CFEC0B462FE6E43C /* Reactor.cpp in Sources */,
+				FAB4EABC1DDB6CE600A5E61E /* User.cpp in Sources */,
 				F3AD9E2A2E56B6AF32A0BDAF /* Server.cpp in Sources */,
 				CCD326ED8E01272042317DD2 /* Util.cpp in Sources */,
 			);

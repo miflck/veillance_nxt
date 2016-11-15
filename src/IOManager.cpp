@@ -74,7 +74,7 @@ void IOManager::onMessage( ofxLibwebsockets::Event& args ){
             
             if(args.json["Type"]=="User"){
                 message m;
-                m.name=args.json["Name"].asString();
+                m.username=args.json["Name"].asString();
                 m.type=args.json["Type"].asString();
                 m.text=args.json["Text"].asString();
                 m.uuid=args.json["Id"].asInt();

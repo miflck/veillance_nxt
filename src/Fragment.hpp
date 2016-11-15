@@ -14,7 +14,7 @@
 
 class Letter;
 class Word;
-
+class User;
 
 class Fragment {
     
@@ -58,7 +58,8 @@ public:
     void setColor(ofColor _c);
     
     
-    
+    User * myUserPointer;
+    void setUserPointer(User * _u);
 
 private:
     int fragmentId;

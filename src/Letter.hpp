@@ -22,6 +22,7 @@
 
 class Word;
 class Fragment;
+class User;
 
 class Letter {
     
@@ -62,6 +63,9 @@ public:
     
     Fragment * myFragmentPointer;
     void setFragmentPointer(Fragment * f);
+    
+    User * myUserPointer;
+    void setUserPointer(User * u);
     
     
     void setPosition(ofVec2f p);
