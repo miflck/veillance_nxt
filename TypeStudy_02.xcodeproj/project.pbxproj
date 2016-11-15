@@ -10,7 +10,6 @@
 		0FDEAE908DF4F7871B7660D8 /* LetterEvent.cpp in Sources */ = {isa = PBXBuildFile; fileRef = D4BF1FFE18E83CA14EBA3B41 /* LetterEvent.cpp */; };
 		19E586C8B60FD9B3B70BDC40 /* CarousselManager.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 6D4FEB2CA9433669368A022C /* CarousselManager.cpp */; };
 		3FC056F4F8588B5E3EBDB974 /* Letter.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 7F8CB16CFDCB5893AB42EC5D /* Letter.cpp */; };
-		4F25A389218B8B13D4F39707 /* WordManager.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 77F9A6490172714984D4327A /* WordManager.cpp */; };
 		6468C686EED25914CE633F3C /* CarousselEvent.cpp in Sources */ = {isa = PBXBuildFile; fileRef = E3C19F78D15CA0EF3F50659E /* CarousselEvent.cpp */; };
 		6D73A566CFEC0B462FE6E43C /* Reactor.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 2232A9453E355593EF36ADA7 /* Reactor.cpp */; };
 		7AF35F772B5BBAA52ED23DE4 /* IOManager.cpp in Sources */ = {isa = PBXBuildFile; fileRef = CB12D2602935492A04A59107 /* IOManager.cpp */; };
@@ -61,7 +60,6 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
-		04136542B094831BC17E4FFD /* WordManager.hpp */ = {isa = PBXFileReference; explicitFileType = sourcecode.c.h; fileEncoding = 30; name = WordManager.hpp; path = src/WordManager.hpp; sourceTree = SOURCE_ROOT; };
 		123354539C152F1EE3FFC190 /* json-forwards.h */ = {isa = PBXFileReference; explicitFileType = sourcecode.c.h; fileEncoding = 30; name = "json-forwards.h"; path = "../../../addons/ofxLibwebsockets/libs/jsoncpp/json/json-forwards.h"; sourceTree = SOURCE_ROOT; };
 		1816162DC196322C5D709C96 /* Server.h */ = {isa = PBXFileReference; explicitFileType = sourcecode.c.h; fileEncoding = 30; name = Server.h; path = ../../../addons/ofxLibwebsockets/libs/ofxLibwebsockets/include/ofxLibwebsockets/Server.h; sourceTree = SOURCE_ROOT; };
 		2232A9453E355593EF36ADA7 /* Reactor.cpp */ = {isa = PBXFileReference; explicitFileType = sourcecode.cpp.cpp; fileEncoding = 30; name = Reactor.cpp; path = ../../../addons/ofxLibwebsockets/libs/ofxLibwebsockets/src/Reactor.cpp; sourceTree = SOURCE_ROOT; };
@@ -78,7 +76,6 @@
 		6D4FEB2CA9433669368A022C /* CarousselManager.cpp */ = {isa = PBXFileReference; explicitFileType = sourcecode.cpp.cpp; fileEncoding = 30; name = CarousselManager.cpp; path = src/CarousselManager.cpp; sourceTree = SOURCE_ROOT; };
 		7287E7D3F081AC7FD566078A /* SceneManager.cpp */ = {isa = PBXFileReference; explicitFileType = sourcecode.cpp.cpp; fileEncoding = 30; name = SceneManager.cpp; path = src/SceneManager.cpp; sourceTree = SOURCE_ROOT; };
 		75DCA31CF0745355CC4AD2DD /* libwebsockets.h */ = {isa = PBXFileReference; explicitFileType = sourcecode.c.h; fileEncoding = 30; name = libwebsockets.h; path = ../../../addons/ofxLibwebsockets/libs/libwebsockets/include/libwebsockets.h; sourceTree = SOURCE_ROOT; };
-		77F9A6490172714984D4327A /* WordManager.cpp */ = {isa = PBXFileReference; explicitFileType = sourcecode.cpp.cpp; fileEncoding = 30; name = WordManager.cpp; path = src/WordManager.cpp; sourceTree = SOURCE_ROOT; };
 		7A713BE5573BB5E0030AF5DA /* CarousselContainer.cpp */ = {isa = PBXFileReference; explicitFileType = sourcecode.cpp.cpp; fileEncoding = 30; name = CarousselContainer.cpp; path = src/CarousselContainer.cpp; sourceTree = SOURCE_ROOT; };
 		7F8CB16CFDCB5893AB42EC5D /* Letter.cpp */ = {isa = PBXFileReference; explicitFileType = sourcecode.cpp.cpp; fileEncoding = 30; name = Letter.cpp; path = src/Letter.cpp; sourceTree = SOURCE_ROOT; };
 		80C32A10A3EC8FA716033889 /* LetterEvent.hpp */ = {isa = PBXFileReference; explicitFileType = sourcecode.c.h; fileEncoding = 30; name = LetterEvent.hpp; path = src/LetterEvent.hpp; sourceTree = SOURCE_ROOT; };
@@ -282,8 +279,6 @@
 				2C50F14C0E9F19764F11A1D0 /* MovingWords.hpp */,
 				7287E7D3F081AC7FD566078A /* SceneManager.cpp */,
 				9D9FB8259BCBAAA4DE3E71A1 /* SceneManager.hpp */,
-				77F9A6490172714984D4327A /* WordManager.cpp */,
-				04136542B094831BC17E4FFD /* WordManager.hpp */,
 			);
 			path = src;
 			sourceTree = SOURCE_ROOT;
@@ -424,7 +419,6 @@
 				94CFDE65C69CD26F372F652B /* MovingWords.cpp in Sources */,
 				F53951BC8E9FD6B834B4BF13 /* SceneManager.cpp in Sources */,
 				B7B0A80679F24C35A3565878 /* Word.cpp in Sources */,
-				4F25A389218B8B13D4F39707 /* WordManager.cpp in Sources */,
 				9EF1133BC23669A5C94FE30F /* jsoncpp.cpp in Sources */,
 				C6C3882A0B0872D1485F3874 /* Client.cpp in Sources */,
 				A78C77753D562AE8F0E928ED /* Connection.cpp in Sources */,

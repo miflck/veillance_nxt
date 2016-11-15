@@ -129,6 +129,24 @@ void SceneManager::update(){
     
     
     
+    
+    
+    
+    if(actionBuffer.size()>0){
+        for (int i=0;i<actionBuffer.size();i++){
+            action a=actionBuffer[i];
+            if(tryMakeMovingWordByFragmentId(a.uuid,a.startwordcounter) || tryMakeMovingWordByFragmentId(a.uuid,a.endwordcounter)){
+            actionBuffer.erase(actionBuffer.begin()+i);
+                cout<<"actionbuffer "<<actionBuffer.size()<<endl;
+
+            }
+        }
+    
+    }
+    
+    
+    
+    
     if(bUpdate){
         
         // UPDATE CAROUSSEL
@@ -437,7 +455,7 @@ void SceneManager::addData(string _s, int _fragmentId){
     f->setFragmentId(_fragmentId);
      vector<string> split;
      split = ofSplitString(_s, " ");
-    cout<<_s<<split.size()<<endl;
+    //cout<<_s<<split.size()<<endl;
   
     for (auto word : split){
          Word * w=new Word();
@@ -554,9 +572,9 @@ bool SceneManager::shouldRemoveLetter(Letter *l){
 
 void SceneManager::makeMovingWordByFragmentId(int _id, int _wordIndex){
     Fragment *f=getFragmentById(_id);
-    cout<<f->getNumWords()<<endl;
+    //cout<<f->getNumWords()<<endl;
     Word *w =f->getWordByIndex(_wordIndex);
-    cout<<w->getIndex()<<endl;
+    //cout<<w->getIndex()<<endl;
     if(w!=nullptr){
     addMovingWord(w);
     }
@@ -585,6 +603,7 @@ void SceneManager::makeRandomMovingWord(){
     Word *w =f->getWordByIndex(wI);
     cout<<"is on screen"<<w->checkIsOnScreen()<<endl;
     if(w!=nullptr && w->checkIsOnScreen()){
+        w->myColor=ofColor(0,0,0);
         addMovingWord(w);
         cout<<"making moving word"<<endl;
     }else {
@@ -594,9 +613,40 @@ void SceneManager::makeRandomMovingWord(){
 }
 
 
+bool SceneManager::tryMakeMovingWordByFragmentId(int _id, int _wordIndex){
+    bool canDo=false;
+    Fragment *f=getFragmentById(_id);
+    if(f!=nullptr){
+      //  cout<<f->getFragmentId()<<endl;
+        Word *w =f->getWordByIndex(_wordIndex);
+        if(w!=nullptr && w->checkIsOnScreen()){
+            w->myColor=ofColor(0,0,0);
+            addMovingWord(w);
+            cout<<"making moving word from actionbuffer"<<endl;
+            canDo=true;
+        }else {
+
+        }
+
+    }
+    return canDo;
+  }
+
+
+
+
 void SceneManager::addMessage(message _m){
     messageBuffer.push_back(_m);
     cout<<"Message Buffer Size: "<<messageBuffer.size()<<endl;
 
 }
+
+
+void SceneManager::addAction(action _a){
+    actionBuffer.push_back(_a);
+    cout<<"Action Buffer Size: "<<actionBuffer.size()<<endl;
+    
+}
+
+
 

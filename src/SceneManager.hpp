@@ -12,7 +12,6 @@
 #include <stdio.h>
 #include "ofMain.h"
 #include "Word.h"
-#include "WordManager.hpp"
 
 
 #include "CarousselManager.hpp"
@@ -35,6 +34,17 @@
 
 struct message {
     int uuid;
+    string name;
+    string type;
+    string text;
+};
+
+
+
+struct action {
+    int uuid;
+    int startwordcounter;
+    int endwordcounter;
     string name;
     string type;
     string text;
@@ -116,6 +126,8 @@ public:
     vector <message> messageBuffer;
     void addMessage(message _m);
     
+    vector <action> actionBuffer;
+    void addAction(action _a);
     
     
     
@@ -136,6 +148,10 @@ public:
     
     Fragment* getFragmentById(int _id);
     void makeMovingWordByFragmentId(int _id,int _wordindex);
+    
+    
+    bool tryMakeMovingWordByFragmentId(int _id,int _wordindex);
+
     
     void makeRandomMovingWord();
     
