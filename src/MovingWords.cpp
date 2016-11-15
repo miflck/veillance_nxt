@@ -203,6 +203,12 @@ void MovingWords::draw(){
 
 void MovingWords::setData(string _data){
     data=ofToUpper(_data);
+    for(int i=0;i<data.size();i++){
+        if(isVowel(data[i]))numvowels++;
+    }
+    
+    numsyllables=countSyllables(data);
+    
 }
 
 
@@ -441,6 +447,55 @@ void MovingWords::stopLifeTimer(){
      STM->secondScreenbackgroundFbo.end();
    }
 
+bool MovingWords:: isVowel(char c) {
+    return std::string("AEIOU").find(c) != std::string::npos;
+}
+
+bool MovingWords:: isVowelForSyllables(char c) {
+    return std::string("AEIOUY").find(c) != std::string::npos;
+}
 
 
+int MovingWords::getVowelcount(){
+    return numvowels;
+}
 
+
+int MovingWords::getSyllablescount(){
+    return numsyllables;
+}
+
+
+ int MovingWords:: countSyllables(string _word)
+{
+    int numVowels = 0;
+    bool lastWasVowel = false;
+
+    for(auto wc:_word ){
+        bool foundVowel = false;
+        if(isVowelForSyllables(wc)&& lastWasVowel){
+            foundVowel = true;
+            lastWasVowel = true;
+            continue;
+        }else if(isVowelForSyllables(wc)&& !lastWasVowel){
+            numVowels++;
+            foundVowel = true;
+            lastWasVowel = true;
+            continue;
+        }
+         //if full cycle and no vowel found, set lastWasVowel to false;
+        if (!foundVowel)
+            lastWasVowel = false;
+        
+    }
+    
+    //remove es, it's _usually? silent
+    if (_word.size() > 2 &&
+        _word.substr(_word.size() - 2) == "es")
+        numVowels--;
+    // remove silent e
+    else if (_word.size() > 1 &&
+             _word.substr(_word.size() - 1) == "e")
+        numVowels--;
+    return numVowels;
+}

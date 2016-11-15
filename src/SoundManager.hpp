@@ -37,14 +37,15 @@ public:
 
     void audioRequested (float * output, int bufferSize, int nChannels);
     
-    bool bHide;
+    bool bHide=true;
     
     void toggleGui();
     
   //  ofxIntSlider user1wordcount;
     
     ofParameter<float> user1wordcount;
-
+    ofParameter<float> user1vowelcount;
+    ofParameter<float> user1sylcont1;
 
 private:
     
@@ -58,8 +59,7 @@ private:
     
     ofxPanel gui;
     
-    ofxIntSlider user1vowelcount;
-    ofxIntSlider user1sylcont1;
+
     ofxIntSlider user1sylcont2;
     ofxIntSlider user1sylcont3;
     ofxIntSlider user1sylcont4;

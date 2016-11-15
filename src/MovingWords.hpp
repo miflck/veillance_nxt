@@ -80,7 +80,14 @@ public:
     void stopLifeTimer();
 
     
+    int getVowelcount();
+    bool isVowel(char c);
     
+    bool isVowelForSyllables(char c);
+
+    
+    int countSyllables(string word);
+    int getSyllablescount();
     
     
 private:
@@ -131,6 +138,9 @@ private:
     
     
     bool bIsRotating=true;
+    
+    int numvowels=0;
+    int numsyllables=0;
     
     
 };

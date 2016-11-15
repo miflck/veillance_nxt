@@ -108,8 +108,8 @@ void SoundManager::initialize(){
     
     gui.add( user1wordcount.set( "user1 word count",0,0,100));
    // gui.add(user1wordcount.setup("user1 word count",0,0,100));
-    gui.add(user1vowelcount.setup("user1 syllable count",0,0,6));
-    gui.add(user1sylcont1.setup("user1 vowel 1",int(ofRandom(6)),0,6));
+    gui.add(user1vowelcount.set("user1 syllable count",0,0,6));
+    gui.add(user1sylcont1.set("user1 vowel 1",int(ofRandom(6)),0,6));
     gui.add(user1sylcont2.setup("user1 vowel 2",int(ofRandom(6)),0,6));
     gui.add(user1sylcont3.setup("user1 vowel 3",int(ofRandom(6)),0,6));
     gui.add(user1sylcont4.setup("user1 vowel 4",int(ofRandom(6)),0,6));
@@ -620,7 +620,7 @@ void SoundManager::toggleGui(){
 //--------------------------------------------------------------
 void SoundManager::draw(){
     
-    if( bHide ){
+    if( !bHide ){
         gui.draw();
     }
 }

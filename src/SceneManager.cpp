@@ -277,7 +277,7 @@ void SceneManager::update(){
     
     if(users.size()>0){
        int w= users[0]->getNumWordsOnScreen();
-  
+        if(w>100)w=100;
         SoundM->user1wordcount.set(w);
       }
     
@@ -674,6 +674,13 @@ void SceneManager::addMovingWord(Word *_w){
    // mw->myColor=_w->getBackgroundColor();
     mw->setFont(&bigfont);
     mw->setData(_w->getMyData());
+    
+    //cout<<"Sylables"<<mw->getSyllablescount()<<_w->getMyData()<<endl;
+    SoundM->user1vowelcount.set(mw->getSyllablescount());
+    SoundM->user1sylcont1.set(mw->getVowelcount());
+
+    
+    
     //cout<<"startpos from word"<<_w->getPosition()<<endl;
 
     mw->setStartPosition(_w->getPosition());
