@@ -18,24 +18,46 @@
 using namespace Tonic;
 
 
+
+//for convenience
+#define SoundM SoundManager::getInstance()
+
 class SoundManager : public ofBaseApp{
     
 public:
-    void setup();
+    
+    static SoundManager* getInstance();
+    void initialize();
+    bool isInitialized();
+    
+
+    
     void update();
     void draw();
 
     void audioRequested (float * output, int bufferSize, int nChannels);
     
+    bool bHide;
     
+    void toggleGui();
+    
+  //  ofxIntSlider user1wordcount;
+    
+    ofParameter<float> user1wordcount;
+
+
 private:
+    
+    SoundManager();
+    static SoundManager* instance;
+    bool initialized;
+
+    
     ofxTonicSynth synth;
     
-    bool bHide;
     
     ofxPanel gui;
     
-    ofxIntSlider user1wordcount;
     ofxIntSlider user1vowelcount;
     ofxIntSlider user1sylcont1;
     ofxIntSlider user1sylcont2;

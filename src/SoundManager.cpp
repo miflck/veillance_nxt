@@ -55,9 +55,24 @@ int z3 = 0;
 int z4 = 0;
 
 
+SoundManager* SoundManager::instance = 0;
+SoundManager* SoundManager::getInstance() {
+    if (!instance) {
+        instance = new SoundManager();
+    }
+    return instance;
+}
+
+
+SoundManager::SoundManager(){
+}
 
 //--------------------------------------------------------------
-void SoundManager::setup(){
+void SoundManager::initialize(){
+    
+    initialized=true;
+    cout<<"init SceneManager"<<endl;
+    
     ofSoundStreamSetup(2, 0, this, 44100, 256, 4);
     
     
@@ -91,7 +106,8 @@ void SoundManager::setup(){
     
     gui.setup();
     
-    gui.add(user1wordcount.setup("user1 word count",0,0,100));
+    gui.add( user1wordcount.set( "user1 word count",0,0,100));
+   // gui.add(user1wordcount.setup("user1 word count",0,0,100));
     gui.add(user1vowelcount.setup("user1 syllable count",0,0,6));
     gui.add(user1sylcont1.setup("user1 vowel 1",int(ofRandom(6)),0,6));
     gui.add(user1sylcont2.setup("user1 vowel 2",int(ofRandom(6)),0,6));
@@ -592,6 +608,14 @@ void SoundManager::update(){
     
     
 }
+
+//--------------------------------------------------------------
+void SoundManager::toggleGui(){
+    bHide = !bHide;
+
+   
+}
+
 
 //--------------------------------------------------------------
 void SoundManager::draw(){

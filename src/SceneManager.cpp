@@ -7,6 +7,7 @@
 //
 
 #include "SceneManager.hpp"
+#include "SoundManager.hpp"
 
 
 //int viewportwidth=1920;
@@ -269,6 +270,17 @@ void SceneManager::update(){
     
 
     secondScreenbackgroundFbo.end();
+    
+    
+    
+    //Sound
+    
+    if(users.size()>0){
+       int w= users[0]->getNumWords();
+  
+        SoundM->user1wordcount.set(w);
+      }
+    
  
  
 }

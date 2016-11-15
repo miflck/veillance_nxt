@@ -1,5 +1,6 @@
 #include "ofApp.h"
 #include "SceneManager.hpp"
+#include "SoundManager.hpp"
 
 
 //--------------------------------------------------------------
@@ -7,6 +8,7 @@ void ofApp::setup(){
     
     
     STM->initialize();
+    SoundM->initialize();
     
     IOmanager.setup();
 
@@ -32,7 +34,8 @@ void ofApp::update(){
     IOmanager.update();
     
     STM->update();
-    
+    SoundM->update();
+
    // std::stringstream strm;
     //strm << "fps: " << ofGetFrameRate();
     //ofSetWindowTitle(strm.str());
@@ -44,6 +47,7 @@ void ofApp::update(){
 void ofApp::draw(){
     ofSetColor(255);
     STM->draw();
+    SoundM->draw();
 }
 
 //--------------------------------------------------------------
@@ -54,6 +58,11 @@ void ofApp::keyPressed(int key){
 
 //--------------------------------------------------------------
 void ofApp::keyReleased(int key){
+    
+    if(key=='h'){
+            SoundM->toggleGui();
+    }
+    
     
     if(key=='c'){
         

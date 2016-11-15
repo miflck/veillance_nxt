@@ -2,6 +2,7 @@
 
 #include "ofMain.h"
 #include "SceneManager.hpp"
+#include "SoundManager.hpp"
 
 #include "IOManager.hpp"
 
