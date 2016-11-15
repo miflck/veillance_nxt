@@ -63,9 +63,22 @@ public:
     ofColor myColor;
 
     
+    void applyForce(ofVec3f _f);
+    
+    ofVec3f getDockPoint();
+    
+    
+    int myDockingNode=0;
+    
     
     
 private:
+    
+    
+    
+    ofRectangle boundingBox;
+
+    
     
     bool bIsOnScreen;
     
@@ -73,10 +86,7 @@ private:
 
     ofVec3f position;
     ofVec3f velocity;
-    
     ofVec3f initvelocity;
-
-    
     ofVec3f acceleration;
 
     ofNode node;

@@ -190,8 +190,37 @@ void SceneManager::update(){
         
         for(auto movingWord:movingWords){
             movingWord->update();
+            
+            
+            
+           /*
+            if(movingWords[movingWord->myDockingNode]!=nullptr && movingWords[movingWord->myDockingNode]!= 0 && !movingWords[movingWord->myDockingNode]->bIsMoving){
+                movingWord->setTarget(movingWords[movingWord->myDockingNode]->getDockPoint());
+            }
+            */
+            
           
         }
+        
+        
+        
+        
+         /*
+        if(movingWords.size()>1){
+            for (int i=1;i<movingWords.size();i++){
+                ofVec3f t;
+                t.set(movingWords[i-1]->getDockPoint());
+                movingWords[i]->setTarget(t);
+                movingWords[i]->startMoving();
+            }
+        }
+*/
+            
+            
+            
+
+        
+        
 
         for(auto letter:letters){
             letter->update();
@@ -315,9 +344,15 @@ void SceneManager::draw(){
         bigfont.getFontTexture().bind();
         m.draw();
         bigfont.getFontTexture().unbind();
+        
+        ofSetColor(255,0,0);
+            for (int i=0;i<movingWords.size();i++){
+                ofVec3f t;
+                t.set(movingWords[i]->getDockPoint());
+                ofDrawBox(t, 10);
+            }
+        
         cam[1].end();
-        
-        
         
 
 
@@ -535,6 +570,19 @@ void SceneManager::addMovingWord(Word *_w){
     
     MovingWords *mw=new MovingWords();
     mw->setup();
+    
+    /*
+    if(movingWordPositions.size()>0){
+        int i=int(ofRandom(movingWordPositions.size()));
+        mw->setTarget(movingWordPositions[i]);
+        movingWordPositions.erase(movingWordPositions.begin()+i);
+    }*/
+    
+    if(movingWords.size()>10){
+        int i=int(ofRandom(movingWords.size()));
+        mw->myDockingNode=i;
+    }
+    
    // mw->myColor=_w->getBackgroundColor();
     mw->setFont(&bigfont);
     mw->setData(_w->getMyData());
@@ -625,9 +673,8 @@ bool SceneManager::tryMakeMovingWordByFragmentId(int _id, int _wordIndex){
             cout<<"making moving word from actionbuffer"<<endl;
             canDo=true;
         }else {
-
+            
         }
-
     }
     return canDo;
   }

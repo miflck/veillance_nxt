@@ -106,6 +106,11 @@ public:
     vector<MovingWords *> movingWords;
     void addMovingWord(Word * _w);
     
+    vector <ofVec3f> movingWordPositions;
+
+    
+    
+    
     
     //Background
     ofImage bkg;
