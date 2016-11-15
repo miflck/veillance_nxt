@@ -27,7 +27,6 @@ void MovingWords::setup(){
      float angleZ=ofRandom(-90);
     t.rotate(angleZ, ofVec3f(0,0,1));
     
-    
     t.set(ofGetWidth()/4+ofRandom(-200,200),ofGetHeight()/2+ofRandom(-200,200),2000);
     target.set(t);
 
@@ -86,12 +85,35 @@ void MovingWords::setup(){
 void MovingWords::update(){
     
 
-   
+    int now=ofGetElapsedTimeMillis();
+
+    
+    
+    /*if(isOnScreen&!wasOnScreen){
+        lifespan=int(ofRandom(20000,150000));
+        lifeTime=ofGetElapsedTimeMillis()+lifespan;
+        bIsAlive=true;
+        //startColorLerp();
+        if(bIsSuggestion)startColorLerp();
+        
+        lerpColorAmount=0.0f;
+    }*/
+    
+    
+    if(bIsLifetimeRunning && now>lifetime){
+        stopLifeTimer();
+    }
+
+    
+    
+    
     
     
     move();
- node.setPosition(position);
-    if(spacingFact<1.6){
+    node.setPosition(position);
+    
+    
+    if(spacingFact<1.6 && bIsRotating){
     rollangle+=rollspeed;
     panangle+=panspeed;
     tiltangle+=tiltspeed;
@@ -190,6 +212,9 @@ string MovingWords::getData(){
 
 void MovingWords::setFont(ofTrueTypeFont *f){
     font=f;
+    
+    
+    
 }
 
 void MovingWords::setStartPosition(ofVec3f _p){
@@ -220,6 +245,7 @@ void MovingWords::setVelocity(ofVec3f _v){
 
 void MovingWords::setInitVelocity(ofVec3f _v){
     initvelocity.set(_v);
+    velocity.set(_v);
 }
 
 
@@ -244,44 +270,48 @@ void MovingWords::move(){
     if(bIsMoving){
         
         
-        
+        ofVec3f acc;
         ofVec3f p=position;
-        
-        
-      ///  if(p.z>700)setTarget(ofVec3f(2880,ofGetHeight()/2,0));
-        
         ofVec3f t=target;
         ofVec3f dist=t-p;
-        ofVec3f acceleration=dist;
-        acceleration.limit(maxspeed);
-        velocity+=acceleration;
-        
-        velocity.limit(maxspeed);
-        
-        ofVec3f speed=dist;
-        
-        initvelocity*=0.99;
-       
-//        p+=speed;
-        p+=velocity+initvelocity;
 
         
-        if(dist.length()<(maxspeed)+1){
+        ofVec3f desired=t-p;
+        desired.normalize();
+        
+        float d=dist.length();
+        
+          if(d < 500){
+              float m = ofMap(d,0,500,0,maxspeed);
+              desired*=m;
+
+          }else{
+              desired*=maxspeed;
+          }
+        
+        ofVec3f steer=desired-velocity;
+    //    steer.limit(0.09);
+        acc+=steer;
+        
+        velocity+=acc;
+        p+=velocity;
+        
+         if(d<1){
             p.set(target);
             stopMoving();
-
         }
         position.set(p);
     }
+      
     
-    
-    STM->backgroundFbo.begin();
-    
-  //  ofSetColor(255,0,0,20);
-   // ofCircle(ofRandom(0,1000),ofRandom(0,1000), 10);
-    STM->backgroundFbo.end();
-    
-    
+}
+
+
+
+void MovingWords::applyForce(ofVec3f _f){
+    acceleration+=_f;
+
+
 }
 
 
@@ -293,33 +323,19 @@ void MovingWords::startMoving(){
 
 void MovingWords::stopMoving(){
     
- /*  STM->backgroundFbo.begin();
-    STM->bkg.draw(ofRandom(ofGetWidth()/2),ofRandom(ofGetHeight()/2));
-   /* ofPushMatrix();
-    ofTranslate(position);
-    // font->drawString(data,0,0);
     
-    
-    float angle;
-    ofVec3f axis;//(0,0,1.0f);
-    
-    ofQuaternion q;
-    q=node.getGlobalOrientation();
-    q.getRotate(angle, axis);
-    
-    ofSetColor(0,191,255);
-    
-    ofRotate(angle, axis.x, axis.y, axis.z); // rotate with quaternion
-    //name = ofUTF8::toUpper(name);
-    font->drawString(data,0,0);
-    ofPopMatrix();
-    */
+   
+
+    startLifeTimer();
+    bIsMoving=false;
+    bIsRotating=false;
+    STM->movingWordPositions.push_back(getDockPoint());
 
     
     
-   // STM->backgroundFbo.end();
-    //bIsAlive=false;
-    bIsMoving=false;
+
+    
+    
 }
 
 void MovingWords::setIsAlive(bool _b){
@@ -330,6 +346,29 @@ void MovingWords::setIsAlive(bool _b){
 bool MovingWords::checkIsAlive(){
     return bIsAlive;
 }
+
+
+ofVec3f MovingWords::getDockPoint(){
+
+    float angle;
+    ofVec3f axis;//(0,0,1.0f);
+    
+    ofQuaternion q;
+    q=node.getGlobalOrientation();
+    q.getRotate(angle, axis);
+    
+    ofPushMatrix();
+    ofSetColor(0,191,255);
+    
+    spacingFact=ofLerp(spacingFact,1.2,0.01);
+    font->setLetterSpacing(spacingFact);
+    boundingBox = font->getStringBoundingBox(data, 0, 0);
+    ofVec3f p=boundingBox.getBottomRight();//position+boundingBox.getBottomRight();
+    p=p*node.getGlobalTransformMatrix();
+
+    return p;
+}
+
 
 
 ofVboMesh MovingWords::getUpdatedVboMesh(){
@@ -351,5 +390,57 @@ ofVboMesh MovingWords::getUpdatedVboMesh(){
     }
     return vbom;
 }
+
+
+
+void MovingWords::setLifeTime(int _t){
+    lifetime=_t;
+}
+
+void MovingWords::setLifeSpan(int _t){
+    lifespan=_t;
+}
+
+
+int MovingWords::getLifeTime(){
+    return lifetime;
+
+}
+
+void MovingWords::startLifeTimer(){
+    lifetime=ofGetElapsedTimeMillis()+lifespan;
+    bIsLifetimeRunning=true;
+}
+
+void MovingWords::stopLifeTimer(){
+    bIsLifetimeRunning=false;
+    bIsAlive=false;
+    
+    STM->secondScreenbackgroundFbo.begin();
+    STM->cam[1].begin();
+    
+    font->getFontTexture().bind();
+    getUpdatedVboMesh().draw();
+    font->getFontTexture().unbind();
+    /*
+    ofSetColor(255,0,0);
+    ofPushMatrix();
+    ofTranslate(position);
+     float angle;
+     ofVec3f axis;//(0,0,1.0f);
+     ofQuaternion q;
+     q=node.getGlobalOrientation();
+     q.getRotate(angle, axis);
+     ofSetColor(0,191,255);
+     ofRotate(angle, axis.x, axis.y, axis.z); // rotate with quaternion
+    font->setLetterSpacing(spacingFact);
+    font->drawString(data,0,0);
+     ofPopMatrix();*/
+    
+    STM->cam[1].end();
+     STM->secondScreenbackgroundFbo.end();
+   }
+
+
 
 

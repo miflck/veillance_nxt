@@ -106,9 +106,18 @@ public:
     vector<MovingWords *> movingWords;
     void addMovingWord(Word * _w);
     
+    vector <ofVec3f> movingWordPositions;
+
+    
+    
+    
     
     //Background
     ofImage bkg;
+    ofFbo backgroundFbo;
+    ofFbo secondScreenbackgroundFbo;
+
+
     
     
     //FONT
@@ -162,7 +171,6 @@ public:
     ofRectangle viewBack;
 
     
-    ofFbo backgroundFbo;
 
     
 private:

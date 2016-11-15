@@ -63,20 +63,43 @@ public:
     ofColor myColor;
 
     
+    void applyForce(ofVec3f _f);
+    
+    ofVec3f getDockPoint();
+    
+    
+    int myDockingNode=0;
+    
+    
+    // timer
+    void setLifeTime(int _t);
+    void setLifeSpan(int _t);
+    int getLifeTime();
+    int getRestLifeTime();
+    void startLifeTimer();
+    void stopLifeTimer();
+
+    
+    
     
     
 private:
     
-    bool bIsOnScreen;
     
+    
+    ofRectangle boundingBox;
+
+    
+    int lifetime;
+    int lifespan;
+    bool bIsLifetimeRunning=false;
+    
+    bool bIsOnScreen;
     ofVec3f startposition;
 
     ofVec3f position;
     ofVec3f velocity;
-    
     ofVec3f initvelocity;
-
-    
     ofVec3f acceleration;
 
     ofNode node;
@@ -105,6 +128,9 @@ private:
     float spacingFact;
     
     ofVec3f lookat;
+    
+    
+    bool bIsRotating=true;
     
     
 };
