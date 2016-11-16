@@ -59,7 +59,16 @@ void ofApp::draw(){
     if(bSound)SoundM->draw();
     if(bDebug)	{
         ofDrawBitmapString("Framerate", 0,20);
-        ofDrawBitmapString(ofToString(ofGetFrameRate()), 100,20);
+        ofDrawBitmapString(ofToString(ofGetFrameRate()), 110,20);
+        
+        
+        ofDrawBitmapString("Messagebuffer", 0,40);
+        ofDrawBitmapString(STM->messageBuffer.size(), 110,40);
+        
+        
+        ofDrawBitmapString("Actionbuffer", 0,60);
+        ofDrawBitmapString(STM->actionBuffer.size(), 110,60);
+        
     }
 }
 
