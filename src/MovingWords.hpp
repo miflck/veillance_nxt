@@ -12,6 +12,8 @@
 #include <stdio.h>
 #include "ofMain.h"
 
+class User;
+
 
 class MovingWords {
     
@@ -24,6 +26,11 @@ public:
     void setData(string data);
     string data;
     string getData();
+    
+    void setUserPointer(User * _u);
+    User * getUserPointer();
+    
+    
     
     ofTrueTypeFont  *font;
     void setFont(ofTrueTypeFont *f);
@@ -80,14 +87,17 @@ public:
     
     bool isVowelForSyllables(char c);
 
-    
     int countSyllables(string word);
     int getSyllablescount();
     
     
+    //hack
+    bool bHasSound=false;
+    
+    
 private:
     
-    
+    User * userPointer;
     
     ofRectangle boundingBox;
 

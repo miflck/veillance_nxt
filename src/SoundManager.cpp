@@ -115,8 +115,8 @@ void SoundManager::initialize(){
     gui.add(user1sylcont4.setup("user1 vowel 4",int(ofRandom(6)),0,6));
     gui.add(user1sylcont5.setup("user1 vowel 5",int(ofRandom(6)),0,6));
     gui.add(user1sylcont6.setup("user1 vowel 6",int(ofRandom(6)),0,6));
-    gui.add(user1pan.setup("user1 pan",0,-1,1));
-    gui.add(user1Zpos.setup("user1 z position",0.2,0,1));
+    gui.add(user1pan.set("user1 pan",0,-1,1));
+    gui.add(user1Zpos.set("user1 z position",0.2,0,1));
     
     gui.add(user2wordcount.set("user2 word count",0,0,100));
     gui.add(user2vowelcount.set("user2 syllable count",0,0,16));
@@ -126,8 +126,8 @@ void SoundManager::initialize(){
     gui.add(user2sylcont4.setup("user2 vowel 4",int(ofRandom(6)),0,14));
     gui.add(user2sylcont5.setup("user2 vowel 5",int(ofRandom(6)),0,14));
     gui.add(user2sylcont6.setup("user2 vowel 6",int(ofRandom(6)),0,14));
-    gui.add(user2pan.setup("user2 pan",0,-1,1));
-    gui.add(user2Zpos.setup("user2 z position",0.2,0,1));
+    gui.add(user2pan.set("user2 pan",0,-1,1));
+    gui.add(user2Zpos.set("user2 z position",0.2,0,1));
     
     gui.add(user3wordcount.set("user3 word count",0,0,100));
     gui.add(user3vowelcount.set("user3 syllable count",0,0,16));
@@ -137,8 +137,8 @@ void SoundManager::initialize(){
     gui.add(user3sylcont4.setup("user3 vowel 4",int(ofRandom(6)),0,14));
     gui.add(user3sylcont5.setup("user3 vowel 5",int(ofRandom(6)),0,14));
     gui.add(user3sylcont6.setup("user3 vowel 6",int(ofRandom(6)),0,14));
-    gui.add(user3pan.setup("user3 pan",0,-1,1));
-    gui.add(user3Zpos.setup("user3 z position",0.2,0,1));
+    gui.add(user3pan.set("user3 pan",0,-1,1));
+    gui.add(user3Zpos.set("user3 z position",0.2,0,1));
     
     gui.add(user4wordcount.set("user4 word count",0,0,100));
     gui.add(user4vowelcount.set("user4 syllable count",0,0,16));
@@ -148,8 +148,8 @@ void SoundManager::initialize(){
     gui.add(user4sylcont4.setup("user4 vowel 4",int(ofRandom(6)),0,14));
     gui.add(user4sylcont5.setup("user4 vowel 5",int(ofRandom(6)),0,14));
     gui.add(user4sylcont6.setup("user4 vowel 6",int(ofRandom(6)),0,14));
-    gui.add(user4pan.setup("user4 pan",0,-1,1));
-    gui.add(user4Zpos.setup("user4 z position",0.2,0,1));
+    gui.add(user4pan.set("user4 pan",0,-1,1));
+    gui.add(user4Zpos.set("user4 z position",0.2,0,1));
     
     bHide = true;
     

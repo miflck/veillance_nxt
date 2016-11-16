@@ -37,7 +37,7 @@ void ofApp::setup(){
     ofSetVerticalSync(true);
     ofSetFrameRate(60);
     
-    ofBuffer buffer = ofBufferFromFile("heartofdarkness 3.txt");
+    ofBuffer buffer = ofBufferFromFile("heartofdarkness.txt");
     for (auto line : buffer.getLines()){
         data.push_back(line);
     }
@@ -113,10 +113,15 @@ void ofApp::keyReleased(int key){
         
     }
     
+    
+    if(key=='m'){
+        STM->bSoundStuff=!STM->bSoundStuff;
+        
+    }
+
+    
     if(key=='s'){
         ofToggleFullscreen();
-        
-        
     }
     
     
