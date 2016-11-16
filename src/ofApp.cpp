@@ -6,11 +6,24 @@
 //--------------------------------------------------------------
 void ofApp::setup(){
     
+    settings.loadFile("settings.xml");
+    string host = settings.getValue("serversettings:host","localhost");
+    int port = settings.getValue("serversettings:port", 8080);
+    string channel = settings.getValue("serversettings:channel", "/entry");
+    
+    
+    cout<<"settings "<<host<<port<<channel<<endl;
+    
     
     STM->initialize();
     SoundM->initialize();
-    
+   
     IOmanager.setup();
+    IOmanager.setHost(host);
+    IOmanager.setPort(port);
+    IOmanager.setChannel(channel);
+    IOmanager.setupConnection();
+
 
     
     ofBackground(0);

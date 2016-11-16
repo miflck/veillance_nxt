@@ -5,6 +5,7 @@
 #include "SoundManager.hpp"
 
 #include "IOManager.hpp"
+#include "ofxXmlSettings.h"
 
 
 class ofApp : public ofBaseApp{
@@ -41,6 +42,8 @@ class ofApp : public ofBaseApp{
     
     
     
+    ofxXmlSettings settings;
+    
     
     
     bool bUpdate=true;
@@ -50,5 +53,9 @@ class ofApp : public ofBaseApp{
     //debug
     int fragmentId;
     bool bSound=true;
+    
+    
+    
+    
 		
 };
