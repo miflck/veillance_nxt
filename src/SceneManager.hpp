@@ -87,6 +87,8 @@ public:
     vector<Word *> words;
 
     Fragment* getFragmentById(int _id);
+    Word * getWordByFragmentId(int _id,int _wordindex);
+
 
     
     //MOVING WORDS

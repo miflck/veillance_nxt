@@ -36,7 +36,7 @@ void MovingWords::setup(){
     node.setScale(scalefact);
     
     
-    maxspeed=ofRandom(2,5);
+    maxspeed=ofRandom(0.25,3);
     
     // plane.set(100, 100);   ///dimensions for width and height in pixels
     // plane.setPosition(startposition); /// position in x y z

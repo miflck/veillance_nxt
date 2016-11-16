@@ -46,6 +46,22 @@ public:
     ofParameter<float> user1wordcount;
     ofParameter<float> user1vowelcount;
     ofParameter<float> user1sylcont1;
+    
+    
+    ofParameter<float> user2wordcount;
+    ofParameter<float> user2vowelcount;
+    ofParameter<float> user2sylcont1;
+    
+    
+    ofParameter<float> user3wordcount;
+    ofParameter<float> user3vowelcount;
+    ofParameter<float> user3sylcont1;
+    
+    
+    ofParameter<float> user4wordcount;
+    ofParameter<float> user4vowelcount;
+    ofParameter<float> user4sylcont1;
+    
 
 private:
     
@@ -68,9 +84,9 @@ private:
     ofxFloatSlider user1pan;
     ofxFloatSlider user1Zpos;
     
-    ofxIntSlider user2wordcount;
+ /*   ofxIntSlider user2wordcount;
     ofxIntSlider user2vowelcount;
-    ofxIntSlider user2sylcont1;
+    ofxIntSlider user2sylcont1;*/
     ofxIntSlider user2sylcont2;
     ofxIntSlider user2sylcont3;
     ofxIntSlider user2sylcont4;
@@ -79,9 +95,9 @@ private:
     ofxFloatSlider user2pan;
     ofxFloatSlider user2Zpos;
     
-    ofxIntSlider user3wordcount;
+/*    ofxIntSlider user3wordcount;
     ofxIntSlider user3vowelcount;
-    ofxIntSlider user3sylcont1;
+    ofxIntSlider user3sylcont1;*/
     ofxIntSlider user3sylcont2;
     ofxIntSlider user3sylcont3;
     ofxIntSlider user3sylcont4;
@@ -90,9 +106,9 @@ private:
     ofxFloatSlider user3pan;
     ofxFloatSlider user3Zpos;
     
-    ofxIntSlider user4wordcount;
+  /*  ofxIntSlider user4wordcount;
     ofxIntSlider user4vowelcount;
-    ofxIntSlider user4sylcont1;
+    ofxIntSlider user4sylcont1;*/
     ofxIntSlider user4sylcont2;
     ofxIntSlider user4sylcont3;
     ofxIntSlider user4sylcont4;

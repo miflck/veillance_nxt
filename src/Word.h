@@ -79,6 +79,7 @@ public:
     
     
     void setIsSuggestion(bool _s);
+    bool getIsSuggestion();
     
     ofColor myColor;
     ofColor myInitColor;
@@ -116,17 +117,18 @@ public:
     
     bool checkShouldRemove();
     
-    
+    void lock(bool _l);
+    bool getIsLocked();
     
 private:
     
     bool bRemove=false;
-    
     string data; //declare a vector of strings to store data
     float lerpColorAmount;
     
     int lifespan;
-
+    bool bIsLocked;
+    
     
   bool  bIsMovingWord=false;
   bool  bIsSuggestion=false;

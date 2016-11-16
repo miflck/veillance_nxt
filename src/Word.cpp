@@ -36,14 +36,15 @@ void Word::update(){
     int now=ofGetElapsedTimeMillis();
     bool isOnScreen=checkIsOnScreen();
 
+    
     if(isOnScreen&!wasOnScreen){
-        lifespan=int(ofRandom(20000,150000));
-        lifeTime=ofGetElapsedTimeMillis()+lifespan;
+        //lifespan=int(ofRandom(20000,150000));
+        //lifeTime=ofGetElapsedTimeMillis()+lifespan;
         bIsAlive=true;
         //startColorLerp();
-        if(bIsSuggestion)startColorLerp();
+        //if(bIsSuggestion)startColorLerp();
 
-        lerpColorAmount=0.0f;
+        //lerpColorAmount=0.0f;
     }
     
     
@@ -156,10 +157,7 @@ void Word::setLifeTime(int _lifeTime){
 }
 
 
-void Word::setIsSuggestion(bool _s){
-    bIsSuggestion=_s;
-    if(bIsSuggestion)targetColor=mySuggestionColor;
-}
+
 
 
 void Word::addLetterPointer(Letter *_l){
@@ -290,6 +288,25 @@ bool Word::checkIsOnScreen(){
 
 }
 
+
+
+void Word::setIsSuggestion(bool _s){
+    bIsSuggestion=_s;
+    if(bIsSuggestion){
+        lock(true);
+        targetColor=mySuggestionColor;
+        lifespan=int(ofRandom(20000,150000));
+        lifeTime=ofGetElapsedTimeMillis()+lifespan;
+       startColorLerp();
+        lerpColorAmount=0.0f;
+    }
+}
+
+bool Word::getIsSuggestion(){
+    return bIsSuggestion;
+}
+
+
 int Word::getIndex(){
     return wordIndex;
 }
@@ -298,4 +315,13 @@ void Word::setIsDrawn(bool _isDrawn){
     for(auto letter:myLetters){
         letter->setIsDrawn(_isDrawn);
     }
+}
+
+
+void Word::lock(bool _l){
+    bIsLocked=_l;
+}
+
+bool Word::getIsLocked(){
+    return bIsLocked;
 }

@@ -120,9 +120,25 @@ void SceneManager::update(){
     if(actionBuffer.size()>0){
         for (int i=0;i<actionBuffer.size();i++){
             action a=actionBuffer[i];
-            if(tryMakeMovingWordByFragmentId(a.uuid,a.startwordcounter) || tryMakeMovingWordByFragmentId(a.uuid,a.endwordcounter)){
+            
+            Word*w =getWordByFragmentId(a.uuid,a.startwordcounter);
+            if(w!=nullptr){
+                if(w->getIsLocked()){
+                }else{
+                w->setIsSuggestion(true);
+                }
                 actionBuffer.erase(actionBuffer.begin()+i);
+            }else{
+                //cout<<"suggestion is not on screen"<<endl;
             }
+            
+            
+            
+            /*if(tryMakeMovingWordByFragmentId(a.uuid,a.startwordcounter) || tryMakeMovingWordByFragmentId(a.uuid,a.endwordcounter)){
+                actionBuffer.erase(actionBuffer.begin()+i);
+            }*/
+            
+            
         }
         
     }
@@ -208,9 +224,24 @@ void SceneManager::update(){
     
     //Sound-> hacked draft constrain to 100 Words
     if(users.size()>0){
+        
         int w= users[0]->getNumWordsOnScreen();
         if(w>100)w=100;
         SoundM->user1wordcount.set(w);
+        
+        if(users.size()>1){
+            int w= users[1]->getNumWordsOnScreen();
+            if(w>100)w=100;
+            SoundM->user2wordcount.set(w);
+        }
+    
+        if(users.size()>2){
+            int w= users[2]->getNumWordsOnScreen();
+            if(w>100)w=100;
+            SoundM->user3wordcount.set(w);
+        }
+        
+        
     }
     
 }
@@ -227,15 +258,16 @@ void SceneManager::draw(){
     cam[0].begin(viewFront);
     
     // Color code. not using at the moment
-    /*ofEnableBlendMode(OF_BLENDMODE_ADD);
+    if(debug){
+    ofEnableBlendMode(OF_BLENDMODE_ADD);
     backgroundFbo.begin();
     ofEnableAlphaBlending();
     for(int i=0;i<cms.size();i++){
         cms[i].draw();
     }
-    backgroundFbo.end();*/
+    backgroundFbo.end();
     
-    
+    }
     //No need to draw each element. Doing this now with one mesh for better performance
     /*
      
@@ -371,6 +403,10 @@ void SceneManager::addDataFromBuffer(){
         u=new User();
         u->setup();
         u->setUserName(m.username);
+        cout<<"new user "<<u->getUserName()<<endl;
+
+    }else{
+        cout<<"add to user "<<u->getUserName()<<endl;
     }
     
     Fragment * f=new Fragment();
@@ -528,6 +564,8 @@ void SceneManager::addMovingWord(Word *_w){
     mw->setFont(&bigfont);
     mw->setData(_w->getMyData());
     
+    mw->getUserName();
+    
     //Send info to soundmanager -> hacky
     SoundM->user1vowelcount.set(mw->getSyllablescount());
     SoundM->user1sylcont1.set(mw->getVowelcount());
@@ -577,8 +615,9 @@ void SceneManager::makeRandomMovingWord(){
     cout<<"Word index "<<wI;
     Word *w =f->getWordByIndex(wI);
     cout<<"is on screen"<<w->checkIsOnScreen()<<endl;
-    if(w!=nullptr && w->checkIsOnScreen()){
+    if(w!=nullptr && w->checkIsOnScreen() && !w->getIsLocked()){
         w->myColor=ofColor(0,0,0);
+        w->lock(true);
         addMovingWord(w);
         cout<<"making moving word"<<endl;
     }else {
@@ -625,6 +664,22 @@ User * SceneManager::getUserByUsername(string _name){
 
 
 
+
+Word * SceneManager::getWordByFragmentId(int _id, int _wordIndex){
+    bool canDo=false;
+    Fragment *f=getFragmentById(_id);
+    if(f!=nullptr){
+        Word *w =f->getWordByIndex(_wordIndex);
+        if(w!=nullptr && w->checkIsOnScreen()){
+            canDo=true;
+            return w;
+        }else {
+            return nullptr;
+        }
+    }else{
+        return nullptr;
+    }
+}
 
 
 

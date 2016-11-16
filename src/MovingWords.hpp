@@ -61,15 +61,10 @@ public:
 
     
     ofColor myColor;
-
     
     void applyForce(ofVec3f _f);
-    
     ofVec3f getDockPoint();
-    
-    
     int myDockingNode=0;
-    
     
     // timer
     void setLifeTime(int _t);

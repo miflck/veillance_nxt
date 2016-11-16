@@ -124,7 +124,8 @@ void ofApp::keyReleased(int key){
     
     if(key=='D'){
         // bDraw=!bDraw;
-        // STM->setDebug(STM->getD);
+        bDraw=!bDraw;
+         STM->setDebug(bDraw);
     }
     
     

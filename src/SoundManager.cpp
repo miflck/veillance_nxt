@@ -118,9 +118,9 @@ void SoundManager::initialize(){
     gui.add(user1pan.setup("user1 pan",0,-1,1));
     gui.add(user1Zpos.setup("user1 z position",0.2,0,1));
     
-    gui.add(user2wordcount.setup("user2 word count",0,0,100));
-    gui.add(user2vowelcount.setup("user2 syllable count",0,0,16));
-    gui.add(user2sylcont1.setup("user2 vowel 1",int(ofRandom(6)),0,14));
+    gui.add(user2wordcount.set("user2 word count",0,0,100));
+    gui.add(user2vowelcount.set("user2 syllable count",0,0,16));
+    gui.add(user2sylcont1.set("user2 vowel 1",int(ofRandom(6)),0,14));
     gui.add(user2sylcont2.setup("user2 vowel 2",int(ofRandom(6)),0,14));
     gui.add(user2sylcont3.setup("user2 vowel 3",int(ofRandom(6)),0,14));
     gui.add(user2sylcont4.setup("user2 vowel 4",int(ofRandom(6)),0,14));
@@ -129,9 +129,9 @@ void SoundManager::initialize(){
     gui.add(user2pan.setup("user2 pan",0,-1,1));
     gui.add(user2Zpos.setup("user2 z position",0.2,0,1));
     
-    gui.add(user3wordcount.setup("user3 word count",0,0,100));
-    gui.add(user3vowelcount.setup("user3 syllable count",0,0,16));
-    gui.add(user3sylcont1.setup("user3 vowel 1",int(ofRandom(6)),0,14));
+    gui.add(user3wordcount.set("user3 word count",0,0,100));
+    gui.add(user3vowelcount.set("user3 syllable count",0,0,16));
+    gui.add(user3sylcont1.set("user3 vowel 1",int(ofRandom(6)),0,14));
     gui.add(user3sylcont2.setup("user3 vowel 2",int(ofRandom(6)),0,14));
     gui.add(user3sylcont3.setup("user3 vowel 3",int(ofRandom(6)),0,14));
     gui.add(user3sylcont4.setup("user3 vowel 4",int(ofRandom(6)),0,14));
@@ -140,9 +140,9 @@ void SoundManager::initialize(){
     gui.add(user3pan.setup("user3 pan",0,-1,1));
     gui.add(user3Zpos.setup("user3 z position",0.2,0,1));
     
-    gui.add(user4wordcount.setup("user4 word count",0,0,100));
-    gui.add(user4vowelcount.setup("user4 syllable count",0,0,16));
-    gui.add(user4sylcont1.setup("user4 vowel 1",int(ofRandom(6)),0,14));
+    gui.add(user4wordcount.set("user4 word count",0,0,100));
+    gui.add(user4vowelcount.set("user4 syllable count",0,0,16));
+    gui.add(user4sylcont1.set("user4 vowel 1",int(ofRandom(6)),0,14));
     gui.add(user4sylcont2.setup("user4 vowel 2",int(ofRandom(6)),0,14));
     gui.add(user4sylcont3.setup("user4 vowel 3",int(ofRandom(6)),0,14));
     gui.add(user4sylcont4.setup("user4 vowel 4",int(ofRandom(6)),0,14));
