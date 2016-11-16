@@ -50,7 +50,7 @@ public:
     
     User * myUserPointer;
     void setUserPointer(User * _u);
-    
+    User * getUserPointer();
 
 
     vector<Letter *> myLetters;

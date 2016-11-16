@@ -195,7 +195,9 @@ void Word::setUserPointer(User *_u){
     myUserPointer=_u;
 }
 
-
+User * Word::getUserPointer(){
+    return myUserPointer;
+}
 
 
 void Word::setColor(ofColor _c){

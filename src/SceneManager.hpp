@@ -80,6 +80,7 @@ public:
     //USER
     vector<User *>users;
     User * getUserByUsername(string _name);
+    int getUserIndexByUsername(string _name);
     
     //FRAGMENTS WORDS LETTERs
     vector<Fragment *> fragments;

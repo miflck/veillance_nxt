@@ -564,11 +564,36 @@ void SceneManager::addMovingWord(Word *_w){
     mw->setFont(&bigfont);
     mw->setData(_w->getMyData());
     
-    mw->getUserName();
+    User *u= _w->getUserPointer();
+    string n=u->getUserName();
+    int i=getUserIndexByUsername(n);
     
-    //Send info to soundmanager -> hacky
-    SoundM->user1vowelcount.set(mw->getSyllablescount());
-    SoundM->user1sylcont1.set(mw->getVowelcount());
+    switch (i) {
+        case 0:
+            //Send info to soundmanager -> hacky
+            SoundM->user1vowelcount.set(mw->getSyllablescount());
+            SoundM->user1sylcont1.set(mw->getVowelcount());
+            break;
+            
+        case 1:
+            //Send info to soundmanager -> hacky
+            SoundM->user2vowelcount.set(mw->getSyllablescount());
+            SoundM->user2sylcont1.set(mw->getVowelcount());
+            break;
+            
+        case 2:
+            //Send info to soundmanager -> hacky
+            SoundM->user3vowelcount.set(mw->getSyllablescount());
+            SoundM->user3sylcont1.set(mw->getVowelcount());
+            break;
+            
+        default:
+            break;
+    }
+    
+    
+   
+
     
     //set position an initial speed
     mw->setStartPosition(_w->getPosition());
@@ -660,6 +685,18 @@ User * SceneManager::getUserByUsername(string _name){
     return nullptr;
     
     
+}
+
+int SceneManager:: getUserIndexByUsername(string _name){
+    
+    for(int i=0;i<users.size();i++){
+        if (_name==users[i]->getUserName()){
+            return i;
+            break;
+        }
+    }
+    return -1;
+
 }
 
 
