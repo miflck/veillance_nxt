@@ -3,6 +3,7 @@
 //  TypeStudy_02
 //
 //  Created by Flückiger Michael on 12.10.16.
+// This is a caroussel item. its holding a pointer to the assignet letter
 //
 //
 

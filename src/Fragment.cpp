@@ -35,20 +35,11 @@ void Fragment::update(){
 
 void Fragment::draw(){
 
+    /*
     STM->backgroundFbo.begin();
-    
     ofDrawRectangle(getBoundingBox().getPosition(), getBoundingBox().width,getBoundingBox().height);
-    
-    /*ofSetColor(255,0,0,100);
-     //STM->bkg.draw(getPosition(),getBoundingBox().width,200);
-     ofDrawRectangle(getPosition().x,getPosition().y-30, getBoundingBox().width-10,60);
-     ofDrawRectangle(getPosition().x,getPosition().y-10, getBoundingBox().width-10,20);
-     ofDrawRectangle(getPosition().x,getPosition().y-5, getBoundingBox().width-10,20);*/
-    
-    //STM->bkg.draw(getPosition().x,getPosition().y-50,100,200);
-    
-    
     STM->backgroundFbo.end();
+     */
 
 }
 

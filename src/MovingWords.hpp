@@ -112,11 +112,9 @@ private:
     ofNode node;
     ofVec3f target;
     ofPlanePrimitive plane;    
-    ofBoxPrimitive geometry;
 
     bool bIsAlive=false;
     
-    int maxdistance;
     
     float rollspeed;
     float panspeed;

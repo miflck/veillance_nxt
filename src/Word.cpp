@@ -77,14 +77,12 @@ void Word::draw(){
 
         
         for(int i=0;i<5;i++){
-            //STM->bkg.draw(getPosition().x-250,getPosition().y-10*i,getBoundingBox().width,20*i);
 
          ofDrawRectangle(getPosition().x-getBoundingBox().width/2,getPosition().y-10*i, getBoundingBox().width*2,20*i);
         }
         
         ofSetColor(255,0,0);
         
-        //STM->bkg.draw(getPosition().x-500,getPosition().y-500,1000,1000);
 
        ofDisableBlendMode();
  
@@ -95,7 +93,6 @@ void Word::draw(){
         ofDrawRectangle(getPosition().x,getPosition().y-10, getBoundingBox().width-10,20);
         ofDrawRectangle(getPosition().x,getPosition().y-5, getBoundingBox().width-10,20);*/
         
-        //STM->bkg.draw(getPosition().x,getPosition().y-50,100,200);
 
 
         STM->backgroundFbo.end();

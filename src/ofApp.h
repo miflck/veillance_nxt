@@ -1,9 +1,7 @@
 #pragma once
-
 #include "ofMain.h"
 #include "SceneManager.hpp"
 #include "SoundManager.hpp"
-
 #include "IOManager.hpp"
 #include "ofxXmlSettings.h"
 
@@ -28,34 +26,25 @@ class ofApp : public ofBaseApp{
 		void gotMessage(ofMessage msg);
     
     
- 
-
-    
+    // Typography
     ofTrueTypeFont  font;
     ofTrueTypeFont  bigfont;
-
-    
-    vector<string> data; //declare a vector of strings to store data
     
     
+    // Server
     IOManager IOmanager;
-    
-    
-    
     ofxXmlSettings settings;
     
-    
-    
-    bool bUpdate=true;
-    bool bDraw=true;
-    bool bDebug=false;
   
     //debug
     int fragmentId;
     bool bSound=true;
     
-    
-    
+    // Debug Data from file
+    vector<string> data; //declare a vector of strings to store data
+    bool bUpdate=true;
+    bool bDraw=true;
+    bool bDebug=false;
     
 		
 };

@@ -30,8 +30,6 @@
 #define STM SceneManager::getInstance()
 
 
-
-
 struct message {
     int uuid;
     string username;
@@ -52,26 +50,19 @@ struct action {
 
 
 
-
-
-
-
 class SceneManager {
     
 public:
     static SceneManager* getInstance();
-    void initialize();
+    void initialize(int width, int height);
     bool isInitialized();
-    
     
     void update();
     void draw();
     
-    
-    //Mesh
-    ofVboMesh drawMesh;
-
-    
+    //LETTERMESH
+    // draws all the letters with one drawcall
+    ofVboMesh letterMesh;
     
     
     // CAROUSSEL
@@ -80,100 +71,70 @@ public:
     void carousselEvent(CarousselEvent &e);
 
     
-    
     // DATA
-    
     void addDataFromBuffer();
-
-    
-    
     void addData(string _s, int _fragmentId);
     void addWord(string _s);
 
-    vector<Fragment *> fragments;
-
     
-    
-    //User
+    //USER
     vector<User *>users;
-    void addUser(User * _l);
     User * getUserByUsername(string _name);
     
-    
-    //LETTER
+    //FRAGMENTS WORDS LETTERs
+    vector<Fragment *> fragments;
     vector<Letter *>letters;
-    void addLetter(Letter * _l);
     vector<Word *> words;
 
+    Fragment* getFragmentById(int _id);
+
     
-    //Moving Words
+    //MOVING WORDS
     vector<MovingWords *> movingWords;
     void addMovingWord(Word * _w);
     vector <ofVec3f> movingWordPositions;
+    
+    void makeMovingWordByFragmentId(int _id,int _wordindex);
+    bool tryMakeMovingWordByFragmentId(int _id,int _wordindex);
+    void makeRandomMovingWord();
 
     
-    
-    
-    
-    //Background
-    ofImage bkg;
-    ofFbo backgroundFbo;
-    ofFbo secondScreenbackgroundFbo;
+    // BACKGROUNDS
+    ofFbo backgroundFbo; //FBO for screen One. To do the backgroundcolors
+    ofFbo secondScreenbackgroundFbo; // FBO for screen two. Holds the freezed Moving Words and fades out
 
-
-    
     
     //FONT
-    
     ofTrueTypeFont  font;
     ofTrueTypeFont  bigfont;
     
     
-    
-    
-    
-    
-    //BUFFER
-    
+    //INCOMING MESSAGES BUFFER
     vector <message> messageBuffer;
     void addMessage(message _m);
     
     vector <action> actionBuffer;
     void addAction(action _a);
     
-    
-    
-    
-    //debug
-    bool bUpdate=true;
-    bool bDraw=true;
-    
-    bool debug;
-    void setDebug(bool debug);
-    
-    static bool shouldRemoveMovingWord(MovingWords *mw); // why static
-    
-    
-    static bool shouldRemoveLetter(Letter *l); // why static
+  
+    // NOT CONSISTEND, fragments are not removed like that! shame!
+    static bool shouldRemoveMovingWord(MovingWords *mw); // why static?
+    static bool shouldRemoveLetter(Letter *l); // why static?
 
     
     
-    Fragment* getFragmentById(int _id);
-    void makeMovingWordByFragmentId(int _id,int _wordindex);
-    
-    
-    bool tryMakeMovingWordByFragmentId(int _id,int _wordindex);
-
-    
-    void makeRandomMovingWord();
-    
-    
-    
+    // VIEWPORTS
     ofCamera cam[2];
     ofRectangle viewFront;
     ofRectangle viewBack;
-
+    int viewportwidth; // FULLHD
+    //int viewportwidth=1280; //WXGA
+    int viewportheight;
     
+
+    //DEBUG
+    bool debug;
+    void setDebug(bool debug);
 
     
 private:
@@ -182,10 +143,8 @@ private:
     bool initialized;
     int wordcounter=0;
     
-    
+    // FLAG to load data from buffer
     bool bIsReadyForData=true;
-    
-    
     
 };
 

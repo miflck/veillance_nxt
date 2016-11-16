@@ -21,7 +21,7 @@ int main( ){
     
     ofAppGLFWWindow window;
     window.setMultiDisplayFullscreen(true);
-    ofSetupOpenGL(&window,3840,1080,OF_WINDOW);
+    ofSetupOpenGL(&window,100,100,OF_WINDOW);
     ofRunApp(new ofApp());
     
     
