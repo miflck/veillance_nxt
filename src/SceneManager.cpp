@@ -208,11 +208,11 @@ void SceneManager::update(){
     
     // ADD BLACK SQUARE TO BACKGROUNDCOLOR
     backgroundFbo.begin();
-    ofSetColor(0,0,0,10);
+    ofSetColor(0,0,0,1);
     ofEnableBlendMode(OF_BLENDMODE_ALPHA);
     
     ofEnableAlphaBlending();
-    ofDrawRectangle(0, 0, backgroundFbo.getWidth(), backgroundFbo.getHeight());
+   if(ofGetFrameNum()%100==0) ofDrawRectangle(0, 0, backgroundFbo.getWidth(), backgroundFbo.getHeight());
     ofDisableBlendMode();
     backgroundFbo.end();
     
@@ -266,7 +266,6 @@ void SceneManager::draw(){
         cms[i].draw();
     }
     backgroundFbo.end();
-    
     }
     //No need to draw each element. Doing this now with one mesh for better performance
     /*

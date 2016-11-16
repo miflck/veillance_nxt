@@ -123,6 +123,7 @@ public:
 private:
     
     bool bRemove=false;
+    bool bIsDrawn;
     string data; //declare a vector of strings to store data
     float lerpColorAmount;
     

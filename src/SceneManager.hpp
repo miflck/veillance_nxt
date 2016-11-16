@@ -136,9 +136,11 @@ public:
     
 
     //DEBUG
-    bool debug;
+    bool debug=false;
     void setDebug(bool debug);
-
+    int drawMode=0;
+    
+    
     
 private:
     SceneManager();

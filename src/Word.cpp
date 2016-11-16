@@ -19,7 +19,7 @@ void Word::setup(int _index){
     wordIndex=_index;
     lifeTime=ofGetElapsedTimeMillis()+int(ofRandom(50000,200000));
     
-   backgroundColor=ofColor(ofRandom(50,255),ofRandom(50,255),ofRandom(50,255));
+    backgroundColor=ofColor(ofRandom(50,255),ofRandom(50,255),ofRandom(50,255));
     myColor=ofColor(0,0,255);
     myInitColor=ofColor(0,0,255);
 
@@ -27,6 +27,8 @@ void Word::setup(int _index){
     targetColor=ofColor(0,0,255);
    // bIsAlive=true;
     lerpColorAmount=0.0f;
+    bIsDrawn=true;
+
 
 }
 
@@ -206,7 +208,34 @@ void Word::setColor(ofColor _c){
 
 
 ofColor Word::getColor(){
-    return myColor;
+    
+    if(bIsDrawn){
+    switch (STM->drawMode) {
+        case 0:
+            return myColor;
+            break;
+        case 1:
+            return ofColor(255);
+            break;
+        case 2:
+            return myFragmentPointer->getBackgroundColor();
+            break;
+            
+            
+        default:
+            return myColor;
+            break;
+    }
+    }else{
+    return ofColor(0);
+    
+    }
+    
+    
+    
+    
+    
+  
 }
 
 ofColor Word::getBackgroundColor(){
@@ -314,6 +343,7 @@ int Word::getIndex(){
 }
 
 void Word::setIsDrawn(bool _isDrawn){
+    bIsDrawn=_isDrawn;
     for(auto letter:myLetters){
         letter->setIsDrawn(_isDrawn);
     }

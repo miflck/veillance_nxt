@@ -35,15 +35,14 @@ void CarousselContainer::draw(){
       
         c=myLetter->getBackgroundColor();
     }
-    ofSetColor(c,200);
+    ofSetColor(c,120);
 
     
     ofFill();
    // ofDrawRectangle(bbox.x+2,bbox.y+2,bbox.getWidth()-2,bbox.getHeight()-2);
     
-    
-    ofDrawRectangle(bbox.x+1,bbox.y,bbox.getWidth()-5,bbox.getHeight());
-    
+    ofDrawRectangle(bbox.x,bbox.y,bbox.getWidth(),bbox.getHeight());
+  
   
 
     ofPopMatrix();

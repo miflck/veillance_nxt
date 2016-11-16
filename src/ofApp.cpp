@@ -92,7 +92,7 @@ void ofApp::keyReleased(int key){
     
     
     if(key=='c'){
-        
+       STM->drawMode=(STM->drawMode+1)%3;
     }
     
     
