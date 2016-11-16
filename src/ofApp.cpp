@@ -34,7 +34,7 @@ void ofApp::update(){
     IOmanager.update();
     
     STM->update();
-    SoundM->update();
+  if(bSound)SoundM->update();
 
    // std::stringstream strm;
     //strm << "fps: " << ofGetFrameRate();
@@ -47,7 +47,14 @@ void ofApp::update(){
 void ofApp::draw(){
     ofSetColor(255);
     STM->draw();
-    SoundM->draw();
+    if(bSound)SoundM->draw();
+    
+    if(bDebug)	{
+        ofDrawBitmapString("Framerate", 0,20);
+        ofDrawBitmapString(ofToString(ofGetFrameRate()), 100,20);
+    }
+
+    
 }
 
 //--------------------------------------------------------------
@@ -61,6 +68,11 @@ void ofApp::keyReleased(int key){
     
     if(key=='h'){
             SoundM->toggleGui();
+    }
+    
+    
+    if(key=='H'){
+        bSound=!bSound;
     }
     
     
@@ -100,12 +112,13 @@ void ofApp::keyReleased(int key){
     
     if(key=='d'){
        // bDraw=!bDraw;
-        STM->setDebug(false);
+       // STM->setDebug(false);
+        bDebug=!bDebug;
     }
     
     if(key=='D'){
         // bDraw=!bDraw;
-        STM->setDebug(true);
+       // STM->setDebug(STM->getD);
     }
     
     

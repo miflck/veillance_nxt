@@ -45,8 +45,10 @@ class ofApp : public ofBaseApp{
     
     bool bUpdate=true;
     bool bDraw=true;
+    bool bDebug=false;
   
     //debug
-    int fragmentId;    
+    int fragmentId;
+    bool bSound=true;
 		
 };

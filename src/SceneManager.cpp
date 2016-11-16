@@ -10,8 +10,9 @@
 #include "SoundManager.hpp"
 
 
-//int viewportwidth=1920;
-int viewportwidth=1280; //WXGA
+int viewportwidth=1920; // FULLHD
+//int viewportwidth=1280; //WXGA
+
 //int viewportwidth=1920/2; //WXGA
 //int viewportwidth=770;
 
