@@ -37,7 +37,7 @@ void ofApp::setup(){
     ofSetVerticalSync(true);
     ofSetFrameRate(60);
     
-    ofBuffer buffer = ofBufferFromFile("heartofdarkness 3.txt");
+    ofBuffer buffer = ofBufferFromFile("heartofdarkness.txt");
     for (auto line : buffer.getLines()){
         data.push_back(line);
     }
@@ -59,7 +59,16 @@ void ofApp::draw(){
     if(bSound)SoundM->draw();
     if(bDebug)	{
         ofDrawBitmapString("Framerate", 0,20);
-        ofDrawBitmapString(ofToString(ofGetFrameRate()), 100,20);
+        ofDrawBitmapString(ofToString(ofGetFrameRate()), 110,20);
+        
+        
+        ofDrawBitmapString("Messagebuffer", 0,40);
+        ofDrawBitmapString(STM->messageBuffer.size(), 110,40);
+        
+        
+        ofDrawBitmapString("Actionbuffer", 0,60);
+        ofDrawBitmapString(STM->actionBuffer.size(), 110,60);
+        
     }
 }
 
@@ -83,7 +92,7 @@ void ofApp::keyReleased(int key){
     
     
     if(key=='c'){
-        
+       STM->drawMode=(STM->drawMode+1)%3;
     }
     
     
@@ -104,10 +113,15 @@ void ofApp::keyReleased(int key){
         
     }
     
+    
+    if(key=='m'){
+        STM->bSoundStuff=!STM->bSoundStuff;
+        
+    }
+
+    
     if(key=='s'){
         ofToggleFullscreen();
-        
-        
     }
     
     

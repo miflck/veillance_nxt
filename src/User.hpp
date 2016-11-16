@@ -15,6 +15,7 @@
 class Letter;
 class Word;
 class Fragment;
+class MovingWords;
 
 
 class User {
@@ -42,6 +43,12 @@ public:
     void registerWord(Word * _w);
     void unregisterWord(Word * _w);
     
+    
+    // Register stuff
+    void registerMovingWord(MovingWords * _w);
+    void unregisterMovingWord(MovingWords * _w);
+    
+    
 
     void addWordPointer(Word * _w);
 
@@ -66,6 +73,8 @@ public:
     
     int getNumWordsOnScreen();
     
+    void checkSoundHack();
+    void checksoundZpos();
     
 
 private:
@@ -78,6 +87,7 @@ private:
     vector<Fragment *> myFragments;
     vector<Letter *> myLetters;
     vector<Word *> myWords;
+    vector<MovingWords *> myMovingWords;
 
     
     ofColor myColor;

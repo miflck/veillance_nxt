@@ -6,17 +6,18 @@
 
 
 <!-- FULL HD -->
+
+<!--
 <screensettings>
     <width>3840</width>
     <height>1080</height>
 </screensettings>
-
+-->
 
 
 <!-- WXGA -->
-<!--
+
 <screensettings>
     <width>2560</width>
     <height>800</height>
 </screensettings>
--->

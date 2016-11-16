@@ -80,6 +80,7 @@ public:
     //USER
     vector<User *>users;
     User * getUserByUsername(string _name);
+    int getUserIndexByUsername(string _name);
     
     //FRAGMENTS WORDS LETTERs
     vector<Fragment *> fragments;
@@ -135,9 +136,11 @@ public:
     
 
     //DEBUG
-    bool debug;
+    bool debug=false;
     void setDebug(bool debug);
-
+    int drawMode=0;
+    bool bSoundStuff=true;
+    
     
 private:
     SceneManager();

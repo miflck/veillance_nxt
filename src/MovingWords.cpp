@@ -324,6 +324,7 @@ void MovingWords::startLifeTimer(){
 }
 
 void MovingWords::stopLifeTimer(){
+    userPointer->unregisterMovingWord(this);
     bIsLifetimeRunning=false;
     bIsAlive=false;
     STM->secondScreenbackgroundFbo.begin();
@@ -387,3 +388,13 @@ int MovingWords:: countSyllables(string _word)
         numVowels--;
     return numVowels;
 }
+
+
+void MovingWords::setUserPointer(User *_u){
+    userPointer=_u;
+}
+
+User * MovingWords::getUserPointer(){
+    return userPointer;
+}
+

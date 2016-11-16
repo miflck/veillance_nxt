@@ -203,16 +203,18 @@ void SceneManager::update(){
         letter->update();
     }
     
-    
+    for(auto user:users){
+        user->update();
+    }
     
     
     // ADD BLACK SQUARE TO BACKGROUNDCOLOR
     backgroundFbo.begin();
-    ofSetColor(0,0,0,10);
+    ofSetColor(0,0,0,1);
     ofEnableBlendMode(OF_BLENDMODE_ALPHA);
     
     ofEnableAlphaBlending();
-    ofDrawRectangle(0, 0, backgroundFbo.getWidth(), backgroundFbo.getHeight());
+   if(ofGetFrameNum()%100==0) ofDrawRectangle(0, 0, backgroundFbo.getWidth(), backgroundFbo.getHeight());
     ofDisableBlendMode();
     backgroundFbo.end();
     
@@ -266,7 +268,6 @@ void SceneManager::draw(){
         cms[i].draw();
     }
     backgroundFbo.end();
-    
     }
     //No need to draw each element. Doing this now with one mesh for better performance
     /*
@@ -393,20 +394,22 @@ void SceneManager::addDataFromBuffer(){
         return;
     }
     
+    bool isUserNew=false;
     
     message m=messageBuffer[0];
     messageBuffer.erase(messageBuffer.begin());
-    
-    
     User * u=getUserByUsername(m.username);
     if(u==nullptr){
         u=new User();
         u->setup();
         u->setUserName(m.username);
-        cout<<"new user "<<u->getUserName()<<endl;
+        int id=users.size();
+        u->setUserId(id);
+        cout<<"new user "<<u->getUserName()<<" id "<<id<<endl;
+        isUserNew=true;
 
     }else{
-        cout<<"add to user "<<u->getUserName()<<endl;
+        cout<<"add to user "<<u->getUserName()<<" id "<<u->getUserId()<<endl;
     }
     
     Fragment * f=new Fragment();
@@ -471,12 +474,102 @@ void SceneManager::addDataFromBuffer(){
     fragments.push_back(f);
     u->registerFragment(f);
     
-    users.push_back(u);
+    //only push new users
+    if(isUserNew){
+        users.push_back(u);
+    }
     
 }
 
 
 void SceneManager::addData(string _s, int _fragmentId){
+    
+    
+    bool isUserNew=false;
+    vector<string> split;
+    split = ofSplitString(_s, " ");
+    
+    User * u=getUserByUsername(split[0]);
+    if(u==nullptr){
+        u=new User();
+        u->setup();
+        u->setUserName(split[0]);
+        int id=users.size();
+        u->setUserId(id);
+        cout<<"new user "<<u->getUserName()<<" id "<<id<<endl;
+        isUserNew=true;
+        
+    }else{
+        cout<<"add to user "<<u->getUserName()<<" id "<<u->getUserId()<<endl;
+    }
+    
+    Fragment * f=new Fragment();
+    f->setup();
+    f->setFragmentId(_fragmentId);
+    f->setUserPointer(u);
+    
+    for (auto word : split){
+        Word * w=new Word();
+        w->setup(wordcounter);
+        w->setData(word);
+        int lifeTime=ofGetElapsedTimeMillis()+int(ofRandom(10000,50000));
+        w->setLifeTime(lifeTime);
+        w->setFragmentPointer(f);
+        w->setUserPointer(u);
+        
+        /*  float r=ofRandom(0,1);
+         if(r<0.2 && word!=" ")w->setIsSuggestion(true);*/
+        
+        for (auto ss : word){
+            char c = ss;
+            Letter * l =new Letter();
+            l->setFont(&font);
+            l->setData(c);
+            l->setWordId(wordcounter);
+            l->setWordPointer(w);
+            l->setFragmentPointer(f);
+            l->setUserPointer(u);
+            letters.push_back(l);
+            cms[cms.size()-1].addMovement(letters[letters.size()-1]);
+            w->registerLetter(l);
+            f->registerLetter(l);
+            u->registerLetter(l);
+        }
+        
+        // ADD SPACE
+        Letter * l =new Letter();
+        l->setFont(&font);
+        l->setData(' ');
+        l->setWordId(wordcounter);
+        l->setWordPointer(w);
+        l->setFragmentPointer(f);
+        l->setUserPointer(u);
+        
+        letters.push_back(l);
+        cms[cms.size()-1].addMovement(letters[letters.size()-1]);
+        
+        w->registerLetter(l);
+        f->registerLetter(l);
+        u->registerLetter(l);
+        
+        words.push_back(w);
+        
+        f->registerWord(w);
+        u->registerWord(w);
+        
+        wordcounter++; // debug id
+        
+    }
+    fragments.push_back(f);
+    u->registerFragment(f);
+    
+    //only push new users
+    if(isUserNew){
+        users.push_back(u);
+    }
+
+    
+    /*
     Fragment * f=new Fragment();
     f->setup();
     f->setFragmentId(_fragmentId);
@@ -528,7 +621,7 @@ void SceneManager::addData(string _s, int _fragmentId){
         wordcounter++; // debug id
         
     }
-    fragments.push_back(f);
+    fragments.push_back(f);*/
 }
 
 
@@ -564,11 +657,41 @@ void SceneManager::addMovingWord(Word *_w){
     mw->setFont(&bigfont);
     mw->setData(_w->getMyData());
     
-    mw->getUserName();
+    User *u= _w->getUserPointer();
+    u->registerMovingWord(mw);
+    mw->setUserPointer(u);
     
-    //Send info to soundmanager -> hacky
-    SoundM->user1vowelcount.set(mw->getSyllablescount());
-    SoundM->user1sylcont1.set(mw->getVowelcount());
+       /*
+    string n=u->getUserName();
+    int i=getUserIndexByUsername(n);
+ 
+    
+    switch (i) {
+        case 0:
+            //Send info to soundmanager -> hacky
+            SoundM->user1vowelcount.set(mw->getSyllablescount());
+            SoundM->user1sylcont1.set(mw->getVowelcount());
+            break;
+            
+        case 1:
+            //Send info to soundmanager -> hacky
+            SoundM->user2vowelcount.set(mw->getSyllablescount());
+            SoundM->user2sylcont1.set(mw->getVowelcount());
+            break;
+            
+        case 2:
+            //Send info to soundmanager -> hacky
+            SoundM->user3vowelcount.set(mw->getSyllablescount());
+            SoundM->user3sylcont1.set(mw->getVowelcount());
+            break;
+            
+        default:
+            break;
+    }
+    
+    */
+   
+
     
     //set position an initial speed
     mw->setStartPosition(_w->getPosition());
@@ -607,21 +730,21 @@ Fragment* SceneManager::getFragmentById(int _id){
 
 
 void SceneManager::makeRandomMovingWord(){
-    int n=int(ofRandom(0,fragments.size()));
+    int n=int(ofRandom(0,fragments.size()-1));
     // cout<<fragmentid<<endl;
     Fragment *f=fragments[n]; //getFragmentById(fragmentid);
-    cout<<f->getFragmentId()<<endl;
+   // cout<<f->getFragmentId()<<endl;
     int wI=int(ofRandom(f->getNumWords()));
-    cout<<"Word index "<<wI;
+    //cout<<"Word index "<<wI;
     Word *w =f->getWordByIndex(wI);
-    cout<<"is on screen"<<w->checkIsOnScreen()<<endl;
+    //cout<<"is on screen"<<w->checkIsOnScreen()<<endl;
     if(w!=nullptr && w->checkIsOnScreen() && !w->getIsLocked()){
         w->myColor=ofColor(0,0,0);
         w->lock(true);
         addMovingWord(w);
-        cout<<"making moving word"<<endl;
+       // cout<<"making moving word"<<endl;
     }else {
-        cout<<"another try"<<endl;
+      //  cout<<"another try"<<endl;
         makeRandomMovingWord();
     }
 }
@@ -660,6 +783,18 @@ User * SceneManager::getUserByUsername(string _name){
     return nullptr;
     
     
+}
+
+int SceneManager:: getUserIndexByUsername(string _name){
+    
+    for(int i=0;i<users.size();i++){
+        if (_name==users[i]->getUserName()){
+            return i;
+            break;
+        }
+    }
+    return -1;
+
 }
 
 
