@@ -19,9 +19,9 @@ IOManager::IOManager(){
 
 void IOManager::setup(){
     ofSetLogLevel(OF_LOG_VERBOSE);
-
+    
     ofxLibwebsockets::ClientOptions options = ofxLibwebsockets::defaultClientOptions();
-    options.host = "localhost";// "echo.websocket.org";
+    options.host = "localhost";
     options.port=8080;
     options.channel="/entry";
     client.connect(options);
@@ -30,45 +30,14 @@ void IOManager::setup(){
     
     pause=true;
     
-    myid=0;
-
-
 }
 
 void IOManager::update(){
     
-   // cout<<stringbuff.size()<<endl;
-    
-    if ( stringbuff.size() > 0 ){
-        
-        
-        
-        
-        
-    STM->addData(stringbuff[0],myid);
-            stringbuff.erase(stringbuff.begin());
-        myid++;
-    }
-    
-    
-    
-    /*if ( buff.size() != 0 ){
-        mutex.lock();
-        
-        int size = buff.size();
-        
-        string * incoming = new string[size ];
-        memcpy(incoming, buff.getData(), buff.size());
-        cout<<incoming<<endl;
-        mutex.unlock();
-    }*/
-
-    
-    
 }
 
 void IOManager::draw(){
-   
+    
 }
 
 
@@ -96,48 +65,37 @@ void IOManager::onIdle( ofxLibwebsockets::Event& args ){
 void IOManager::onMessage( ofxLibwebsockets::Event& args ){
     
     if(!pause){
-    //cout<<"got message "<<args.json<<endl;
-    
-    
-    mutex.lock();
-    
-    
-    
-    if ( !args.json.isNull() ){
         
         
+        mutex.lock();
+        
+        
+        if ( !args.json.isNull() ){
+            
             if(args.json["Type"]=="User"){
-                
-                
                 message m;
-                m.name=args.json["Name"].asString();
+                m.username=args.json["Name"].asString();
                 m.type=args.json["Type"].asString();
                 m.text=args.json["Text"].asString();
                 m.uuid=args.json["Id"].asInt();
-                
                 STM->addMessage(m);
-
-                
-           // cout<<args.json["Text"]<<endl;
-           string data= args.json["Text"].asString();
-               // data.erase(std::remove_if(data.begin(), data.end(), " \" "), data.end());
-
-                
-            int id= args.json["Id"].asInt();
-         //  cout<<"Data "<<data<<" Id "<<id<<endl;
-            //STM->addData(data,id);
-                
-           // stringbuff.push_back(data);
-
-
+            }
+            
+            if(args.json["Words"]!=" "){
+                action a;
+                a.uuid=args.json["Id"].asInt();
+                a.startwordcounter=args.json["Words"][0].asInt();
+                a.endwordcounter=args.json["Words"][1].asInt();
+                STM->addAction(a);
+            }
+            
+            
             
             
         }
-       
+        mutex.unlock();
     }
-    mutex.unlock();
-    }
-
+    
     
 }
 
@@ -149,7 +107,7 @@ void IOManager::onBroadcast( ofxLibwebsockets::Event& args ){
 
 void IOManager::setPause(bool _p){
     pause=_p;
-
+    
 }
 
 bool IOManager::getPause() {

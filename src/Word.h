@@ -22,6 +22,7 @@
 
 class Letter;
 class Fragment;
+class User;
 
 class Word {
     
@@ -46,6 +47,10 @@ public:
     
     Fragment * myFragmentPointer;
     void setFragmentPointer(Fragment * _f);
+    
+    User * myUserPointer;
+    void setUserPointer(User * _u);
+    
 
 
     vector<Letter *> myLetters;

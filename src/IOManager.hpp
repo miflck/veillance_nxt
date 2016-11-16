@@ -33,11 +33,9 @@ public:
     void onMessage( ofxLibwebsockets::Event& args );
     void onBroadcast( ofxLibwebsockets::Event& args );
 
-    ofBuffer buff;
     ofMutex  mutex;
     
     
-    vector<string> stringbuff;
     
     
     

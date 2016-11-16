@@ -1,5 +1,6 @@
 #include "ofApp.h"
 #include "SceneManager.hpp"
+#include "SoundManager.hpp"
 
 
 //--------------------------------------------------------------
@@ -7,6 +8,7 @@ void ofApp::setup(){
     
     
     STM->initialize();
+    SoundM->initialize();
     
     IOmanager.setup();
 
@@ -32,7 +34,8 @@ void ofApp::update(){
     IOmanager.update();
     
     STM->update();
-    
+    SoundM->update();
+
    // std::stringstream strm;
     //strm << "fps: " << ofGetFrameRate();
     //ofSetWindowTitle(strm.str());
@@ -44,6 +47,7 @@ void ofApp::update(){
 void ofApp::draw(){
     ofSetColor(255);
     STM->draw();
+    SoundM->draw();
 }
 
 //--------------------------------------------------------------
@@ -54,6 +58,11 @@ void ofApp::keyPressed(int key){
 
 //--------------------------------------------------------------
 void ofApp::keyReleased(int key){
+    
+    if(key=='h'){
+            SoundM->toggleGui();
+    }
+    
     
     if(key=='c'){
         
@@ -77,6 +86,12 @@ void ofApp::keyReleased(int key){
         
     }
     
+    if(key=='s'){
+        ofToggleFullscreen();
+
+        
+    }
+   
     
     
     if(key=='u'){
@@ -93,6 +108,42 @@ void ofApp::keyReleased(int key){
         STM->setDebug(true);
     }
     
+    
+    
+    
+    if(key=='r'){
+    
+        for(auto movingWord:STM->movingWords){
+            
+            
+            ofVec3f t;
+            t.set(ofGetWidth()/4+ofRandom(-2000,2000),ofGetHeight()/2+ofRandom(-2000,2000),ofRandom(1000,5000));
+
+            movingWord->setTarget(t);
+            movingWord->startMoving();
+        }
+
+    
+    
+    }
+    
+    
+    if(key=='R'){
+        
+        ofVec3f t;
+        t.set(ofGetWidth()/4,ofGetHeight()/2,3000);
+
+        STM->movingWords[0]->setTarget(t);
+
+        
+        for (int i=1;i<STM->movingWords.size();i++){
+            t.set(STM->movingWords[i-1]->getDockPoint());
+            STM->movingWords[i]->setTarget(t);
+            STM->movingWords[i]->startMoving();
+        }
+        }
+
+   
     
     if(key=='w'){
         

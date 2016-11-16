@@ -11,16 +11,15 @@
 
 #include <stdio.h>
 #include "ofMain.h"
-#include "Word.h"
-#include "WordManager.hpp"
 
 
 #include "CarousselManager.hpp"
 #include "CarousselEvent.hpp"
-#include "Letter.hpp"
 
-
+#include "User.hpp"
 #include "Fragment.hpp"
+#include "Word.h"
+#include "Letter.hpp"
 
 
 #include "MovingWords.hpp"
@@ -35,6 +34,17 @@
 
 struct message {
     int uuid;
+    string username;
+    string type;
+    string text;
+};
+
+
+
+struct action {
+    int uuid;
+    int startwordcounter;
+    int endwordcounter;
     string name;
     string type;
     string text;
@@ -84,21 +94,33 @@ public:
 
     
     
+    //User
+    vector<User *>users;
+    void addUser(User * _l);
+    User * getUserByUsername(string _name);
+    
     
     //LETTER
     vector<Letter *>letters;
     void addLetter(Letter * _l);
-    
     vector<Word *> words;
 
     
     //Moving Words
     vector<MovingWords *> movingWords;
     void addMovingWord(Word * _w);
+    vector <ofVec3f> movingWordPositions;
+
+    
+    
     
     
     //Background
     ofImage bkg;
+    ofFbo backgroundFbo;
+    ofFbo secondScreenbackgroundFbo;
+
+
     
     
     //FONT
@@ -116,6 +138,8 @@ public:
     vector <message> messageBuffer;
     void addMessage(message _m);
     
+    vector <action> actionBuffer;
+    void addAction(action _a);
     
     
     
@@ -137,6 +161,10 @@ public:
     Fragment* getFragmentById(int _id);
     void makeMovingWordByFragmentId(int _id,int _wordindex);
     
+    
+    bool tryMakeMovingWordByFragmentId(int _id,int _wordindex);
+
+    
     void makeRandomMovingWord();
     
     
@@ -146,7 +174,6 @@ public:
     ofRectangle viewBack;
 
     
-    ofFbo backgroundFbo;
 
     
 private:

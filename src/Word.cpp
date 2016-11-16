@@ -9,6 +9,7 @@
 #include "Word.h"
 #include "Letter.hpp"
 #include "SceneManager.hpp"
+#include "User.hpp"
 
 Word::Word(){
 }
@@ -183,6 +184,7 @@ void Word::unregisterLetter(Letter *_l){
     if(myLetters.size()==0){
         setBRemove(true);
         myFragmentPointer->unregisterWord(this);
+        myUserPointer->unregisterWord(this);
      //   cout<<"remove word"<<data<<endl;
     }
     
@@ -192,6 +194,12 @@ void Word::unregisterLetter(Letter *_l){
 void Word::setFragmentPointer(Fragment *_f){
     myFragmentPointer=_f;
 }
+
+
+void Word::setUserPointer(User *_u){
+    myUserPointer=_u;
+}
+
 
 
 
