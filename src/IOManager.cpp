@@ -18,17 +18,8 @@ IOManager::IOManager(){
 
 
 void IOManager::setup(){
-    ofSetLogLevel(OF_LOG_VERBOSE);
+
     
-    ofxLibwebsockets::ClientOptions options = ofxLibwebsockets::defaultClientOptions();
-    options.host = "localhost";
-    options.port=8080;
-    options.channel="/entry";
-    client.connect(options);
-    client.addListener(this);
-    ofSetLogLevel(OF_LOG_ERROR);
-    
-    pause=true;
     
 }
 
@@ -113,5 +104,36 @@ void IOManager::setPause(bool _p){
 bool IOManager::getPause() {
     return pause;
 }
+
+
+
+void IOManager::setHost(string _host){
+    host=_host;
+}
+
+void IOManager::setPort(int _port){
+    port=_port;
+}
+
+void IOManager::setChannel(string _channel){
+    channel=_channel;
+}
+
+void IOManager::setupConnection(){
+    ofSetLogLevel(OF_LOG_VERBOSE);
+    
+    ofxLibwebsockets::ClientOptions options = ofxLibwebsockets::defaultClientOptions();
+    options.host = host;
+    options.port=port;
+    options.channel=channel;
+    client.connect(options);
+    client.addListener(this);
+    ofSetLogLevel(OF_LOG_ERROR);
+    
+    pause=true;
+
+    
+}
+
 
 

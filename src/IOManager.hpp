@@ -38,6 +38,18 @@ public:
     
     
     
+    string host;
+    int port;
+    string channel;
+    
+    
+   void setHost(string _host);
+    void setPort(int _port);
+   void setChannel(string _channel);
+    void setupConnection();
+
+    
+    
     
     bool getPause();
     void setPause(bool p);

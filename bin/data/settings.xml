@@ -1,0 +1,22 @@
+<serversettings>
+    <host>localhost</host>
+    <port>8080</port>
+    <channel>/entry</channel>
+</serversettings>
+
+
+<!-- FULL HD -->
+<screensettings>
+    <width>3840</width>
+    <height>1080</height>
+</screensettings>
+
+
+
+<!-- WXGA -->
+<!--
+<screensettings>
+    <width>2560</width>
+    <height>800</height>
+</screensettings>
+-->
