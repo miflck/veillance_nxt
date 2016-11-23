@@ -106,6 +106,8 @@ public:
     
     
     void setIsDrawn(bool _isDrawn);
+    bool getIsDrawn();
+
     
     void startColorLerp();
     void stopColorLerp();
