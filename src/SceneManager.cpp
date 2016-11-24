@@ -30,7 +30,7 @@ void SceneManager::initialize(int width, int height) {
     font.load("FoundersGroteskMonoBold.ttf", 10);
     bigfont.load("FoundersGroteskMonoBold.ttf", 60);
     
-    viewportwidth=width/2;
+    viewportwidth=width;
     viewportheight=height;
     // CAROUSSEL
     //These are the animationcontrollers of the background. Each one controlls a Line
@@ -52,7 +52,7 @@ void SceneManager::initialize(int width, int height) {
         float dv=dW/time;
         float speed=dv;
         float r=ofRandom(0,50);
-        cm.setup(ofVec2f(0,(i*h)),viewportwidth,ofGetHeight(),dW,h);
+        cm.setup(ofVec2f(-viewportwidth,(i*h)),viewportwidth,ofGetHeight(),dW,h);
         cm.maxspeed=speed;
         cm.setId(i);
         cms.push_back(cm);
@@ -67,12 +67,12 @@ void SceneManager::initialize(int width, int height) {
     //Viewports
     viewFront.x = 0;
     viewFront.y = 0;
-    viewFront.width = ofGetWidth()/2;
+    viewFront.width = viewportwidth;
     viewFront.height = ofGetHeight();
     
     viewBack.x = ofGetWidth()/2;
     viewBack.y = 0;
-    viewBack.width = ofGetWidth()/2;
+    viewBack.width = viewportwidth;
     viewBack.height = ofGetHeight();
     
     // Camera

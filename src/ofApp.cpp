@@ -19,6 +19,8 @@ void ofApp::setup(){
     
     
     int width = settings.getValue("screensettings:width", 3840);
+    int viewportwidth = settings.getValue("screensettings:viewportwidth", 3840);
+
     int height = settings.getValue("screensettings:height", 1080);
 
     
@@ -27,7 +29,7 @@ void ofApp::setup(){
     ofSetWindowPosition(10, 10);
 
     
-    STM->initialize(width,height);
+    STM->initialize(viewportwidth,height);
     SoundM->initialize();
     
   

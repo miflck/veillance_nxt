@@ -5,19 +5,36 @@
 </serversettings>
 
 
-<!-- FULL HD -->
+<!-- 2x FULL HD -->
 
 <!--
 <screensettings>
     <width>3840</width>
+ <viewportwidth>3840</viewportwidth>
+
     <height>1080</height>
 </screensettings>
 -->
 
 
-<!-- WXGA -->
-
+<!-- WXGA 
+ what we had
+ -->
+<!--
 <screensettings>
     <width>2560</width>
+    <viewportwidth>1280</viewportwidth>
     <height>800</height>
+</screensettings>
+-->
+
+<!-- 4x FullHD
+ 1920 × 1080 each
+ 
+ -->
+
+<screensettings>
+    <width>7680</width>
+    <viewportwidth>1920</viewportwidth>
+    <height>1080</height>
 </screensettings>
