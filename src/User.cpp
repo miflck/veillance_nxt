@@ -18,7 +18,10 @@ User::User(){
 void User::setup(){
     
 
-    backgroundColor=ofColor(ofRandom(50,255),ofRandom(50,255),ofRandom(50,255));
+    
+   // backgroundColor=ofColor(ofRandom(50,255),ofRandom(50,255),ofRandom(50,255));
+    backgroundColor.setHsb(ofRandom(0,255),255,255);
+    
     myColor=ofColor(0,0,255);
     myInitColor=ofColor(0,0,255);
     
@@ -349,6 +352,10 @@ string User::getUserName(){
 
 void User::setUserId(int _id){
    userId=_id;
+    
+    //debug!!
+    backgroundColor.setHsb(255/4*_id,255,255);
+
 }
 
 int User::getUserId(){

@@ -183,7 +183,12 @@ ofVboMesh Letter::getUpdatedVboMesh(){
         vector<ofVec3f>& verts = letterMesh.getVertices();
         for(int j=0; j <  verts.size() ; j++){
             letterMesh.setVertex(j,verts[j]*node.getGlobalTransformMatrix());
-            letterMesh.addColor(myWordPointer->getColor());
+            if(bIsDrawn){
+                letterMesh.addColor(myWordPointer->getColor());
+            }else{
+                letterMesh.addColor(ofColor(255,0));
+
+                }
             //  letterMesh.addColor(255);
             
         }

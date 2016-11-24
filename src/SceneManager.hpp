@@ -81,6 +81,8 @@ public:
     vector<User *>users;
     User * getUserByUsername(string _name);
     int getUserIndexByUsername(string _name);
+    User * getUserWithMostLetters();
+    
     
     //FRAGMENTS WORDS LETTERs
     vector<Fragment *> fragments;
@@ -105,7 +107,7 @@ public:
     // BACKGROUNDS
     ofFbo backgroundFbo; //FBO for screen One. To do the backgroundcolors
     ofFbo secondScreenbackgroundFbo; // FBO for screen two. Holds the freezed Moving Words and fades out
-
+    ofColor backgroundcolor;
     
     //FONT
     ofTrueTypeFont  font;
@@ -140,6 +142,9 @@ public:
     void setDebug(bool debug);
     int drawMode=0;
     bool bSoundStuff=true;
+    
+    
+    
     
     
 private:

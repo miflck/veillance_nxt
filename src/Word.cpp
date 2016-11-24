@@ -349,6 +349,10 @@ void Word::setIsDrawn(bool _isDrawn){
     }
 }
 
+bool Word::getIsDrawn(){
+    return bIsDrawn;
+}
+
 
 void Word::lock(bool _l){
     bIsLocked=_l;

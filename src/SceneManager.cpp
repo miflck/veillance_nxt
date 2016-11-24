@@ -30,7 +30,7 @@ void SceneManager::initialize(int width, int height) {
     font.load("FoundersGroteskMonoBold.ttf", 10);
     bigfont.load("FoundersGroteskMonoBold.ttf", 60);
     
-    viewportwidth=width/2;
+    viewportwidth=width;
     viewportheight=height;
     // CAROUSSEL
     //These are the animationcontrollers of the background. Each one controlls a Line
@@ -52,7 +52,7 @@ void SceneManager::initialize(int width, int height) {
         float dv=dW/time;
         float speed=dv;
         float r=ofRandom(0,50);
-        cm.setup(ofVec2f(0,(i*h)),viewportwidth,ofGetHeight(),dW,h);
+        cm.setup(ofVec2f(-viewportwidth,(i*h)),viewportwidth,ofGetHeight(),dW,h);
         cm.maxspeed=speed;
         cm.setId(i);
         cms.push_back(cm);
@@ -67,12 +67,12 @@ void SceneManager::initialize(int width, int height) {
     //Viewports
     viewFront.x = 0;
     viewFront.y = 0;
-    viewFront.width = ofGetWidth()/2;
+    viewFront.width = viewportwidth;
     viewFront.height = ofGetHeight();
     
     viewBack.x = ofGetWidth()/2;
     viewBack.y = 0;
-    viewBack.width = ofGetWidth()/2;
+    viewBack.width = viewportwidth;
     viewBack.height = ofGetHeight();
     
     // Camera
@@ -100,6 +100,9 @@ void SceneManager::initialize(int width, int height) {
     ofClear(255,255,255, 0);
     secondScreenbackgroundFbo.end();
     ofEnableAlphaBlending();
+    
+    
+    backgroundcolor=ofColor(0);
     
     
     
@@ -207,6 +210,17 @@ void SceneManager::update(){
         user->update();
     }
     
+    User * u=getUserWithMostLetters();
+    if(u!=nullptr) {
+        ofColor c=u->getBackgroundColor();
+        c.setBrightness(120);
+        if(ofGetFrameNum()%10==0)backgroundcolor.lerp(c,0.02);
+        cout<<backgroundcolor<<endl;
+        //backgroundcolor=u->getBackgroundColor();
+
+    }
+
+    
     
     // ADD BLACK SQUARE TO BACKGROUNDCOLOR
     backgroundFbo.begin();
@@ -214,7 +228,7 @@ void SceneManager::update(){
     ofEnableBlendMode(OF_BLENDMODE_ALPHA);
     
     ofEnableAlphaBlending();
-   if(ofGetFrameNum()%100==0) ofDrawRectangle(0, 0, backgroundFbo.getWidth(), backgroundFbo.getHeight());
+   //if(ofGetFrameNum()%100==0) ofDrawRectangle(0, 0, backgroundFbo.getWidth(), backgroundFbo.getHeight());
     ofDisableBlendMode();
     backgroundFbo.end();
     
@@ -250,6 +264,20 @@ void SceneManager::update(){
 
 
 void SceneManager::draw(){
+   // ofColor bg=backgroundcolor;
+   // bg.setBrightness(50);
+    //ofBackground(bg);
+    
+    
+    backgroundFbo.begin();
+    ofSetColor(backgroundcolor);
+    ofEnableBlendMode(OF_BLENDMODE_ALPHA);
+    
+    ofEnableAlphaBlending();
+    ofDrawRectangle(0, 0, backgroundFbo.getWidth(), backgroundFbo.getHeight());
+    ofDisableBlendMode();
+    backgroundFbo.end();
+    
     
     ofEnableBlendMode(OF_BLENDMODE_ALPHA);
     
@@ -260,7 +288,7 @@ void SceneManager::draw(){
     cam[0].begin(viewFront);
     
     // Color code. not using at the moment
-    if(debug){
+   /* if(debug){
     ofEnableBlendMode(OF_BLENDMODE_ADD);
     backgroundFbo.begin();
     ofEnableAlphaBlending();
@@ -268,7 +296,7 @@ void SceneManager::draw(){
         cms[i].draw();
     }
     backgroundFbo.end();
-    }
+    }*/
     //No need to draw each element. Doing this now with one mesh for better performance
     /*
      
@@ -865,6 +893,24 @@ void SceneManager::addAction(action _a){
     // cout<<"Action Buffer Size: "<<actionBuffer.size()<<endl;
     
 }
+
+
+User * SceneManager::getUserWithMostLetters(){
+    int num=0;
+    User * u =nullptr;
+    for (int i=0;i<users.size();i++){
+        int n=users[i]->getNumLetters();
+       // cout<<n<<endl;
+        if(n>num){
+            u=users[i];
+            num=n;
+        }
+       
+    }
+
+    return u;
+}
+
 
 
 
