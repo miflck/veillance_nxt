@@ -322,7 +322,9 @@ void SceneManager::draw(){
     letterMesh.draw();
     font.getFontTexture().unbind();
     
+    ofPushStyle();
     // moving words mesh
+    ofEnableAlphaBlending();
     ofEnableBlendMode(OF_BLENDMODE_ADD);
     ofVboMesh m;
     for(auto movingWord:movingWords){
@@ -332,6 +334,7 @@ void SceneManager::draw(){
     m.draw();
     bigfont.getFontTexture().unbind();
    
+    ofPopStyle();
     cam[0].end();
     
     /* ofEnableBlendMode(OF_BLENDMODE_ALPHA);
@@ -344,13 +347,14 @@ void SceneManager::draw(){
      secondScreenbackgroundFbo.end();
      */
     
-    
+    ofPushStyle();
+
     ofEnableBlendMode(OF_BLENDMODE_ADD);
     cam[1].begin(viewBack);
     bigfont.getFontTexture().bind();
     m.draw();
     bigfont.getFontTexture().unbind();
-    
+    ofPopStyle();
     /* ofSetColor(255,0,0);
      for (int i=0;i<movingWords.size();i++){
      ofVec3f t;
@@ -672,6 +676,7 @@ void SceneManager::addMovingWord(Word *_w){
     _w->setIsDrawn(false);
     MovingWords *mw=new MovingWords();
     mw->setup();
+    mw->myColor=ofColor(_w->getBackgroundColor(),180);
     mw->setLifeSpan(ofRandom(70000,30000));
     
     /*

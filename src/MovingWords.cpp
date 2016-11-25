@@ -221,6 +221,8 @@ ofVec3f MovingWords::getDockPoint(){
 
 
 ofVboMesh MovingWords::getUpdatedVboMesh(){
+    ofPushStyle();
+    ofEnableBlendMode(OF_BLENDMODE_ADD);
     scalefact=ofLerp(scalefact,1,0.001);
     node.setScale(scalefact);
     spacingFact=ofLerp(spacingFact,1.2,0.01);
@@ -235,7 +237,10 @@ ofVboMesh MovingWords::getUpdatedVboMesh(){
         }
         vbom.append(letterMesh);
     }
+
+    ofPopStyle();
     return vbom;
+    
 }
 
 
