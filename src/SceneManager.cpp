@@ -103,9 +103,13 @@ void SceneManager::initialize(int width, int height) {
     
     
     backgroundcolor=ofColor(0);
+    color1=ofColor(0);
+    color2=ofColor(0);
     
+    blur.setup(viewportwidth,viewportheight);
+
     
-    
+    png.load("png-01.png");
 }
 
 
@@ -210,15 +214,7 @@ void SceneManager::update(){
         user->update();
     }
     
-    User * u=getUserWithMostLetters();
-    if(u!=nullptr) {
-        ofColor c=u->getBackgroundColor();
-        c.setBrightness(120);
-        if(ofGetFrameNum()%10==0)backgroundcolor.lerp(c,0.02);
-        cout<<backgroundcolor<<endl;
-        //backgroundcolor=u->getBackgroundColor();
 
-    }
 
     
     
@@ -268,16 +264,16 @@ void SceneManager::draw(){
    // bg.setBrightness(50);
     //ofBackground(bg);
     
-    
+   
     backgroundFbo.begin();
     ofSetColor(backgroundcolor);
     ofEnableBlendMode(OF_BLENDMODE_ALPHA);
     
     ofEnableAlphaBlending();
-    ofDrawRectangle(0, 0, backgroundFbo.getWidth(), backgroundFbo.getHeight());
+   // ofDrawRectangle(0, 0, backgroundFbo.getWidth(), backgroundFbo.getHeight());
     ofDisableBlendMode();
     backgroundFbo.end();
-    
+
     
     ofEnableBlendMode(OF_BLENDMODE_ALPHA);
     
@@ -287,16 +283,98 @@ void SceneManager::draw(){
     
     cam[0].begin(viewFront);
     
+    
+   /* blur.begin();
+    blur.amount = ofMap(ofGetMouseX(),0,viewportwidth,0,20,true);
+    blur.iterations = ofMap(ofGetMouseY(),0,ofGetHeight(),1,20,true);
+    
     // Color code. not using at the moment
-   /* if(debug){
+    if(debug){
     ofEnableBlendMode(OF_BLENDMODE_ADD);
-    backgroundFbo.begin();
+    //backgroundFbo.begin();
     ofEnableAlphaBlending();
     for(int i=0;i<cms.size();i++){
         cms[i].draw();
     }
-    backgroundFbo.end();
-    }*/
+    //backgroundFbo.end();
+    
+    
+    
+    }
+    
+    blur.end();
+*/
+    
+    //backgroundFbo.begin();
+    ofEnableAlphaBlending();
+    ofEnableBlendMode(OF_BLENDMODE_ALPHA);
+
+   /* blur.begin();
+
+        ofColor c=cms[cms.size()-1].containers[cms[cms.size()-1].containers.size()-1].getBackgroundColor();
+    ofSetColor(c);
+    cout<<c<<endl;
+    ofDrawCircle(viewportwidth, viewportheight, 300);
+    blur.end();*/
+    ofColor c=cms[cms.size()-1].containers[cms[cms.size()-1].containers.size()-1].getBackgroundColor();
+    c.setBrightness(200);
+    color1.lerp(c,0.01);
+    ofSetColor(color1);
+    
+    png.draw(viewportwidth-1800, viewportheight-1300,3000,3000);
+    
+    
+     c=cms[cms.size()-1].containers[0].getBackgroundColor();
+    c.setBrightness(200);
+
+    color2.lerp(c,0.01);
+    ofSetColor(color2);
+    
+    //png.draw(-1000, viewportheight-1000,2000,2000);
+
+    
+    /*
+    c=cms[0].containers[cms[0].containers.size()-1].getBackgroundColor();
+    color3.lerp(c,0.01);
+    ofSetColor(color3);
+    
+    png.draw(viewportwidth-1000, -1000,2000,2000);
+    
+    
+    c=cms[0].containers[0].getBackgroundColor();
+    color4.lerp(c,0.01);
+    ofSetColor(color4);
+    
+    png.draw(-1000, -1000,2000,2000);
+    */
+    
+    //c=cms[cms.size()/2].containers[cms[cms.size()/2].containers.size()/2].getBackgroundColor();
+    //color5.lerp(c,0.01);
+   // c.setBrightness(120);
+    
+    
+    User * u=getUserWithMostLetters();
+    if(u!=nullptr) {
+        ofColor c=u->getBackgroundColor();
+        c.setBrightness(160);
+        //if(ofGetFrameNum()%10==0)backgroundcolor.lerp(c,0.02);
+        backgroundcolor.lerp(c,0.01);
+        
+        // cout<<backgroundcolor<<endl;
+        //backgroundcolor=u->getBackgroundColor();
+        
+    }
+    
+
+    ofSetColor(backgroundcolor);
+    
+    png.draw(-2000, -2000,4000,4000);
+    
+    
+
+  //  backgroundFbo.end();
+    
+
     //No need to draw each element. Doing this now with one mesh for better performance
     /*
      
@@ -312,6 +390,11 @@ void SceneManager::draw(){
         fragment->draw();
     }
     */
+    
+  
+    
+
+    
     
     // getting the lettermesh
     letterMesh.clear();
@@ -348,9 +431,20 @@ void SceneManager::draw(){
      */
     
     ofPushStyle();
-
     ofEnableBlendMode(OF_BLENDMODE_ADD);
+
+    //ofEnableBlendMode(OF_BLENDMODE_ADD);
     cam[1].begin(viewBack);
+    //ofEnableBlendMode(OF_BLENDMODE_ALPHA);
+
+   /* for(auto mw:movingWords){
+        ofVec3f p=mw->getPosition();
+        ofSetColor(mw->myColor,5);
+        
+        png.draw(p.x-1000, p.y-1000,p.z,2000,2000);
+    }*/
+    
+
     bigfont.getFontTexture().bind();
     m.draw();
     bigfont.getFontTexture().unbind();

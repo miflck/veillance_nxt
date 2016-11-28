@@ -71,6 +71,8 @@ public:
     
     void setDebug(bool _debug);
     
+    ofColor getBackgroundColor();
+    
 private:
     
     bool debug=false;

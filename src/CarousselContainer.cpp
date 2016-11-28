@@ -119,5 +119,14 @@ void CarousselContainer::setDebug(bool _debug){
     debug=_debug;
 }
 
-
+ofColor CarousselContainer::getBackgroundColor(){
+    ofColor c;
+    if(myLetter!=nullptr){
+        
+        c=myLetter->getBackgroundColor();
+    }else{
+        c=ofColor(0);
+    }
+    return c;
+}
 

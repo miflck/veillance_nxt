@@ -24,6 +24,9 @@
 
 #include "MovingWords.hpp"
 
+#include "ofxBlurShader.h"
+
+
 
 
 //for convenience
@@ -145,6 +148,14 @@ public:
     
     
     
+    
+    
+    ofxBlurShader blur;
+    ofImage png;
+    
+    ofColor color1,color2,color3,color4,color5;
+    
+
     
     
 private:
