@@ -24,7 +24,7 @@ class CarousselLineManager {
     
 public:
     CarousselLineManager();
-    void setup(ofVec2f _position,float _mywidth, float _myheight, float _width,float _height);
+    void setup(int _stackId,int _lineId, ofVec2f _position,float _mywidth, float _myheight, float _width,float _height);
     void update();
     void draw();
     
@@ -58,7 +58,7 @@ public:
     double maxspeed;
     
     void setId(int _id);
-    
+    void setStackId(int _id);
     
     vector<Letter *>buffer;
     
@@ -78,9 +78,13 @@ public:
     void explode();
     
     
+
+    
 private:
     
     int id;
+    int lineId;
+    int stackId;
     bool bDebugDraw=false;
     
     float mywidth;

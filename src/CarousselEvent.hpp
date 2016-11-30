@@ -22,6 +22,8 @@ class CarousselEvent : public ofEventArgs {
 public:
     string   message;
     int   id;
+    int stackId;
+    int lineId;
     CarousselEvent() {
     }
     static ofEvent <CarousselEvent> events;

@@ -10,10 +10,12 @@
 CarousselLineManager::CarousselLineManager(){
 }
 
-void CarousselLineManager::setup(ofVec2f _position,float _mywidth, float _myheight, float _width,float _height){
+void CarousselLineManager::setup(int _stackId, int _lineId, ofVec2f _position,float _mywidth, float _myheight, float _width,float _height){
+    
+    stackId=_stackId;
+    lineId = _lineId;
+    
     position.set(_position);
-    
-    
     mywidth=_mywidth;
     myheight=_myheight;
     
@@ -48,9 +50,9 @@ void CarousselLineManager::update(){
 
 void CarousselLineManager::draw(){
     //if(bDebugDraw){
-        for(int i=0;i<containers.size();i++){
-            containers[i].draw();
-        }
+    for(int i=0;i<containers.size();i++){
+        containers[i].draw();
+    }
     //}
 }
 
@@ -73,9 +75,9 @@ void CarousselLineManager::move(){
         
         containers[i].setPosition(p);
         containers[i].setVelocity(speed);
-       /* if(p==target){
-            containers[i].bIsMoving=false;
-        }*/
+        /* if(p==target){
+         containers[i].bIsMoving=false;
+         }*/
     }
     
     //check if finished;
@@ -117,6 +119,8 @@ void CarousselLineManager::startMoving(){
     static CarousselEvent newEvent;
     newEvent.message = "START";
     newEvent.id=id;
+    newEvent.stackId=stackId;
+    newEvent.lineId=lineId;
     ofNotifyEvent(CarousselEvent::events, newEvent);
     
     bIsMoving=true;
@@ -127,16 +131,21 @@ void CarousselLineManager::startMoving(){
 
 void CarousselLineManager::stopMoving(){
     if(!bIsExploding){
-    bIsMoving=false;
-    static CarousselEvent newEvent;
-    newEvent.message = "STOP";
-    newEvent.id=id;
-    ofNotifyEvent(CarousselEvent::events, newEvent);
+        bIsMoving=false;
+        static CarousselEvent newEvent;
+        newEvent.message = "STOP";
+        newEvent.id=id;
+        newEvent.stackId=stackId;
+        newEvent.lineId=lineId;
+        
+        ofNotifyEvent(CarousselEvent::events, newEvent);
         checkBuffer();
     }else{
         static CarousselEvent newEvent;
         newEvent.message = "EXPLODE";
         newEvent.id=id;
+        newEvent.stackId=stackId;
+        newEvent.lineId=lineId;
         ofNotifyEvent(CarousselEvent::events, newEvent);
     }
 }
@@ -145,25 +154,33 @@ void CarousselLineManager::stopMoving(){
 void CarousselLineManager::checkBuffer(){
     //check if we have some movement in buffer
     if(!bIsMoving){
-    if(buffer.size()>0){
-        cicle();
-    }else{
-        static CarousselEvent newEvent;
-        newEvent.message = "BUFFER EMPTY";
-        newEvent.id=id;
-        ofNotifyEvent(CarousselEvent::events, newEvent);
-        
+        if(buffer.size()>0){
+            cicle();
+        }else{
+            static CarousselEvent newEvent;
+            newEvent.message = "BUFFER EMPTY";
+            newEvent.id=id;
+            newEvent.stackId=stackId;
+            newEvent.lineId=lineId;
+            ofNotifyEvent(CarousselEvent::events, newEvent);
+            
+        }
     }
-    }
-
-
-
+    
+    
+    
 }
 
 
 
 void CarousselLineManager::setId(int _id){
-    id=_id;
+    id=_id; // deprecated
+    lineId=_id;
+}
+
+void CarousselLineManager::setStackId(int _id){
+    stackId=_id; // deprecated
+    
 }
 
 
@@ -194,6 +211,6 @@ void CarousselLineManager::explode(){
     for(int i=1;i<containers.size();i++){
         containers[i].setTarget(ofVec3f(ofRandom(-mywidth,2*mywidth),ofRandom(-myheight,2*myheight),ofRandom(-1000,1000)));
     }
-
+    
 }
 

@@ -74,7 +74,10 @@ public:
     vector<CarousselLineManager> cms;
     
     
-    vector<CarousselStackManager> csm;
+    vector<CarousselStackManager *> csm;
+    vector<CarousselStackManager *> stackManagerBuffer;
+    
+    void registerStackManagerReady(CarousselStackManager * _s);
 
     
     
@@ -83,6 +86,10 @@ public:
     
     // DATA
     void addDataFromBuffer();
+    
+    void addDataFromBuffer(CarousselStackManager * _s);
+
+    
     void addData(string _s, int _fragmentId);
     void addWord(string _s);
 

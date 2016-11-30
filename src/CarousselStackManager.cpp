@@ -7,11 +7,14 @@
 //
 
 #include "CarousselStackManager.hpp"
+#include "SceneManager.hpp"
+
 CarousselStackManager::CarousselStackManager(){
 }
 
-void CarousselStackManager::setup(ofVec2f _position,float _mywidth, float _myheight){
+void CarousselStackManager::setup(int _id, ofVec2f _position,float _mywidth, float _myheight){
   
+    stackId=_id;
     position.set(_position);
     
     
@@ -34,17 +37,19 @@ void CarousselStackManager::setup(ofVec2f _position,float _mywidth, float _myhei
     for(int i = 0; i < lines; i++){
         CarousselLineManager cm;
         float p=ABS((myheight/2)-((i*containerHeight)));
-        float dl= ofMap(p*(p/4),0,myheight/2*(myheight/2/4),1,100);
+        float dl= ofMap(p*(p/4),0,myheight/2*(myheight/2/4),1,10);
          containerWidth=w+dl;
         // s=v*t  s/v=t  v=s/t
         float time=w/minspeed;
         float dv=containerWidth/time;
         float speed=dv;
         float r=ofRandom(0,50);
-        cm.setup(ofVec2f(position.x-mywidth,position.y+(i*containerHeight)),mywidth,ofGetHeight(),containerWidth,containerHeight);
+        cm.setup(stackId,i,ofVec2f(position.x-mywidth,position.y+(i*containerHeight)),mywidth,ofGetHeight(),containerWidth,containerHeight);
         cm.maxspeed=speed;
         cm.setId(i);
         cms.push_back(cm);
+        cout<<"cms size "<<cms.size()<<endl;
+
     }
 
     ofAddListener(CarousselEvent::events, this, &CarousselStackManager::carousselEvent);
@@ -52,7 +57,7 @@ void CarousselStackManager::setup(ofVec2f _position,float _mywidth, float _myhei
 }
 
 void CarousselStackManager::update(){
-    
+
     // UPDATE CAROUSSEL
     for(int i=0;i<cms.size();i++){
         cms[i].update();
@@ -60,6 +65,7 @@ void CarousselStackManager::update(){
 }
 
 void CarousselStackManager::draw(){
+
     for(auto cm:cms){
         cm.draw();
     }
@@ -69,11 +75,44 @@ void CarousselStackManager::draw(){
 void CarousselStackManager::setId(int _id){
     id=_id;
 }
-
+void CarousselStackManager::setStackId(int _id){
+    stackId=_id;
+}
 
 
 // CAROUSSEL STUFF -> ANIMATION
 void CarousselStackManager::carousselEvent(CarousselEvent &e){
+    
+    if(e.stackId != stackId) return;
+    if(e.message=="STOP"){
+        if(e.id>0){
+            Letter *l=cms[e.id].getLastElementPointer();
+            if(l!=nullptr){
+                cms[e.id-1].addMovement(l);
+            }
+        }
+        
+        if(e.id==0){
+            
+            //remove Letter
+           cms[e.id].getLastElementPointer()->setBRemove(true);
+           /* Letter *l=cms[e.id].getLastElementPointer();
+            auto it = std::find(STM->letters.begin(), STM->letters.end(), l);
+            if (it != STM->letters.end()) {
+                int i= it - STM->letters.begin();
+                if(i>3)STM->letters[i-2]->setBRemove(true);
+            }*/
+        }
+        
+    }
+
+    
+    if(e.message=="BUFFER EMPTY"){
+        if(e.id==cms.size()-1){
+         STM->registerStackManagerReady(this);
+        }
+    }
+    
    /* if(e.message=="STOP"){
         if(e.id>0){
             Letter *l=cms[e.id].getLastElementPointer();
@@ -115,3 +154,8 @@ void CarousselStackManager::carousselEvent(CarousselEvent &e){
         }
     }*/
 }
+
+void CarousselStackManager::addMovement(Letter *l){
+    cms[cms.size()-1].addMovement(l);
+}
+

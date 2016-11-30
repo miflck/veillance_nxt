@@ -137,3 +137,9 @@ void CarousselContainer::explode(){
     bIsExploding=true;
 }
 
+void CarousselContainer::setId(int _id){
+    id=_id;
+}
+void CarousselContainer::setStackId(int _id){
+    stackId=_id;
+}

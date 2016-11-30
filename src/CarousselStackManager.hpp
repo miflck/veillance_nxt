@@ -20,7 +20,7 @@ class CarousselStackManager {
     
 public:
     CarousselStackManager();
-    void setup(ofVec2f _position,float _mywidth, float _myheight);
+    void setup(int _id, ofVec2f _position,float _mywidth, float _myheight);
     void update();
     void draw();
     
@@ -35,13 +35,18 @@ public:
     
     
     int maxspeed;
-    int minspeed=2;
+    int minspeed=5;
     
     
     void setId(int _id);
+    void setStackId(int _id);
+    
+    void addMovement(Letter * l);
+
     
 private:
     int id;
+    int stackId;
     bool bDebugDraw=false;
     
     float mywidth;

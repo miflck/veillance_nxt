@@ -50,7 +50,10 @@ public:
     void setDimension(ofVec2f _dimension);
     ofVec2f getDimension();
     
+    void setId(int _id);
+    void setStackId(int _id);
     int id;
+    int stackId;
     
     char c=' ';
     
