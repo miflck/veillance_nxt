@@ -60,6 +60,8 @@ void ofApp::draw(){
     STM->draw();
     if(bSound)SoundM->draw();
     if(bDebug)	{
+    ofDisableBlendMode();
+    ofSetColor(255);
         ofDrawBitmapString("Framerate", 0,20);
         ofDrawBitmapString(ofToString(ofGetFrameRate()), 110,20);
         
@@ -144,6 +146,17 @@ void ofApp::keyReleased(int key){
          STM->setDebug(bDraw);
     }
     
+    
+    if(key=='e'){
+        // bDraw=!bDraw;
+        STM->explode();
+    }
+    
+    
+    if(key=='E'){
+        // bDraw=!bDraw;
+        STM->reset();
+    }
     
     
     

@@ -485,6 +485,13 @@ void SceneManager::carousselEvent(CarousselEvent &e){
     }
     
     
+    
+    if(e.message=="EXPLODE"){
+       reset();
+    }
+    
+    
+    
     if(e.message=="START"){
         if(e.id>0){
             //cms[e.id-1].addMovement(cms[e.id].getLastElementChar());
@@ -1011,5 +1018,86 @@ User * SceneManager::getUserWithMostLetters(){
 }
 
 
+void SceneManager::explode(){
+    // UPDATE CAROUSSEL
+    for(int i=0;i<cms.size();i++){
+        cms[i].explode();
+    }
+
+}
+
+void SceneManager::reset(){
+ //careful, not sure if i delete everything...
+    cout<<"reset"<<endl;
+    messageBuffer.clear();
+    actionBuffer.clear();
+    
+
+  
+    for (int i =0; i< users.size();i++)
+    {
+        delete (users[i]);
+    }
+    users.clear();
+    
+    for (int i =0; i< movingWords.size();i++)
+    {
+        delete (movingWords[i]);
+    }
+    movingWords.clear();
+    
+    for (int i =0; i< fragments.size();i++)
+    {
+        delete (fragments[i]);
+    }
+    fragments.clear();
+    for (int i =0; i< words.size();i++)
+    {
+        delete (words[i]);
+    }
+      words.clear();
+    
+    for (int i =0; i< letters.size();i++)
+    {
+        delete (letters[i]);
+    }
+    letters.clear();
+
+    
+    
+   
+    
+    
+  
+    
+    
+    cms.clear();
+    
+    
+    float minspeed=2;
+    float speed;
+    int h=20;
+    int w=10;
+    
+    int lines=floor(ofGetHeight()/h);
+    cout<<"lines"<<lines<<endl;
+    for(int i = 0; i < lines; i++){
+        CarousselManager cm;
+        float p=ABS((ofGetHeight()/2)-((i*h)));
+        float dl= ofMap(p*(p/4),0,ofGetHeight()/2*(ofGetHeight()/2/4),1,100);
+        float dW=w+dl;
+        // s=v*t  s/v=t  v=s/t
+        float time=w/minspeed;
+        float dv=dW/time;
+        float speed=dv;
+        float r=ofRandom(0,50);
+        cm.setup(ofVec2f(-viewportwidth,(i*h)),viewportwidth,ofGetHeight(),dW,h);
+        cm.maxspeed=speed;
+        cm.setId(i);
+        cms.push_back(cm);
+    }
+
+    bIsReadyForData=true;
 
 
+}
