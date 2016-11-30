@@ -316,10 +316,15 @@ void SceneManager::draw(){
     cout<<c<<endl;
     ofDrawCircle(viewportwidth, viewportheight, 300);
     blur.end();*/
-    ofColor c=cms[cms.size()-1].containers[cms[cms.size()-1].containers.size()-1].getBackgroundColor();
+    ofColor c = ofColor(0);
+    if(!bIsExploding){
+     c=cms[cms.size()-1].containers[cms[cms.size()-1].containers.size()-1].getBackgroundColor();
     c.setBrightness(200);
+    }
     color1.lerp(c,0.01);
     ofSetColor(color1);
+   
+    
     
     png.draw(viewportwidth-1800, viewportheight-1300,3000,3000);
     
@@ -328,9 +333,9 @@ void SceneManager::draw(){
     c.setBrightness(200);
 
     color2.lerp(c,0.01);
-    ofSetColor(color2);
+        ofSetColor(color2);
     
-    //png.draw(-1000, viewportheight-1000,2000,2000);
+        //png.draw(-1000, viewportheight-1000,2000,2000);
 
     
     /*
@@ -353,6 +358,7 @@ void SceneManager::draw(){
    // c.setBrightness(120);
     
     
+    if(!bIsExploding){
     User * u=getUserWithMostLetters();
     if(u!=nullptr) {
         ofColor c=u->getBackgroundColor();
@@ -363,6 +369,10 @@ void SceneManager::draw(){
         // cout<<backgroundcolor<<endl;
         //backgroundcolor=u->getBackgroundColor();
         
+    }
+    }else{
+     backgroundcolor.lerp(ofColor(0),0.01);
+    
     }
     
 
@@ -1019,9 +1029,14 @@ User * SceneManager::getUserWithMostLetters(){
 
 
 void SceneManager::explode(){
+    bIsExploding=true;
     // UPDATE CAROUSSEL
     for(int i=0;i<cms.size();i++){
         cms[i].explode();
+    }
+    
+    for(int i=0;i<words.size();i++){
+        words[i]->explode();
     }
 
 }
@@ -1098,6 +1113,7 @@ void SceneManager::reset(){
     }
 
     bIsReadyForData=true;
+    bIsExploding=false;
 
 
 }
