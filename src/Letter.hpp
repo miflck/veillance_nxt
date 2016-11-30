@@ -89,8 +89,10 @@ public:
 
     
     
+    void explode();
 private:
     bool bRemove=false;
+    bool bIsExploding=false;
 
     
     ofVec2f position;

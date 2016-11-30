@@ -155,7 +155,11 @@ public:
     
     ofColor color1,color2,color3,color4,color5;
     
-
+    void explode();
+    
+    
+    void reset();
+    
     
     
 private:
@@ -166,6 +170,8 @@ private:
     
     // FLAG to load data from buffer
     bool bIsReadyForData=true;
+    
+    bool bIsExploding=false;
     
 };
 

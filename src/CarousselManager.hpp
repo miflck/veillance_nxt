@@ -75,6 +75,7 @@ public:
     
     void setDebugDraw(bool _b);
     
+    void explode();
     
     
 private:
@@ -84,6 +85,8 @@ private:
     
     float mywidth;
     float myheight;
+    
+    bool bIsExploding=false;
     
     
    // Letter HackBaseLetter;

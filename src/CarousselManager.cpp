@@ -126,12 +126,19 @@ void CarousselManager::startMoving(){
 }
 
 void CarousselManager::stopMoving(){
+    if(!bIsExploding){
     bIsMoving=false;
     static CarousselEvent newEvent;
     newEvent.message = "STOP";
     newEvent.id=id;
     ofNotifyEvent(CarousselEvent::events, newEvent);
-    checkBuffer();
+        checkBuffer();
+    }else{
+        static CarousselEvent newEvent;
+        newEvent.message = "EXPLODE";
+        newEvent.id=id;
+        ofNotifyEvent(CarousselEvent::events, newEvent);
+    }
 }
 
 
@@ -181,4 +188,12 @@ Letter* CarousselManager::getLastElementPointer(){
 void CarousselManager::setDebugDraw(bool _d){
     bDebugDraw=_d;
 };
+
+void CarousselManager::explode(){
+    bIsExploding=true;
+    for(int i=1;i<containers.size();i++){
+        containers[i].setTarget(ofVec3f(ofRandom(-mywidth,2*mywidth),ofRandom(-myheight,2*myheight),ofRandom(-1000,1000)));
+    }
+
+}
 

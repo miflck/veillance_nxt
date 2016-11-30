@@ -72,11 +72,15 @@ public:
     void setDebug(bool _debug);
     
     ofColor getBackgroundColor();
+    void explode();
     
 private:
     
     bool debug=false;
     ofVec2f velocity;
+    
+   bool bIsExploding=false;
+    
     
 };
 

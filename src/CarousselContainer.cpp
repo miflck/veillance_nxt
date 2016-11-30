@@ -130,3 +130,7 @@ ofColor CarousselContainer::getBackgroundColor(){
     return c;
 }
 
+void CarousselContainer::explode(){
+    bIsExploding=true;
+}
+

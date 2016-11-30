@@ -316,10 +316,15 @@ void SceneManager::draw(){
     cout<<c<<endl;
     ofDrawCircle(viewportwidth, viewportheight, 300);
     blur.end();*/
-    ofColor c=cms[cms.size()-1].containers[cms[cms.size()-1].containers.size()-1].getBackgroundColor();
+    ofColor c = ofColor(0);
+    if(!bIsExploding){
+     c=cms[cms.size()-1].containers[cms[cms.size()-1].containers.size()-1].getBackgroundColor();
     c.setBrightness(200);
+    }
     color1.lerp(c,0.01);
     ofSetColor(color1);
+   
+    
     
     png.draw(viewportwidth-1800, viewportheight-1300,3000,3000);
     
@@ -328,9 +333,9 @@ void SceneManager::draw(){
     c.setBrightness(200);
 
     color2.lerp(c,0.01);
-    ofSetColor(color2);
+        ofSetColor(color2);
     
-    //png.draw(-1000, viewportheight-1000,2000,2000);
+        //png.draw(-1000, viewportheight-1000,2000,2000);
 
     
     /*
@@ -353,6 +358,7 @@ void SceneManager::draw(){
    // c.setBrightness(120);
     
     
+    if(!bIsExploding){
     User * u=getUserWithMostLetters();
     if(u!=nullptr) {
         ofColor c=u->getBackgroundColor();
@@ -363,6 +369,10 @@ void SceneManager::draw(){
         // cout<<backgroundcolor<<endl;
         //backgroundcolor=u->getBackgroundColor();
         
+    }
+    }else{
+     backgroundcolor.lerp(ofColor(0),0.01);
+    
     }
     
 
@@ -483,6 +493,13 @@ void SceneManager::carousselEvent(CarousselEvent &e){
         }
         
     }
+    
+    
+    
+    if(e.message=="EXPLODE"){
+       reset();
+    }
+    
     
     
     if(e.message=="START"){
@@ -1011,5 +1028,92 @@ User * SceneManager::getUserWithMostLetters(){
 }
 
 
+void SceneManager::explode(){
+    bIsExploding=true;
+    // UPDATE CAROUSSEL
+    for(int i=0;i<cms.size();i++){
+        cms[i].explode();
+    }
+    
+    for(int i=0;i<words.size();i++){
+        words[i]->explode();
+    }
+
+}
+
+void SceneManager::reset(){
+ //careful, not sure if i delete everything...
+    cout<<"reset"<<endl;
+    messageBuffer.clear();
+    actionBuffer.clear();
+    
+
+  
+    for (int i =0; i< users.size();i++)
+    {
+        delete (users[i]);
+    }
+    users.clear();
+    
+    for (int i =0; i< movingWords.size();i++)
+    {
+        delete (movingWords[i]);
+    }
+    movingWords.clear();
+    
+    for (int i =0; i< fragments.size();i++)
+    {
+        delete (fragments[i]);
+    }
+    fragments.clear();
+    for (int i =0; i< words.size();i++)
+    {
+        delete (words[i]);
+    }
+      words.clear();
+    
+    for (int i =0; i< letters.size();i++)
+    {
+        delete (letters[i]);
+    }
+    letters.clear();
+
+    
+    
+   
+    
+    
+  
+    
+    
+    cms.clear();
+    
+    
+    float minspeed=2;
+    float speed;
+    int h=20;
+    int w=10;
+    
+    int lines=floor(ofGetHeight()/h);
+    cout<<"lines"<<lines<<endl;
+    for(int i = 0; i < lines; i++){
+        CarousselManager cm;
+        float p=ABS((ofGetHeight()/2)-((i*h)));
+        float dl= ofMap(p*(p/4),0,ofGetHeight()/2*(ofGetHeight()/2/4),1,100);
+        float dW=w+dl;
+        // s=v*t  s/v=t  v=s/t
+        float time=w/minspeed;
+        float dv=dW/time;
+        float speed=dv;
+        float r=ofRandom(0,50);
+        cm.setup(ofVec2f(-viewportwidth,(i*h)),viewportwidth,ofGetHeight(),dW,h);
+        cm.maxspeed=speed;
+        cm.setId(i);
+        cms.push_back(cm);
+    }
+
+    bIsReadyForData=true;
+    bIsExploding=false;
 
 
+}

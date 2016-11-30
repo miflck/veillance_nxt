@@ -210,3 +210,10 @@ ofColor Letter::getBackgroundColor(){
     }
 }
 
+void Letter::explode(){
+//setTarget
+    bIsExploding=true;
+
+};
+
+
