@@ -12,7 +12,7 @@
 #include <stdio.h>
 #include "ofMain.h"
 
-
+#include "CarousselStackManager.hpp"
 #include "CarousselLineManager.hpp"
 #include "CarousselEvent.hpp"
 
@@ -72,6 +72,11 @@ public:
     CarousselLineManager cm;
     
     vector<CarousselLineManager> cms;
+    
+    
+    vector<CarousselStackManager> csm;
+
+    
     
     void carousselEvent(CarousselEvent &e);
 

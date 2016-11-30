@@ -94,6 +94,7 @@
 		F3AD9E2A2E56B6AF32A0BDAF /* Server.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 5D95092D59E7A34C9DB7823E /* Server.cpp */; };
 		F7DBF98108C24B1D576DE0E6 /* ControlSwitcher.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 84466286B8E03BE7D2AE88DF /* ControlSwitcher.cpp */; };
 		F7E2CD66D34E349722F77978 /* ControlGenerator.cpp in Sources */ = {isa = PBXBuildFile; fileRef = BA1A28B41F62F3FDCF0A67CE /* ControlGenerator.cpp */; };
+		FAAAC04B1DEF3ACE00F25A4A /* CarousselStackManager.cpp in Sources */ = {isa = PBXBuildFile; fileRef = FAAAC0491DEF3ACE00F25A4A /* CarousselStackManager.cpp */; };
 		FAB4EAD41DDC7B1100A5E61E /* tinyxml.cpp in Sources */ = {isa = PBXBuildFile; fileRef = FAB4EACD1DDC7B1100A5E61E /* tinyxml.cpp */; };
 		FAB4EAD51DDC7B1100A5E61E /* tinyxmlerror.cpp in Sources */ = {isa = PBXBuildFile; fileRef = FAB4EACF1DDC7B1100A5E61E /* tinyxmlerror.cpp */; };
 		FAB4EAD61DDC7B1100A5E61E /* tinyxmlparser.cpp in Sources */ = {isa = PBXBuildFile; fileRef = FAB4EAD01DDC7B1100A5E61E /* tinyxmlparser.cpp */; };
@@ -324,6 +325,8 @@
 		F8836A0D4C01F8713843CB8F /* ControlValue.h */ = {isa = PBXFileReference; explicitFileType = sourcecode.c.h; fileEncoding = 30; name = ControlValue.h; path = ../../../addons/ofxTonic/src/Tonic/ControlValue.h; sourceTree = SOURCE_ROOT; };
 		F94B5F9261430D3EF3491600 /* ControlFloor.h */ = {isa = PBXFileReference; explicitFileType = sourcecode.c.h; fileEncoding = 30; name = ControlFloor.h; path = ../../../addons/ofxTonic/src/Tonic/ControlFloor.h; sourceTree = SOURCE_ROOT; };
 		FA3806E5CC3407A997C05CEC /* ControlPrinter.cpp */ = {isa = PBXFileReference; explicitFileType = sourcecode.cpp.cpp; fileEncoding = 30; name = ControlPrinter.cpp; path = ../../../addons/ofxTonic/src/Tonic/ControlPrinter.cpp; sourceTree = SOURCE_ROOT; };
+		FAAAC0491DEF3ACE00F25A4A /* CarousselStackManager.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = CarousselStackManager.cpp; sourceTree = "<group>"; };
+		FAAAC04A1DEF3ACE00F25A4A /* CarousselStackManager.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = CarousselStackManager.hpp; sourceTree = "<group>"; };
 		FAB4EACD1DDC7B1100A5E61E /* tinyxml.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = tinyxml.cpp; sourceTree = "<group>"; };
 		FAB4EACE1DDC7B1100A5E61E /* tinyxml.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = tinyxml.h; sourceTree = "<group>"; };
 		FAB4EACF1DDC7B1100A5E61E /* tinyxmlerror.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = tinyxmlerror.cpp; sourceTree = "<group>"; };
@@ -686,6 +689,8 @@
 				E2318BC197437E2688871D33 /* CarousselEvent.hpp */,
 				6D4FEB2CA9433669368A022C /* CarousselLineManager.cpp */,
 				6C9F8BDF65AC6F7B9F73DB63 /* CarousselLineManager.hpp */,
+				FAAAC0491DEF3ACE00F25A4A /* CarousselStackManager.cpp */,
+				FAAAC04A1DEF3ACE00F25A4A /* CarousselStackManager.hpp */,
 				9C8915CDA201FD63BA747BD0 /* Fragment.cpp */,
 				3FB19E8EFF8E89957581C6CF /* Fragment.hpp */,
 				CB12D2602935492A04A59107 /* IOManager.cpp */,
@@ -894,6 +899,7 @@
 				D42E8EBCEE4BC7491949F8E5 /* ControlChangeNotifier.cpp in Sources */,
 				BA79E1F539E83C64A29B4AE7 /* ControlComparison.cpp in Sources */,
 				C86222C2F07C6F4623CEDCD5 /* ControlConditioner.cpp in Sources */,
+				FAAAC04B1DEF3ACE00F25A4A /* CarousselStackManager.cpp in Sources */,
 				FAB4EAD61DDC7B1100A5E61E /* tinyxmlparser.cpp in Sources */,
 				3D6F4383B3859873D055D7F5 /* ControlCounter.cpp in Sources */,
 				687619414A00F0D4EDA9E897 /* ControlDbToLinear.cpp in Sources */,

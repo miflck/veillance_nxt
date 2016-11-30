@@ -47,11 +47,11 @@ void CarousselLineManager::update(){
 }
 
 void CarousselLineManager::draw(){
-    if(bDebugDraw){
+    //if(bDebugDraw){
         for(int i=0;i<containers.size();i++){
             containers[i].draw();
         }
-    }
+    //}
 }
 
 

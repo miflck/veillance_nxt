@@ -37,11 +37,14 @@ void CarousselContainer::draw(){
     }
     ofSetColor(c,120);
 
+    //debug stack manager
+    ofSetColor(255,0,0);
+
     
     ofFill();
    // ofDrawRectangle(bbox.x+2,bbox.y+2,bbox.getWidth()-2,bbox.getHeight()-2);
     
-    ofDrawRectangle(bbox.x,bbox.y,bbox.getWidth(),bbox.getHeight());
+    ofDrawRectangle(bbox.x-1,bbox.y-1,bbox.getWidth()-2,bbox.getHeight()-2);
   
   
 
