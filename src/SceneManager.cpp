@@ -43,7 +43,7 @@ void SceneManager::initialize(int width, int height) {
     int lines=floor(ofGetHeight()/h);
     cout<<"lines"<<lines<<endl;
     for(int i = 0; i < lines; i++){
-        CarousselManager cm;
+        CarousselLineManager cm;
         float p=ABS((ofGetHeight()/2)-((i*h)));
         float dl= ofMap(p*(p/4),0,ofGetHeight()/2*(ofGetHeight()/2/4),1,100);
         float dW=w+dl;
@@ -1097,7 +1097,7 @@ void SceneManager::reset(){
     int lines=floor(ofGetHeight()/h);
     cout<<"lines"<<lines<<endl;
     for(int i = 0; i < lines; i++){
-        CarousselManager cm;
+        CarousselLineManager cm;
         float p=ABS((ofGetHeight()/2)-((i*h)));
         float dl= ofMap(p*(p/4),0,ofGetHeight()/2*(ofGetHeight()/2/4),1,100);
         float dW=w+dl;

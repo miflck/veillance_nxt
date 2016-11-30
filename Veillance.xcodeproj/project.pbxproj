@@ -11,7 +11,7 @@
 		08A6D973887595CDADAF4FD7 /* ControlSnapToScale.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 03534BF03E1FEEDFCA986E14 /* ControlSnapToScale.cpp */; };
 		0FDEAE908DF4F7871B7660D8 /* LetterEvent.cpp in Sources */ = {isa = PBXBuildFile; fileRef = D4BF1FFE18E83CA14EBA3B41 /* LetterEvent.cpp */; };
 		190A67A17C3BB24DB37DD44F /* Generator.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 73EFFC1B6385265BB25A321D /* Generator.cpp */; };
-		19E586C8B60FD9B3B70BDC40 /* CarousselManager.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 6D4FEB2CA9433669368A022C /* CarousselManager.cpp */; };
+		19E586C8B60FD9B3B70BDC40 /* CarousselLineManager.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 6D4FEB2CA9433669368A022C /* CarousselLineManager.cpp */; };
 		1CD33E884D9E3358252E82A1 /* ofxToggle.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 907C5B5E104864A2D3A25745 /* ofxToggle.cpp */; };
 		234661DE137E48CF52BC5886 /* DelayUtils.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 468236C41BF7AEA58BC8F27D /* DelayUtils.cpp */; };
 		23E21567BA4C43105A9339A9 /* ControlTrigger.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 7168589C85E02BDE46E4D1F1 /* ControlTrigger.cpp */; };
@@ -206,8 +206,8 @@
 		695C4690BBFEAD1AED50B2F2 /* Mixer.cpp */ = {isa = PBXFileReference; explicitFileType = sourcecode.cpp.cpp; fileEncoding = 30; name = Mixer.cpp; path = ../../../addons/ofxTonic/src/Tonic/Mixer.cpp; sourceTree = SOURCE_ROOT; };
 		69668FDE141262BC3C6CA929 /* jsoncpp.cpp */ = {isa = PBXFileReference; explicitFileType = sourcecode.cpp.cpp; fileEncoding = 30; name = jsoncpp.cpp; path = ../../../addons/ofxLibwebsockets/libs/jsoncpp/jsoncpp.cpp; sourceTree = SOURCE_ROOT; };
 		6B61B2028CC70AFF71A9E65C /* TableLookupOsc.cpp */ = {isa = PBXFileReference; explicitFileType = sourcecode.cpp.cpp; fileEncoding = 30; name = TableLookupOsc.cpp; path = ../../../addons/ofxTonic/src/Tonic/TableLookupOsc.cpp; sourceTree = SOURCE_ROOT; };
-		6C9F8BDF65AC6F7B9F73DB63 /* CarousselManager.hpp */ = {isa = PBXFileReference; explicitFileType = sourcecode.c.h; fileEncoding = 30; name = CarousselManager.hpp; path = src/CarousselManager.hpp; sourceTree = SOURCE_ROOT; };
-		6D4FEB2CA9433669368A022C /* CarousselManager.cpp */ = {isa = PBXFileReference; explicitFileType = sourcecode.cpp.cpp; fileEncoding = 30; name = CarousselManager.cpp; path = src/CarousselManager.cpp; sourceTree = SOURCE_ROOT; };
+		6C9F8BDF65AC6F7B9F73DB63 /* CarousselLineManager.hpp */ = {isa = PBXFileReference; explicitFileType = sourcecode.c.h; fileEncoding = 30; name = CarousselLineManager.hpp; path = src/CarousselLineManager.hpp; sourceTree = SOURCE_ROOT; };
+		6D4FEB2CA9433669368A022C /* CarousselLineManager.cpp */ = {isa = PBXFileReference; explicitFileType = sourcecode.cpp.cpp; fileEncoding = 30; name = CarousselLineManager.cpp; path = src/CarousselLineManager.cpp; sourceTree = SOURCE_ROOT; };
 		6EDB8369D3C03948742979CF /* ControlParameter.h */ = {isa = PBXFileReference; explicitFileType = sourcecode.c.h; fileEncoding = 30; name = ControlParameter.h; path = ../../../addons/ofxTonic/src/Tonic/ControlParameter.h; sourceTree = SOURCE_ROOT; };
 		6FFD838699537542FFEF8CCC /* SceneManager.hpp */ = {isa = PBXFileReference; explicitFileType = sourcecode.c.h; fileEncoding = 30; name = SceneManager.hpp; path = src/SceneManager.hpp; sourceTree = SOURCE_ROOT; };
 		7168589C85E02BDE46E4D1F1 /* ControlTrigger.cpp */ = {isa = PBXFileReference; explicitFileType = sourcecode.cpp.cpp; fileEncoding = 30; name = ControlTrigger.cpp; path = ../../../addons/ofxTonic/src/Tonic/ControlTrigger.cpp; sourceTree = SOURCE_ROOT; };
@@ -684,8 +684,8 @@
 				4E9A46046F16EA39C2893568 /* CarousselContainer.hpp */,
 				E3C19F78D15CA0EF3F50659E /* CarousselEvent.cpp */,
 				E2318BC197437E2688871D33 /* CarousselEvent.hpp */,
-				6D4FEB2CA9433669368A022C /* CarousselManager.cpp */,
-				6C9F8BDF65AC6F7B9F73DB63 /* CarousselManager.hpp */,
+				6D4FEB2CA9433669368A022C /* CarousselLineManager.cpp */,
+				6C9F8BDF65AC6F7B9F73DB63 /* CarousselLineManager.hpp */,
 				9C8915CDA201FD63BA747BD0 /* Fragment.cpp */,
 				3FB19E8EFF8E89957581C6CF /* Fragment.hpp */,
 				CB12D2602935492A04A59107 /* IOManager.cpp */,
@@ -850,7 +850,7 @@
 				E4B69E210A3A1BDC003C02F2 /* ofApp.cpp in Sources */,
 				BEF9B1ADC9947743FCC7CB61 /* CarousselContainer.cpp in Sources */,
 				6468C686EED25914CE633F3C /* CarousselEvent.cpp in Sources */,
-				19E586C8B60FD9B3B70BDC40 /* CarousselManager.cpp in Sources */,
+				19E586C8B60FD9B3B70BDC40 /* CarousselLineManager.cpp in Sources */,
 				B93EFBAD27581E0E059272AA /* Fragment.cpp in Sources */,
 				7AF35F772B5BBAA52ED23DE4 /* IOManager.cpp in Sources */,
 				3FC056F4F8588B5E3EBDB974 /* Letter.cpp in Sources */,

@@ -13,7 +13,7 @@
 #include "ofMain.h"
 
 
-#include "CarousselManager.hpp"
+#include "CarousselLineManager.hpp"
 #include "CarousselEvent.hpp"
 
 #include "User.hpp"
@@ -69,8 +69,10 @@ public:
     
     
     // CAROUSSEL
-    CarousselManager cm;
-    vector<CarousselManager> cms;
+    CarousselLineManager cm;
+    
+    vector<CarousselLineManager> cms;
+    
     void carousselEvent(CarousselEvent &e);
 
     
