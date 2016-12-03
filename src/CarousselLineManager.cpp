@@ -37,6 +37,17 @@ void CarousselLineManager::setup(int _stackId, int _lineId, ofVec2f _position,fl
     
 }
 
+void CarousselLineManager::unregisterLetter(Letter *_l){
+    
+    for(int i=0;i<containers.size();i++){
+        if (_l==containers[i].getLetterPointer()){
+            containers[i].unregisterLetter();
+        }
+    }
+
+}
+
+
 void CarousselLineManager::update(){
     if(bIsMoving){
         move();
@@ -67,7 +78,9 @@ void CarousselLineManager::move(){
         speed.limit(maxspeed);
         p+=speed;
         
-        if(dist.length()<(maxspeed)+1){
+       // if(dist.length()<(maxspeed)+1){
+        if(dist.length()<(maxspeed)){
+
             p.set(target);
             speed.set(ofVec2f(0,0));
             containers[i].bIsMoving=false;

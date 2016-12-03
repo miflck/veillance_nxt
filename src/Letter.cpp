@@ -157,6 +157,7 @@ void Letter::setBRemove(bool _b){
         myWordPointer->unregisterLetter(this);
         myFragmentPointer->unregisterLetter(this);
         myUserPointer->unregisterLetter(this);
+        STM->unregisterLetter(this);
         
     }
 }

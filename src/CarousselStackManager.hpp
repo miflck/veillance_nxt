@@ -34,14 +34,15 @@ public:
     //void carousselEvent(CarousselEvent &e);
     
     
-    int maxspeed;
-    int minspeed=5;
+    float maxspeed;
+    float minspeed=3;
     
     
     void setId(int _id);
     void setStackId(int _id);
     
     void addMovement(Letter * l);
+    void unregisterLetter(Letter *l);
 
     
 private:

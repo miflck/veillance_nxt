@@ -57,7 +57,7 @@ class SceneManager {
     
 public:
     static SceneManager* getInstance();
-    void initialize(int width, int height);
+    void initialize(int width, int height,int entrypoints,int linesPerPoint);
     bool isInitialized();
     
     void update();
@@ -79,6 +79,8 @@ public:
     
     void registerStackManagerReady(CarousselStackManager * _s);
 
+    
+    void unregisterLetter(Letter *l);
     
     
     void carousselEvent(CarousselEvent &e);

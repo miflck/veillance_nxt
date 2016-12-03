@@ -108,6 +108,22 @@ void CarousselContainer::setLetterPointer(Letter *_l){
  //   cout<<"data "<<ofToString(myLetter->getData())<<endl;
     
 }
+
+
+void CarousselContainer::registerLetter(Letter *_l){
+    myLetter= _l;
+    bHasPointer=true;
+    //   cout<<"data "<<ofToString(myLetter->getData())<<endl;
+    
+}
+
+void CarousselContainer::unregisterLetter(){
+        myLetter=nullptr;
+    
+}
+
+
+
 Letter* CarousselContainer::getLetterPointer(){
         return myLetter;
 }

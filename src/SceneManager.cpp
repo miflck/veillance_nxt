@@ -22,7 +22,7 @@ SceneManager::SceneManager(){
 }
 
 
-void SceneManager::initialize(int width, int height) {
+void SceneManager::initialize(int width, int height, int _entrypoints , int _linesPerPoint) {
     
     initialized=true;
     cout<<"init SceneManager"<<endl;
@@ -62,12 +62,12 @@ void SceneManager::initialize(int width, int height) {
     
     
     int letterh=20;
-    int linesPerManager=7;
+    int linesPerManager=_linesPerPoint;
     int numManager=floor(ofGetHeight()/(linesPerManager*letterh));
     int managerheight=linesPerManager*letterh;
     cout<<"numManager "<<numManager<<endl;
    // for(int i = 0; i < numManager; i++){
-        for(int i = 0; i < 1; i++){
+        for(int i = 0; i < _entrypoints; i++){
 
         CarousselStackManager * sm = new CarousselStackManager();
         ofVec2f position;
@@ -646,7 +646,6 @@ void SceneManager::addDataFromBuffer(CarousselStackManager * _s){
         return;
     }
     
-    cout<<"Add data"<<endl;
   
     
     bool isUserNew=false;
@@ -665,7 +664,7 @@ void SceneManager::addDataFromBuffer(CarousselStackManager * _s){
         isUserNew=true;
         
     }else{
-        cout<<"add to user "<<u->getUserName()<<" id "<<u->getUserId()<<endl;
+
     }
     
     Fragment * f=new Fragment();
@@ -1163,6 +1162,18 @@ void SceneManager::reset(){
 void SceneManager::registerStackManagerReady(CarousselStackManager *_s){
     CarousselStackManager * s=_s;
     stackManagerBuffer.push_back(s);
+
+}
+
+void SceneManager::unregisterLetter(Letter *l){
+    
+    for(int i=0;i<csm.size();i++){
+        csm[i]->unregisterLetter(l);
+    }
+
+    //myWordPointer->unregisterLetter(l);
+    //myFragmentPointer->unregisterLetter(l);
+    //myUserPointer->unregisterLetter(l);
 
 }
 

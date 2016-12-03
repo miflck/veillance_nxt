@@ -28,6 +28,8 @@ void CarousselStackManager::setup(int _id, ofVec2f _position,float _mywidth, flo
     //These are the animationcontrollers of the background. Each one controlls a Line
     
     //float minspeed=2;
+    minspeed=ofRandom(2,4);
+    cout<<"min "<<minspeed<<endl;
     float speed;
     int containerHeight=20;
     int w=10;
@@ -38,12 +40,15 @@ void CarousselStackManager::setup(int _id, ofVec2f _position,float _mywidth, flo
         CarousselLineManager cm;
         float p=ABS((myheight/2)-((i*containerHeight)));
         float dl= ofMap(p*(p/4),0,myheight/2*(myheight/2/4),1,10);
+
+       /* float p=ABS((myheight)-((i*containerHeight)));
+        float dl= ofMap(p*(p/4),0,myheight*(myheight/4),10,1);*/
          containerWidth=w+dl;
         // s=v*t  s/v=t  v=s/t
         float time=w/minspeed;
         float dv=containerWidth/time;
         float speed=dv;
-        float r=ofRandom(0,50);
+        //float r=ofRandom(0,50);
         cm.setup(stackId,i,ofVec2f(position.x-mywidth,position.y+(i*containerHeight)),mywidth,ofGetHeight(),containerWidth,containerHeight);
         cm.maxspeed=speed;
         cm.setId(i);
@@ -95,13 +100,20 @@ void CarousselStackManager::carousselEvent(CarousselEvent &e){
         if(e.id==0){
             
             //remove Letter
-           cms[e.id].getLastElementPointer()->setBRemove(true);
-           /* Letter *l=cms[e.id].getLastElementPointer();
+           //cms[e.id].getLastElementPointer()->setBRemove(true);
+            Letter *l=cms[e.id].getLastElementPointer();
+            cms[e.id].unregisterLetter(l);
+            
+            
             auto it = std::find(STM->letters.begin(), STM->letters.end(), l);
             if (it != STM->letters.end()) {
-                int i= it - STM->letters.begin();
-                if(i>3)STM->letters[i-2]->setBRemove(true);
-            }*/
+                (*it)->setBRemove(true);
+               // int i= it - STM->letters.begin();
+               // if(i>1 && STM->letters[i-1]!=nullptr)STM->letters[i-1]->setBRemove(true);
+            }
+            
+            
+            
         }
         
     }
@@ -154,6 +166,16 @@ void CarousselStackManager::carousselEvent(CarousselEvent &e){
         }
     }*/
 }
+
+
+void CarousselStackManager::unregisterLetter(Letter *l)
+{
+        for(auto cm:cms){
+        cm.unregisterLetter(l);
+    }
+    
+}
+
 
 void CarousselStackManager::addMovement(Letter *l){
     cms[cms.size()-1].addMovement(l);

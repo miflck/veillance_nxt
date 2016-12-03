@@ -77,7 +77,7 @@ public:
     
     void explode();
     
-    
+    void unregisterLetter(Letter * _l);
 
     
 private:

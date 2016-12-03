@@ -54,7 +54,7 @@ void IOManager::onIdle( ofxLibwebsockets::Event& args ){
 
 //--------------------------------------------------------------
 void IOManager::onMessage( ofxLibwebsockets::Event& args ){
-    
+    cout<<"message"<<endl;
     if(!pause){
         
         
@@ -130,7 +130,7 @@ void IOManager::setupConnection(){
     client.addListener(this);
     ofSetLogLevel(OF_LOG_ERROR);
     
-    pause=true;
+    pause=false;
 
     
 }

@@ -1,8 +1,16 @@
 <serversettings>
     <host>localhost</host>
     <port>8080</port>
-    <channel>/entry</channel>
+ <channel>/entry</channel>
+
 </serversettings>
+
+
+
+<rendering>
+    <entrypoints>5</entrypoints>
+    <numlines>7</numlines>
+</rendering>
 
 
 <!-- 2x FULL HD -->

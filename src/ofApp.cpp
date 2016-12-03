@@ -22,6 +22,10 @@ void ofApp::setup(){
     int viewportwidth = settings.getValue("screensettings:viewportwidth", 3840);
 
     int height = settings.getValue("screensettings:height", 1080);
+    
+    int entrypoints = settings.getValue("rendering:entrypoints", 5);
+    int linesPerPoint = settings.getValue("rendering:numlines", 7);
+
 
     
     
@@ -29,7 +33,7 @@ void ofApp::setup(){
     ofSetWindowPosition(10, 10);
 
     
-    STM->initialize(viewportwidth,height);
+    STM->initialize(viewportwidth,height,entrypoints,linesPerPoint);
     SoundM->initialize();
     
   

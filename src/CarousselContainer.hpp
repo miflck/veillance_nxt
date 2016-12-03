@@ -64,6 +64,11 @@ public:
     
     Letter*  myLetter=nullptr;
     void setLetterPointer(Letter * _l);
+    
+    void registerLetter(Letter * _l);
+    void unregisterLetter();
+    
+    
     Letter* getLetterPointer();
     
     
