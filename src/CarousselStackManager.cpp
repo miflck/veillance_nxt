@@ -193,8 +193,6 @@ void CarousselStackManager::addDataFromBuffer(){
     }else{
         
         message m=mymessage;
-        
-        
         // First, find the index for the first space:
         auto first_space = mymessage.text.find(' ');
         
@@ -232,6 +230,7 @@ void CarousselStackManager::addDataFromBuffer(){
 
 void CarousselStackManager::addMessage(message _m){
     mymessage=_m;
+    mymessage.text+=" ";
             addDataFromBuffer();
 }
 
