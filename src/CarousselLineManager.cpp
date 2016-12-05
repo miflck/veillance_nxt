@@ -7,13 +7,19 @@
 //
 
 #include "CarousselLineManager.hpp"
+#include "SceneManager.hpp"
+
 CarousselLineManager::CarousselLineManager(){
 }
 
-void CarousselLineManager::setup(int _stackId, int _lineId, ofVec2f _position,float _mywidth, float _myheight, float _width,float _height){
+void CarousselLineManager::setup(int _numlines, int _stackId, int _lineId, ofVec2f _position,float _mywidth, float _myheight, float _width,float _height){
     
+    
+    
+    numlines=_numlines;
     stackId=_stackId;
     lineId = _lineId;
+    id=(stackId+1)*lineId;
     
     position.set(_position);
     mywidth=_mywidth;
@@ -128,6 +134,25 @@ void CarousselLineManager::startMoving(){
     l->setIsOnScreen(true);
     buffer.erase(buffer.begin());
     containers[containers.size()-1].setLetterPointer(l);
+    if(lineId==numlines-1){
+       // cout<<"push"
+        
+        STM->letters.push_back(l);
+        
+        STM->lettermap.erase(l);
+        /*
+        auto it = std::find(STM->letterbuffer.begin(), STM->letterbuffer.end(), l);
+        if (it != STM->letterbuffer.end()) {
+            STM->letterbuffer.erase(it);
+            // int i= it - STM->letters.begin();
+            // if(i>1 && STM->letters[i-1]!=nullptr)STM->letters[i-1]->setBRemove(true);
+        }*/
+
+        
+    }
+    
+    
+    
     
     static CarousselEvent newEvent;
     newEvent.message = "START";
@@ -186,6 +211,12 @@ void CarousselLineManager::checkBuffer(){
 
 
 
+
+void CarousselLineManager::setPosition(ofVec2f _p){
+    position.set(_p);
+}
+
+
 void CarousselLineManager::setId(int _id){
     id=_id; // deprecated
     lineId=_id;
@@ -199,6 +230,7 @@ void CarousselLineManager::setStackId(int _id){
 
 void CarousselLineManager::addMovement(Letter *_l){
     buffer.push_back(_l);
+   // cout<<buffer.size()<<endl;
     cicle();
 }
 

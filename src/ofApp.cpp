@@ -77,6 +77,15 @@ void ofApp::draw(){
         ofDrawBitmapString("Actionbuffer", 0,60);
         ofDrawBitmapString(STM->actionBuffer.size(), 110,60);
         
+        
+        ofDrawBitmapString("Letterbuffer", 0,80);
+        ofDrawBitmapString(STM->lettermap.size(), 110,80);
+        
+        
+        ofDrawBitmapString("LettersOnScreen", 0,100);
+        ofDrawBitmapString(STM->letters.size(), 120,100);
+        
+        
     }
 }
 

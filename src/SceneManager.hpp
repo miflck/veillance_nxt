@@ -26,6 +26,7 @@
 
 #include "ofxBlurShader.h"
 
+#include "helpers.hpp"
 
 
 
@@ -33,12 +34,6 @@
 #define STM SceneManager::getInstance()
 
 
-struct message {
-    int uuid;
-    string username;
-    string type;
-    string text;
-};
 
 
 
@@ -92,6 +87,10 @@ public:
     void addDataFromBuffer(CarousselStackManager * _s);
 
     
+    void addDataFromManager(CarousselStackManager * _s, message m);
+
+    
+    
     void addData(string _s, int _fragmentId);
     void addWord(string _s);
 
@@ -106,6 +105,11 @@ public:
     //FRAGMENTS WORDS LETTERs
     vector<Fragment *> fragments;
     vector<Letter *>letters;
+    
+    vector<Letter *>letterbuffer;
+    map<Letter *, Letter *> lettermap;
+
+    
     vector<Word *> words;
 
     Fragment* getFragmentById(int _id);

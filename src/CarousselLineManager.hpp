@@ -24,7 +24,7 @@ class CarousselLineManager {
     
 public:
     CarousselLineManager();
-    void setup(int _stackId,int _lineId, ofVec2f _position,float _mywidth, float _myheight, float _width,float _height);
+    void setup(int numlines, int _stackId,int _lineId, ofVec2f _position,float _mywidth, float _myheight, float _width,float _height);
     void update();
     void draw();
     
@@ -37,6 +37,8 @@ public:
     vector<CarousselContainer>containers;
     
     ofVec2f position;
+    void setPosition(ofVec2f _p);
+    
     float width;
     
     float speed;
@@ -61,6 +63,8 @@ public:
     void setStackId(int _id);
     
     vector<Letter *>buffer;
+
+
     
    // vector<Letter *>letterbuffer;
     
@@ -81,7 +85,9 @@ public:
 
     
 private:
-    
+    int counter=0;
+    int deleter=0;
+    int numlines;
     int id;
     int lineId;
     int stackId;

@@ -324,6 +324,7 @@
 		F391CB3C993783D08B18BE62 /* Noise.cpp */ = {isa = PBXFileReference; explicitFileType = sourcecode.cpp.cpp; fileEncoding = 30; name = Noise.cpp; path = ../../../addons/ofxTonic/src/Tonic/Noise.cpp; sourceTree = SOURCE_ROOT; };
 		F8836A0D4C01F8713843CB8F /* ControlValue.h */ = {isa = PBXFileReference; explicitFileType = sourcecode.c.h; fileEncoding = 30; name = ControlValue.h; path = ../../../addons/ofxTonic/src/Tonic/ControlValue.h; sourceTree = SOURCE_ROOT; };
 		F94B5F9261430D3EF3491600 /* ControlFloor.h */ = {isa = PBXFileReference; explicitFileType = sourcecode.c.h; fileEncoding = 30; name = ControlFloor.h; path = ../../../addons/ofxTonic/src/Tonic/ControlFloor.h; sourceTree = SOURCE_ROOT; };
+		FA18B2871DF58A55005A2E07 /* helpers.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = helpers.hpp; sourceTree = "<group>"; };
 		FA3806E5CC3407A997C05CEC /* ControlPrinter.cpp */ = {isa = PBXFileReference; explicitFileType = sourcecode.cpp.cpp; fileEncoding = 30; name = ControlPrinter.cpp; path = ../../../addons/ofxTonic/src/Tonic/ControlPrinter.cpp; sourceTree = SOURCE_ROOT; };
 		FAAAC0491DEF3ACE00F25A4A /* CarousselStackManager.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = CarousselStackManager.cpp; sourceTree = "<group>"; };
 		FAAAC04A1DEF3ACE00F25A4A /* CarousselStackManager.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = CarousselStackManager.hpp; sourceTree = "<group>"; };
@@ -709,6 +710,7 @@
 				8A73ACD4A7512BA21ADCC36B /* User.hpp */,
 				ADCAEBB25647DC2282922649 /* Word.cpp */,
 				F11BA8009F1346D2F4A449FD /* Word.h */,
+				FA18B2871DF58A55005A2E07 /* helpers.hpp */,
 			);
 			path = src;
 			sourceTree = SOURCE_ROOT;

@@ -98,7 +98,10 @@ void CarousselContainer::setChar(char _c){
 }
 
 char CarousselContainer::getChar(){
-    return c;
+    if(myLetter!=nullptr){
+        return myLetter->getData();
+    }else
+    return '*';
 
 }
 

@@ -14,9 +14,17 @@
 
 #include "CarousselLineManager.hpp"
 #include "CarousselEvent.hpp"
+#include "helpers.hpp"
+
+
+
+
 
 
 class CarousselStackManager {
+    
+    
+    
     
 public:
     CarousselStackManager();
@@ -47,7 +55,21 @@ public:
     void explode();
 
     
+    map<Letter *, Letter *> letterbuffer;
+    
+    void addMessage(message _m);
+    message mymessage;
+    
+    void addDataFromBuffer();
+    
+
+
+
+    
 private:
+    
+    
+    
     int id;
     int stackId;
     bool bDebugDraw=false;
@@ -57,7 +79,7 @@ private:
     
     float containerWidth;
     float containerHeight;
-    
+
     bool bIsExploding;
     
     
