@@ -161,7 +161,8 @@ void SceneManager::update(){
     if(stackManagerBuffer.size()>0 && messageBuffer.size()>0){
         CarousselStackManager * sm=stackManagerBuffer[0];
         stackManagerBuffer.erase(stackManagerBuffer.begin());
-        addDataFromBuffer(sm);
+        addMessageFromBuffer(sm);
+       // addDataFromBuffer(sm);
     }
     
     
@@ -656,6 +657,19 @@ void SceneManager::addDataFromBuffer(){
 }
 
 
+void SceneManager::addMessageFromBuffer(CarousselStackManager * _s){
+    if(messageBuffer.size()==0){
+        bIsReadyForData=true;
+        return;
+    }
+    
+    message m=messageBuffer[0];
+    _s->addMessage(m);
+    messageBuffer.erase(messageBuffer.begin());
+
+}
+
+
 void SceneManager::addDataFromBuffer(CarousselStackManager * _s){
     
     
@@ -679,12 +693,12 @@ void SceneManager::addDataFromBuffer(CarousselStackManager * _s){
     
     message m=messageBuffer[0];
     
-    sm->addMessage(m);
+   // sm->addMessage(m);
 
     
     
     messageBuffer.erase(messageBuffer.begin());
-    return;
+   // return;
 
     
     
@@ -893,6 +907,131 @@ void SceneManager::addDataFromManager(CarousselStackManager *_s, message _m){
     
     //cout<<" num letters "<<letters.size()<<endl;
 }
+
+
+void SceneManager::addWordFromManager(CarousselStackManager *_s, message _m){
+    
+    CarousselStackManager * sm =_s;
+    // cout<<sm->cms.size()<<endl;
+    
+    /*  if(messageBuffer.size()==0){
+     bIsReadyForData=true;
+     return;
+     }*/
+    
+    
+    
+    bool isUserNew=false;
+    bool isFragmentNew=false;
+
+    message m=_m;
+    
+    User * u=getUserByUsername(m.username);
+    if(u==nullptr){
+        u=new User();
+        u->setup();
+        u->setUserName(m.username);
+        int id=users.size();
+        u->setUserId(id);
+        isUserNew=true;
+        
+    }else{
+        
+    }
+    
+     Fragment *f=getFragmentById(m.uuid);
+    if(f==nullptr){
+     f=new Fragment();
+    f->setup();
+    f->setFragmentId(m.uuid);
+    f->setUserPointer(u);
+        isFragmentNew=true;
+
+
+        cout<<" ********* new Fragment "<<endl;
+          }
+    
+    string myword=_m.text;
+    
+        Word * w=new Word();
+        w->setup(wordcounter);
+        w->setData(myword);
+        int lifeTime=ofGetElapsedTimeMillis()+int(ofRandom(10000,50000));
+        w->setLifeTime(lifeTime);
+        w->setFragmentPointer(f);
+        w->setUserPointer(u);
+        
+        
+        for (auto ss : myword){
+            char c = ss;
+            Letter * l =new Letter();
+            l->setFont(&font);
+            l->setData(c);
+            l->setWordId(wordcounter);
+            l->setWordPointer(w);
+            l->setFragmentPointer(f);
+            l->setUserPointer(u);
+            
+            // letterbuffer.push_back(l);
+            
+            lettermap[l]=l;
+            
+            sm->addMovement(lettermap[l]);
+            
+            
+            //letters.push_back(l);
+            // sm->addMovement(letters[letters.size()-1]);
+            
+            
+            w->registerLetter(l);
+            f->registerLetter(l);
+            u->registerLetter(l);
+        }
+        
+        // ADD SPACE
+        Letter * l =new Letter();
+        l->setFont(&font);
+        l->setData(' ');
+        l->setWordId(wordcounter);
+        l->setWordPointer(w);
+        l->setFragmentPointer(f);
+        l->setUserPointer(u);
+        
+        // letters.push_back(l);
+        // sm->addMovement(letters[letters.size()-1]);
+        
+        letterbuffer.push_back(l);
+        sm->addMovement(letterbuffer[letterbuffer.size()-1]);
+        
+        w->registerLetter(l);
+        f->registerLetter(l);
+        u->registerLetter(l);
+        
+        words.push_back(w);
+        
+        f->registerWord(w);
+        u->registerWord(w);
+        
+        wordcounter++; // debug id
+        
+    
+   // fragments.push_back(f);
+   // u->registerFragment(f);
+    
+     if(isFragmentNew){
+    fragments.push_back(f);
+         u->registerFragment(f);
+
+     }
+    
+    //only push new users
+    if(isUserNew){
+        users.push_back(u);
+    }
+    
+    //cout<<" num letters "<<letters.size()<<endl;
+}
+
 
 
 

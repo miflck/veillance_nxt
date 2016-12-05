@@ -62,8 +62,10 @@ public:
     
     void addDataFromBuffer();
     
+    vector<string > messagestring;
+    
 
-
+    int getStringsize();
 
     
 private:

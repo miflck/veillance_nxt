@@ -85,9 +85,11 @@ public:
     void addDataFromBuffer();
     
     void addDataFromBuffer(CarousselStackManager * _s);
+    void addMessageFromBuffer(CarousselStackManager * _s);
 
     
     void addDataFromManager(CarousselStackManager * _s, message m);
+    void addWordFromManager(CarousselStackManager * _s, message m);
 
     
     

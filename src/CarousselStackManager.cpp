@@ -137,7 +137,7 @@ void CarousselStackManager::carousselEvent(CarousselEvent &e){
         addDataFromBuffer();
         }
         
-     /*   if(e.id==cms.size()-1){
+        /*if(e.id==cms.size()-1){
          STM->registerStackManagerReady(this);
         }*/
     }
@@ -188,35 +188,27 @@ void CarousselStackManager::carousselEvent(CarousselEvent &e){
 void CarousselStackManager::addDataFromBuffer(){
     //cout<<mymessage.text.size()<<endl;
 
-    if(mymessage.text.size()==0){
+    if(messagestring.size()==0){
         STM->registerStackManagerReady(this);
     }else{
         
-        message m=mymessage;
+       /* message m=mymessage;
         // First, find the index for the first space:
         auto first_space = mymessage.text.find(' ');
-        
         // The part of the string we want to keep
         // starts at the index after the space:
         auto second_word = first_space + 1;
-        
-        
         string word = mymessage.text.substr(0, first_space);
-
         mymessage.text= mymessage.text.substr(second_word);
-        
-        
-        //std::string::size_type word = 0;
-               //mymessage.text= mymessage.text.substr( mymessage.text.find_first_of(" \t")+1);
-
-        
         m.text=word;
         m.text+=" ";
        // cout<<"word "<<m.text<<endl;
         
-        STM->addDataFromManager(this, m);
-    
-    
+        */
+        message m=mymessage;
+        m.text=messagestring[0];
+        messagestring.erase(messagestring.begin());
+        STM->addWordFromManager(this, m);
     }
     
     
@@ -230,8 +222,9 @@ void CarousselStackManager::addDataFromBuffer(){
 
 void CarousselStackManager::addMessage(message _m){
     mymessage=_m;
+    messagestring = ofSplitString(_m.text, " ");
     mymessage.text+=" ";
-            addDataFromBuffer();
+    addDataFromBuffer();
 }
 
 
@@ -258,3 +251,6 @@ void CarousselStackManager::addMovement(Letter *l){
    cms[cms.size()-1].addMovement(l);
 }
 
+int CarousselStackManager::getStringsize(){
+    return messagestring.size();
+}
