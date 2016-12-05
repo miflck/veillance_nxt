@@ -179,6 +179,10 @@ public:
     
     
 private:
+    
+    int numEntrypoints;
+    int numLines;
+    
     SceneManager();
     static SceneManager* instance;
     bool initialized;

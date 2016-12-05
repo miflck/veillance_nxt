@@ -58,14 +58,16 @@ void SceneManager::initialize(int width, int height, int _entrypoints , int _lin
         cms.push_back(cm);
     }*/
     
+    numEntrypoints=_entrypoints;
+    numLines=_linesPerPoint;
     
     
     
     int letterh=20;
-    int linesPerManager=_linesPerPoint;
+    int linesPerManager=numLines;
     int numManager=floor(ofGetHeight()/(linesPerManager*letterh));
     int managerheight=linesPerManager*letterh;
-    cout<<"numManager "<<numManager<<endl;
+    cout<<"numManager "<<numEntrypoints<<endl;
    // for(int i = 0; i < numManager; i++){
         for(int i = 0; i < _entrypoints; i++){
 
@@ -356,8 +358,23 @@ void SceneManager::draw(){
     
     
     if(!bIsExploding){
-    User * u=getUserWithMostLetters();
-    if(u!=nullptr) {
+        
+        ofColor c;
+        float  h=ofMap(messageBuffer.size(), 0, 500, 0, 255);
+        
+        float  s=ofMap(messageBuffer.size(), 0, 500, 0, 255);
+        float  b=ofMap(messageBuffer.size(), 0, 500, 0, 255);
+
+        
+        c.setHsb(0, 255, b);
+
+        
+        //backgroundcolor.lerp(c,d);
+        
+        backgroundcolor.lerp(c,0.02);
+        
+    //User * u=getUserWithMostLetters();
+    /*if(u!=nullptr) {
         ofColor c=u->getBackgroundColor();
         c.setBrightness(160);
         //if(ofGetFrameNum()%10==0)backgroundcolor.lerp(c,0.02);
@@ -366,7 +383,7 @@ void SceneManager::draw(){
         // cout<<backgroundcolor<<endl;
         //backgroundcolor=u->getBackgroundColor();
         
-    }
+    }*/
     }else{
      backgroundcolor.lerp(ofColor(0),0.01);
     
@@ -520,6 +537,8 @@ void SceneManager::carousselEvent(CarousselEvent &e){
             
         }
     }*/
+    
+    
     
 }
 
@@ -1083,6 +1102,10 @@ void SceneManager::explode(){
     }
    */
     
+    for(int i=0;i<csm.size();i++){
+        csm[i]->explode();
+    }
+    
     for(int i=0;i<words.size();i++){
         words[i]->explode();
     }
@@ -1127,6 +1150,44 @@ void SceneManager::reset(){
     letters.clear();
     
     cms.clear();
+    
+    for (int i =0; i< csm.size();i++)
+    {
+        delete (csm[i]);
+    }
+    
+    csm.clear();
+    
+    
+    float minspeed=2;
+    float speed;
+    int h=20;
+    int w=10;
+
+    
+    
+    
+    int letterh=20;
+    int linesPerManager=numLines;
+    int numManager=floor(ofGetHeight()/(linesPerManager*letterh));
+    int managerheight=linesPerManager*letterh;
+    cout<<"numManager "<<numEntrypoints<<endl;
+    // for(int i = 0; i < numManager; i++){
+    for(int i = 0; i < numEntrypoints; i++){
+        
+        CarousselStackManager * sm = new CarousselStackManager();
+        ofVec2f position;
+        position.set(-viewportwidth,(i*managerheight));
+        float p=ABS((managerheight/2)-((i*h)));
+        // sm.minspeed=speed;
+        
+        sm->setup(i,position,viewportwidth,managerheight);
+        //sm.setId(i);
+        csm.push_back(sm);
+        
+        registerStackManagerReady(csm[csm.size()-1]);
+        
+    }
     
     
    /* float minspeed=2;

@@ -54,7 +54,7 @@ void IOManager::onIdle( ofxLibwebsockets::Event& args ){
 
 //--------------------------------------------------------------
 void IOManager::onMessage( ofxLibwebsockets::Event& args ){
-    cout<<"message"<<endl;
+    cout<<"message "<<args.json<<endl;
     if(!pause){
         
         
@@ -65,10 +65,13 @@ void IOManager::onMessage( ofxLibwebsockets::Event& args ){
             
             if(args.json["Type"]=="User"){
                 message m;
+                
                 m.username=args.json["Name"].asString();
                 m.type=args.json["Type"].asString();
                 m.text=args.json["Text"].asString();
                 m.uuid=args.json["Id"].asInt();
+                cout<<m.uuid<<" text "<<m.text<<endl;
+
                 STM->addMessage(m);
             }
             
@@ -77,7 +80,7 @@ void IOManager::onMessage( ofxLibwebsockets::Event& args ){
                 a.uuid=args.json["Id"].asInt();
                 a.startwordcounter=args.json["Words"][0].asInt();
                 a.endwordcounter=args.json["Words"][1].asInt();
-                STM->addAction(a);
+                //STM->addAction(a);
             }
             
             

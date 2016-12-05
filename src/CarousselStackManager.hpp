@@ -35,7 +35,7 @@ public:
     
     
     float maxspeed;
-    float minspeed=3;
+    float minspeed;
     
     
     void setId(int _id);
@@ -43,6 +43,8 @@ public:
     
     void addMovement(Letter * l);
     void unregisterLetter(Letter *l);
+    
+    void explode();
 
     
 private:
@@ -55,6 +57,8 @@ private:
     
     float containerWidth;
     float containerHeight;
+    
+    bool bIsExploding;
     
     
     

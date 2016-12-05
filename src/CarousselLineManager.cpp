@@ -22,7 +22,7 @@ void CarousselLineManager::setup(int _stackId, int _lineId, ofVec2f _position,fl
     float l=_width;
     float h=_height;
     
-    maxspeed=300;//;l/5;
+    maxspeed=300.f;//;l/5;
     
     ofVec3f pos = ofVec3f(-l,position.y);
     float dl=mywidth/l+1;
@@ -79,7 +79,7 @@ void CarousselLineManager::move(){
         p+=speed;
         
        // if(dist.length()<(maxspeed)+1){
-        if(dist.length()<(maxspeed)){
+        if(dist.length()<(maxspeed)+0.1){
 
             p.set(target);
             speed.set(ofVec2f(0,0));

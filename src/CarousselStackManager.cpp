@@ -21,15 +21,17 @@ void CarousselStackManager::setup(int _id, ofVec2f _position,float _mywidth, flo
     mywidth=_mywidth;
     myheight=_myheight;
     
-    
+    bIsExploding=false;
+
     
  
     // CAROUSSEL
     //These are the animationcontrollers of the background. Each one controlls a Line
     
     //float minspeed=2;
-    minspeed=ofRandom(2,4);
-    cout<<"min "<<minspeed<<endl;
+   float minspeed2=(float(stackId)+5)/3;
+    minspeed=ofRandom(2,6);
+    cout<<"min "<<minspeed<<"min2 "<<minspeed2<< " id "<<stackId<<endl;
     float speed;
     int containerHeight=20;
     int w=10;
@@ -62,7 +64,6 @@ void CarousselStackManager::setup(int _id, ofVec2f _position,float _mywidth, flo
 }
 
 void CarousselStackManager::update(){
-
     // UPDATE CAROUSSEL
     for(int i=0;i<cms.size();i++){
         cms[i].update();
@@ -165,6 +166,15 @@ void CarousselStackManager::carousselEvent(CarousselEvent &e){
             
         }
     }*/
+}
+
+
+void CarousselStackManager::explode(){
+    bIsExploding=true;
+    for(int i=0;i<cms.size();i++){
+        cms[i].explode();
+    }
+
 }
 
 
