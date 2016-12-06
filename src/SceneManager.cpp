@@ -995,12 +995,8 @@ bool SceneManager::shouldRemoveLetter(Letter *l){
 
 
 
-
-
 void SceneManager::addMessage(message _m){
     messageBuffer.push_back(_m);
-    // cout<<"Message Buffer Size: "<<messageBuffer.size()<<endl;
-    
 }
 
 
@@ -1078,12 +1074,6 @@ void SceneManager::reset(){
     }
     letters.clear();
 
-    
-    
-   
-    
-    
-  
     
     
     cms.clear();
