@@ -23,9 +23,7 @@
 
 
 #include "MovingWords.hpp"
-
 #include "ofxBlurShader.h"
-
 #include "helpers.hpp"
 
 
@@ -37,14 +35,6 @@
 
 
 
-struct action {
-    int uuid;
-    int startwordcounter;
-    int endwordcounter;
-    string name;
-    string type;
-    string text;
-};
 
 
 
@@ -167,7 +157,8 @@ public:
     void setDebug(bool debug);
     int drawMode=0;
     bool bSoundStuff=true;
-    
+    vector<float>speeds;
+
     
     
     
@@ -182,6 +173,15 @@ public:
     
     void reset();
     
+    
+    
+    
+    
+    // SYSTEM VARS
+    float fontsize;
+    float CCwidth;
+    float CCheight;
+    float minspeed;
     
     
 private:

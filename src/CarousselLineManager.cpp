@@ -25,19 +25,19 @@ void CarousselLineManager::setup(int _numlines, int _stackId, int _lineId, ofVec
     mywidth=_mywidth;
     myheight=_myheight;
     
-    float l=_width;
-    float h=_height;
+     letterWidth=_width;
+    letterHeight=_height;
     
     maxspeed=300.f;//;l/5;
     
-    ofVec3f pos = ofVec3f(-l,position.y);
-    float dl=mywidth/l+1;
+    ofVec3f pos = ofVec3f(-letterWidth,position.y);
+    float dl=mywidth/letterWidth+1;
     for(int i=0;i<dl;i++){
         CarousselContainer c;
-        c.setBoundingBox(pos, ofVec2f(l,h));
+        c.setBoundingBox(pos, ofVec2f(letterWidth,letterHeight));
         c.id=i;
         containers.push_back(c);
-        pos.x+=l;
+        pos.x+=letterWidth;
     }
     
     
@@ -67,9 +67,9 @@ void CarousselLineManager::update(){
 
 void CarousselLineManager::draw(){
     //if(bDebugDraw){
-    for(int i=0;i<containers.size();i++){
+   /* for(int i=0;i<containers.size();i++){
         containers[i].draw();
-    }
+    }*/
     //}
 }
 
@@ -81,17 +81,17 @@ void CarousselLineManager::move(){
         ofVec2f target=containers[i].getTarget();
         ofVec2f dist=target-p;
         ofVec2f speed=dist;
-        speed.limit(maxspeed);
+       speed.limit(maxspeed);
         p+=speed;
         
        // if(dist.length()<(maxspeed)+1){
-        if(dist.length()<(maxspeed)+0.1){
-
+        if(dist.length()<maxspeed+1){
             p.set(target);
             speed.set(ofVec2f(0,0));
             containers[i].bIsMoving=false;
         }
         
+       // p.y+=ofRandom(-0.5,0.5);
         containers[i].setPosition(p);
         containers[i].setVelocity(speed);
         /* if(p==target){
@@ -134,11 +134,13 @@ void CarousselLineManager::startMoving(){
     l->setIsOnScreen(true);
     buffer.erase(buffer.begin());
     containers[containers.size()-1].setLetterPointer(l);
+   
+    
+    // if first line
     if(lineId==numlines-1){
        // cout<<"push"
         
         STM->letters.push_back(l);
-        
         STM->lettermap.erase(l);
         /*
         auto it = std::find(STM->letterbuffer.begin(), STM->letterbuffer.end(), l);
@@ -214,6 +216,22 @@ void CarousselLineManager::checkBuffer(){
 
 void CarousselLineManager::setPosition(ofVec2f _p){
     position.set(_p);
+
+    /*ofVec3f pos = ofVec3f(-letterWidth,position.y);
+    for(int i=0;i<containers.size();i++){
+        pos.set(containers[i].getPosition());
+        float diff=pos.y-_p.y;
+        
+        
+        pos.y=_p.y;
+        containers[i].setPosition(pos);
+        
+        pos.set(containers[i].getTarget());
+        pos.y+=diff;
+        containers[i].setTarget(pos);
+        
+        
+    }*/
 }
 
 

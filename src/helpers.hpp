@@ -20,4 +20,15 @@ struct message {
 };
 
 
+
+struct action {
+    int uuid;
+    int startwordcounter;
+    int endwordcounter;
+    string name;
+    string type;
+    string text;
+};
+
+
 #endif /* ThreadedBufferDeleter_hpp */

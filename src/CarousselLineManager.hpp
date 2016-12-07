@@ -96,6 +96,8 @@ private:
     float mywidth;
     float myheight;
     
+    float letterWidth, letterHeight;
+    
     bool bIsExploding=false;
     
     

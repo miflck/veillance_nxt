@@ -24,17 +24,17 @@ void CarousselStackManager::setup(int _id, ofVec2f _position,float _mywidth, flo
     bIsExploding=false;
 
     
- 
-    // CAROUSSEL
-    //These are the animationcontrollers of the background. Each one controlls a Line
-    
     //float minspeed=2;
-    minspeed=ofRandom(2,6);
-   // cout<<"min "<<minspeed<<"min2 "<<minspeed2<< " id "<<stackId<<endl;
-    float speed;
-     containerHeight=20;
-    float w=10;
+   //minspeed=ofRandom(3,7);
     
+    
+    
+    
+    float speed;
+    containerHeight=STM->CCheight;
+    float w=STM->CCwidth;
+    int time=w/minspeed;//int(w/minspeed); ->smooth out
+
     int lines=floor(myheight/containerHeight);
    // cout<<"lines "<<lines<<endl;
     for(int i = 0; i < lines; i++){
@@ -47,15 +47,26 @@ void CarousselStackManager::setup(int _id, ofVec2f _position,float _mywidth, flo
         float p=ABS(((myheight/2)+(containerHeight/2))-(containerHeight+(i*containerHeight)));
 
        // cout<<i<<" "<<p<<endl;
-        float dl= ofMap(p*(p/4),0,myheight/2*(myheight/2/4),1,20);
+        float dl= ofMap(p*(p/4),0,myheight/2*(myheight/2/4),0,20);
+        
+        
+        
        // cout<<"dl "<<dl<<endl;
 
        /* float p=ABS((myheight)-((i*containerHeight)));
         float dl= ofMap(p*(p/4),0,myheight*(myheight/4),10,1);*/
+       // containerWidth = roundf(w+dl / time) * time;
+
+        
          containerWidth=w+dl;
+        
+        
+        
         // s=v*t  s/v=t  v=s/t
-        float time=w/minspeed;
         float dv=containerWidth/time;
+        
+
+        
         float speed=dv;
         //float r=ofRandom(0,50);
         cm.setup(lines,stackId,i,ofVec2f(position.x-mywidth,position.y+(i*containerHeight)),mywidth,ofGetHeight(),containerWidth,containerHeight);
@@ -71,7 +82,7 @@ void CarousselStackManager::setup(int _id, ofVec2f _position,float _mywidth, flo
 
 void CarousselStackManager::update(){
     // UPDATE CAROUSSEL
-    position.y-=1;
+   // position.y+=0.1;
     
     for(int i=0;i<cms.size();i++){
         cms[i].setPosition(ofVec2f(position.x-mywidth,position.y+(i*containerHeight)));

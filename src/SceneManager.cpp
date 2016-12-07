@@ -27,7 +27,16 @@ void SceneManager::initialize(int width, int height, int _entrypoints , int _lin
     initialized=true;
     cout<<"init SceneManager"<<endl;
     
-    font.load("FoundersGroteskMonoBold.ttf", 10);
+    
+    CCwidth=15;
+    CCheight=20;
+    minspeed=ofRandom(1,3);
+    
+    
+
+    
+    
+    font.load("FoundersGroteskMonoBold.ttf", CCwidth);
     bigfont.load("FoundersGroteskMonoBold.ttf", 60);
     
     viewportwidth=width;
@@ -35,46 +44,42 @@ void SceneManager::initialize(int width, int height, int _entrypoints , int _lin
     // CAROUSSEL
     //These are the animationcontrollers of the background. Each one controlls a Line
     
-    float minspeed=2;
-    float speed;
-    int h=20;
-    int w=10;
-    
-   /* int lines=floor(ofGetHeight()/h);
-    cout<<"lines"<<lines<<endl;
-    for(int i = 0; i < lines; i++){
-        CarousselLineManager cm;
-        float p=ABS((ofGetHeight()/2)-((i*h)));
-        float dl= ofMap(p*(p/4),0,ofGetHeight()/2*(ofGetHeight()/2/4),1,100);
-        float dW=w+dl;
-        // s=v*t  s/v=t  v=s/t
-        float time=w/minspeed;
-        float dv=dW/time;
-        float speed=dv;
-        float r=ofRandom(0,50);
-        cm.setup(ofVec2f(-viewportwidth,(i*h)),viewportwidth,ofGetHeight(),dW,h);
-        cm.maxspeed=speed;
-        cm.setId(i);
-        cms.push_back(cm);
-    }*/
     
     numEntrypoints=_entrypoints;
     numLines=_linesPerPoint;
+    int minspeed=2;
+    int maxspeed=5;
+
+    
+    //->if you want to smooth out speed, make time an int in Stackmanager
+    
+    //make sure not two following points have same speed;
+    for (int i=0;i<numEntrypoints;i++){
+        float s=ofRandom(minspeed,maxspeed);
+        /*if(i>0 && s==speeds[i-1]){
+            int d=int(ofRandom(speeds[i-1]-1,maxspeed-s));
+            if(d==0)d=int(ofRandom(1,maxspeed-s));
+            s+=d;
+            
+        }*/
+        cout<<"s"<<s<<endl;
+        speeds.push_back(s);
+    }
     
     
     
-    int letterh=20;
     int linesPerManager=numLines;
-    int numManager=floor(ofGetHeight()/(linesPerManager*letterh));
-    int managerheight=linesPerManager*letterh;
+    int numManager=floor(ofGetHeight()/(linesPerManager*CCheight));
+    int managerheight=linesPerManager*CCheight;
     cout<<"numManager "<<numEntrypoints<<endl;
    // for(int i = 0; i < numManager; i++){
         for(int i = 0; i < _entrypoints; i++){
 
         CarousselStackManager * sm = new CarousselStackManager();
+            sm->minspeed=speeds[i];
         ofVec2f position;
         position.set(-viewportwidth,(i*managerheight));
-        float p=ABS((managerheight/2)-((i*h)));
+        float p=ABS((managerheight/2)-((i*CCheight)));
        // sm.minspeed=speed;
 
         sm->setup(i,position,viewportwidth,managerheight);
@@ -157,6 +162,7 @@ void SceneManager::update(){
     }*/
     
  
+    
     
     if(stackManagerBuffer.size()>0 && messageBuffer.size()>0){
         CarousselStackManager * sm=stackManagerBuffer[0];
@@ -321,6 +327,9 @@ void SceneManager::draw(){
     ofDisableBlendMode();
     backgroundFbo.end();
 
+    for(int i=0;i<csm.size();i++){
+        csm[i]->draw();
+    }
     
     ofEnableBlendMode(OF_BLENDMODE_ALPHA);
     
@@ -394,7 +403,7 @@ void SceneManager::draw(){
 
     ofSetColor(backgroundcolor);
     
-    png.draw(-2000, -2000,4000,4000);
+    //png.draw(-2000, -2000,4000,4000);
     
     
 

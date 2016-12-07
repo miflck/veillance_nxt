@@ -17,7 +17,7 @@ void CarousselContainer::setup(){
 }
 
 void CarousselContainer::update(){
-    ofVec2f p=ofVec2f(position.x+bbox.getWidth()/2,position.y+10);
+    ofVec2f p=ofVec2f(position.x+3,position.y+bbox.getHeight()-3);
      if(myLetter!=nullptr){
          myLetter->setPosition(p);
          myLetter->setVelocity(velocity);
