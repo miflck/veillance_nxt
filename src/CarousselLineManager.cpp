@@ -141,7 +141,11 @@ void CarousselLineManager::startMoving(){
        // cout<<"push"
         
         STM->letters.push_back(l);
+//        STM->letters[l]=l;
+
         STM->lettermap.erase(l);
+        //delete l;
+        
         /*
         auto it = std::find(STM->letterbuffer.begin(), STM->letterbuffer.end(), l);
         if (it != STM->letterbuffer.end()) {

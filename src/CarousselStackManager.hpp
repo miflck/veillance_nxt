@@ -28,6 +28,8 @@ class CarousselStackManager {
     
 public:
     CarousselStackManager();
+    
+    
     void setup(int _id, ofVec2f _position,float _mywidth, float _myheight);
     void update();
     void draw();

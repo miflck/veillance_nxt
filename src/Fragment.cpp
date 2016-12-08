@@ -29,7 +29,12 @@ void Fragment::setup(){
 
 
 void Fragment::update(){
-
+    
+    if(checkShouldRemove()){
+    cout<<"unregister fragment"<<getFragmentId()<<endl;
+    myUserPointer->unregisterFragment(this);
+        setBRemove(true);
+    }
 }
 
 
@@ -62,19 +67,10 @@ void Fragment::registerLetter(Letter *_l){
 
 void Fragment::unregisterLetter(Letter *_l){
     
-    
     auto it = std::find(myLetters.begin(), myLetters.end(), _l);
     if (it != myLetters.end()) {
         myLetters.erase(it);
     }
-    
-
-    
-    if(myLetters.size()==0){
-        myUserPointer->unregisterFragment(this);
-        setBRemove(true);
-    }
-    
 }
 
 
@@ -140,6 +136,7 @@ ofColor Fragment::getColor(){
 
 ofColor Fragment::getBackgroundColor(){
    // return backgroundColor;
+  //  if(myUserPointer==NULL)cout<<getFragmentId()<<endl;
     return myUserPointer->getBackgroundColor();
 }
 
@@ -147,4 +144,8 @@ void Fragment::setUserPointer(User *_u){
     myUserPointer=_u;
 }
 
-
+bool Fragment::checkShouldRemove(){
+    bool b=false;
+    if(myLetters.size()==0)b = true;
+    return b;
+}

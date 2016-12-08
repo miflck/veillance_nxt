@@ -78,7 +78,7 @@ void ofApp::draw(){
         ofDrawBitmapString(STM->actionBuffer.size(), 110,60);
         
         
-        ofDrawBitmapString("Letterbuffer", 0,80);
+       ofDrawBitmapString("Letterbuffer", 0,80);
         ofDrawBitmapString(STM->lettermap.size(), 110,80);
         
         
@@ -199,7 +199,7 @@ void ofApp::keyReleased(int key){
     
     if(key=='w'){
         for (auto line : data){
-            STM->addData(line,fragmentId);
+          //  STM->addData(line,fragmentId);
             fragmentId++;
         }
     }

@@ -18,10 +18,13 @@ void CarousselContainer::setup(){
 
 void CarousselContainer::update(){
     ofVec2f p=ofVec2f(position.x+3,position.y+bbox.getHeight()-3);
-     if(myLetter!=nullptr){
+    if(myLetter!=nullptr && myLetter->getBRemove()){}
+    else{
+    if(myLetter!=nullptr && !myLetter->getBRemove()){
          myLetter->setPosition(p);
          myLetter->setVelocity(velocity);
-     }
+    }}
+    
 }
 
 void CarousselContainer::draw(){
@@ -122,7 +125,6 @@ void CarousselContainer::registerLetter(Letter *_l){
 
 void CarousselContainer::unregisterLetter(){
         myLetter=nullptr;
-    
 }
 
 

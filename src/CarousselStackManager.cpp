@@ -126,16 +126,19 @@ void CarousselStackManager::carousselEvent(CarousselEvent &e){
             //remove Letter
            //cms[e.id].getLastElementPointer()->setBRemove(true);
             Letter *l=cms[e.lineId].getLastElementPointer();
-            cms[e.lineId].unregisterLetter(l);
+           // cms[e.lineId].unregisterLetter(l);
             
-            
+           if(l!=nullptr){
+         
             auto it = std::find(STM->letters.begin(), STM->letters.end(), l);
             if (it != STM->letters.end()) {
                 (*it)->setBRemove(true);
-               // int i= it - STM->letters.begin();
-               // if(i>1 && STM->letters[i-1]!=nullptr)STM->letters[i-1]->setBRemove(true);
+                //int i= it - STM->letters.begin();
+               // cout<<"remove "<<(*it)->getData()<<" "<<STM->letters[i]->getData()<<endl;
+              //  STM->letters[i]->setBRemove(true);
+                //if(i>1 && STM->letters[i-1]!=nullptr)STM->letters[i-1]->setBRemove(true);
             }
-            
+              }
             
             
         }
@@ -233,8 +236,8 @@ void CarousselStackManager::addDataFromBuffer(){
 
 void CarousselStackManager::addMessage(message _m){
     mymessage=_m;
+    mymessage.text.erase( std::remove(mymessage.text.begin(), mymessage.text.end(), '\r'), mymessage.text.end() );
     messagestring = ofSplitString(_m.text, " ");
-    mymessage.text+=" ";
     addDataFromBuffer();
 }
 

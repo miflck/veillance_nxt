@@ -45,6 +45,8 @@ public:
     void initialize(int width, int height,int entrypoints,int linesPerPoint);
     bool isInitialized();
     
+   void initializeCaroussel();
+    
     void update();
     void draw();
     
@@ -77,13 +79,11 @@ public:
     void addDataFromBuffer(CarousselStackManager * _s);
     void addMessageFromBuffer(CarousselStackManager * _s);
 
-    
-    void addDataFromManager(CarousselStackManager * _s, message m);
     void addWordFromManager(CarousselStackManager * _s, message m);
 
     
     
-    void addData(string _s, int _fragmentId);
+   // void addData(string _s, int _fragmentId);
     void addWord(string _s);
 
     
@@ -96,14 +96,14 @@ public:
     
     //FRAGMENTS WORDS LETTERs
     vector<Fragment *> fragments;
+
+    //Letters on screen
     vector<Letter *>letters;
-    
-    vector<Letter *>letterbuffer;
+    // Letters waiting to get on screen;
     map<Letter *, Letter *> lettermap;
 
     
     vector<Word *> words;
-
     Fragment* getFragmentById(int _id);
     Word * getWordByFragmentId(int _id,int _wordindex);
 
@@ -181,7 +181,9 @@ public:
     float fontsize;
     float CCwidth;
     float CCheight;
-    float minspeed;
+    
+    int minspeed=2;
+    int maxspeed=5;
     
     
 private:
@@ -195,8 +197,6 @@ private:
     int wordcounter=0;
     
     // FLAG to load data from buffer
-    bool bIsReadyForData=true;
-    
     bool bIsExploding=false;
     
 };

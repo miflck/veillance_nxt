@@ -19,7 +19,11 @@ IOManager::IOManager(){
 
 void IOManager::setup(){
 
-    
+    for(int i=0;i<4;i++){
+        string u="user ";
+        u+=ofToString(i);
+        fakeuser.push_back(u);
+    }
     
 }
 
@@ -66,7 +70,15 @@ void IOManager::onMessage( ofxLibwebsockets::Event& args ){
             if(args.json["Type"]=="User"){
                 message m;
                 
-                m.username=args.json["Name"].asString();
+                //m.username=args.json["Name"].asString();
+                
+              //  if(ofRandom(0,1)<0.3){
+                    m.username=fakeuser[fakecounter];
+                cout<<m.username<<endl;
+                    fakecounter++;
+                    if(fakecounter>fakeuser.size()-1)fakecounter=0;
+                //}
+                
                 m.type=args.json["Type"].asString();
                 m.text=args.json["Text"].asString();
                 m.uuid=args.json["Id"].asInt();
