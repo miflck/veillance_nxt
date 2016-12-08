@@ -146,6 +146,6 @@ void Fragment::setUserPointer(User *_u){
 
 bool Fragment::checkShouldRemove(){
     bool b=false;
-    if(myLetters.size()==0)b = true;
+    if(myWords.size()==0)b = true;
     return b;
 }

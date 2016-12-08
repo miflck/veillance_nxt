@@ -174,6 +174,7 @@ public:
     void reset();
     
     
+    void checkRemove();
     
     
     

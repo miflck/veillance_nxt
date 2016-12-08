@@ -211,16 +211,11 @@ void SceneManager::update(){
     for(int i=0;i<csm.size();i++){
         csm[i]->update();
     }
-    
-    for (int i=0;i<letters.size();i++){
-        if(letters[i]->getBRemove()){
-            delete (letters[i]);
-            letters.erase(letters.begin()+i);
-        }
-    }
+
     
     for(auto letter:letters){
         letter->update();
+        
     }
     
     for(auto word:words){
@@ -236,37 +231,7 @@ void SceneManager::update(){
         user->update();
     }
     
-    // REMOVE STUFF FROM SCREEN AND MEMORY -> Wrap that up?
-
-    
-    for (int i=0;i<words.size();i++){
-        
-        if(words[i]->getBRemove()){
-            delete (words[i]);
-            words.erase(words.begin()+i);
-        }
-    }
-    
-    
-    for (int i=0;i<fragments.size();i++){
-        if(fragments[i]->getBRemove()){
-            delete (fragments[i]);
-            fragments.erase(fragments.begin()+i);
-        }
-    }
-    
-    // check if we want to remove movingwords
-    for (int i=0;i<movingWords.size();i++){
-        if(shouldRemoveMovingWord(movingWords[i])){
-            delete (movingWords[i]);
-            movingWords.erase(movingWords.begin()+i);
-        }
-    }
-    
-
-    
-
-    
+  
     
     
   
@@ -325,6 +290,48 @@ void SceneManager::update(){
     
 }
 
+void SceneManager::checkRemove(){
+    // REMOVE STUFF FROM SCREEN AND MEMORY -> Wrap that up?
+    
+    for (int i=0;i<words.size();i++){
+        if(words[i]->getBRemove()){
+            delete (words[i]);
+            words.erase(words.begin()+i);
+        }
+    }
+    
+    
+    for (int i=0;i<fragments.size();i++){
+        if(fragments[i]->getBRemove()){
+            delete (fragments[i]);
+            fragments.erase(fragments.begin()+i);
+        }
+    }
+    
+    // check if we want to remove movingwords
+    for (int i=0;i<movingWords.size();i++){
+        if(shouldRemoveMovingWord(movingWords[i])){
+            delete (movingWords[i]);
+            movingWords.erase(movingWords.begin()+i);
+        }
+    }
+    
+    
+    
+    
+    for (int i=0;i<letters.size();i++){
+        if(letters[i]->getBRemove()){
+            cout<<"delete"<<letters[i]<<endl;
+            delete (letters[i]);
+            letters.erase(letters.begin()+i);
+        }
+    }
+    
+
+
+
+
+}
 
 void SceneManager::draw(){
    // ofColor bg=backgroundcolor;
@@ -518,7 +525,7 @@ void SceneManager::draw(){
     
     
     
-    
+    checkRemove();
     
  
     
@@ -764,9 +771,12 @@ void SceneManager::addWordFromManager(CarousselStackManager *_s, message _m){
     
         for (auto ss : myword){
             char c = ss;
+            cout<<"c"<<c<<endl;
             Letter * l =new Letter();
             l->setFont(&font);
             l->setData(c);
+            l->setup();
+
             l->setWordId(wIndex);
             l->setWordPointer(w);
             l->setFragmentPointer(f);
@@ -781,20 +791,22 @@ void SceneManager::addWordFromManager(CarousselStackManager *_s, message _m){
         }
         
         // ADD SPACE
-        Letter * l =new Letter();
-        l->setFont(&font);
-        l->setData(' ');
-        l->setWordId(wIndex);
-        l->setWordPointer(w);
-        l->setFragmentPointer(f);
-        l->setUserPointer(u);
+        Letter * l2 =new Letter();
+        l2->setFont(&font);
+    l2->setup();
+
+        l2->setData(' ');
+        l2->setWordId(wIndex);
+        l2->setWordPointer(w);
+        l2->setFragmentPointer(f);
+        l2->setUserPointer(u);
         
-        lettermap[l]=l;
-        sm->addMovement(lettermap[l]);
+        lettermap[l2]=l2;
+        sm->addMovement(lettermap[l2]);
     
-        w->registerLetter(l);
-        f->registerLetter(l);
-        u->registerLetter(l);
+        w->registerLetter(l2);
+        f->registerLetter(l2);
+        u->registerLetter(l2);
         
         words.push_back(w);
         
@@ -1238,13 +1250,29 @@ void SceneManager::registerStackManagerReady(CarousselStackManager *_s){
 
 void SceneManager::unregisterLetter(Letter *l){
     
+    auto it = std::find(STM->letters.begin(), STM->letters.end(), l);
+    if (it != STM->letters.end()) {
+        
+        int i= it - STM->letters.begin();
+        cout<<"un "<<letters[i]<<endl;
+        // cout<<"remove "<<(*it)->getData()<<" "<<STM->letters[i]->getData()<<endl;
+        //  STM->letters[i]->setBRemove(true);
+        //if(i>1 && STM->letters[i-1]!=nullptr)STM->letters[i-1]->setBRemove(true);
+        // }
+    }
+
+    
+    
     for(int i=0;i<csm.size();i++){
         csm[i]->unregisterLetter(l);
     }
 
-    //myWordPointer->unregisterLetter(l);
-    //myFragmentPointer->unregisterLetter(l);
-    //myUserPointer->unregisterLetter(l);
+    
+    
+    
+    l->myWordPointer->unregisterLetter(l);
+    l->myFragmentPointer->unregisterLetter(l);
+    l->myUserPointer->unregisterLetter(l);
 
 }
 

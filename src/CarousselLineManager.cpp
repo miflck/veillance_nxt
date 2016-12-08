@@ -44,7 +44,6 @@ void CarousselLineManager::setup(int _numlines, int _stackId, int _lineId, ofVec
 }
 
 void CarousselLineManager::unregisterLetter(Letter *_l){
-    
     for(int i=0;i<containers.size();i++){
         if (_l==containers[i].getLetterPointer()){
             containers[i].unregisterLetter();

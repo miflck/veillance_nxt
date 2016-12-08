@@ -14,7 +14,8 @@
 
 
 #include "ofMain.h"
-//#include "Letter.hpp"
+#include "Letter.hpp"
+#include "CarousselContainer.hpp"
 //class Letter;
 
 class CarousselEvent : public ofEventArgs {
@@ -24,6 +25,9 @@ public:
     int   id;
     int stackId;
     int lineId;
+    Letter * letterpointer;
+    CarousselContainer c;
+    
     CarousselEvent() {
     }
     static ofEvent <CarousselEvent> events;

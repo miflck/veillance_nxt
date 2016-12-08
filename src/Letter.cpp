@@ -28,18 +28,24 @@ void Letter::setup(){
     ofRectangle textBounds = font->getStringBoundingBox("H", 0, 0);
     bIsOnScreen=false;
     node.clearParent();
+    cout<<"node"<<node.getParent()<<endl;
     
 }
 
 void Letter::update(){
     
     //check what to do
-    if(bRemove){
-        bIsOnScreen=false;
-        myWordPointer->unregisterLetter(this);
+    if(bRemove && !bWasRemove){
+        STM->unregisterLetter(this);
+
+   /*     bIsOnScreen=false;
+        STM->unregisterLetter(this);
+
         myFragmentPointer->unregisterLetter(this);
         myUserPointer->unregisterLetter(this);
-         //STM->unregisterLetter(this);
+
+        myWordPointer->unregisterLetter(this);
+    */bWasRemove=bRemove;
     }
 
     
@@ -162,6 +168,7 @@ bool Letter::getIsOnScreen(){
 
 
 void Letter::setBRemove(bool _b){
+    cout<<"setremove "<<this<< data<< " "<<myString<<endl;
     bRemove=_b;
    }
 

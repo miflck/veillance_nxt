@@ -92,6 +92,8 @@ public:
     void explode();
 private:
     bool bRemove=false;
+    bool bWasRemove=false;
+
     bool bIsExploding=false;
 
     

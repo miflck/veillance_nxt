@@ -128,7 +128,7 @@ void CarousselStackManager::carousselEvent(CarousselEvent &e){
             Letter *l=cms[e.lineId].getLastElementPointer();
            // cms[e.lineId].unregisterLetter(l);
             
-           if(l!=nullptr){
+           //if(l!=nullptr){
          
             auto it = std::find(STM->letters.begin(), STM->letters.end(), l);
             if (it != STM->letters.end()) {
@@ -137,7 +137,7 @@ void CarousselStackManager::carousselEvent(CarousselEvent &e){
                // cout<<"remove "<<(*it)->getData()<<" "<<STM->letters[i]->getData()<<endl;
               //  STM->letters[i]->setBRemove(true);
                 //if(i>1 && STM->letters[i-1]!=nullptr)STM->letters[i-1]->setBRemove(true);
-            }
+           // }
               }
             
             

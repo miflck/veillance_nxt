@@ -124,6 +124,7 @@ void CarousselContainer::registerLetter(Letter *_l){
 }
 
 void CarousselContainer::unregisterLetter(){
+   cout<<id<<" unregister"<<myLetter<<endl;
         myLetter=nullptr;
 }
 
