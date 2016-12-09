@@ -22,12 +22,63 @@ SceneManager::SceneManager(){
 }
 
 
-void SceneManager::initialize(int width, int height) {
+void SceneManager::initializeCaroussel(){
+    
+    
+    //make sure not two following points have same speed;
+    for (int i=0;i<numEntrypoints;i++){
+        float s=ofRandom(minspeed,maxspeed);
+        /*if(i>0 && s==speeds[i-1]){
+         int d=int(ofRandom(speeds[i-1]-1,maxspeed-s));
+         if(d==0)d=int(ofRandom(1,maxspeed-s));
+         s+=d;
+         
+         }*/
+        cout<<"s"<<s<<endl;
+        speeds.push_back(s);
+    }
+    
+    int linesPerManager=numLines;
+    int numManager=floor(ofGetHeight()/(linesPerManager*CCheight));
+    int managerheight=linesPerManager*CCheight;
+    cout<<"numManager "<<numEntrypoints<<endl;
+    for(int i = 0; i < numEntrypoints; i++){
+        
+        CarousselStackManager * sm = new CarousselStackManager();
+        sm->minspeed=speeds[i];
+        
+        ofVec2f position;
+        position.set(-viewportwidth,(i*managerheight));
+        float p=ABS((managerheight/2)-((i*CCheight)));
+        
+        sm->setup(i,position,viewportwidth,managerheight);
+        csm.push_back(sm);
+        
+        registerStackManagerReady(csm[csm.size()-1]);
+        
+    }
+
+
+
+
+}
+
+
+void SceneManager::initialize(int width, int height, int _entrypoints , int _linesPerPoint) {
     
     initialized=true;
     cout<<"init SceneManager"<<endl;
     
-    font.load("FoundersGroteskMonoBold.ttf", 10);
+    
+    CCwidth=15;
+    CCheight=20;
+    minspeed=ofRandom(1,3);
+    
+    
+
+    
+    
+    font.load("FoundersGroteskMonoBold.ttf", CCwidth);
     bigfont.load("FoundersGroteskMonoBold.ttf", 60);
     
     viewportwidth=width;
@@ -35,28 +86,21 @@ void SceneManager::initialize(int width, int height) {
     // CAROUSSEL
     //These are the animationcontrollers of the background. Each one controlls a Line
     
-    float minspeed=2;
-    float speed;
-    int h=20;
-    int w=10;
     
-    int lines=floor(ofGetHeight()/h);
-    cout<<"lines"<<lines<<endl;
-    for(int i = 0; i < lines; i++){
-        CarousselManager cm;
-        float p=ABS((ofGetHeight()/2)-((i*h)));
-        float dl= ofMap(p*(p/4),0,ofGetHeight()/2*(ofGetHeight()/2/4),1,100);
-        float dW=w+dl;
-        // s=v*t  s/v=t  v=s/t
-        float time=w/minspeed;
-        float dv=dW/time;
-        float speed=dv;
-        float r=ofRandom(0,50);
-        cm.setup(ofVec2f(-viewportwidth,(i*h)),viewportwidth,ofGetHeight(),dW,h);
-        cm.maxspeed=speed;
-        cm.setId(i);
-        cms.push_back(cm);
-    }
+    numEntrypoints=_entrypoints;
+    numLines=_linesPerPoint;
+    minspeed=2;
+    maxspeed=5;
+
+    
+    initializeCaroussel();
+    
+    
+    
+    
+    
+    
+    
     
     // Event listener for the Carousselevents. Tells the Scenemanager when to feed the buffer or move one line up etc
     ofAddListener(CarousselEvent::events, this, &SceneManager::carousselEvent);
@@ -117,10 +161,11 @@ void SceneManager::initialize(int width, int height) {
 
 void SceneManager::update(){
     
-    // Check if we have to feed data from Buffer to Caroussel
-    if(bIsReadyForData){
-        bIsReadyForData=false;
-        addDataFromBuffer();
+    // check if a stackmanager has capacity to add new message
+    if(stackManagerBuffer.size()>0 && messageBuffer.size()>0){
+        CarousselStackManager * sm=stackManagerBuffer[0];
+        stackManagerBuffer.erase(stackManagerBuffer.begin());
+        addMessageFromBuffer(sm);
     }
     
     // Check if we have actions to make
@@ -139,12 +184,9 @@ void SceneManager::update(){
                 //cout<<"suggestion is not on screen"<<endl;
             }
             
-            
-            
             /*if(tryMakeMovingWordByFragmentId(a.uuid,a.startwordcounter) || tryMakeMovingWordByFragmentId(a.uuid,a.endwordcounter)){
                 actionBuffer.erase(actionBuffer.begin()+i);
             }*/
-            
             
         }
         
@@ -152,50 +194,9 @@ void SceneManager::update(){
     
     
     
+
     
     
-    // UPDATE CAROUSSEL
-    for(int i=0;i<cms.size();i++){
-        cms[i].update();
-    }
-    
-    
-    // REMOVE STUFF FROM SCREEN AND MEMORY -> Wrap that up?
-    
-    for (int i=0;i<letters.size();i++){
-        if(letters[i]->getBRemove()){
-            delete (letters[i]);
-            letters.erase(letters.begin()+i);
-        }
-    }
-    
-    
-    for (int i=0;i<words.size();i++){
-        if(words[i]->getBRemove()){
-            delete (words[i]);
-            words.erase(words.begin()+i);
-        }
-    }
-    
-    for (int i=0;i<fragments.size();i++){
-        if(fragments[i]->getBRemove()){
-            delete (fragments[i]);
-            fragments.erase(fragments.begin()+i);
-        }
-    }
-    
-    // check if we want to remove movingwords
-    for (int i=0;i<movingWords.size();i++){
-        if(shouldRemoveMovingWord(movingWords[i])){
-            delete (movingWords[i]);
-            movingWords.erase(movingWords.begin()+i);
-        }
-    }
-    
-    //UPDATE
-    for(auto word:words){
-        word->update();
-    }
     
     for(auto movingWord:movingWords){
         movingWord->update();
@@ -206,15 +207,41 @@ void SceneManager::update(){
          */
     }
     
+ 
+
+    
     for(auto letter:letters){
         letter->update();
+        
     }
+    
+    for(auto word:words){
+        word->update();
+    }
+    
+    for(auto fragment:fragments){
+        fragment->update();
+    }
+    
     
     for(auto user:users){
         user->update();
     }
-    
 
+  
+    // UPDATE CAROUSSEL
+    for(int i=0;i<csm.size();i++){
+        csm[i]->update();
+    }
+    
+  
+  
+    
+    
+    
+    //UPDATE
+ 
+    
 
     
     
@@ -256,8 +283,81 @@ void SceneManager::update(){
         
     }
     
+    
+    
+    
+    
+    
 }
 
+void SceneManager::checkRemove(){
+    // REMOVE STUFF FROM SCREEN AND MEMORY -> Wrap that up?
+    
+    for (int i=0;i<words.size();i++){
+        if(words[i]->getBRemove()){
+            delete (words[i]);
+            words.erase(words.begin()+i);
+        }
+    }
+    
+    
+    for (int i=0;i<fragments.size();i++){
+        if(fragments[i]->getBRemove()){
+            delete (fragments[i]);
+            fragments.erase(fragments.begin()+i);
+        }
+    }
+    
+    // check if we want to remove movingwords
+    for (int i=0;i<movingWords.size();i++){
+        if(shouldRemoveMovingWord(movingWords[i])){
+            delete (movingWords[i]);
+            movingWords.erase(movingWords.begin()+i);
+        }
+    }
+    
+    
+    
+  /*  int size=letters.size();
+    for (int i=0;i<size;i++){
+        if(letters[i]->getBRemove()){
+            cout<<"delete "<<letters[i]<<endl;
+            
+            letters[i]->myWordPointer->unregisterLetter(letters[i]);
+            letters[i]->myFragmentPointer->unregisterLetter(letters[i]);
+            letters[i]->myUserPointer->unregisterLetter(letters[i]);
+            
+            delete (letters[i]);
+            letters.erase(letters.begin()+i);
+            
+            
+            
+        }
+    }*/
+    
+    int size=letters.size();
+    for (int i=letters.size()-1;i>=0;i--){
+        if(letters[i]->getBRemove()){
+           // cout<<"delete "<<letters[i]<<endl;
+            
+     /*       letters[i]->myWordPointer->unregisterLetter(letters[i]);
+            letters[i]->myFragmentPointer->unregisterLetter(letters[i]);
+            letters[i]->myUserPointer->unregisterLetter(letters[i]);*/
+            
+            delete (letters[i]);
+            letters.erase(letters.begin()+i);
+            
+            
+            
+        }
+    }
+
+    
+
+
+
+
+}
 
 void SceneManager::draw(){
    // ofColor bg=backgroundcolor;
@@ -274,6 +374,9 @@ void SceneManager::draw(){
     ofDisableBlendMode();
     backgroundFbo.end();
 
+    for(int i=0;i<csm.size();i++){
+        csm[i]->draw();
+    }
     
     ofEnableBlendMode(OF_BLENDMODE_ALPHA);
     
@@ -284,39 +387,11 @@ void SceneManager::draw(){
     cam[0].begin(viewFront);
     
     
-   /* blur.begin();
-    blur.amount = ofMap(ofGetMouseX(),0,viewportwidth,0,20,true);
-    blur.iterations = ofMap(ofGetMouseY(),0,ofGetHeight(),1,20,true);
-    
-    // Color code. not using at the moment
-    if(debug){
-    ofEnableBlendMode(OF_BLENDMODE_ADD);
-    //backgroundFbo.begin();
-    ofEnableAlphaBlending();
-    for(int i=0;i<cms.size();i++){
-        cms[i].draw();
-    }
-    //backgroundFbo.end();
-    
-    
-    
-    }
-    
-    blur.end();
-*/
-    
     //backgroundFbo.begin();
     ofEnableAlphaBlending();
     ofEnableBlendMode(OF_BLENDMODE_ALPHA);
 
-   /* blur.begin();
-
-        ofColor c=cms[cms.size()-1].containers[cms[cms.size()-1].containers.size()-1].getBackgroundColor();
-    ofSetColor(c);
-    cout<<c<<endl;
-    ofDrawCircle(viewportwidth, viewportheight, 300);
-    blur.end();*/
-    ofColor c = ofColor(0);
+    /*ofColor c = ofColor(0);
     if(!bIsExploding){
      c=cms[cms.size()-1].containers[cms[cms.size()-1].containers.size()-1].getBackgroundColor();
     c.setBrightness(200);
@@ -334,33 +409,30 @@ void SceneManager::draw(){
 
     color2.lerp(c,0.01);
         ofSetColor(color2);
-    
+    */
         //png.draw(-1000, viewportheight-1000,2000,2000);
 
     
-    /*
-    c=cms[0].containers[cms[0].containers.size()-1].getBackgroundColor();
-    color3.lerp(c,0.01);
-    ofSetColor(color3);
-    
-    png.draw(viewportwidth-1000, -1000,2000,2000);
-    
-    
-    c=cms[0].containers[0].getBackgroundColor();
-    color4.lerp(c,0.01);
-    ofSetColor(color4);
-    
-    png.draw(-1000, -1000,2000,2000);
-    */
-    
-    //c=cms[cms.size()/2].containers[cms[cms.size()/2].containers.size()/2].getBackgroundColor();
-    //color5.lerp(c,0.01);
-   // c.setBrightness(120);
     
     
     if(!bIsExploding){
-    User * u=getUserWithMostLetters();
-    if(u!=nullptr) {
+        
+        ofColor c;
+        float  h=ofMap(messageBuffer.size(), 0, 500, 0, 255);
+        
+        float  s=ofMap(messageBuffer.size(), 0, 500, 0, 255);
+        float  b=ofMap(messageBuffer.size(), 0, 500, 0, 255);
+
+        
+        c.setHsb(0, 255, b);
+
+        
+        //backgroundcolor.lerp(c,d);
+        
+        backgroundcolor.lerp(c,0.02);
+        
+    //User * u=getUserWithMostLetters();
+    /*if(u!=nullptr) {
         ofColor c=u->getBackgroundColor();
         c.setBrightness(160);
         //if(ofGetFrameNum()%10==0)backgroundcolor.lerp(c,0.02);
@@ -369,7 +441,7 @@ void SceneManager::draw(){
         // cout<<backgroundcolor<<endl;
         //backgroundcolor=u->getBackgroundColor();
         
-    }
+    }*/
     }else{
      backgroundcolor.lerp(ofColor(0),0.01);
     
@@ -378,7 +450,7 @@ void SceneManager::draw(){
 
     ofSetColor(backgroundcolor);
     
-    png.draw(-2000, -2000,4000,4000);
+    //png.draw(-2000, -2000,4000,4000);
     
     
 
@@ -409,6 +481,8 @@ void SceneManager::draw(){
     // getting the lettermesh
     letterMesh.clear();
     for(auto letter:letters){
+       // cout<<letter->getData()<<" "<<letter->myWordPointer->getIndex()<<" "<<letter->myWordPointer->myFragmentPointer->getFragmentId()<<endl;
+       // letter->myWordPointer->myFragmentPointer->getFragmentId();
         letterMesh.append(letter->getUpdatedVboMesh());
     }
     font.getFontTexture().bind();
@@ -428,6 +502,13 @@ void SceneManager::draw(){
     bigfont.getFontTexture().unbind();
    
     ofPopStyle();
+    
+   /* for(auto cs:csm){
+        cs->draw();
+    }*/
+    
+    
+    
     cam[0].end();
     
     /* ofEnableBlendMode(OF_BLENDMODE_ALPHA);
@@ -468,6 +549,14 @@ void SceneManager::draw(){
     
     cam[1].end();
     
+    
+    
+    
+    checkRemove();
+
+    
+    
+    
 }
 
 
@@ -475,6 +564,7 @@ void SceneManager::draw(){
 
 // CAROUSSEL STUFF -> ANIMATION
 void SceneManager::carousselEvent(CarousselEvent &e){
+   /*
     if(e.message=="STOP"){
         if(e.id>0){
             Letter *l=cms[e.id].getLastElementPointer();
@@ -492,9 +582,9 @@ void SceneManager::carousselEvent(CarousselEvent &e){
             }
         }
         
-    }
+    }*/
     
-    
+    /*
     
     if(e.message=="EXPLODE"){
        reset();
@@ -514,7 +604,10 @@ void SceneManager::carousselEvent(CarousselEvent &e){
             bIsReadyForData=true;
             
         }
-    }
+    }*/
+    
+    
+    
 }
 
 
@@ -530,17 +623,35 @@ bool SceneManager::isInitialized(){
 
 
 
-void SceneManager::addDataFromBuffer(){
-    
-    if(messageBuffer.size()==0){
+// one of the Stack managers is ready. add message from buffer
+void SceneManager::addMessageFromBuffer(CarousselStackManager * _s){
+   /* if(messageBuffer.size()==0){
         bIsReadyForData=true;
         return;
-    }
-    
-    bool isUserNew=false;
+    }*/
     
     message m=messageBuffer[0];
+    _s->addMessage(m);
     messageBuffer.erase(messageBuffer.begin());
+}
+
+
+
+
+// Old adding method. not used. doing it now word by word from stackmanager!
+void SceneManager::addDataFromBuffer(CarousselStackManager * _s){
+    
+    CarousselStackManager * sm =_s;
+    
+    /*if(messageBuffer.size()==0){
+        bIsReadyForData=true;
+        return;
+    }*/
+    
+    bool isUserNew=false;
+    message m=messageBuffer[0];
+    messageBuffer.erase(messageBuffer.begin());
+
     User * u=getUserByUsername(m.username);
     if(u==nullptr){
         u=new User();
@@ -550,9 +661,9 @@ void SceneManager::addDataFromBuffer(){
         u->setUserId(id);
         cout<<"new user "<<u->getUserName()<<" id "<<id<<endl;
         isUserNew=true;
-
+        
     }else{
-        cout<<"add to user "<<u->getUserName()<<" id "<<u->getUserId()<<endl;
+
     }
     
     Fragment * f=new Fragment();
@@ -571,8 +682,6 @@ void SceneManager::addDataFromBuffer(){
         w->setFragmentPointer(f);
         w->setUserPointer(u);
         
-      /*  float r=ofRandom(0,1);
-        if(r<0.2 && word!=" ")w->setIsSuggestion(true);*/
         
         for (auto ss : word){
             char c = ss;
@@ -583,8 +692,10 @@ void SceneManager::addDataFromBuffer(){
             l->setWordPointer(w);
             l->setFragmentPointer(f);
             l->setUserPointer(u);
-            letters.push_back(l);
-            cms[cms.size()-1].addMovement(letters[letters.size()-1]);
+            
+            lettermap[l]=l;
+            sm->addMovement(lettermap[l]);
+            
             w->registerLetter(l);
             f->registerLetter(l);
             u->registerLetter(l);
@@ -599,8 +710,8 @@ void SceneManager::addDataFromBuffer(){
         l->setFragmentPointer(f);
         l->setUserPointer(u);
         
-        letters.push_back(l);
-        cms[cms.size()-1].addMovement(letters[letters.size()-1]);
+        lettermap[l]=l;
+        sm->addMovement(lettermap[l]);
         
         w->registerLetter(l);
         f->registerLetter(l);
@@ -622,9 +733,130 @@ void SceneManager::addDataFromBuffer(){
         users.push_back(u);
     }
     
+    //cout<<" num letters "<<letters.size()<<endl;
 }
 
 
+
+
+
+//------------------- Add word to system -----------------------------------
+void SceneManager::addWordFromManager(CarousselStackManager *_s, message _m){
+    
+    CarousselStackManager * sm =_s;
+    // cout<<sm->cms.size()<<endl;
+    
+    /*  if(messageBuffer.size()==0){
+     bIsReadyForData=true;
+     return;
+     }*/
+    
+    
+    
+    bool isUserNew=false;
+    bool isFragmentNew=false;
+
+    message m=_m;
+    
+    User * u=getUserByUsername(m.username);
+    if(u==nullptr){
+        u=new User();
+        u->setup();
+        u->setUserName(m.username);
+        int id=users.size();
+        u->setUserId(id);
+        cout<<"new user "<<u->getUserName()<<" id "<<id<<endl;
+        isUserNew=true;
+        
+    }else{
+    }
+    
+     Fragment *f=getFragmentById(m.uuid);
+    if(f==nullptr){
+        f=new Fragment();
+        f->setup();
+        f->setFragmentId(m.uuid);
+        u->registerFragment(f);
+        f->setUserPointer(u);
+        isFragmentNew=true;
+        cout<<" ********* new Fragment "<<endl;
+        }
+
+    
+    //cout<<"user "<<u->getUserName()<<" "<<f->getFragmentId()<<endl;
+    int wIndex=f->getNumWords();
+    
+    string myword=_m.text;
+        Word * w=new Word();
+        w->setup(wIndex);
+        w->setData(myword);
+        int lifeTime=ofGetElapsedTimeMillis()+int(ofRandom(10000,50000));
+        w->setLifeTime(lifeTime);
+        w->setFragmentPointer(f);
+        w->setUserPointer(u);
+    
+        for (auto ss : myword){
+            char c = ss;
+            Letter * l =new Letter();
+            l->setFont(&font);
+            l->setData(c);
+            l->setup();
+
+            l->setWordId(wIndex);
+            l->setWordPointer(w);
+            l->setFragmentPointer(f);
+            l->setUserPointer(u);
+            
+            lettermap[l]=l;
+            sm->addMovement(lettermap[l]);
+            
+            w->registerLetter(l);
+            f->registerLetter(l);
+            u->registerLetter(l);
+        }
+        
+        // ADD SPACE
+        Letter * l2 =new Letter();
+        l2->setFont(&font);
+    l2->setup();
+
+        l2->setData(' ');
+        l2->setWordId(wIndex);
+        l2->setWordPointer(w);
+        l2->setFragmentPointer(f);
+        l2->setUserPointer(u);
+        
+        lettermap[l2]=l2;
+        sm->addMovement(lettermap[l2]);
+    
+        w->registerLetter(l2);
+        f->registerLetter(l2);
+        u->registerLetter(l2);
+        
+        words.push_back(w);
+        
+        f->registerWord(w);
+        u->registerWord(w);
+        
+       // wordcounter++; // debug id
+   
+    
+     if(isFragmentNew){
+         fragments.push_back(f);
+         u->registerFragment(f);
+     }
+    
+    //only push new users
+    if(isUserNew){
+        users.push_back(u);
+    }
+    
+}
+
+
+
+
+/*
 void SceneManager::addData(string _s, int _fragmentId){
     
     
@@ -659,9 +891,7 @@ void SceneManager::addData(string _s, int _fragmentId){
         w->setLifeTime(lifeTime);
         w->setFragmentPointer(f);
         w->setUserPointer(u);
-        
-        /*  float r=ofRandom(0,1);
-         if(r<0.2 && word!=" ")w->setIsSuggestion(true);*/
+
         
         for (auto ss : word){
             char c = ss;
@@ -711,74 +941,9 @@ void SceneManager::addData(string _s, int _fragmentId){
         users.push_back(u);
     }
 
-    
-    /*
-    Fragment * f=new Fragment();
-    f->setup();
-    f->setFragmentId(_fragmentId);
-    vector<string> split;
-    split = ofSplitString(_s, " ");
-    //cout<<_s<<split.size()<<endl;
-    
-    for (auto word : split){
-        Word * w=new Word();
-        w->setup(wordcounter);
-        w->setData(word);
-        int lifeTime=ofGetElapsedTimeMillis()+int(ofRandom(10000,50000));
-        w->setLifeTime(lifeTime);
-        w->setFragmentPointer(f);
-        
-        float r=ofRandom(0,1);
-        if(r<0.2 && word!=" ")w->setIsSuggestion(true);
-        
-        
-        for (auto ss : word){
-            char c = ss;
-            Letter * l =new Letter();
-            l->setFont(&font);
-            l->setData(c);
-            l->setWordId(wordcounter);
-            l->setWordPointer(w);
-            l->setFragmentPointer(f);
-            letters.push_back(l);
-            cms[cms.size()-1].addMovement(letters[letters.size()-1]);
-            w->registerLetter(l);
-            f->registerLetter(l);
-        }
-        
-        // ADD SPACE
-        Letter * l =new Letter();
-        l->setFont(&font);
-        l->setData(' ');
-        l->setWordId(wordcounter);
-        l->setWordPointer(w);
-        l->setFragmentPointer(f);
-        
-        letters.push_back(l);
-        cms[cms.size()-1].addMovement(letters[letters.size()-1]);
-        w->registerLetter(l);
-        f->registerLetter(l);
-        words.push_back(w);
-        
-        f->registerWord(w);
-        wordcounter++; // debug id
-        
-    }
-    fragments.push_back(f);*/
-}
+   }
 
-
-
-/*
-void SceneManager::addWord(string _s){
-    Word *w;
-    w->setup(words.size());
-    w->setData(_s);
-    words.push_back(w);
-}
 */
-
-
 
 
 
@@ -966,9 +1131,9 @@ Word * SceneManager::getWordByFragmentId(int _id, int _wordIndex){
 
 void SceneManager::setDebug(bool _debug){
     debug=_debug;
-    for(int i=0;i<cms.size();i++){
+ /*   for(int i=0;i<cms.size();i++){
         cms[i].setDebugDraw(_debug);
-    }
+    }*/
     
 }
 
@@ -995,8 +1160,12 @@ bool SceneManager::shouldRemoveLetter(Letter *l){
 
 
 
+
+// Add message to buffer;
 void SceneManager::addMessage(message _m){
     messageBuffer.push_back(_m);
+    // cout<<"Message Buffer Size: "<<messageBuffer.size()<<endl;
+    
 }
 
 
@@ -1027,8 +1196,13 @@ User * SceneManager::getUserWithMostLetters(){
 void SceneManager::explode(){
     bIsExploding=true;
     // UPDATE CAROUSSEL
-    for(int i=0;i<cms.size();i++){
+  /*  for(int i=0;i<cms.size();i++){
         cms[i].explode();
+    }
+   */
+    
+    for(int i=0;i<csm.size();i++){
+        csm[i]->explode();
     }
     
     for(int i=0;i<words.size();i++){
@@ -1038,8 +1212,9 @@ void SceneManager::explode(){
 }
 
 void SceneManager::reset(){
- //careful, not sure if i delete everything...
     cout<<"reset"<<endl;
+
+    
     messageBuffer.clear();
     actionBuffer.clear();
     
@@ -1073,37 +1248,42 @@ void SceneManager::reset(){
         delete (letters[i]);
     }
     letters.clear();
-
-    
     
     cms.clear();
     
-    
-    float minspeed=2;
-    float speed;
-    int h=20;
-    int w=10;
-    
-    int lines=floor(ofGetHeight()/h);
-    cout<<"lines"<<lines<<endl;
-    for(int i = 0; i < lines; i++){
-        CarousselManager cm;
-        float p=ABS((ofGetHeight()/2)-((i*h)));
-        float dl= ofMap(p*(p/4),0,ofGetHeight()/2*(ofGetHeight()/2/4),1,100);
-        float dW=w+dl;
-        // s=v*t  s/v=t  v=s/t
-        float time=w/minspeed;
-        float dv=dW/time;
-        float speed=dv;
-        float r=ofRandom(0,50);
-        cm.setup(ofVec2f(-viewportwidth,(i*h)),viewportwidth,ofGetHeight(),dW,h);
-        cm.maxspeed=speed;
-        cm.setId(i);
-        cms.push_back(cm);
+    for (int i =0; i< csm.size();i++)
+    {
+        delete (csm[i]);
     }
-
-    bIsReadyForData=true;
+    
+    csm.clear();
+    csm.clear();
+    
+    initializeCaroussel();
+    
     bIsExploding=false;
 
 
 }
+
+
+void SceneManager::registerStackManagerReady(CarousselStackManager *_s){
+    CarousselStackManager * s=_s;
+    stackManagerBuffer.push_back(s);
+
+}
+
+void SceneManager::unregisterLetter(Letter *l){
+    
+  //  cout<<"unregister in SceneManager "<<l <<endl;
+    /*for(int i=0;i<csm.size();i++){
+        csm[i]->unregisterLetter(l);
+    }*/
+    l->myWordPointer->unregisterLetter(l);
+   l->myFragmentPointer->unregisterLetter(l);
+ l->myUserPointer->unregisterLetter(l);
+    
+   
+
+}
+

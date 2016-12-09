@@ -12,8 +12,8 @@
 #include <stdio.h>
 #include "ofMain.h"
 
-
-#include "CarousselManager.hpp"
+#include "CarousselStackManager.hpp"
+#include "CarousselLineManager.hpp"
 #include "CarousselEvent.hpp"
 
 #include "User.hpp"
@@ -23,9 +23,8 @@
 
 
 #include "MovingWords.hpp"
-
 #include "ofxBlurShader.h"
-
+#include "helpers.hpp"
 
 
 
@@ -33,23 +32,9 @@
 #define STM SceneManager::getInstance()
 
 
-struct message {
-    int uuid;
-    string username;
-    string type;
-    string text;
-};
 
 
 
-struct action {
-    int uuid;
-    int startwordcounter;
-    int endwordcounter;
-    string name;
-    string type;
-    string text;
-};
 
 
 
@@ -57,8 +42,10 @@ class SceneManager {
     
 public:
     static SceneManager* getInstance();
-    void initialize(int width, int height);
+    void initialize(int width, int height,int entrypoints,int linesPerPoint);
     bool isInitialized();
+    
+   void initializeCaroussel();
     
     void update();
     void draw();
@@ -69,14 +56,34 @@ public:
     
     
     // CAROUSSEL
-    CarousselManager cm;
-    vector<CarousselManager> cms;
+    CarousselLineManager cm;
+    
+    vector<CarousselLineManager> cms;
+    
+    
+    vector<CarousselStackManager *> csm;
+    vector<CarousselStackManager *> stackManagerBuffer;
+    
+    void registerStackManagerReady(CarousselStackManager * _s);
+
+    
+    void unregisterLetter(Letter *l);
+    
+    
     void carousselEvent(CarousselEvent &e);
 
     
     // DATA
     void addDataFromBuffer();
-    void addData(string _s, int _fragmentId);
+    
+    void addDataFromBuffer(CarousselStackManager * _s);
+    void addMessageFromBuffer(CarousselStackManager * _s);
+
+    void addWordFromManager(CarousselStackManager * _s, message m);
+
+    
+    
+   // void addData(string _s, int _fragmentId);
     void addWord(string _s);
 
     
@@ -89,9 +96,14 @@ public:
     
     //FRAGMENTS WORDS LETTERs
     vector<Fragment *> fragments;
-    vector<Letter *>letters;
-    vector<Word *> words;
 
+    //Letters on screen
+    vector<Letter *>letters;
+    // Letters waiting to get on screen;
+    map<Letter *, Letter *> lettermap;
+
+    
+    vector<Word *> words;
     Fragment* getFragmentById(int _id);
     Word * getWordByFragmentId(int _id,int _wordindex);
 
@@ -145,7 +157,8 @@ public:
     void setDebug(bool debug);
     int drawMode=0;
     bool bSoundStuff=true;
-    
+    vector<float>speeds;
+
     
     
     
@@ -161,16 +174,30 @@ public:
     void reset();
     
     
+    void checkRemove();
+    
+    
+    
+    // SYSTEM VARS
+    float fontsize;
+    float CCwidth;
+    float CCheight;
+    
+    int minspeed=2;
+    int maxspeed=5;
+    
     
 private:
+    
+    int numEntrypoints;
+    int numLines;
+    
     SceneManager();
     static SceneManager* instance;
     bool initialized;
     int wordcounter=0;
     
     // FLAG to load data from buffer
-    bool bIsReadyForData=true;
-    
     bool bIsExploding=false;
     
 };

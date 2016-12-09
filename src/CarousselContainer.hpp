@@ -50,7 +50,10 @@ public:
     void setDimension(ofVec2f _dimension);
     ofVec2f getDimension();
     
+    void setId(int _id);
+    void setStackId(int _id);
     int id;
+    int stackId;
     
     char c=' ';
     
@@ -61,6 +64,11 @@ public:
     
     Letter*  myLetter=nullptr;
     void setLetterPointer(Letter * _l);
+    
+    void registerLetter(Letter * _l);
+    void unregisterLetter();
+    
+    
     Letter* getLetterPointer();
     
     

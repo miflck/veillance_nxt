@@ -33,13 +33,19 @@ void Word::setup(int _index){
 }
 
 void Word::update(){
+    if(checkShouldRemove()){
+    setBRemove(true);
+    myFragmentPointer->unregisterWord(this);
+    myUserPointer->unregisterWord(this);
+    }
     
     lerpColor();
     int now=ofGetElapsedTimeMillis();
     bool isOnScreen=checkIsOnScreen();
+   // cout<<myFragmentPointer->getFragmentId()<<endl;
     
     
-    if(isOnScreen&!wasOnScreen){
+    if(isOnScreen &! wasOnScreen){
         //lifespan=int(ofRandom(20000,150000));
         //lifeTime=ofGetElapsedTimeMillis()+lifespan;
         bIsAlive=true;
@@ -173,19 +179,11 @@ void Word::registerLetter(Letter *_l){
 
 void Word::unregisterLetter(Letter *_l){
     
-    // cout<<" unregister letter from word  with pointer"<<myFragmentPointer->getFragmentId()<<endl;
+   // cout<<" unregister letter "<<_l<<" "<<_l->getData()<<"from word"<<myFragmentPointer->getFragmentId()<<endl;
     auto it = std::find(myLetters.begin(), myLetters.end(), _l);
-    if (it != myLetters.end()) { myLetters.erase(it); }
-    
-    
-    if(myLetters.size()==0){
-        setBRemove(true);
-        myFragmentPointer->unregisterWord(this);
-        myUserPointer->unregisterWord(this);
-        //   cout<<"remove word"<<data<<endl;
+    if (it != myLetters.end()) {
+        myLetters.erase(it);
     }
-    
-    /// myLetters.push_back(_l);
 }
 
 void Word::setFragmentPointer(Fragment *_f){
@@ -219,6 +217,8 @@ ofColor Word::getColor(){
                 return ofColor(255);
                 break;
             case 2:
+                
+                myFragmentPointer->getFragmentId();
                 return myFragmentPointer->getBackgroundColor();
                 break;
                 

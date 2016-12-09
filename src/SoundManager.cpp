@@ -71,7 +71,7 @@ SoundManager::SoundManager(){
 void SoundManager::initialize(){
     
     initialized=true;
-    cout<<"init SceneManager"<<endl;
+    cout<<"init SoundManager"<<endl;
     
     ofSoundStreamSetup(2, 0, this, 44100, 256, 4);
     

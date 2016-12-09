@@ -19,7 +19,11 @@ IOManager::IOManager(){
 
 void IOManager::setup(){
 
-    
+    for(int i=0;i<4;i++){
+        string u="user ";
+        u+=ofToString(i);
+        fakeuser.push_back(u);
+    }
     
 }
 
@@ -54,7 +58,7 @@ void IOManager::onIdle( ofxLibwebsockets::Event& args ){
 
 //--------------------------------------------------------------
 void IOManager::onMessage( ofxLibwebsockets::Event& args ){
-    
+    //cout<<"message "<<args.json<<endl;
     if(!pause){
         
         
@@ -65,10 +69,21 @@ void IOManager::onMessage( ofxLibwebsockets::Event& args ){
             
             if(args.json["Type"]=="User"){
                 message m;
-                m.username=args.json["Name"].asString();
+                
+                //m.username=args.json["Name"].asString();
+                
+              //  if(ofRandom(0,1)<0.3){
+                    m.username=fakeuser[fakecounter];
+                cout<<m.username<<endl;
+                    fakecounter++;
+                    if(fakecounter>fakeuser.size()-1)fakecounter=0;
+                //}
+                
                 m.type=args.json["Type"].asString();
                 m.text=args.json["Text"].asString();
                 m.uuid=args.json["Id"].asInt();
+              //  cout<<m.uuid<<" text "<<m.text<<endl;
+
                 STM->addMessage(m);
             }
             
@@ -77,7 +92,7 @@ void IOManager::onMessage( ofxLibwebsockets::Event& args ){
                 a.uuid=args.json["Id"].asInt();
                 a.startwordcounter=args.json["Words"][0].asInt();
                 a.endwordcounter=args.json["Words"][1].asInt();
-                STM->addAction(a);
+                //STM->addAction(a);
             }
             
             
@@ -130,7 +145,7 @@ void IOManager::setupConnection(){
     client.addListener(this);
     ofSetLogLevel(OF_LOG_ERROR);
     
-    pause=true;
+    pause=false;
 
     
 }

@@ -35,7 +35,7 @@ public:
 
     ofMutex  mutex;
     
-    
+    vector<string>fakeuser;
     
     
     string host;
@@ -57,6 +57,8 @@ public:
     bool pause;
     
     int myid;
+    
+    int fakecounter=0;
     
 };
 #endif

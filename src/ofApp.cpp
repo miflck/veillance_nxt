@@ -22,6 +22,10 @@ void ofApp::setup(){
     int viewportwidth = settings.getValue("screensettings:viewportwidth", 3840);
 
     int height = settings.getValue("screensettings:height", 1080);
+    
+    int entrypoints = settings.getValue("rendering:entrypoints", 5);
+    int linesPerPoint = settings.getValue("rendering:numlines", 7);
+
 
     
     
@@ -29,7 +33,7 @@ void ofApp::setup(){
     ofSetWindowPosition(10, 10);
 
     
-    STM->initialize(viewportwidth,height);
+    STM->initialize(viewportwidth,height,entrypoints,linesPerPoint);
     SoundM->initialize();
     
   
@@ -72,6 +76,15 @@ void ofApp::draw(){
         
         ofDrawBitmapString("Actionbuffer", 0,60);
         ofDrawBitmapString(STM->actionBuffer.size(), 110,60);
+        
+        
+       ofDrawBitmapString("Letterbuffer", 0,80);
+        ofDrawBitmapString(STM->lettermap.size(), 110,80);
+        
+        
+        ofDrawBitmapString("LettersOnScreen", 0,100);
+        ofDrawBitmapString(STM->letters.size(), 120,100);
+        
         
     }
 }
@@ -186,7 +199,7 @@ void ofApp::keyReleased(int key){
     
     if(key=='w'){
         for (auto line : data){
-            STM->addData(line,fragmentId);
+          //  STM->addData(line,fragmentId);
             fragmentId++;
         }
     }

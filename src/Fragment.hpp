@@ -60,6 +60,8 @@ public:
     
     User * myUserPointer;
     void setUserPointer(User * _u);
+    
+    bool checkShouldRemove();
 
 private:
     int fragmentId;
@@ -74,6 +76,7 @@ private:
     
     ofColor targetColor;
     ofColor backgroundColor;
+    
 
 
 
