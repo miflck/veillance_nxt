@@ -86,7 +86,7 @@ public:
     
     ofColor getColor();
     ofColor getBackgroundColor();
-
+    bool bRemoveMe;
     
     
     void explode();

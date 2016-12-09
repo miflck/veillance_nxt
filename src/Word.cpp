@@ -179,7 +179,7 @@ void Word::registerLetter(Letter *_l){
 
 void Word::unregisterLetter(Letter *_l){
     
-     cout<<" unregister letter "<<_l<<" "<<_l->getData()<<"from word"<<myFragmentPointer->getFragmentId()<<endl;
+    cout<<" unregister letter "<<_l<<" "<<_l->getData()<<"from word"<<myFragmentPointer->getFragmentId()<<endl;
     auto it = std::find(myLetters.begin(), myLetters.end(), _l);
     if (it != myLetters.end()) {
         myLetters.erase(it);

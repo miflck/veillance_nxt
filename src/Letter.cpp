@@ -16,6 +16,12 @@
 
 Letter::Letter(){
     data=NULL;
+    bIsOnScreen=false;
+    node.clearParent();
+    cout<<"node"<<node.getParent()<<endl;
+    bRemove=false;
+    bRemoveMe=false;
+    bWasRemove=false;
     
 }
 
@@ -29,14 +35,23 @@ void Letter::setup(){
     bIsOnScreen=false;
     node.clearParent();
     cout<<"node"<<node.getParent()<<endl;
+    bRemove=false;
+    bRemoveMe=false;
+    bWasRemove=false;
     
 }
 
 void Letter::update(){
     
     //check what to do
-    if(bRemove && !bWasRemove){
-        STM->unregisterLetter(this);
+    //if(bRemove && !bWasRemove){
+    
+    if(bRemove)bWasRemove=bRemove;
+    
+        if(bRemoveMe){
+            bRemove=true;
+           // cout<<"unregisterLetter "<<this<<endl;
+        //STM->unregisterLetter(this);
 
    /*     bIsOnScreen=false;
         STM->unregisterLetter(this);
@@ -45,7 +60,7 @@ void Letter::update(){
         myUserPointer->unregisterLetter(this);
 
         myWordPointer->unregisterLetter(this);
-    */bWasRemove=bRemove;
+    */
     }
 
     
@@ -82,8 +97,9 @@ void Letter::draw(){
 
 void Letter::setData(char _data){
     data=_data;
-    myString=ofToUpper(ofToString(_data));
-    //  myString=ofToString(_data);
+    
+   // myString=ofToUpper(ofToString(data));
+      myString=ofToString(_data);
     letterMesh = font->getStringMesh(myString, 0, 0);
 }
 
@@ -143,9 +159,15 @@ void Letter::setUserPointer(User *_u){
 
 void Letter::setPosition(ofVec2f _p){
     if(bRemove)return;
+    if(bWasRemove){
+        cout<<"was removed"<<endl;
+    return;
+    }else{
+
     if(getIsOnScreen()){
         position.set(_p);
         node.setGlobalPosition(position);
+    }
     }
 }
 
@@ -169,7 +191,24 @@ bool Letter::getIsOnScreen(){
 
 void Letter::setBRemove(bool _b){
     cout<<"setremove "<<this<< data<< " "<<myString<<endl;
-    bRemove=_b;
+    bRemoveMe=_b;//bRemove=_b;
+    
+    if(bRemoveMe){
+        cout<<"unregisterLetter "<<this<<endl;
+        STM->unregisterLetter(this);
+        
+        /*     bIsOnScreen=false;
+         STM->unregisterLetter(this);
+         
+         myFragmentPointer->unregisterLetter(this);
+         myUserPointer->unregisterLetter(this);
+         
+         myWordPointer->unregisterLetter(this);
+         */
+        //bWasRemove=bRemove;
+    }
+
+    
    }
 
 bool Letter::getBRemove(){

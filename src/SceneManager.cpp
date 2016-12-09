@@ -207,10 +207,7 @@ void SceneManager::update(){
          */
     }
     
-    // UPDATE CAROUSSEL
-    for(int i=0;i<csm.size();i++){
-        csm[i]->update();
-    }
+ 
 
     
     for(auto letter:letters){
@@ -230,9 +227,12 @@ void SceneManager::update(){
     for(auto user:users){
         user->update();
     }
-    
+
   
-    
+    // UPDATE CAROUSSEL
+    for(int i=0;i<csm.size();i++){
+        csm[i]->update();
+    }
     
   
   
@@ -318,14 +318,40 @@ void SceneManager::checkRemove(){
     
     
     
-    
-    for (int i=0;i<letters.size();i++){
+  /*  int size=letters.size();
+    for (int i=0;i<size;i++){
         if(letters[i]->getBRemove()){
-            cout<<"delete"<<letters[i]<<endl;
+            cout<<"delete "<<letters[i]<<endl;
+            
+            letters[i]->myWordPointer->unregisterLetter(letters[i]);
+            letters[i]->myFragmentPointer->unregisterLetter(letters[i]);
+            letters[i]->myUserPointer->unregisterLetter(letters[i]);
+            
             delete (letters[i]);
             letters.erase(letters.begin()+i);
+            
+            
+            
+        }
+    }*/
+    
+    int size=letters.size();
+    for (int i=letters.size()-1;i>=0;i--){
+        if(letters[i]->getBRemove()){
+            cout<<"delete "<<letters[i]<<endl;
+            
+     /*       letters[i]->myWordPointer->unregisterLetter(letters[i]);
+            letters[i]->myFragmentPointer->unregisterLetter(letters[i]);
+            letters[i]->myUserPointer->unregisterLetter(letters[i]);*/
+            
+            delete (letters[i]);
+            letters.erase(letters.begin()+i);
+            
+            
+            
         }
     }
+
     
 
 
@@ -525,9 +551,9 @@ void SceneManager::draw(){
     
     
     
-    checkRemove();
     
- 
+    checkRemove();
+
     
     
     
@@ -771,7 +797,6 @@ void SceneManager::addWordFromManager(CarousselStackManager *_s, message _m){
     
         for (auto ss : myword){
             char c = ss;
-            cout<<"c"<<c<<endl;
             Letter * l =new Letter();
             l->setFont(&font);
             l->setData(c);
@@ -1250,29 +1275,15 @@ void SceneManager::registerStackManagerReady(CarousselStackManager *_s){
 
 void SceneManager::unregisterLetter(Letter *l){
     
-    auto it = std::find(STM->letters.begin(), STM->letters.end(), l);
-    if (it != STM->letters.end()) {
-        
-        int i= it - STM->letters.begin();
-        cout<<"un "<<letters[i]<<endl;
-        // cout<<"remove "<<(*it)->getData()<<" "<<STM->letters[i]->getData()<<endl;
-        //  STM->letters[i]->setBRemove(true);
-        //if(i>1 && STM->letters[i-1]!=nullptr)STM->letters[i-1]->setBRemove(true);
-        // }
-    }
-
-    
-    
+    cout<<"unregister in SceneManager "<<l <<endl;
     for(int i=0;i<csm.size();i++){
         csm[i]->unregisterLetter(l);
     }
-
-    
-    
-    
     l->myWordPointer->unregisterLetter(l);
-    l->myFragmentPointer->unregisterLetter(l);
-    l->myUserPointer->unregisterLetter(l);
+   l->myFragmentPointer->unregisterLetter(l);
+ l->myUserPointer->unregisterLetter(l);
+    
+   
 
 }
 

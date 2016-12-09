@@ -237,7 +237,9 @@ void CarousselStackManager::addDataFromBuffer(){
 void CarousselStackManager::addMessage(message _m){
     mymessage=_m;
     mymessage.text.erase( std::remove(mymessage.text.begin(), mymessage.text.end(), '\r'), mymessage.text.end() );
-    messagestring = ofSplitString(_m.text, " ");
+    mymessage.text=ofToUpper(ofToString(mymessage.text));
+
+    messagestring = ofSplitString(mymessage.text , " ");
     addDataFromBuffer();
 }
 
@@ -254,6 +256,7 @@ void CarousselStackManager::explode(){
 
 void CarousselStackManager::unregisterLetter(Letter *l)
 {
+    cout<<"unreg "<<l<<endl;
         for(auto cm:cms){
         cm.unregisterLetter(l);
     }
