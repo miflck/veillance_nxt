@@ -18,7 +18,9 @@ void CarousselContainer::setup(){
 
 void CarousselContainer::update(){
     ofVec2f p=ofVec2f(position.x+3,position.y+bbox.getHeight()-3);
-    if(myLetter!=nullptr && myLetter->getBRemove()){}
+    if(myLetter!=nullptr && myLetter->getBRemove()){
+        myLetter=nullptr;
+    }
     else{
     if(myLetter!=nullptr && !myLetter->getBRemove()){
          myLetter->setPosition(p);

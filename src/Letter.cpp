@@ -18,7 +18,7 @@ Letter::Letter(){
     data=NULL;
     bIsOnScreen=false;
     node.clearParent();
-    cout<<"node"<<node.getParent()<<endl;
+    //cout<<"node"<<node.getParent()<<endl;
     bRemove=false;
     bRemoveMe=false;
     bWasRemove=false;
@@ -34,7 +34,7 @@ void Letter::setup(){
     ofRectangle textBounds = font->getStringBoundingBox("H", 0, 0);
     bIsOnScreen=false;
     node.clearParent();
-    cout<<"node"<<node.getParent()<<endl;
+    //cout<<"node"<<node.getParent()<<endl;
     bRemove=false;
     bRemoveMe=false;
     bWasRemove=false;
@@ -160,7 +160,6 @@ void Letter::setUserPointer(User *_u){
 void Letter::setPosition(ofVec2f _p){
     if(bRemove)return;
     if(bWasRemove){
-        cout<<"was removed"<<endl;
     return;
     }else{
 
@@ -190,11 +189,11 @@ bool Letter::getIsOnScreen(){
 
 
 void Letter::setBRemove(bool _b){
-    cout<<"setremove "<<this<< data<< " "<<myString<<endl;
+    //cout<<"setremove "<<this<< data<< " "<<myString<<endl;
     bRemoveMe=_b;//bRemove=_b;
     
     if(bRemoveMe){
-        cout<<"unregisterLetter "<<this<<endl;
+        //cout<<"unregisterLetter "<<this<<endl;
         STM->unregisterLetter(this);
         
         /*     bIsOnScreen=false;

@@ -75,10 +75,10 @@ void Fragment::unregisterLetter(Letter *_l){
 
 
 void Fragment::unregisterWord(Word *_w){
+    if(myWords.size()>0){
     auto it = std::find(myWords.begin(), myWords.end(), _w);
     if (it != myWords.end()) { myWords.erase(it); }
-    
-    
+    }
     if(myWords.size()==0){
       //  setBRemove(true);
     }

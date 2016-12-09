@@ -82,6 +82,9 @@ public:
     void explode();
     
     void unregisterLetter(Letter * _l);
+   
+    void deleteLastLetter();
+
 
     
 private:

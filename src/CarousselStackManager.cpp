@@ -126,6 +126,7 @@ void CarousselStackManager::carousselEvent(CarousselEvent &e){
             //remove Letter
            //cms[e.id].getLastElementPointer()->setBRemove(true);
             Letter *l=cms[e.lineId].getLastElementPointer();
+            cms[e.lineId].deleteLastLetter();
            // cms[e.lineId].unregisterLetter(l);
             
            //if(l!=nullptr){
