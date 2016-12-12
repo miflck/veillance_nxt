@@ -248,7 +248,7 @@ void CarousselStackManager::addDataFromBuffer(){
 void CarousselStackManager::addMessage(message _m){
     mymessage=_m;
     mymessage.text.erase( std::remove(mymessage.text.begin(), mymessage.text.end(), '\r'), mymessage.text.end() );
-    mymessage.text=ofToUpper(ofToString(mymessage.text));
+    mymessage.text=ofToUpper(mymessage.text);
 
     messagestring = ofSplitString(mymessage.text , " ");
     addDataFromBuffer();

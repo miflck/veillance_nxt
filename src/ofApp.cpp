@@ -202,10 +202,11 @@ void ofApp::keyReleased(int key){
     
     
     if(key=='w'){
-        for (auto line : data){
+        STM->addDNS("hello");
+       // for (auto line : data){
           //  STM->addData(line,fragmentId);
             fragmentId++;
-        }
+       // }
     }
     
 }

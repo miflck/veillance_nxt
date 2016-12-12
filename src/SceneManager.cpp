@@ -62,6 +62,14 @@ void SceneManager::initializeCaroussel(){
     }
 
 
+    
+    int h=50;
+    ofVec2f position;
+    position.set(viewportwidth+100,-h);
+    vC.setPosition(position);
+    vC.setFont(&bigfont);
+    vC.setup(position, 200, viewportheight+2*h, 200, h);
+    
 
 
 }
@@ -84,8 +92,9 @@ void SceneManager::initialize(int width, int height, int _entrypoints , int _lin
 
     
     
-    font.load("FoundersGroteskMonoBold.ttf", CCwidth);
-    bigfont.load("FoundersGroteskMonoBold.ttf", 60);
+    font.load("FoundersGroteskMonoBold.ttf", CCwidth,true,true);
+    cout<<"Full "<<font.hasFullCharacterSet()<<endl;
+    bigfont.load("FoundersGroteskMonoBold.ttf", 60,true, true);
     
     viewportwidth=width;
     viewportheight=height;
@@ -165,6 +174,8 @@ void SceneManager::initialize(int width, int height, int _entrypoints , int _lin
 
 
 void SceneManager::update(){
+    
+    vC.update();
     
     if(bShouldReset==true)reset();
     
@@ -369,7 +380,7 @@ void SceneManager::checkRemove(){
 
 void SceneManager::draw(){
  
-
+    vC.draw();
     
    // ofColor bg=backgroundcolor;
    // bg.setBrightness(50);
@@ -822,7 +833,6 @@ void SceneManager::addWordFromManager(CarousselStackManager *_s, message _m){
      }*/
     
     
-    
     bool isUserNew=false;
     bool isFragmentNew=false;
 
@@ -857,6 +867,10 @@ void SceneManager::addWordFromManager(CarousselStackManager *_s, message _m){
     int wIndex=f->getNumWords();
     
     string myword=_m.text;
+    
+    vC.addMovement(myword);
+
+    
         Word * w=new Word();
         w->setup(wIndex);
         w->setData(myword);
@@ -1378,3 +1392,8 @@ void SceneManager::unregisterLetter(Letter *l){
 
 }
 
+
+void SceneManager::addDNS(string _s){
+    vC.addMovement(_s);
+
+}

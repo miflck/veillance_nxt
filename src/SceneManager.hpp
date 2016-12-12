@@ -26,6 +26,8 @@
 #include "ofxBlurShader.h"
 #include "helpers.hpp"
 
+#include "VerticalCaroussel.hpp"
+
 
 
 //for convenience
@@ -67,6 +69,12 @@ public:
     
     
     void carousselEvent(CarousselEvent &e);
+    
+    
+    
+    
+    VerticalCaroussel vC;
+    void addDNS(string _s);
 
     
     // DATA
@@ -151,7 +159,7 @@ public:
     //DEBUG
     bool debug=false;
     void setDebug(bool debug);
-    int drawMode=0;
+    int drawMode=2;
     bool bSoundStuff=true;
     vector<float>speeds;
 

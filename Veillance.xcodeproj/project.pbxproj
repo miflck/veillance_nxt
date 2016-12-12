@@ -94,6 +94,8 @@
 		F3AD9E2A2E56B6AF32A0BDAF /* Server.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 5D95092D59E7A34C9DB7823E /* Server.cpp */; };
 		F7DBF98108C24B1D576DE0E6 /* ControlSwitcher.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 84466286B8E03BE7D2AE88DF /* ControlSwitcher.cpp */; };
 		F7E2CD66D34E349722F77978 /* ControlGenerator.cpp in Sources */ = {isa = PBXBuildFile; fileRef = BA1A28B41F62F3FDCF0A67CE /* ControlGenerator.cpp */; };
+		FA6879DC1DFEFB0800619A40 /* VerticalCaroussel.cpp in Sources */ = {isa = PBXBuildFile; fileRef = FA6879DA1DFEFB0800619A40 /* VerticalCaroussel.cpp */; };
+		FA6879DF1DFEFB5D00619A40 /* VerticalCarousselContainer.cpp in Sources */ = {isa = PBXBuildFile; fileRef = FA6879DD1DFEFB5D00619A40 /* VerticalCarousselContainer.cpp */; };
 		FAAAC04B1DEF3ACE00F25A4A /* CarousselStackManager.cpp in Sources */ = {isa = PBXBuildFile; fileRef = FAAAC0491DEF3ACE00F25A4A /* CarousselStackManager.cpp */; };
 		FAB4EAD41DDC7B1100A5E61E /* tinyxml.cpp in Sources */ = {isa = PBXBuildFile; fileRef = FAB4EACD1DDC7B1100A5E61E /* tinyxml.cpp */; };
 		FAB4EAD51DDC7B1100A5E61E /* tinyxmlerror.cpp in Sources */ = {isa = PBXBuildFile; fileRef = FAB4EACF1DDC7B1100A5E61E /* tinyxmlerror.cpp */; };
@@ -326,6 +328,10 @@
 		F94B5F9261430D3EF3491600 /* ControlFloor.h */ = {isa = PBXFileReference; explicitFileType = sourcecode.c.h; fileEncoding = 30; name = ControlFloor.h; path = ../../../addons/ofxTonic/src/Tonic/ControlFloor.h; sourceTree = SOURCE_ROOT; };
 		FA18B2871DF58A55005A2E07 /* helpers.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = helpers.hpp; sourceTree = "<group>"; };
 		FA3806E5CC3407A997C05CEC /* ControlPrinter.cpp */ = {isa = PBXFileReference; explicitFileType = sourcecode.cpp.cpp; fileEncoding = 30; name = ControlPrinter.cpp; path = ../../../addons/ofxTonic/src/Tonic/ControlPrinter.cpp; sourceTree = SOURCE_ROOT; };
+		FA6879DA1DFEFB0800619A40 /* VerticalCaroussel.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = VerticalCaroussel.cpp; sourceTree = "<group>"; };
+		FA6879DB1DFEFB0800619A40 /* VerticalCaroussel.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = VerticalCaroussel.hpp; sourceTree = "<group>"; };
+		FA6879DD1DFEFB5D00619A40 /* VerticalCarousselContainer.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = VerticalCarousselContainer.cpp; sourceTree = "<group>"; };
+		FA6879DE1DFEFB5D00619A40 /* VerticalCarousselContainer.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = VerticalCarousselContainer.hpp; sourceTree = "<group>"; };
 		FAAAC0491DEF3ACE00F25A4A /* CarousselStackManager.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = CarousselStackManager.cpp; sourceTree = "<group>"; };
 		FAAAC04A1DEF3ACE00F25A4A /* CarousselStackManager.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = CarousselStackManager.hpp; sourceTree = "<group>"; };
 		FAB4EACD1DDC7B1100A5E61E /* tinyxml.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = tinyxml.cpp; sourceTree = "<group>"; };
@@ -681,6 +687,10 @@
 		E4B69E1C0A3A1BDC003C02F2 /* src */ = {
 			isa = PBXGroup;
 			children = (
+				FA6879DD1DFEFB5D00619A40 /* VerticalCarousselContainer.cpp */,
+				FA6879DE1DFEFB5D00619A40 /* VerticalCarousselContainer.hpp */,
+				FA6879DA1DFEFB0800619A40 /* VerticalCaroussel.cpp */,
+				FA6879DB1DFEFB0800619A40 /* VerticalCaroussel.hpp */,
 				E4B69E1D0A3A1BDC003C02F2 /* main.cpp */,
 				E4B69E1E0A3A1BDC003C02F2 /* ofApp.cpp */,
 				E4B69E1F0A3A1BDC003C02F2 /* ofApp.h */,
@@ -868,6 +878,7 @@
 				620C73F8A367D8F03998125D /* SoundManager.cpp in Sources */,
 				A5C7D7C073773C0816ECA2C4 /* User.cpp in Sources */,
 				B7B0A80679F24C35A3565878 /* Word.cpp in Sources */,
+				FA6879DF1DFEFB5D00619A40 /* VerticalCarousselContainer.cpp in Sources */,
 				856AA354D08AB4B323081444 /* ofxBaseGui.cpp in Sources */,
 				5CBB2AB3A60F65431D7B555D /* ofxButton.cpp in Sources */,
 				B266578FC55D23BFEBC042E7 /* ofxGuiGroup.cpp in Sources */,
@@ -946,6 +957,7 @@
 				6FCAE57DA591456638D24BA3 /* StereoDelay.cpp in Sources */,
 				356D4B680053685FE09C381B /* Synth.cpp in Sources */,
 				7F10C60DBDE2E4FFD7F244DB /* TableLookupOsc.cpp in Sources */,
+				FA6879DC1DFEFB0800619A40 /* VerticalCaroussel.cpp in Sources */,
 				7573AC1CDADE011131CF4541 /* TonicFrames.cpp in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
