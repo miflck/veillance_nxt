@@ -184,8 +184,9 @@ void CarousselLineManager::stopMoving(){
         ofNotifyEvent(CarousselEvent::events, newEvent);
         checkBuffer();
     }else{
+        bStoppedExploding=true;
         static CarousselEvent newEvent;
-        newEvent.message = "EXPLODE";
+        newEvent.message = "EXPLODE STOP";
         newEvent.id=id;
         newEvent.stackId=stackId;
         newEvent.lineId=lineId;
@@ -277,7 +278,9 @@ void CarousselLineManager::setDebugDraw(bool _d){
 
 void CarousselLineManager::explode(){
     bIsExploding=true;
+    bIsMoving=true;
     for(int i=1;i<containers.size();i++){
+        containers[i].explode();
         containers[i].setTarget(ofVec3f(ofRandom(-mywidth,2*mywidth),ofRandom(-myheight,2*myheight),ofRandom(-1000,1000)));
     }
     

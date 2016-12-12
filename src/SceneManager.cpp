@@ -161,6 +161,8 @@ void SceneManager::initialize(int width, int height, int _entrypoints , int _lin
 
 void SceneManager::update(){
     
+    if(bShouldReset==true)reset();
+    
     // check if a stackmanager has capacity to add new message
     if(stackManagerBuffer.size()>0 && messageBuffer.size()>0){
         CarousselStackManager * sm=stackManagerBuffer[0];
@@ -419,7 +421,6 @@ void SceneManager::draw(){
         
         ofColor c;
         float  h=ofMap(messageBuffer.size(), 0, 500, 0, 255);
-        
         float  s=ofMap(messageBuffer.size(), 0, 500, 0, 255);
         float  b=ofMap(messageBuffer.size(), 0, 500, 0, 255);
 
@@ -564,6 +565,17 @@ void SceneManager::draw(){
 
 // CAROUSSEL STUFF -> ANIMATION
 void SceneManager::carousselEvent(CarousselEvent &e){
+    
+    
+    if(e.message=="EXPLODE STOP"){
+        explodestopcounter++;
+        if(explodestopcounter==numLines){
+           // reset();
+            bShouldReset=true;
+        }
+    }
+    
+    
    /*
     if(e.message=="STOP"){
         if(e.id>0){
@@ -1213,13 +1225,21 @@ void SceneManager::explode(){
 
 void SceneManager::reset(){
     cout<<"reset"<<endl;
-
-    
+    bShouldReset=false;
+    explodestopcounter=0;
     messageBuffer.clear();
     actionBuffer.clear();
     
 
+    
+    SoundM->user1wordcount.set(0);
+    SoundM->user2wordcount.set(0);
+    SoundM->user3wordcount.set(0);
+
+    
   
+    stackManagerBuffer.clear();
+    
     for (int i =0; i< users.size();i++)
     {
         delete (users[i]);
@@ -1243,13 +1263,26 @@ void SceneManager::reset(){
     }
       words.clear();
     
+    
+    
+    map<Letter *,Letter*>::iterator itr; // make the iterator, say it's going to iterate over a map<float, string>
+
+    
+    for( itr= lettermap.begin();itr!=lettermap.end();itr++){
+        if((*itr).second){
+            delete ((*itr).second);
+        }
+    }
+    lettermap.clear();
+    
+    
+    
     for (int i =0; i< letters.size();i++)
     {
         delete (letters[i]);
     }
     letters.clear();
     
-    cms.clear();
     
     for (int i =0; i< csm.size();i++)
     {
@@ -1257,11 +1290,13 @@ void SceneManager::reset(){
     }
     
     csm.clear();
-    csm.clear();
+    stackManagerBuffer.clear();
     
     initializeCaroussel();
     
     bIsExploding=false;
+    
+    cout<<"USers "<<users.size()<<endl;
 
 
 }

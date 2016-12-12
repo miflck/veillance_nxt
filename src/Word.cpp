@@ -84,28 +84,26 @@ void Word::draw(){
         STM->backgroundFbo.begin();
         ofEnableBlendMode(OF_BLENDMODE_ALPHA);
         
-        
         for(int i=0;i<5;i++){
-            
             ofDrawRectangle(getPosition().x-getBoundingBox().width/2,getPosition().y-10*i, getBoundingBox().width*2,20*i);
         }
         
         ofSetColor(255,0,0);
-        
-        
         ofDisableBlendMode();
-        
-        
         // ofDrawRectangle(getPosition().x,getPosition().y-30, getBoundingBox().width-10,60);
-        
         /*ofSetColor(255,0,0,100);
          ofDrawRectangle(getPosition().x,getPosition().y-10, getBoundingBox().width-10,20);
          ofDrawRectangle(getPosition().x,getPosition().y-5, getBoundingBox().width-10,20);*/
-        
-        
-        
         STM->backgroundFbo.end();
     }
+    
+    
+    
+    
+    
+    
+    
+    
 }
 
 void Word::setData(string _data){
@@ -217,11 +215,9 @@ ofColor Word::getColor(){
                 return ofColor(255);
                 break;
             case 2:
-                
                 myFragmentPointer->getFragmentId();
                 return myFragmentPointer->getBackgroundColor();
                 break;
-                
                 
             default:
                 return myColor;
@@ -239,12 +235,6 @@ ofColor Word::getColor(){
         return ofColor(0);
         
     }
-    
-    
-    
-    
-    
-    
 }
 
 ofColor Word::getBackgroundColor(){
@@ -280,22 +270,15 @@ void Word::stopColorLerp(){
 
 void Word::lerpColor(){
     if(bIsColorLerp){
+        
         int now=ofGetElapsedTimeMillis();
         float amount=ofMap(lifeTime-now,lifespan,0,0,1);
         lerpColorAmount=amount;
         
-        
-        
-        
-        
-        
         ofColor c=myInitColor;
         c.lerp(targetColor,lerpColorAmount) ;
         myColor=c;
-        
-        
-        
-        
+            
         if(lerpColorAmount>0.99){
             lerpColorAmount=1;
             stopColorLerp();

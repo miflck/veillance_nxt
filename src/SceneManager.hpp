@@ -56,11 +56,6 @@ public:
     
     
     // CAROUSSEL
-    CarousselLineManager cm;
-    
-    vector<CarousselLineManager> cms;
-    
-    
     vector<CarousselStackManager *> csm;
     vector<CarousselStackManager *> stackManagerBuffer;
     
@@ -199,6 +194,9 @@ private:
     
     // FLAG to load data from buffer
     bool bIsExploding=false;
+    int explodestopcounter=0;
+    bool bShouldReset=0;
+    
     
 };
 

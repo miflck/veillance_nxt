@@ -102,6 +102,7 @@ private:
     float letterWidth, letterHeight;
     
     bool bIsExploding=false;
+    bool bStoppedExploding=false;
     
     
    // Letter HackBaseLetter;

@@ -157,6 +157,14 @@ void CarousselStackManager::carousselEvent(CarousselEvent &e){
         }*/
     }
     
+    
+    if(e.message=="EXPLODE STOP"){
+       // cout<<"explode from csm "<<stackId<<endl;
+       // STM->reset();
+    }
+    
+    
+    
    /* if(e.message=="STOP"){
         if(e.id>0){
             Letter *l=cms[e.id].getLastElementPointer();

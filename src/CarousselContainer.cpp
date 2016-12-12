@@ -126,7 +126,7 @@ void CarousselContainer::registerLetter(Letter *_l){
 }
 
 void CarousselContainer::unregisterLetter(){
-   cout<<id<<" unregister from container "<<myLetter<<endl;
+  // cout<<id<<" unregister from container "<<myLetter<<endl;
         myLetter=nullptr;
 }
 
@@ -158,6 +158,7 @@ ofColor CarousselContainer::getBackgroundColor(){
 }
 
 void CarousselContainer::explode(){
+   // cout<<id<<" container exploding "<<endl;
     bIsExploding=true;
 }
 

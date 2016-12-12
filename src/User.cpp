@@ -368,13 +368,11 @@ int User::getNumWords(){
 
 int User::getNumWordsOnScreen(){
     int n=0;
-    
     for(auto w:myWords){
         if(w->checkIsOnScreen())n++;
     }
     
     return n;
-
 }
 
 
@@ -394,6 +392,13 @@ ofColor User::getColor(){
 
 ofColor User::getBackgroundColor(){
     return backgroundColor;
+}
+
+
+void User::reset(){
+
+
+
 }
 
 
