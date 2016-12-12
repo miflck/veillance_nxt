@@ -58,10 +58,11 @@ public:
     // CAROUSSEL
     vector<CarousselStackManager *> csm;
     vector<CarousselStackManager *> stackManagerBuffer;
-    
     void registerStackManagerReady(CarousselStackManager * _s);
-
     
+    ofImage png;
+    vector<ofImage *> entrypointBackgrounds;
+
     void unregisterLetter(Letter *l);
     
     
@@ -159,7 +160,6 @@ public:
     
     
     ofxBlurShader blur;
-    ofImage png;
     
     ofColor color1,color2,color3,color4,color5;
     
@@ -180,12 +180,14 @@ public:
     
     int minspeed=2;
     int maxspeed=5;
-    
+    int stackmanagertotalbuffer=0;
+
     
 private:
     
     int numEntrypoints;
     int numLines;
+    int managerheight;
     
     SceneManager();
     static SceneManager* instance;

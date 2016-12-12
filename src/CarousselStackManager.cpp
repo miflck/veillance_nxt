@@ -69,7 +69,7 @@ void CarousselStackManager::setup(int _id, ofVec2f _position,float _mywidth, flo
         
         float speed=dv;
         //float r=ofRandom(0,50);
-        cm.setup(lines,stackId,i,ofVec2f(position.x-mywidth,position.y+(i*containerHeight)),mywidth,ofGetHeight(),containerWidth,containerHeight);
+        cm.setup(lines,stackId,i,ofVec2f(position.x,position.y+(i*containerHeight)),mywidth,ofGetHeight(),containerWidth,containerHeight);
         cm.maxspeed=speed;
         cm.setId(i);
         cms.push_back(cm);
@@ -84,9 +84,9 @@ void CarousselStackManager::update(){
     // UPDATE CAROUSSEL
    // position.y+=0.1;
     
-    for(int i=0;i<cms.size();i++){
+   /* for(int i=0;i<cms.size();i++){
         cms[i].setPosition(ofVec2f(position.x-mywidth,position.y+(i*containerHeight)));
-    }
+    }*/
     
     for(int i=0;i<cms.size();i++){
         cms[i].update();
@@ -94,6 +94,8 @@ void CarousselStackManager::update(){
 }
 
 void CarousselStackManager::draw(){
+   // ofSetColor(255, 0, 0);
+   // ofDrawRectangle(position.x, position.y, 20, 20);
 
     for(auto cm:cms){
         cm.draw();
@@ -279,4 +281,14 @@ void CarousselStackManager::addMovement(Letter *l){
 
 int CarousselStackManager::getStringsize(){
     return messagestring.size();
+}
+
+ofVec2f CarousselStackManager::getPosition(){
+    return position;
+}
+
+ofColor CarousselStackManager::getBackgroundColor(){
+    
+  ofColor c=cms[cms.size()-1].containers[cms[cms.size()-1].containers.size()-1].getBackgroundColor();
+    return c;
 }

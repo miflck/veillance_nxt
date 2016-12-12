@@ -37,6 +37,7 @@ public:
     void carousselEvent(CarousselEvent &e);
 
     ofVec2f position;
+    ofVec2f getPosition();
     
     
     vector<CarousselLineManager> cms;
@@ -68,6 +69,9 @@ public:
     
 
     int getStringsize();
+    
+    ofColor getBackgroundColor();
+    
 
     
 private:

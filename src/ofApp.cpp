@@ -86,6 +86,10 @@ void ofApp::draw(){
         ofDrawBitmapString(STM->letters.size(), 120,100);
         
         
+        ofDrawBitmapString("Stackbuffer", 0,120);
+        ofDrawBitmapString(STM->stackmanagertotalbuffer, 140,120);
+        
+        
     }
 }
 

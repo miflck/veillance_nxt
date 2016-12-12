@@ -40,7 +40,7 @@ void SceneManager::initializeCaroussel(){
     
     int linesPerManager=numLines;
     int numManager=floor(ofGetHeight()/(linesPerManager*CCheight));
-    int managerheight=linesPerManager*CCheight;
+     managerheight=linesPerManager*CCheight;
     cout<<"numManager "<<numEntrypoints<<endl;
     for(int i = 0; i < numEntrypoints; i++){
         
@@ -48,11 +48,14 @@ void SceneManager::initializeCaroussel(){
         sm->minspeed=speeds[i];
         
         ofVec2f position;
-        position.set(-viewportwidth,(i*managerheight));
+        position.set(0,(i*managerheight));
         float p=ABS((managerheight/2)-((i*CCheight)));
         
         sm->setup(i,position,viewportwidth,managerheight);
+        
         csm.push_back(sm);
+        
+        entrypointBackgrounds.push_back(&png);
         
         registerStackManagerReady(csm[csm.size()-1]);
         
@@ -65,6 +68,9 @@ void SceneManager::initializeCaroussel(){
 
 
 void SceneManager::initialize(int width, int height, int _entrypoints , int _linesPerPoint) {
+    
+    png.load("png-01.png");
+
     
     initialized=true;
     cout<<"init SceneManager"<<endl;
@@ -136,7 +142,7 @@ void SceneManager::initialize(int width, int height, int _entrypoints , int _lin
     // Background FBO for Backgroundcolorstuff.
     backgroundFbo.allocate(viewportwidth, ofGetHeight(),GL_RGBA);
     backgroundFbo.begin();
-    ofClear(255,255,255, 0);
+    ofClear(25,255,255,0);
     backgroundFbo.end();
     
     secondScreenbackgroundFbo.allocate(viewportwidth, ofGetHeight(),GL_RGBA);
@@ -153,7 +159,6 @@ void SceneManager::initialize(int width, int height, int _entrypoints , int _lin
     blur.setup(viewportwidth,viewportheight);
 
     
-    png.load("png-01.png");
 }
 
 
@@ -230,15 +235,16 @@ void SceneManager::update(){
         user->update();
     }
 
-  
+    stackmanagertotalbuffer=0;
+
     // UPDATE CAROUSSEL
     for(int i=0;i<csm.size();i++){
         csm[i]->update();
+        stackmanagertotalbuffer+=csm[i]->getStringsize();
     }
     
   
   
-    
     
     
     //UPDATE
@@ -248,14 +254,14 @@ void SceneManager::update(){
     
     
     // ADD BLACK SQUARE TO BACKGROUNDCOLOR
-    backgroundFbo.begin();
-    ofSetColor(0,0,0,1);
-    ofEnableBlendMode(OF_BLENDMODE_ALPHA);
+  //  backgroundFbo.begin();
+   // ofSetColor(0,0,0,1);
+    //ofEnableBlendMode(OF_BLENDMODE_ALPHA);
     
-    ofEnableAlphaBlending();
+    //ofEnableAlphaBlending();
    //if(ofGetFrameNum()%100==0) ofDrawRectangle(0, 0, backgroundFbo.getWidth(), backgroundFbo.getHeight());
-    ofDisableBlendMode();
-    backgroundFbo.end();
+   // ofDisableBlendMode();
+   // backgroundFbo.end();
     
     secondScreenbackgroundFbo.begin();
     ofSetColor(0,0,0,5);
@@ -362,70 +368,122 @@ void SceneManager::checkRemove(){
 }
 
 void SceneManager::draw(){
+ 
+
+    
    // ofColor bg=backgroundcolor;
    // bg.setBrightness(50);
     //ofBackground(bg);
     
+   /* ofSetColor(0,255,0 );
+
+    png.draw(csm[0]->getPosition().x+viewportwidth-100, csm[0]->getPosition().y+300,100,100);
+    ofSetColor(0,0,255);
+
+    png.draw(csm[0]->getPosition().x+viewportwidth-150, csm[0]->getPosition().y+300,100,100);
+*/
+    
    
     backgroundFbo.begin();
-    ofSetColor(backgroundcolor);
-    ofEnableBlendMode(OF_BLENDMODE_ALPHA);
+    ofSetColor(0);
+    ofDrawRectangle(0, 0, backgroundFbo.getWidth(), backgroundFbo.getHeight());
+
     
+    ofEnableBlendMode(OF_BLENDMODE_ADD);
+   // ofSetColor(0, 255, 0);
     ofEnableAlphaBlending();
-   // ofDrawRectangle(0, 0, backgroundFbo.getWidth(), backgroundFbo.getHeight());
-    ofDisableBlendMode();
+   // glBlendFuncSeparate(GL_ONE, GL_SRC_COLOR, GL_ONE, GL_ONE_MINUS_SRC_ALPHA);
+    
+
+    ofSetColor(0,255,0 );
+    ofDrawRectangle(csm[0]->getPosition().x, csm[0]->getPosition().y, 10, 10);
+   // cout<<csm[0]->getPosition()<<endl;
+    png.draw(csm[0]->getPosition().x+viewportwidth-100, csm[0]->getPosition().y,100,100);
+    ofSetColor(0,0,255);
+    png.draw(csm[0]->getPosition().x+viewportwidth-150, csm[0]->getPosition().y,200,200);
+
+   // ofDisableBlendMode();
     backgroundFbo.end();
 
     for(int i=0;i<csm.size();i++){
         csm[i]->draw();
     }
     
-    ofEnableBlendMode(OF_BLENDMODE_ALPHA);
+    ofSetColor(255);
+    ofEnableAlphaBlending();
+    ofSetColor(255,255,255,255);
+  //  backgroundFbo.draw(0,0);
+    
+  //  ofEnableBlendMode(OF_BLENDMODE_ALPHA);
     
     // background
-    if(debug) backgroundFbo.draw(0,0);
+    //if(debug) backgroundFbo.draw(0,0);
+    // backgroundFbo.draw(0,0);
     secondScreenbackgroundFbo.draw(viewportwidth,0);
     
     cam[0].begin(viewFront);
+  
     
-    
-    //backgroundFbo.begin();
+   // backgroundFbo.begin();
+    //ofEnableBlendMode(OF_BLENDMODE_ALPHA);
     ofEnableAlphaBlending();
-    ofEnableBlendMode(OF_BLENDMODE_ALPHA);
+    ofSetColor(255,255,255,255);
 
-    /*ofColor c = ofColor(0);
-    if(!bIsExploding){
-     c=cms[cms.size()-1].containers[cms[cms.size()-1].containers.size()-1].getBackgroundColor();
-    c.setBrightness(200);
+ofEnableBlendMode(OF_BLENDMODE_ADD);
+    ofSetColor(255,0,0);
+    
+    //ofSetColor(255,0,0 );
+    //cout<<csm[0]->getPosition()<<endl;
+   // png.draw(csm[0]->getPosition().x+viewportwidth, csm[0]->getPosition().y,200,200);
+    int w=managerheight*4;
+
+    for (int i=0;i<csm.size();i++){
+        w=ofMap(csm[i]->getStringsize(),0,1200,managerheight*5,2000,true);
+        ofColor c=csm[i]->getBackgroundColor();
+       float a=ofMap(csm[i]->getStringsize(),0,100,0,80,true);
+
+        ofSetColor(c,a);
+        entrypointBackgrounds[i]->draw(csm[i]->getPosition().x+viewportwidth-w/2,csm[i]->getPosition().y+managerheight/1.5-w/2,w,w);
     }
-    color1.lerp(c,0.01);
-    ofSetColor(color1);
+   ofEnableBlendMode(OF_BLENDMODE_ALPHA);
+
+   // ofDisableBlendMode();
+    
+
+    ofColor c = ofColor(255,0,0);
+    if(!bIsExploding){
+    // c=csm[csm.size()-1]->containers[csm[csm.size()-1]->containers.size()-1].getBackgroundColor();
+    //c.setBrightness(200);
+    }
+    //color1.lerp(c,0.01);
+    //ofSetColor(color1);
    
     
     
-    png.draw(viewportwidth-1800, viewportheight-1300,3000,3000);
+   // png.draw(viewportwidth-1800, viewportheight-1300,3000,3000);
     
     
-     c=cms[cms.size()-1].containers[0].getBackgroundColor();
-    c.setBrightness(200);
+    // c=cms[cms.size()-1].containers[0].getBackgroundColor();
+    //c.setBrightness(200);
 
-    color2.lerp(c,0.01);
-        ofSetColor(color2);
-    */
+    //color2.lerp(c,0.01);
+      //  ofSetColor(color2);
+    
         //png.draw(-1000, viewportheight-1000,2000,2000);
 
-    
+   // backgroundFbo.end();
+
     
     
     if(!bIsExploding){
         
         ofColor c;
-        float  h=ofMap(messageBuffer.size(), 0, 500, 0, 255);
-        float  s=ofMap(messageBuffer.size(), 0, 500, 0, 255);
-        float  b=ofMap(messageBuffer.size(), 0, 500, 0, 255);
+        float  h=ofMap(stackmanagertotalbuffer, 0, 5000, 0, 255);
+        float  s=ofMap(stackmanagertotalbuffer, 0, 5000, 0, 255);
+        float  b=ofMap(stackmanagertotalbuffer, 0, 5000, 0, 255);
 
         
-        c.setHsb(0, 255, b);
+        c.setHsb(h, s, b);
 
         
         //backgroundcolor.lerp(c,d);
@@ -444,14 +502,14 @@ void SceneManager::draw(){
         
     }*/
     }else{
-     backgroundcolor.lerp(ofColor(0),0.01);
+     backgroundcolor.lerp(ofColor(0),0.1);
     
     }
     
 
-    ofSetColor(backgroundcolor);
+    ofSetColor(backgroundcolor,200);
     
-    //png.draw(-2000, -2000,4000,4000);
+    png.draw(-2000, -2000,4000,4000);
     
     
 
@@ -1274,8 +1332,6 @@ void SceneManager::reset(){
         }
     }
     lettermap.clear();
-    
-    
     
     for (int i =0; i< letters.size();i++)
     {

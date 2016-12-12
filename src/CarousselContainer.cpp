@@ -152,7 +152,7 @@ ofColor CarousselContainer::getBackgroundColor(){
         
         c=myLetter->getBackgroundColor();
     }else{
-        c=ofColor(0);
+        c=ofColor(255,0);
     }
     return c;
 }
