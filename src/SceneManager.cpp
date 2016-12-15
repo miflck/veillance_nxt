@@ -28,13 +28,7 @@ void SceneManager::initializeCaroussel(){
     //make sure not two following points have same speed;
     for (int i=0;i<numEntrypoints;i++){
         float s=ofRandom(minspeed,maxspeed);
-        /*if(i>0 && s==speeds[i-1]){
-         int d=int(ofRandom(speeds[i-1]-1,maxspeed-s));
-         if(d==0)d=int(ofRandom(1,maxspeed-s));
-         s+=d;
-         
-         }*/
-        cout<<"s"<<s<<endl;
+              cout<<"s"<<s<<endl;
         speeds.push_back(s);
     }
     
@@ -43,33 +37,25 @@ void SceneManager::initializeCaroussel(){
      managerheight=linesPerManager*CCheight;
     cout<<"numManager "<<numEntrypoints<<endl;
     for(int i = 0; i < numEntrypoints; i++){
-        
         CarousselStackManager * sm = new CarousselStackManager();
         sm->minspeed=speeds[i];
-        
         ofVec2f position;
         position.set(0,(i*managerheight));
         float p=ABS((managerheight/2)-((i*CCheight)));
-        
         sm->setup(i,position,viewportwidth,managerheight);
-        
         csm.push_back(sm);
-        
         entrypointBackgrounds.push_back(&png);
-        
         registerStackManagerReady(csm[csm.size()-1]);
-        
+}
+
+    int wordsInMessageBuffer=0;
+    for(int i=0;i<messageBuffer.size();i++){
+        wordsInMessageBuffer+=messageBuffer[i].wordcount;
     }
-
+    cout<<"messagebuffer "<<wordsInMessageBuffer<<endl;
 
     
-    int h=50;
-    ofVec2f position;
-    position.set(viewportwidth+100,-h);
-    vC.setPosition(position);
-    vC.setFont(&bigfont);
-    vC.setup(position, 200, viewportheight+2*h, 200, h);
-    
+
 
 
 }
@@ -112,7 +98,12 @@ void SceneManager::initialize(int width, int height, int _entrypoints , int _lin
     
     
     
-    
+    int h=50;
+    ofVec2f position;
+    position.set(viewportwidth+100,-h);
+    vC.setPosition(position);
+    vC.setFont(&bigfont);
+    vC.setup(position, 200, viewportheight+2*h, 200, h);
     
     
     
@@ -175,9 +166,36 @@ void SceneManager::initialize(int width, int height, int _entrypoints , int _lin
 
 void SceneManager::update(){
     
+    
+    int wordsInMessageBuffer=0;
+    for(int i=0;i<messageBuffer.size();i++){
+        wordsInMessageBuffer+=messageBuffer[i].wordcount;
+    }
+    
+    totalWordsInBuffer=stackmanagertotalbuffer+wordsInMessageBuffer;
+    
+    if(totalWordsInBuffer>maxWordsInBuffer)explode();
+    
+    
     vC.update();
     
     if(bShouldReset==true)reset();
+    
+    
+    if(priorityMessageBuffer.size()>0){
+        if(stackManagerBuffer.size()>0){
+            CarousselStackManager * sm=stackManagerBuffer[0];
+            stackManagerBuffer.erase(stackManagerBuffer.begin());
+            addMessageFromPriorityBuffer(sm);
+        }else{
+            //CarousselStackManager * sm=stackManagerBuffer[0];
+            
+            addMessageFromPriorityBuffer(getStackmanagerWithSmallestBuffer());
+        
+        }
+    }
+    
+    
     
     // check if a stackmanager has capacity to add new message
     if(stackManagerBuffer.size()>0 && messageBuffer.size()>0){
@@ -251,6 +269,7 @@ void SceneManager::update(){
     // UPDATE CAROUSSEL
     for(int i=0;i<csm.size();i++){
         csm[i]->update();
+       // cout<<i<<" "<<stackmanagertotalbuffer<<" "<<csm[i]->getStringsize()<<endl;
         stackmanagertotalbuffer+=csm[i]->getStringsize();
     }
     
@@ -489,17 +508,17 @@ ofEnableBlendMode(OF_BLENDMODE_ADD);
     if(!bIsExploding){
         
         ofColor c;
-        float  h=ofMap(stackmanagertotalbuffer, 0, 5000, 0, 255);
-        float  s=ofMap(stackmanagertotalbuffer, 0, 5000, 0, 255);
-        float  b=ofMap(stackmanagertotalbuffer, 0, 5000, 0, 255);
+        float  h=ofMap(totalWordsInBuffer, 0, maxWordsInBuffer, 0, 255);
+        float  s=ofMap(totalWordsInBuffer, 0, maxWordsInBuffer, 0, 255);
+        float  b=ofMap(totalWordsInBuffer, 0, maxWordsInBuffer, 0, 255);
 
         
-        c.setHsb(h, s, b);
+        c.setHsb(255, s, b);
 
         
         //backgroundcolor.lerp(c,d);
         
-        backgroundcolor.lerp(c,0.02);
+        backgroundcolor.lerp(c,0.05);
         
     //User * u=getUserWithMostLetters();
     /*if(u!=nullptr) {
@@ -518,6 +537,9 @@ ofEnableBlendMode(OF_BLENDMODE_ADD);
     }
     
 
+    
+    
+    
     ofSetColor(backgroundcolor,200);
     
     png.draw(-2000, -2000,4000,4000);
@@ -638,7 +660,8 @@ void SceneManager::carousselEvent(CarousselEvent &e){
     
     if(e.message=="EXPLODE STOP"){
         explodestopcounter++;
-        if(explodestopcounter==numLines){
+        cout<<"explodestopcounter "<<explodestopcounter<<" "<<numEntrypoints*numLines<<endl;
+        if(explodestopcounter==numEntrypoints*numLines){
            // reset();
             bShouldReset=true;
         }
@@ -706,118 +729,33 @@ bool SceneManager::isInitialized(){
 
 // one of the Stack managers is ready. add message from buffer
 void SceneManager::addMessageFromBuffer(CarousselStackManager * _s){
-   /* if(messageBuffer.size()==0){
-        bIsReadyForData=true;
-        return;
-    }*/
-    
     message m=messageBuffer[0];
     _s->addMessage(m);
     messageBuffer.erase(messageBuffer.begin());
+   std::random_shuffle ( messageBuffer.begin(), messageBuffer.end() );
+
+}
+
+
+// Overtake Messagebuffer for new User
+void SceneManager::addMessageFromPriorityBuffer(CarousselStackManager * _s){
+    message m=priorityMessageBuffer[0];
+    _s->addMessage(m);
+    priorityMessageBuffer.erase(priorityMessageBuffer.begin());
 }
 
 
 
+CarousselStackManager * SceneManager::getStackmanagerWithSmallestBuffer(){
 
-// Old adding method. not used. doing it now word by word from stackmanager!
-void SceneManager::addDataFromBuffer(CarousselStackManager * _s){
-    
-    CarousselStackManager * sm =_s;
-    
-    /*if(messageBuffer.size()==0){
-        bIsReadyForData=true;
-        return;
-    }*/
-    
-    bool isUserNew=false;
-    message m=messageBuffer[0];
-    messageBuffer.erase(messageBuffer.begin());
-
-    User * u=getUserByUsername(m.username);
-    if(u==nullptr){
-        u=new User();
-        u->setup();
-        u->setUserName(m.username);
-        int id=users.size();
-        u->setUserId(id);
-        cout<<"new user "<<u->getUserName()<<" id "<<id<<endl;
-        isUserNew=true;
-        
-    }else{
-
-    }
-    
-    Fragment * f=new Fragment();
-    f->setup();
-    f->setFragmentId(m.uuid);
-    f->setUserPointer(u);
-    vector<string> split;
-    split = ofSplitString(m.text, " ");
-    
-    for (auto word : split){
-        Word * w=new Word();
-        w->setup(wordcounter);
-        w->setData(word);
-        int lifeTime=ofGetElapsedTimeMillis()+int(ofRandom(10000,50000));
-        w->setLifeTime(lifeTime);
-        w->setFragmentPointer(f);
-        w->setUserPointer(u);
-        
-        
-        for (auto ss : word){
-            char c = ss;
-            Letter * l =new Letter();
-            l->setFont(&font);
-            l->setData(c);
-            l->setWordId(wordcounter);
-            l->setWordPointer(w);
-            l->setFragmentPointer(f);
-            l->setUserPointer(u);
-            
-            lettermap[l]=l;
-            sm->addMovement(lettermap[l]);
-            
-            w->registerLetter(l);
-            f->registerLetter(l);
-            u->registerLetter(l);
+    CarousselStackManager * sm = csm[0];
+    for (int i=0;i<csm.size();i++){
+        if(csm[i]->getStringsize()<sm->getStringsize()){
+            sm=csm[i];
         }
-        
-        // ADD SPACE
-        Letter * l =new Letter();
-        l->setFont(&font);
-        l->setData(' ');
-        l->setWordId(wordcounter);
-        l->setWordPointer(w);
-        l->setFragmentPointer(f);
-        l->setUserPointer(u);
-        
-        lettermap[l]=l;
-        sm->addMovement(lettermap[l]);
-        
-        w->registerLetter(l);
-        f->registerLetter(l);
-        u->registerLetter(l);
-        
-        words.push_back(w);
-        
-        f->registerWord(w);
-        u->registerWord(w);
-        
-        wordcounter++; // debug id
-        
     }
-    fragments.push_back(f);
-    u->registerFragment(f);
-    
-    //only push new users
-    if(isUserNew){
-        users.push_back(u);
-    }
-    
-    //cout<<" num letters "<<letters.size()<<endl;
+    return sm;
 }
-
-
 
 
 
@@ -825,13 +763,6 @@ void SceneManager::addDataFromBuffer(CarousselStackManager * _s){
 void SceneManager::addWordFromManager(CarousselStackManager *_s, message _m){
     
     CarousselStackManager * sm =_s;
-    // cout<<sm->cms.size()<<endl;
-    
-    /*  if(messageBuffer.size()==0){
-     bIsReadyForData=true;
-     return;
-     }*/
-    
     
     bool isUserNew=false;
     bool isFragmentNew=false;
@@ -1253,6 +1184,12 @@ void SceneManager::addMessage(message _m){
 }
 
 
+// Add message to buffer;
+void SceneManager::addPriorityMessage(message _m){
+    priorityMessageBuffer.push_back(_m);
+}
+
+
 void SceneManager::addAction(action _a){
     actionBuffer.push_back(_a);
     // cout<<"Action Buffer Size: "<<actionBuffer.size()<<endl;
@@ -1290,7 +1227,7 @@ void SceneManager::explode(){
     }
     
     for(int i=0;i<words.size();i++){
-        words[i]->explode();
+        //words[i]->explode();
     }
 
 }
@@ -1302,13 +1239,9 @@ void SceneManager::reset(){
     messageBuffer.clear();
     actionBuffer.clear();
     
-
-    
     SoundM->user1wordcount.set(0);
     SoundM->user2wordcount.set(0);
     SoundM->user3wordcount.set(0);
-
-    
   
     stackManagerBuffer.clear();
     
@@ -1318,17 +1251,20 @@ void SceneManager::reset(){
     }
     users.clear();
     
+   
     for (int i =0; i< movingWords.size();i++)
     {
         delete (movingWords[i]);
     }
     movingWords.clear();
     
+    
     for (int i =0; i< fragments.size();i++)
     {
         delete (fragments[i]);
     }
     fragments.clear();
+    
     for (int i =0; i< words.size();i++)
     {
         delete (words[i]);
@@ -1336,10 +1272,7 @@ void SceneManager::reset(){
       words.clear();
     
     
-    
     map<Letter *,Letter*>::iterator itr; // make the iterator, say it's going to iterate over a map<float, string>
-
-    
     for( itr= lettermap.begin();itr!=lettermap.end();itr++){
         if((*itr).second){
             delete ((*itr).second);
@@ -1358,13 +1291,19 @@ void SceneManager::reset(){
     {
         delete (csm[i]);
     }
-    
     csm.clear();
+    
+    cout<<"num stack manager"<<csm.size()<<endl;
+    
     stackManagerBuffer.clear();
     
-    initializeCaroussel();
-    
     bIsExploding=false;
+
+    
+    initializeCaroussel();
+
+    cout<<"num stack manager after"<<csm.size()<<endl;
+
     
     cout<<"USers "<<users.size()<<endl;
 

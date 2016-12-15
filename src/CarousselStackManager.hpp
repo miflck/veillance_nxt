@@ -28,6 +28,8 @@ class CarousselStackManager {
     
 public:
     CarousselStackManager();
+    virtual ~ CarousselStackManager();
+
     
     
     void setup(int _id, ofVec2f _position,float _mywidth, float _myheight);
@@ -40,12 +42,7 @@ public:
     ofVec2f getPosition();
     
     
-    vector<CarousselLineManager> cms;
-    
-    //void carousselEvent(CarousselEvent &e);
-    
-    
-    float maxspeed;
+    vector<CarousselLineManager*> cms;
     float minspeed;
     
     
@@ -72,14 +69,19 @@ public:
     
     ofColor getBackgroundColor();
     
-
+    void startCountdown();
+    void stopCountDown();
+    
+    bool bIsCountingDown=false;
+    float lifespan;
+    float lifetime;
     
 private:
     
     
     
     int id;
-    int stackId;
+    int stackId=99;
     bool bDebugDraw=false;
     
     float mywidth;

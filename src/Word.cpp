@@ -12,6 +12,8 @@
 #include "User.hpp"
 
 Word::Word(){
+    myColor=ofColor(0,0,255);
+
 }
 
 void Word::setup(int _index){
@@ -20,7 +22,6 @@ void Word::setup(int _index){
     lifeTime=ofGetElapsedTimeMillis()+int(ofRandom(50000,200000));
     
     backgroundColor=ofColor(ofRandom(50,255),ofRandom(50,255),ofRandom(50,255));
-    myColor=ofColor(0,0,255);
     myInitColor=ofColor(0,0,255);
     
     mySuggestionColor=ofColor(0,191,255);
@@ -33,6 +34,7 @@ void Word::setup(int _index){
 }
 
 void Word::update(){
+    
     if(checkShouldRemove()){
     setBRemove(true);
     myFragmentPointer->unregisterWord(this);
@@ -215,7 +217,6 @@ ofColor Word::getColor(){
                 return ofColor(255);
                 break;
             case 2:
-                myFragmentPointer->getFragmentId();
                 return myFragmentPointer->getBackgroundColor();
                 break;
                 
@@ -360,7 +361,8 @@ bool Word::getIsLocked(){
 void Word::explode(){
     bIsExploding=true;
     targetColor=ofColor(0,0);
-    myColor=ofColor(255);
+    myColor= myFragmentPointer->getBackgroundColor();
+    myInitColor= myFragmentPointer->getBackgroundColor();
     lifespan=3000;
     lifeTime=ofGetElapsedTimeMillis()+lifespan;
     startColorLerp();

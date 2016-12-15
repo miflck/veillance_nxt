@@ -65,29 +65,55 @@ void ofApp::draw(){
     if(bSound)SoundM->draw();
     if(bDebug)	{
     ofDisableBlendMode();
+        int spacer=20;
+        int spaceroffset=20;
     ofSetColor(255);
-        ofDrawBitmapString("Framerate", 0,20);
-        ofDrawBitmapString(ofToString(ofGetFrameRate()), 110,20);
+        ofDrawBitmapString("Framerate", 0,spacer);
+        ofDrawBitmapString(ofToString(ofGetFrameRate()), 110,spacer);
+        spacer+=spaceroffset;
         
+        ofDrawBitmapString("Messagebuffer", 0,spacer);
+        ofDrawBitmapString(STM->messageBuffer.size(), 110,spacer);
+        spacer+=spaceroffset;
         
-        ofDrawBitmapString("Messagebuffer", 0,40);
-        ofDrawBitmapString(STM->messageBuffer.size(), 110,40);
+        ofDrawBitmapString("Prioritybuffer", 0,spacer);
+        ofDrawBitmapString(STM->priorityMessageBuffer.size(), 200,spacer);
+        spacer+=spaceroffset;
+
+
+        int wordsInMessageBuffer;
+        for(int i=0;i<STM->messageBuffer.size();i++){
+            wordsInMessageBuffer+=STM->messageBuffer[i].wordcount;
+        }
         
+        ofDrawBitmapString("Words in Messagebuffer", 0,spacer);
+        ofDrawBitmapString(STM->messageBuffer.size(), 200,spacer);
+        spacer+=spaceroffset;
         
-        ofDrawBitmapString("Actionbuffer", 0,60);
-        ofDrawBitmapString(STM->actionBuffer.size(), 110,60);
+
+        ofDrawBitmapString("Actionbuffer", 0,spacer);
+        ofDrawBitmapString(STM->actionBuffer.size(), 110,spacer);
+        spacer+=spaceroffset;
+
         
+       ofDrawBitmapString("Letterbuffer", 0,spacer);
+        ofDrawBitmapString(STM->lettermap.size(), 110,spacer);
+        spacer+=spaceroffset;
+
         
-       ofDrawBitmapString("Letterbuffer", 0,80);
-        ofDrawBitmapString(STM->lettermap.size(), 110,80);
+        ofDrawBitmapString("LettersOnScreen", 0,spacer);
+        ofDrawBitmapString(STM->letters.size(), 120,spacer);
+        spacer+=spaceroffset;
+
         
+        ofDrawBitmapString("Stackbuffer", 0,spacer);
+        ofDrawBitmapString(STM->stackmanagertotalbuffer, 140,spacer);
+        spacer+=spaceroffset;
+
+        ofDrawBitmapString("Total Words in Buffer", 0,spacer);
+        ofDrawBitmapString(STM->totalWordsInBuffer, 200,spacer);
         
-        ofDrawBitmapString("LettersOnScreen", 0,100);
-        ofDrawBitmapString(STM->letters.size(), 120,100);
-        
-        
-        ofDrawBitmapString("Stackbuffer", 0,120);
-        ofDrawBitmapString(STM->stackmanagertotalbuffer, 140,120);
+      
         
         
     }

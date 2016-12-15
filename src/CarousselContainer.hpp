@@ -19,6 +19,8 @@ class CarousselContainer{
     
 public:
     CarousselContainer();
+    virtual ~CarousselContainer();
+
     void setup();
     void update();
     void draw();

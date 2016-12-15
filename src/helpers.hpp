@@ -17,6 +17,17 @@ struct message {
     string username;
     string type;
     string text;
+    int wordcount;
+
+};
+
+
+struct priority {
+    int uuid;
+    string username;
+    string type;
+    string text;
+    int wordcount;
 };
 
 

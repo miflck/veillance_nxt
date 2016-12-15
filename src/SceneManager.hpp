@@ -62,6 +62,9 @@ public:
     vector<CarousselStackManager *> stackManagerBuffer;
     void registerStackManagerReady(CarousselStackManager * _s);
     
+    CarousselStackManager * getStackmanagerWithSmallestBuffer();
+    
+    
     ofImage png;
     vector<ofImage *> entrypointBackgrounds;
 
@@ -82,6 +85,10 @@ public:
     
     void addDataFromBuffer(CarousselStackManager * _s);
     void addMessageFromBuffer(CarousselStackManager * _s);
+    
+    void addMessageFromPriorityBuffer(CarousselStackManager * _s);
+
+    
 
     void addWordFromManager(CarousselStackManager * _s, message m);
 
@@ -137,6 +144,11 @@ public:
     vector <message> messageBuffer;
     void addMessage(message _m);
     
+    
+    //INCOMING MESSAGES BUFFER
+    vector <message> priorityMessageBuffer;
+    void addPriorityMessage(message _m);
+    
     vector <action> actionBuffer;
     void addAction(action _a);
     
@@ -190,6 +202,10 @@ public:
     int maxspeed=5;
     int stackmanagertotalbuffer=0;
 
+    int totalWordsInBuffer=0;
+    
+    int maxWordsInBuffer=10000;
+
     
 private:
     
@@ -207,7 +223,7 @@ private:
     int explodestopcounter=0;
     bool bShouldReset=0;
     
-    
+
 };
 
 

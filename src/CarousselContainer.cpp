@@ -12,6 +12,9 @@
 CarousselContainer::CarousselContainer(){
 }
 
+CarousselContainer::~CarousselContainer(){
+}
+
 void CarousselContainer::setup(){
     
 }
@@ -159,7 +162,14 @@ ofColor CarousselContainer::getBackgroundColor(){
 
 void CarousselContainer::explode(){
    // cout<<id<<" container exploding "<<endl;
+    
+    if(myLetter!=nullptr){
+        myLetter->explode();
+    }
+    
     bIsExploding=true;
+    bIsMoving=true;
+    
 }
 
 void CarousselContainer::setId(int _id){

@@ -24,6 +24,8 @@ class CarousselLineManager {
     
 public:
     CarousselLineManager();
+   virtual ~CarousselLineManager();
+    
     void setup(int numlines, int _stackId,int _lineId, ofVec2f _position,float _mywidth, float _myheight, float _width,float _height);
     void update();
     void draw();
@@ -34,12 +36,14 @@ public:
     
     
     
-    vector<CarousselContainer>containers;
+    vector<CarousselContainer*>containers;
     
     ofVec2f position;
+    ofVec2f parentposition;
+
+
     void setPosition(ofVec2f _p);
     
-    float width;
     
     float speed;
   //  void move(ofVec2f target, CarousselContainer *c);
@@ -84,6 +88,7 @@ public:
     void unregisterLetter(Letter * _l);
    
     void deleteLastLetter();
+
 
 
     

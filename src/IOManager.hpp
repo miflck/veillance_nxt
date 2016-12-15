@@ -58,7 +58,8 @@ public:
     
     int myid;
     
+    //DEBUG
     int fakecounter=0;
-    
+    int messagecounter=0;
 };
 #endif

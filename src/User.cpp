@@ -354,7 +354,7 @@ void User::setUserId(int _id){
    userId=_id;
     
     //debug!!
-    backgroundColor.setHsb(255/4*_id,255,255);
+    backgroundColor.setHsb(255/10*_id,255,255);
 
 }
 

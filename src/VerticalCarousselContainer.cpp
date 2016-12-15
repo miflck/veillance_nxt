@@ -36,7 +36,9 @@ void VerticalCarousselContainer::draw(){
     ofColor c=ofColor(255,0,0);
     ofNoFill();
     ofSetColor(c);
-    ofScale(0.7, 0.7);
+    ofScale(0.6, 0.6);
+    font->setLetterSpacing(1);
+
     font->drawString(mystring, 0,bbox.getHeight()-font->getStringBoundingBox("H", 0, 0).getHeight());
     ofPopMatrix();
     ofPopStyle();

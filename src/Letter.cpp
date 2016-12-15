@@ -164,6 +164,11 @@ void Letter::setPosition(ofVec2f _p){
     }else{
 
     if(getIsOnScreen()){
+       // if(STM->totalWordsInBuffer>100)_p+=ofRandom(-1,1);
+        
+      //if(STM->totalWordsInBuffer>2000) _p.y+=ofRandom(ofMap(STM->totalWordsInBuffer, 2000, 5000, 0, 10));
+        
+        
         position.set(_p);
         node.setGlobalPosition(position);
     }
@@ -262,6 +267,7 @@ ofColor Letter::getBackgroundColor(){
 void Letter::explode(){
 //setTarget
     bIsExploding=true;
+    myWordPointer->explode();
 
 };
 

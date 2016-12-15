@@ -19,7 +19,7 @@ IOManager::IOManager(){
 
 void IOManager::setup(){
 
-    for(int i=0;i<4;i++){
+    for(int i=0;i<10;i++){
         string u="user ";
         u+=ofToString(i);
         fakeuser.push_back(u);
@@ -68,23 +68,50 @@ void IOManager::onMessage( ofxLibwebsockets::Event& args ){
         if ( !args.json.isNull() ){
             
             if(args.json["Type"]=="User"){
-                message m;
+                cout<<"mcounter "<<messagecounter<<endl;
+                string username=args.json["Name"].asString();
                 
-                //m.username=args.json["Name"].asString();
+                if(messagecounter>7){
+                username =fakeuser[fakecounter];
+                fakecounter++;
+                if(fakecounter>fakeuser.size()-1)fakecounter=0;
+                }
                 
-              //  if(ofRandom(0,1)<0.3){
-                    m.username=fakeuser[fakecounter];
-                cout<<m.username<<endl;
-                    fakecounter++;
-                    if(fakecounter>fakeuser.size()-1)fakecounter=0;
-                //}
+                string s=args.json["Text"].asString();
                 
-                m.type=args.json["Type"].asString();
-                m.text=args.json["Text"].asString();
-                m.uuid=args.json["Id"].asInt();
-              //  cout<<m.uuid<<" text "<<m.text<<endl;
+               
+                int maxLength=500;
+                // DEBUG? SPLIT MESSAGE IN TO SEVERAL
+                for (unsigned i = 0; i < s.length(); i += maxLength) {
+                    
+                    
+                    
+                    
+                    message m;
+                    m.username=username;
+                    m.type=args.json["Type"].asString();
+                    m.text=s.substr(i, maxLength);
+                    //id not working? 
+                    m.uuid=args.json["Id"].asInt();
+                    int count=0;
+                   count= std::distance(std::istream_iterator<std::string>(std::istringstream(m.text) >> std::ws),std::istream_iterator<std::string>());
+                    cout<<"i "<<i<<" "<<count<<endl;
 
-                STM->addMessage(m);
+                    m.wordcount=count;
+                    
+                    if( STM->getUserByUsername(username)==nullptr &&i<6*maxLength){
+                        cout<<"++++++++++++++++ PRIORITY +++++++++++++++++++"<<endl;
+                        STM->addPriorityMessage(m);
+                    }else{
+                        STM->addMessage(m);
+                    }
+
+                    messagecounter++;
+
+                    
+                }
+                
+                
             }
             
             if(args.json["Words"]!=" "){

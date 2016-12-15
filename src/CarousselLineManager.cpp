@@ -10,6 +10,18 @@
 #include "SceneManager.hpp"
 
 CarousselLineManager::CarousselLineManager(){
+
+}
+
+
+CarousselLineManager::~CarousselLineManager(){
+    
+    for (int i =0; i< containers.size();i++)
+    {
+        delete (containers[i]);
+    }
+    containers.clear();
+    
 }
 
 void CarousselLineManager::setup(int _numlines, int _stackId, int _lineId, ofVec2f _position,float _mywidth, float _myheight, float _width,float _height){
@@ -33,9 +45,9 @@ void CarousselLineManager::setup(int _numlines, int _stackId, int _lineId, ofVec
     ofVec3f pos = ofVec3f(-letterWidth,position.y);
     float dl=mywidth/letterWidth+1;
     for(int i=0;i<dl;i++){
-        CarousselContainer c;
-        c.setBoundingBox(pos, ofVec2f(letterWidth,letterHeight));
-        c.id=i;
+        CarousselContainer *c =new CarousselContainer();
+        c->setBoundingBox(pos, ofVec2f(letterWidth,letterHeight));
+        c->id=i;
         containers.push_back(c);
         pos.x+=letterWidth;
     }
@@ -45,8 +57,8 @@ void CarousselLineManager::setup(int _numlines, int _stackId, int _lineId, ofVec
 
 void CarousselLineManager::unregisterLetter(Letter *_l){
     for(int i=0;i<containers.size();i++){
-        if (_l==containers[i].getLetterPointer()){
-            containers[i].unregisterLetter();
+        if (_l==containers[i]->getLetterPointer()){
+            containers[i]->unregisterLetter();
             break;
         }
     }
@@ -60,12 +72,19 @@ void CarousselLineManager::update(){
     }
     
     for(int i=0;i<containers.size();i++){
-        containers[i].update();
+        containers[i]->update();
     }
     
 }
 
 void CarousselLineManager::draw(){
+    
+
+    
+    
+ 
+
+    
     //if(bDebugDraw){
    /* for(int i=0;i<containers.size();i++){
         containers[i].draw();
@@ -77,37 +96,34 @@ void CarousselLineManager::draw(){
 void CarousselLineManager::move(){
     
     for(int i=0;i<containers.size();i++){
-        ofVec2f p=containers[i].getPosition();
-        ofVec2f target=containers[i].getTarget();
+        ofVec2f p=containers[i]->getPosition();
+        ofVec2f target=containers[i]->getTarget();
         ofVec2f dist=target-p;
         ofVec2f speed=dist;
        speed.limit(maxspeed);
         p+=speed;
         
-       // if(dist.length()<(maxspeed)+1){
         if(dist.length()<maxspeed+1){
             p.set(target);
             speed.set(ofVec2f(0,0));
-            containers[i].bIsMoving=false;
+            containers[i]->bIsMoving=false;
         }
         
-       // p.y+=ofRandom(-0.5,0.5);
-        containers[i].setPosition(p);
-        containers[i].setVelocity(speed);
-        /* if(p==target){
-         containers[i].bIsMoving=false;
-         }*/
+        containers[i]->setPosition(p);
+        containers[i]->setVelocity(speed);
     }
     
     //check if finished;
     bool move=false;
     for(int i=0;i<containers.size();i++){
-        if(containers[i].bIsMoving){
+        if(containers[i]->bIsMoving){
             move=true;
             break;
         }
     }
     if(!move){
+        cout<<move<<" stack "<<stackId<<" line "<<lineId<<endl;
+
         stopMoving();
     }
     
@@ -118,12 +134,13 @@ void CarousselLineManager::move(){
 void CarousselLineManager::cicle(){
     if(!bIsMoving){
         for(int i=1;i<containers.size();i++){
-            containers[i].setTarget(containers[i-1].getPosition());
+            containers[i]->setTarget(containers[i-1]->getPosition());
+          
         }
-        ofVec2f p=containers[containers.size()-1].getPosition();
-        ofVec2f d=ofVec2f(containers[containers.size()-1].getDimension().x,0);
-        containers[0].setPosition(p+d);
-        containers[0].setTarget(p);
+        ofVec2f p=containers[containers.size()-1]->getPosition();
+        ofVec2f d=ofVec2f(containers[containers.size()-1]->getDimension().x,0);
+        containers[0]->setPosition(p+d);
+        containers[0]->setTarget(p);
         std::rotate(containers.begin(),containers.begin()+1,containers.end());
         startMoving();
     }
@@ -133,7 +150,7 @@ void CarousselLineManager::startMoving(){
     Letter * l=buffer[0];
     l->setIsOnScreen(true);
     buffer.erase(buffer.begin());
-    containers[containers.size()-1].setLetterPointer(l);
+    containers[containers.size()-1]->setLetterPointer(l);
    
     
     // if first line
@@ -169,7 +186,7 @@ void CarousselLineManager::startMoving(){
     
     bIsMoving=true;
     for(int i=1;i<containers.size();i++){
-        containers[i].bIsMoving=true;
+        containers[i]->bIsMoving=true;
     }
 }
 
@@ -182,8 +199,10 @@ void CarousselLineManager::stopMoving(){
         newEvent.stackId=stackId;
         newEvent.lineId=lineId;
         ofNotifyEvent(CarousselEvent::events, newEvent);
-        checkBuffer();
+       checkBuffer();
     }else{
+        bIsMoving=false;
+
         bStoppedExploding=true;
         static CarousselEvent newEvent;
         newEvent.message = "EXPLODE STOP";
@@ -259,16 +278,16 @@ void CarousselLineManager::addMovement(Letter *_l){
 
 
 char CarousselLineManager::getLastElementChar(){
-    return containers[0].getChar();
+    return containers[0]->getChar();
 }
 
 
 Letter* CarousselLineManager::getLastElementPointer(){
-    return containers[0].getLetterPointer();
+    return containers[0]->getLetterPointer();
 }
 
 void CarousselLineManager::deleteLastLetter(){
-    containers[0].setLetterPointer(nullptr);
+    containers[0]->setLetterPointer(nullptr);
 }
 
 
@@ -279,9 +298,26 @@ void CarousselLineManager::setDebugDraw(bool _d){
 void CarousselLineManager::explode(){
     bIsExploding=true;
     bIsMoving=true;
+    
+ 
+    
     for(int i=1;i<containers.size();i++){
-        containers[i].explode();
-        containers[i].setTarget(ofVec3f(ofRandom(-mywidth,2*mywidth),ofRandom(-myheight,2*myheight),ofRandom(-1000,1000)));
+        containers[i]->explode();
+        ofVec2f p=containers[i]->getPosition();
+        ofVec2f middle=parentposition+ofVec2f(mywidth/2,myheight/2);//+ofVec2f(mywidth/2,myheight/2);
+        ofVec2f newTarget=p-middle;
+        newTarget*=10;
+        newTarget.rotate(ofRandom(-30,30));
+        
+        //containers[i]->setTarget(ofVec3f(ofRandom(-mywidth,2*mywidth),ofRandom(-1000,2000),ofRandom(-1000,1000)));
+       // containers[i]->setTarget(ofVec3f(mywidth/2,myheight/2,0));
+        
+         containers[i]->setTarget(p+newTarget);
+        
+        maxspeed=ofRandom(10,15);
+
+
+        containers[i]->bIsMoving=true;
     }
     
 }
