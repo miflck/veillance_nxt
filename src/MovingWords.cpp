@@ -22,7 +22,11 @@ void MovingWords::setup(){
     setIsAlive(true);
 
     ofVec3f t=ofVec3f(1,0,0);
-    t.set(ofGetWidth()/4+ofRandom(-200,200),ofGetHeight()/2+ofRandom(-200,200),2000);
+    t.set(ofGetWidth()/4+ofRandom(-200,200),ofGetHeight()/2+ofRandom(-200,200),5000);
+    
+   // t.set(ofGetWidth()*2,ofGetHeight()/2+ofRandom(-200,200),0);
+
+    
     /*
     t*=ofRandom(3000,5000);
     float angleY=ofRandom(-80,-70);
@@ -32,7 +36,7 @@ void MovingWords::setup(){
     */
     
     target.set(t);
-    startposition.set(ofRandom(ofGetWidth()/2-200,ofGetWidth()/2+200),ofGetHeight()/2,0);
+    startposition.set(ofRandom(ofGetWidth()/2-200,ofGetWidth()/2+200),ofGetHeight()/2,-1000);
     position.set(startposition);
     
     scalefact=0.2;

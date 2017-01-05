@@ -100,7 +100,7 @@ void SceneManager::initialize(int width, int height, int _entrypoints , int _lin
     
     int h=50;
     ofVec2f position;
-    position.set(viewportwidth+100,-h);
+    position.set(3*viewportwidth+100,-h);
     vC.setPosition(position);
     vC.setFont(&bigfont);
     vC.setup(position, 200, viewportheight+2*h, 200, h);
@@ -115,12 +115,24 @@ void SceneManager::initialize(int width, int height, int _entrypoints , int _lin
     // CAMERA AND VIEWPORTS
     
     //Viewports
-    viewFront.x = 0;
+    viewFront.x = viewportwidth;
     viewFront.y = 0;
     viewFront.width = viewportwidth;
     viewFront.height = ofGetHeight();
     
-    viewBack.x = ofGetWidth()/2;
+    
+    viewLeft.x = 0;
+    viewLeft.y = 0;
+    viewLeft.width = viewportwidth;
+    viewLeft.height = ofGetHeight();
+    
+    viewRight.x = viewportwidth*2;
+    viewRight.y = 0;
+    viewRight.width = viewportwidth;
+    viewRight.height = ofGetHeight();
+    
+    
+    viewBack.x = viewportwidth*3;
     viewBack.y = 0;
     viewBack.width = viewportwidth;
     viewBack.height = ofGetHeight();
@@ -134,8 +146,20 @@ void SceneManager::initialize(int width, int height, int _entrypoints , int _lin
     
     cam[1].setVFlip(true);
     cam[1].setNearClip(10);
-    cam[1].setPosition(viewportwidth/2, ofGetHeight()/2, d-200);
+    cam[1].setPosition(viewportwidth/2, ofGetHeight()/2, d);
     cam[1].pan(180);
+    
+    
+    cam[2].setVFlip(true);
+    cam[2].setNearClip(10);
+    cam[2].setPosition(viewportwidth/2, ofGetHeight()/2, d);
+    cam[2].pan(90);
+    
+    
+    cam[3].setVFlip(true);
+    cam[3].setNearClip(10);
+    cam[3].setPosition(viewportwidth/2, ofGetHeight()/2, d);
+    cam[3].pan(-90);
     
     
     // BACKGROUNDCOLOR
@@ -449,7 +473,7 @@ void SceneManager::draw(){
     // background
     //if(debug) backgroundFbo.draw(0,0);
     // backgroundFbo.draw(0,0);
-    secondScreenbackgroundFbo.draw(viewportwidth,0);
+    secondScreenbackgroundFbo.draw(viewportwidth*3,0);
     
     cam[0].begin(viewFront);
   
@@ -640,6 +664,52 @@ ofEnableBlendMode(OF_BLENDMODE_ADD);
      }*/
     
     cam[1].end();
+    cam[2].begin(viewLeft);
+    //ofEnableBlendMode(OF_BLENDMODE_ALPHA);
+    
+    /* for(auto mw:movingWords){
+     ofVec3f p=mw->getPosition();
+     ofSetColor(mw->myColor,5);
+     
+     png.draw(p.x-1000, p.y-1000,p.z,2000,2000);
+     }*/
+    
+    
+    bigfont.getFontTexture().bind();
+    m.draw();
+    bigfont.getFontTexture().unbind();
+    ofPopStyle();
+    /* ofSetColor(255,0,0);
+     for (int i=0;i<movingWords.size();i++){
+     ofVec3f t;
+     t.set(movingWords[i]->getDockPoint());
+     ofDrawBox(t, 10);
+     }*/
+    
+    cam[2].end();
+    cam[3].begin(viewRight);
+    //ofEnableBlendMode(OF_BLENDMODE_ALPHA);
+    
+    /* for(auto mw:movingWords){
+     ofVec3f p=mw->getPosition();
+     ofSetColor(mw->myColor,5);
+     
+     png.draw(p.x-1000, p.y-1000,p.z,2000,2000);
+     }*/
+    
+    
+    bigfont.getFontTexture().bind();
+    m.draw();
+    bigfont.getFontTexture().unbind();
+    ofPopStyle();
+    /* ofSetColor(255,0,0);
+     for (int i=0;i<movingWords.size();i++){
+     ofVec3f t;
+     t.set(movingWords[i]->getDockPoint());
+     ofDrawBox(t, 10);
+     }*/
+    
+    cam[3].end();
     
     
     

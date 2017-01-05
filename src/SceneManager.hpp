@@ -160,9 +160,14 @@ public:
     
     
     // VIEWPORTS
-    ofCamera cam[2];
+    ofCamera cam[4];
     ofRectangle viewFront;
     ofRectangle viewBack;
+    
+    ofRectangle viewLeft;
+    ofRectangle viewRight;
+    
+    
     int viewportwidth; // FULLHD
     //int viewportwidth=1280; //WXGA
     int viewportheight;
