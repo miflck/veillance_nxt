@@ -58,7 +58,7 @@ void IOManager::onIdle( ofxLibwebsockets::Event& args ){
 
 //--------------------------------------------------------------
 void IOManager::onMessage( ofxLibwebsockets::Event& args ){
-    //cout<<"message "<<args.json<<endl;
+    cout<<"message "<<args.json<<endl;
     if(!pause){
         
         

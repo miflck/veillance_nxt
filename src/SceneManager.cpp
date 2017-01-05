@@ -300,7 +300,7 @@ void SceneManager::update(){
     secondScreenbackgroundFbo.end();
     
     //Sound-> hacked draft constrain to 100 Words
-    if(users.size()>0){
+   /* if(users.size()>0){
         
         int w= users[0]->getNumWordsOnScreen();
         if(w>100)w=100;
@@ -320,7 +320,7 @@ void SceneManager::update(){
         
         
     }
-    
+    */
     
     
     
@@ -1238,10 +1238,11 @@ void SceneManager::reset(){
     explodestopcounter=0;
     messageBuffer.clear();
     actionBuffer.clear();
-    
+    /*
     SoundM->user1wordcount.set(0);
     SoundM->user2wordcount.set(0);
     SoundM->user3wordcount.set(0);
+     */
   
     stackManagerBuffer.clear();
     

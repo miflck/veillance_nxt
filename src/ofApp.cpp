@@ -54,7 +54,7 @@ void ofApp::setup(){
 void ofApp::update(){
     IOmanager.update();
     STM->update();
-    if(bSound)SoundM->update();
+  SoundM->update();
     
 }
 
@@ -62,7 +62,7 @@ void ofApp::update(){
 void ofApp::draw(){
     ofSetColor(255);
     STM->draw();
-    if(bSound)SoundM->draw();
+   SoundM->draw();
     if(bDebug)	{
     ofDisableBlendMode();
         int spacer=20;
@@ -127,6 +127,12 @@ void ofApp::keyPressed(int key){
 
 //--------------------------------------------------------------
 void ofApp::keyReleased(int key){
+    
+    if(key=='q'){
+        SoundM->deleteAllDeletedSounds();
+        //SoundM->addForegroundSound();
+    }
+    
     
     if(key=='h'){
         SoundM->toggleGui();

@@ -9,6 +9,9 @@ float angle=0;
 
 #include "MovingWords.hpp"
 #include "SceneManager.hpp"
+#include "SoundManager.hpp"
+
+
 MovingWords::MovingWords(){
 }
 
@@ -53,6 +56,9 @@ void MovingWords::setup(){
     
     myColor=ofColor(0,191,255);
     lookat.set(position+ofVec3f(0,0,1));
+    foregroundSound=nullptr;
+    
+   // addSound();
     
 }
 
@@ -81,6 +87,13 @@ void MovingWords::update(){
         node.roll(rollangle);
         node.tilt(tiltangle);
     }
+    
+    if(foregroundSound!=nullptr){
+        foregroundSound->setPosition(position);
+    
+    }
+    
+    
 }
 
 void MovingWords::draw(){
@@ -247,9 +260,17 @@ ofVboMesh MovingWords::getUpdatedVboMesh(){
 void MovingWords::setData(string _data){
     data=ofToUpper(_data);
     for(int i=0;i<data.size();i++){
-        if(isVowel(data[i]))numvowels++;
+        if(isVowel(data[i])){
+            numvowels++;
+            vouwels+data[i];
+        }
     }
     numsyllables=countSyllables(data);
+    
+    
+    addSound();
+    
+    
 }
 
 
@@ -342,7 +363,7 @@ void MovingWords::stopLifeTimer(){
 }
 
 bool MovingWords:: isVowel(char c) {
-    return std::string("AEIOU").find(c) != std::string::npos;
+    return std::string("AEIOUY").find(c) != std::string::npos;
 }
 
 bool MovingWords:: isVowelForSyllables(char c) {
@@ -402,4 +423,12 @@ void MovingWords::setUserPointer(User *_u){
 User * MovingWords::getUserPointer(){
     return userPointer;
 }
+
+
+void MovingWords::addSound(){
+    foregroundSound = SoundM->addForegroundSound(numsyllables,vouwels,ofVec3f(0,0,100));
+//STM->addForegroundSound
+
+}
+
 

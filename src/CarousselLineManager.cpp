@@ -122,8 +122,6 @@ void CarousselLineManager::move(){
         }
     }
     if(!move){
-        cout<<move<<" stack "<<stackId<<" line "<<lineId<<endl;
-
         stopMoving();
     }
     

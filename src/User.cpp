@@ -160,7 +160,7 @@ void User::checksoundZpos(){
     }
     
     
-    
+    /*
     if(hasSound){
         int i=getUserId();
         //int index=myMovingWords.size()-1;
@@ -170,7 +170,7 @@ void User::checksoundZpos(){
         float mappedZ=ofMap(p.z,0,500,0,1,true);
         float mappedX=ofMap(p.x,-1000,1000,-1,1,true);
 
-        
+        /*
         switch (i) {
             case 0:
                 //Send info to soundmanager -> hacky
@@ -204,12 +204,12 @@ void User::checksoundZpos(){
             default:
                 break;
         }
-
+*/
         
         
         
         
-        
+        /*
         if(p.z>550){
             switch (i) {
                 case 0:
@@ -249,7 +249,7 @@ void User::checksoundZpos(){
                     break;
             }
         }
-    }
+    }*/
 
 }
 
@@ -268,7 +268,7 @@ void User::checkSoundHack(){
 
     cout<<"hassound "<<hasSound<<" "<<i<<endl;
 
-    
+    /*
     if(!hasSound){
     int index=myMovingWords.size()-1;
         cout<<"set sound for "<<i<<endl;
@@ -306,7 +306,7 @@ void User::checkSoundHack(){
             break;
     }
 
-    }
+    }*/
 
 }
 
