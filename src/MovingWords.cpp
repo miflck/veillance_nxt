@@ -21,9 +21,20 @@ void MovingWords::setup(){
     bIsOnScreen=true;
     setIsAlive(true);
 
-    ofVec3f t=ofVec3f(1,0,0);
-    t.set(ofGetWidth()/4+ofRandom(-200,200),ofGetHeight()/2+ofRandom(-200,200),5000);
     
+    
+    float r=ofRandom(0,1);
+    ofVec3f t;
+    if(r>0.5){
+        t=ofVec3f(1000,200,0);
+    }else{
+        t=ofVec3f(-500,200,0);
+
+    
+    }
+    
+    //t.set(ofGetWidth()/4+ofRandom(-200,200),ofGetHeight()/2+ofRandom(-200,200),5000);
+    //t.set(ofGetWidth()/4+ofRandom(-200,200),ofGetHeight()/2+ofRandom(-200,200),5000);
    // t.set(ofGetWidth()*2,ofGetHeight()/2+ofRandom(-200,200),0);
 
     

@@ -27,6 +27,8 @@
 #include "helpers.hpp"
 
 #include "VerticalCaroussel.hpp"
+#include "OrthoCamera.h"
+
 
 
 
@@ -160,9 +162,15 @@ public:
     
     
     // VIEWPORTS
-    ofCamera cam[4];
+    
+    orthoCamera camFront;
+    orthoCamera camFront2;
+
+    
+    ofCamera cam[5];
     ofRectangle viewFront;
     ofRectangle viewBack;
+    
     
     ofRectangle viewLeft;
     ofRectangle viewRight;

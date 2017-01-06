@@ -141,25 +141,57 @@ void SceneManager::initialize(int width, int height, int _entrypoints , int _lin
     cam[0].setVFlip(true);
     cam[0].setFov(60);
     float d=cam[0].getImagePlaneDistance(viewFront);
-    cam[0].setPosition(viewportwidth/2, ofGetHeight()/2, d);
+
+    cam[0].enableOrtho();
+    cam[0].setPosition(-viewportwidth/2, ofGetHeight()/2, d);
     
     
     cam[1].setVFlip(true);
+   
     cam[1].setNearClip(10);
-    cam[1].setPosition(viewportwidth/2, ofGetHeight()/2, d);
-    cam[1].pan(180);
+    cam[1].enableOrtho();
+
+    cam[1].setPosition(-viewportwidth/2, ofGetHeight()/2, d);
     
+    //cam[1].setPosition(viewportwidth/2, ofGetHeight()/2, d);
+  //  cam[1].pan(180);
+    
+    // front
+   // cam[2] = &camFront;
+    
+    
+    camFront.setPosition(viewportwidth/2, ofGetHeight()/2, d);
+    camFront.scale = 230;
+    
+    camFront2.setPosition(3*viewportwidth/2, ofGetHeight()/2, d);
+    camFront2.scale = 230;
+
     
     cam[2].setVFlip(true);
     cam[2].setNearClip(10);
-    cam[2].setPosition(viewportwidth/2, ofGetHeight()/2, d);
-    cam[2].pan(90);
+     cam[2].enableOrtho();
+   // cam[2].setPosition(viewportwidth/2, ofGetHeight()/2, d);
+    cam[2].setPosition(-viewportwidth/2, ofGetHeight()/2, d);
+    
+
+   // cam[2].pan(90);
     
     
     cam[3].setVFlip(true);
     cam[3].setNearClip(10);
-    cam[3].setPosition(viewportwidth/2, ofGetHeight()/2, d);
-    cam[3].pan(-90);
+    cam[3].enableOrtho();
+
+    //cam[3].setPosition(viewportwidth/2, ofGetHeight()/2, d);
+    cam[3].setPosition(-viewportwidth/2, ofGetHeight()/2, d);
+
+   // cam[3].pan(-90);
+    
+    
+    cam[4].setVFlip(true);
+    cam[4].setNearClip(10);
+    cam[4].enableOrtho();
+
+    cam[4].setPosition(-4.5*viewportwidth, ofGetHeight()/2, d);
     
     
     // BACKGROUNDCOLOR
@@ -473,10 +505,11 @@ void SceneManager::draw(){
     // background
     //if(debug) backgroundFbo.draw(0,0);
     // backgroundFbo.draw(0,0);
-    secondScreenbackgroundFbo.draw(viewportwidth*3,0);
+    //wichitg!
+   // secondScreenbackgroundFbo.draw(viewportwidth*3,0);
     
     cam[0].begin(viewFront);
-  
+  //camFront.begin(viewFront);
     
    // backgroundFbo.begin();
     //ofEnableBlendMode(OF_BLENDMODE_ALPHA);
@@ -624,7 +657,7 @@ ofEnableBlendMode(OF_BLENDMODE_ADD);
     }*/
     
     
-    
+    //camFront.end();
     cam[0].end();
     
     /* ofEnableBlendMode(OF_BLENDMODE_ALPHA);
@@ -655,7 +688,6 @@ ofEnableBlendMode(OF_BLENDMODE_ADD);
     bigfont.getFontTexture().bind();
     m.draw();
     bigfont.getFontTexture().unbind();
-    ofPopStyle();
     /* ofSetColor(255,0,0);
      for (int i=0;i<movingWords.size();i++){
      ofVec3f t;
@@ -664,55 +696,39 @@ ofEnableBlendMode(OF_BLENDMODE_ADD);
      }*/
     
     cam[1].end();
-    cam[2].begin(viewLeft);
-    //ofEnableBlendMode(OF_BLENDMODE_ALPHA);
     
-    /* for(auto mw:movingWords){
-     ofVec3f p=mw->getPosition();
-     ofSetColor(mw->myColor,5);
-     
-     png.draw(p.x-1000, p.y-1000,p.z,2000,2000);
-     }*/
-    
-    
+   /* camFront2.begin(viewRight);
+    //cam[2].begin(viewRight);
     bigfont.getFontTexture().bind();
     m.draw();
     bigfont.getFontTexture().unbind();
-    ofPopStyle();
-    /* ofSetColor(255,0,0);
-     for (int i=0;i<movingWords.size();i++){
-     ofVec3f t;
-     t.set(movingWords[i]->getDockPoint());
-     ofDrawBox(t, 10);
-     }*/
-    
-    cam[2].end();
-    cam[3].begin(viewRight);
-    //ofEnableBlendMode(OF_BLENDMODE_ALPHA);
-    
-    /* for(auto mw:movingWords){
-     ofVec3f p=mw->getPosition();
-     ofSetColor(mw->myColor,5);
-     
-     png.draw(p.x-1000, p.y-1000,p.z,2000,2000);
-     }*/
+   // cam[2].end();
+    camFront2.end();*/
     
     
+   cam[2].begin(viewRight);
     bigfont.getFontTexture().bind();
     m.draw();
     bigfont.getFontTexture().unbind();
-    ofPopStyle();
-    /* ofSetColor(255,0,0);
-     for (int i=0;i<movingWords.size();i++){
-     ofVec3f t;
-     t.set(movingWords[i]->getDockPoint());
-     ofDrawBox(t, 10);
-     }*/
+     cam[2].end();
     
+    cam[3].begin(viewLeft);
+    bigfont.getFontTexture().bind();
+    m.draw();
+    bigfont.getFontTexture().unbind();
     cam[3].end();
     
+    ofPushMatrix();
+
+    cam[4].begin(viewBack);
+    bigfont.getFontTexture().bind();
+    m.draw();
+    bigfont.getFontTexture().unbind();
+    cam[4].end();
+    ofPopMatrix();
     
-    
+    ofPopStyle();
+
     
     checkRemove();
 
@@ -1037,6 +1053,18 @@ void SceneManager::addMovingWord(Word *_w){
     _w->setIsDrawn(false);
     MovingWords *mw=new MovingWords();
     mw->setup();
+    
+    float r=ofRandom(0,1);
+    ofVec3f t;
+    if(r>0.5){
+        t=ofVec3f(2*viewportwidth+200,200,0);
+    }else{
+        t=ofVec3f(-viewportwidth-200,200,0);
+        
+        
+    }
+    
+    mw->setTarget(t);
     mw->myColor=ofColor(_w->getBackgroundColor(),180);
     mw->setLifeSpan(ofRandom(70000,30000));
     
