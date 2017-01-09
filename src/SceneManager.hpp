@@ -78,8 +78,12 @@ public:
     
     
     
+    
     VerticalCaroussel vC;
     void addDNS(string _s);
+    void addDNSEntity(dns _dns);
+    vector <dns> dnsBuffer;
+
 
     
     // DATA

@@ -42,4 +42,13 @@ struct action {
 };
 
 
+struct dns {
+    int uuid;
+    string username;
+    string type;
+    string text;    
+};
+
+
+
 #endif /* ThreadedBufferDeleter_hpp */

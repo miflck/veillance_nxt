@@ -284,6 +284,17 @@ void SceneManager::update(){
         
     }
     
+    // Check if we have dns to add
+    if(dnsBuffer.size()>0){
+        for (int i=0;i<dnsBuffer.size();i++){
+            dns d=dnsBuffer[i];
+            addDNS(d.text);
+            dnsBuffer.erase(dnsBuffer.begin()+i);
+        }
+        
+    }
+
+    
     
     
 
@@ -885,7 +896,7 @@ void SceneManager::addWordFromManager(CarousselStackManager *_s, message _m){
     
     string myword=_m.text;
     
-    vC.addMovement(myword);
+   // vC.addMovement(myword);
 
     
         Word * w=new Word();
@@ -1291,6 +1302,12 @@ void SceneManager::addPriorityMessage(message _m){
 void SceneManager::addAction(action _a){
     actionBuffer.push_back(_a);
     // cout<<"Action Buffer Size: "<<actionBuffer.size()<<endl;
+    
+}
+
+
+void SceneManager::addDNSEntity(dns _dns){
+    dnsBuffer.push_back(_dns);
     
 }
 
