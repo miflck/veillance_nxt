@@ -902,6 +902,12 @@ void SceneManager::addWordFromManager(CarousselStackManager *_s, message _m){
         Word * w=new Word();
         w->setup(wIndex);
         w->setData(myword);
+    
+    float r=ofRandom(1);
+        if(r>0.95){
+            w->setIsSuggestion(true);
+        }
+    
         int lifeTime=ofGetElapsedTimeMillis()+int(ofRandom(10000,50000));
         w->setLifeTime(lifeTime);
         w->setFragmentPointer(f);
@@ -1064,6 +1070,8 @@ void SceneManager::addMovingWord(Word *_w){
     _w->setIsDrawn(false);
     MovingWords *mw=new MovingWords();
     mw->setup();
+    
+   
     
     float r=ofRandom(0,1);
     ofVec3f t;
