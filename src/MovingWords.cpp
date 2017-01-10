@@ -21,6 +21,7 @@ void MovingWords::setup(){
     bIsOnScreen=true;
     setIsAlive(true);
 
+    viewportwidth=STM->viewportwidth;
     
     
     float r=ofRandom(0,1);
@@ -102,6 +103,8 @@ void MovingWords::update(){
         node.roll(rollangle);
         node.tilt(tiltangle);
     }
+    
+    
     
     if(foregroundSound!=nullptr){
         foregroundSound->setPosition(position);

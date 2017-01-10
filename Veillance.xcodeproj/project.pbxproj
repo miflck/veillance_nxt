@@ -102,7 +102,6 @@
 		FAB4EAD51DDC7B1100A5E61E /* tinyxmlerror.cpp in Sources */ = {isa = PBXBuildFile; fileRef = FAB4EACF1DDC7B1100A5E61E /* tinyxmlerror.cpp */; };
 		FAB4EAD61DDC7B1100A5E61E /* tinyxmlparser.cpp in Sources */ = {isa = PBXBuildFile; fileRef = FAB4EAD01DDC7B1100A5E61E /* tinyxmlparser.cpp */; };
 		FAB4EAD71DDC7B1100A5E61E /* ofxXmlSettings.cpp in Sources */ = {isa = PBXBuildFile; fileRef = FAB4EAD21DDC7B1100A5E61E /* ofxXmlSettings.cpp */; };
-		FABBC8B11DE8DF020040BBFD /* ofxBlurShader.cpp in Sources */ = {isa = PBXBuildFile; fileRef = FABBC8AE1DE8DF020040BBFD /* ofxBlurShader.cpp */; };
 		FAF2837A1E02F52800B07266 /* Background.cpp in Sources */ = {isa = PBXBuildFile; fileRef = FAF283761E02F52800B07266 /* Background.cpp */; };
 		FAF2837B1E02F52800B07266 /* ForegroundSound.cpp in Sources */ = {isa = PBXBuildFile; fileRef = FAF283781E02F52800B07266 /* ForegroundSound.cpp */; };
 		FAF283A11E02F55100B07266 /* allpass.cpp in Sources */ = {isa = PBXBuildFile; fileRef = FAF2838F1E02F55100B07266 /* allpass.cpp */; };
@@ -351,9 +350,6 @@
 		FAB4EAD01DDC7B1100A5E61E /* tinyxmlparser.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = tinyxmlparser.cpp; sourceTree = "<group>"; };
 		FAB4EAD21DDC7B1100A5E61E /* ofxXmlSettings.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = ofxXmlSettings.cpp; sourceTree = "<group>"; };
 		FAB4EAD31DDC7B1100A5E61E /* ofxXmlSettings.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ofxXmlSettings.h; sourceTree = "<group>"; };
-		FABBC8AE1DE8DF020040BBFD /* ofxBlurShader.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = ofxBlurShader.cpp; sourceTree = "<group>"; };
-		FABBC8AF1DE8DF020040BBFD /* ofxBlurShader.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ofxBlurShader.h; sourceTree = "<group>"; };
-		FABBC8B01DE8DF020040BBFD /* README */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = README; sourceTree = "<group>"; };
 		FAF283761E02F52800B07266 /* Background.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = Background.cpp; path = ../../customSynthClass/src/Background.cpp; sourceTree = "<group>"; };
 		FAF283771E02F52800B07266 /* Background.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Background.h; path = ../../customSynthClass/src/Background.h; sourceTree = "<group>"; };
 		FAF283781E02F52800B07266 /* ForegroundSound.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = ForegroundSound.cpp; path = ../../customSynthClass/src/ForegroundSound.cpp; sourceTree = "<group>"; };
@@ -677,7 +673,6 @@
 			children = (
 				FAF2837C1E02F55000B07266 /* ofxReverb */,
 				FAF2839A1E02F55100B07266 /* ofxDspChain */,
-				FABBC8AD1DE8DF020040BBFD /* ofxBlurShader */,
 				FAB4EACB1DDC7B1100A5E61E /* ofxXmlSettings */,
 				480A780D8D0308AE4A368801 /* ofxGui */,
 				AAE50E341C7382A4EF10AF5A /* ofxLibwebsockets */,
@@ -799,17 +794,6 @@
 				FAB4EAD31DDC7B1100A5E61E /* ofxXmlSettings.h */,
 			);
 			path = src;
-			sourceTree = "<group>";
-		};
-		FABBC8AD1DE8DF020040BBFD /* ofxBlurShader */ = {
-			isa = PBXGroup;
-			children = (
-				FABBC8AE1DE8DF020040BBFD /* ofxBlurShader.cpp */,
-				FABBC8AF1DE8DF020040BBFD /* ofxBlurShader.h */,
-				FABBC8B01DE8DF020040BBFD /* README */,
-			);
-			name = ofxBlurShader;
-			path = ../../../addons/ofxBlurShader;
 			sourceTree = "<group>";
 		};
 		FAF2837C1E02F55000B07266 /* ofxReverb */ = {
@@ -988,7 +972,6 @@
 				A08D9CF6078FDA57A7CE04C4 /* ofxTonicSynth.cpp in Sources */,
 				92AE3EF9D1E9798885317D7E /* ADSR.cpp in Sources */,
 				D4A9ADF52DC2FA5CFFD80A51 /* Arithmetic.cpp in Sources */,
-				FABBC8B11DE8DF020040BBFD /* ofxBlurShader.cpp in Sources */,
 				6A9FF5E7244C5229CDB118E6 /* AudioFileUtils.cpp in Sources */,
 				98576F60E227C1D99FE2F41A /* BasicDelay.cpp in Sources */,
 				E9FCAE93093A1FD0CFB5A221 /* BitCrusher.cpp in Sources */,

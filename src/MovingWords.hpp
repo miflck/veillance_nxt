@@ -101,6 +101,8 @@ public:
     
 private:
     
+    int viewportwidth;
+    
     User * userPointer;
     ForegroundSound * foregroundSound;
     

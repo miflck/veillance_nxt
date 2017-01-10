@@ -905,7 +905,7 @@ void SceneManager::addWordFromManager(CarousselStackManager *_s, message _m){
     
     float r=ofRandom(1);
         if(r>0.95){
-            w->setIsSuggestion(true);
+            //w->setIsSuggestion(true);
         }
     
         int lifeTime=ofGetElapsedTimeMillis()+int(ofRandom(10000,50000));
