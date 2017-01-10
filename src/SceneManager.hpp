@@ -23,7 +23,6 @@
 
 
 #include "MovingWords.hpp"
-#include "ofxBlurShader.h"
 #include "helpers.hpp"
 
 #include "VerticalCaroussel.hpp"
@@ -196,7 +195,6 @@ public:
     
     
     
-    ofxBlurShader blur;
     
     ofColor color1,color2,color3,color4,color5;
     

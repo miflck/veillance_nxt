@@ -212,7 +212,6 @@ void SceneManager::initialize(int width, int height, int _entrypoints , int _lin
     color1=ofColor(0);
     color2=ofColor(0);
     
-    blur.setup(viewportwidth,viewportheight);
 
     
 }
