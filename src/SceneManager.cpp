@@ -96,7 +96,7 @@ void SceneManager::initialize(int width, int height, int _entrypoints , int _lin
     
     numEntrypoints=_entrypoints;
     numLines=_linesPerPoint;
-    minspeed=2;
+    minspeed=1;
     maxspeed=5;
 
     

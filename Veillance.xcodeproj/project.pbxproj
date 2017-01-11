@@ -102,8 +102,8 @@
 		FAB4EAD51DDC7B1100A5E61E /* tinyxmlerror.cpp in Sources */ = {isa = PBXBuildFile; fileRef = FAB4EACF1DDC7B1100A5E61E /* tinyxmlerror.cpp */; };
 		FAB4EAD61DDC7B1100A5E61E /* tinyxmlparser.cpp in Sources */ = {isa = PBXBuildFile; fileRef = FAB4EAD01DDC7B1100A5E61E /* tinyxmlparser.cpp */; };
 		FAB4EAD71DDC7B1100A5E61E /* ofxXmlSettings.cpp in Sources */ = {isa = PBXBuildFile; fileRef = FAB4EAD21DDC7B1100A5E61E /* ofxXmlSettings.cpp */; };
-		FACC9CDB1E26279A00B488E8 /* Background.cpp in Sources */ = {isa = PBXBuildFile; fileRef = FACC9CD71E26279A00B488E8 /* Background.cpp */; };
-		FACC9CDC1E26279A00B488E8 /* ForegroundSound.cpp in Sources */ = {isa = PBXBuildFile; fileRef = FACC9CD91E26279A00B488E8 /* ForegroundSound.cpp */; };
+		FACC9CE21E263D4000B488E8 /* Background.cpp in Sources */ = {isa = PBXBuildFile; fileRef = FACC9CDE1E263D4000B488E8 /* Background.cpp */; };
+		FACC9CE31E263D4000B488E8 /* ForegroundSound.cpp in Sources */ = {isa = PBXBuildFile; fileRef = FACC9CE01E263D4000B488E8 /* ForegroundSound.cpp */; };
 		FAF283A11E02F55100B07266 /* allpass.cpp in Sources */ = {isa = PBXBuildFile; fileRef = FAF2838F1E02F55100B07266 /* allpass.cpp */; };
 		FAF283A21E02F55100B07266 /* comb.cpp in Sources */ = {isa = PBXBuildFile; fileRef = FAF283911E02F55100B07266 /* comb.cpp */; };
 		FAF283A31E02F55100B07266 /* revmodel.cpp in Sources */ = {isa = PBXBuildFile; fileRef = FAF283941E02F55100B07266 /* revmodel.cpp */; };
@@ -350,10 +350,10 @@
 		FAB4EAD01DDC7B1100A5E61E /* tinyxmlparser.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = tinyxmlparser.cpp; sourceTree = "<group>"; };
 		FAB4EAD21DDC7B1100A5E61E /* ofxXmlSettings.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = ofxXmlSettings.cpp; sourceTree = "<group>"; };
 		FAB4EAD31DDC7B1100A5E61E /* ofxXmlSettings.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ofxXmlSettings.h; sourceTree = "<group>"; };
-		FACC9CD71E26279A00B488E8 /* Background.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Background.cpp; sourceTree = "<group>"; };
-		FACC9CD81E26279A00B488E8 /* Background.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Background.h; sourceTree = "<group>"; };
-		FACC9CD91E26279A00B488E8 /* ForegroundSound.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = ForegroundSound.cpp; sourceTree = "<group>"; };
-		FACC9CDA1E26279A00B488E8 /* ForegroundSound.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = ForegroundSound.hpp; sourceTree = "<group>"; };
+		FACC9CDE1E263D4000B488E8 /* Background.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Background.cpp; sourceTree = "<group>"; };
+		FACC9CDF1E263D4000B488E8 /* Background.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Background.h; sourceTree = "<group>"; };
+		FACC9CE01E263D4000B488E8 /* ForegroundSound.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = ForegroundSound.cpp; sourceTree = "<group>"; };
+		FACC9CE11E263D4000B488E8 /* ForegroundSound.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = ForegroundSound.hpp; sourceTree = "<group>"; };
 		FAF2838F1E02F55100B07266 /* allpass.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = allpass.cpp; sourceTree = "<group>"; };
 		FAF283901E02F55100B07266 /* allpass.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = allpass.hpp; sourceTree = "<group>"; };
 		FAF283911E02F55100B07266 /* comb.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = comb.cpp; sourceTree = "<group>"; };
@@ -713,10 +713,10 @@
 		E4B69E1C0A3A1BDC003C02F2 /* src */ = {
 			isa = PBXGroup;
 			children = (
-				FACC9CD71E26279A00B488E8 /* Background.cpp */,
-				FACC9CD81E26279A00B488E8 /* Background.h */,
-				FACC9CD91E26279A00B488E8 /* ForegroundSound.cpp */,
-				FACC9CDA1E26279A00B488E8 /* ForegroundSound.hpp */,
+				FACC9CDE1E263D4000B488E8 /* Background.cpp */,
+				FACC9CDF1E263D4000B488E8 /* Background.h */,
+				FACC9CE01E263D4000B488E8 /* ForegroundSound.cpp */,
+				FACC9CE11E263D4000B488E8 /* ForegroundSound.hpp */,
 				FA6E66E21E1EFB4E008615E9 /* OrthoCamera.cpp */,
 				FA6E66E31E1EFB4E008615E9 /* OrthoCamera.h */,
 				FA6879DD1DFEFB5D00619A40 /* VerticalCarousselContainer.cpp */,
@@ -929,7 +929,6 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				FACC9CDC1E26279A00B488E8 /* ForegroundSound.cpp in Sources */,
 				E4B69E200A3A1BDC003C02F2 /* main.cpp in Sources */,
 				FAB4EAD41DDC7B1100A5E61E /* tinyxml.cpp in Sources */,
 				E4B69E210A3A1BDC003C02F2 /* ofApp.cpp in Sources */,
@@ -965,6 +964,7 @@
 				F1AC6AEFB9B93C6AC45C9CA8 /* Events.cpp in Sources */,
 				86135253DC7909CA8590E157 /* Protocol.cpp in Sources */,
 				FAF283A31E02F55100B07266 /* revmodel.cpp in Sources */,
+				FACC9CE31E263D4000B488E8 /* ForegroundSound.cpp in Sources */,
 				6D73A566CFEC0B462FE6E43C /* Reactor.cpp in Sources */,
 				F3AD9E2A2E56B6AF32A0BDAF /* Server.cpp in Sources */,
 				CCD326ED8E01272042317DD2 /* Util.cpp in Sources */,
@@ -983,7 +983,6 @@
 				00F6B708CB7DDC8FC6C6F97B /* ControlCallback.cpp in Sources */,
 				D42E8EBCEE4BC7491949F8E5 /* ControlChangeNotifier.cpp in Sources */,
 				BA79E1F539E83C64A29B4AE7 /* ControlComparison.cpp in Sources */,
-				FACC9CDB1E26279A00B488E8 /* Background.cpp in Sources */,
 				C86222C2F07C6F4623CEDCD5 /* ControlConditioner.cpp in Sources */,
 				FAAAC04B1DEF3ACE00F25A4A /* CarousselStackManager.cpp in Sources */,
 				FAB4EAD61DDC7B1100A5E61E /* tinyxmlparser.cpp in Sources */,
@@ -1002,6 +1001,7 @@
 				3F63B4CE561C9ADEF941D745 /* ControlRecorder.cpp in Sources */,
 				08A6D973887595CDADAF4FD7 /* ControlSnapToScale.cpp in Sources */,
 				61FB003EA31E8CC722F7A0EF /* ControlStepper.cpp in Sources */,
+				FACC9CE21E263D4000B488E8 /* Background.cpp in Sources */,
 				F7DBF98108C24B1D576DE0E6 /* ControlSwitcher.cpp in Sources */,
 				23E21567BA4C43105A9339A9 /* ControlTrigger.cpp in Sources */,
 				AAFCC1A80FA3C88E6D1B2A3D /* ControlTriggerFilter.cpp in Sources */,
