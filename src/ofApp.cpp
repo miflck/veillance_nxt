@@ -19,7 +19,13 @@ void ofApp::setup(){
     
     
     int width = settings.getValue("screensettings:width", 3840);
+    int viewportwidth = settings.getValue("screensettings:viewportwidth", 3840);
+
     int height = settings.getValue("screensettings:height", 1080);
+    
+    int entrypoints = settings.getValue("rendering:entrypoints", 5);
+    int linesPerPoint = settings.getValue("rendering:numlines", 7);
+
 
     
     
@@ -27,7 +33,7 @@ void ofApp::setup(){
     ofSetWindowPosition(10, 10);
 
     
-    STM->initialize(width,height);
+    STM->initialize(viewportwidth,height,entrypoints,linesPerPoint);
     SoundM->initialize();
     
   
@@ -48,7 +54,7 @@ void ofApp::setup(){
 void ofApp::update(){
     IOmanager.update();
     STM->update();
-    if(bSound)SoundM->update();
+  SoundM->update();
     
 }
 
@@ -56,18 +62,59 @@ void ofApp::update(){
 void ofApp::draw(){
     ofSetColor(255);
     STM->draw();
-    if(bSound)SoundM->draw();
+   SoundM->draw();
     if(bDebug)	{
-        ofDrawBitmapString("Framerate", 0,20);
-        ofDrawBitmapString(ofToString(ofGetFrameRate()), 110,20);
+    ofDisableBlendMode();
+        int spacer=20;
+        int spaceroffset=20;
+    ofSetColor(255);
+        ofDrawBitmapString("Framerate", 0,spacer);
+        ofDrawBitmapString(ofToString(ofGetFrameRate()), 110,spacer);
+        spacer+=spaceroffset;
         
+        ofDrawBitmapString("Messagebuffer", 0,spacer);
+        ofDrawBitmapString(STM->messageBuffer.size(), 110,spacer);
+        spacer+=spaceroffset;
         
-        ofDrawBitmapString("Messagebuffer", 0,40);
-        ofDrawBitmapString(STM->messageBuffer.size(), 110,40);
+        ofDrawBitmapString("Prioritybuffer", 0,spacer);
+        ofDrawBitmapString(STM->priorityMessageBuffer.size(), 200,spacer);
+        spacer+=spaceroffset;
+
+
+        int wordsInMessageBuffer;
+        for(int i=0;i<STM->messageBuffer.size();i++){
+            wordsInMessageBuffer+=STM->messageBuffer[i].wordcount;
+        }
         
+        ofDrawBitmapString("Words in Messagebuffer", 0,spacer);
+        ofDrawBitmapString(STM->messageBuffer.size(), 200,spacer);
+        spacer+=spaceroffset;
         
-        ofDrawBitmapString("Actionbuffer", 0,60);
-        ofDrawBitmapString(STM->actionBuffer.size(), 110,60);
+
+        ofDrawBitmapString("Actionbuffer", 0,spacer);
+        ofDrawBitmapString(STM->actionBuffer.size(), 110,spacer);
+        spacer+=spaceroffset;
+
+        
+       ofDrawBitmapString("Letterbuffer", 0,spacer);
+        ofDrawBitmapString(STM->lettermap.size(), 110,spacer);
+        spacer+=spaceroffset;
+
+        
+        ofDrawBitmapString("LettersOnScreen", 0,spacer);
+        ofDrawBitmapString(STM->letters.size(), 120,spacer);
+        spacer+=spaceroffset;
+
+        
+        ofDrawBitmapString("Stackbuffer", 0,spacer);
+        ofDrawBitmapString(STM->stackmanagertotalbuffer, 140,spacer);
+        spacer+=spaceroffset;
+
+        ofDrawBitmapString("Total Words in Buffer", 0,spacer);
+        ofDrawBitmapString(STM->totalWordsInBuffer, 200,spacer);
+        
+      
+        
         
     }
 }
@@ -80,6 +127,12 @@ void ofApp::keyPressed(int key){
 
 //--------------------------------------------------------------
 void ofApp::keyReleased(int key){
+    
+    if(key=='q'){
+        SoundM->deleteAllDeletedSounds();
+        //SoundM->addForegroundSound();
+    }
+    
     
     if(key=='h'){
         SoundM->toggleGui();
@@ -143,6 +196,17 @@ void ofApp::keyReleased(int key){
     }
     
     
+    if(key=='e'){
+        // bDraw=!bDraw;
+        STM->explode();
+    }
+    
+    
+    if(key=='E'){
+        // bDraw=!bDraw;
+        STM->reset();
+    }
+    
     
     
     if(key=='r'){
@@ -170,10 +234,11 @@ void ofApp::keyReleased(int key){
     
     
     if(key=='w'){
-        for (auto line : data){
-            STM->addData(line,fragmentId);
+        STM->addDNS("hello");
+       // for (auto line : data){
+          //  STM->addData(line,fragmentId);
             fragmentId++;
-        }
+       // }
     }
     
 }

@@ -13,6 +13,9 @@
 #include "ofMain.h"
 #include "ofxTonic.h"
 #include "ofxGui.h"
+#include "Background.h"
+#include "ForegroundSound.hpp"
+#include "ofxReverb.h"
 
 
 using namespace Tonic;
@@ -35,43 +38,38 @@ public:
     void update();
     void draw();
 
-    void audioRequested (float * output, int bufferSize, int nChannels);
+   // void audioRequested (float * output, int bufferSize, int nChannels);
     
     bool bHide=true;
     
     void toggleGui();
     
-  //  ofxIntSlider user1wordcount;
+    ForegroundSound * addForegroundSound(int _numSyllables,string _vowels,ofVec3f _p);
     
-    ofParameter<float> user1wordcount;
-    ofParameter<float> user1vowelcount;
-    ofParameter<float> user1sylcont1;
-    
-      ofParameter<float> user1pan;
-      ofParameter<float> user1Zpos;
+  
     
     
-    ofParameter<float> user2wordcount;
-    ofParameter<float> user2vowelcount;
-    ofParameter<float> user2sylcont1;
-    ofParameter<float> user2pan;
-    ofParameter<float> user2Zpos;
+    // NewStuff -------------------------------------------------------------------
+    
+    void audioOut(float * output, int bufferSize, int nChannels);
+    ofSoundStream soundStream;
+    
+    ofSoundMixer mixer;
+
+    
+    vector< ForegroundSound * > foregrounds;
+    vector< ForegroundSound * > removedforegrounds;
+
+    //Reverb
+    float 	volume;
+    ofxReverb	reverb;
+    float		wetness,verbRoomSize,verbDamp,verbWidth;
+    float		reverbOUT;
+    bool bReverb = false;
     
     
-    ofParameter<float> user3wordcount;
-    ofParameter<float> user3vowelcount;
-    ofParameter<float> user3sylcont1;
     
-    ofParameter<float> user3pan;
-    ofParameter<float> user3Zpos;
-    
-    
-    ofParameter<float> user4wordcount;
-    ofParameter<float> user4vowelcount;
-    ofParameter<float> user4sylcont1;
-    ofParameter<float> user4pan;
-    ofParameter<float> user4Zpos;
-    
+    void deleteAllDeletedSounds();
 
 private:
     
@@ -80,47 +78,6 @@ private:
     bool initialized;
 
     
-    ofxTonicSynth synth;
-    
-    
-    ofxPanel gui;
-    
-
-    ofxIntSlider user1sylcont2;
-    ofxIntSlider user1sylcont3;
-    ofxIntSlider user1sylcont4;
-    ofxIntSlider user1sylcont5;
-    ofxIntSlider user1sylcont6;
-
-    
- /*   ofxIntSlider user2wordcount;
-    ofxIntSlider user2vowelcount;
-    ofxIntSlider user2sylcont1;*/
-    ofxIntSlider user2sylcont2;
-    ofxIntSlider user2sylcont3;
-    ofxIntSlider user2sylcont4;
-    ofxIntSlider user2sylcont5;
-    ofxIntSlider user2sylcont6;
-
-/*    ofxIntSlider user3wordcount;
-    ofxIntSlider user3vowelcount;
-    ofxIntSlider user3sylcont1;*/
-    ofxIntSlider user3sylcont2;
-    ofxIntSlider user3sylcont3;
-    ofxIntSlider user3sylcont4;
-    ofxIntSlider user3sylcont5;
-    ofxIntSlider user3sylcont6;
-
-    
-  /*  ofxIntSlider user4wordcount;
-    ofxIntSlider user4vowelcount;
-    ofxIntSlider user4sylcont1;*/
-    ofxIntSlider user4sylcont2;
-    ofxIntSlider user4sylcont3;
-    ofxIntSlider user4sylcont4;
-    ofxIntSlider user4sylcont5;
-    ofxIntSlider user4sylcont6;
-
     
     
 };

@@ -11,6 +11,8 @@
 
 #include <stdio.h>
 #include "ofMain.h"
+#include "ForegroundSound.hpp"
+
 
 class User;
 
@@ -94,10 +96,15 @@ public:
     //hack
     bool bHasSound=false;
     
+    void addSound();
+    
     
 private:
     
+    int viewportwidth;
+    
     User * userPointer;
+    ForegroundSound * foregroundSound;
     
     ofRectangle boundingBox;
 
@@ -146,6 +153,7 @@ private:
     int numsyllables=0;
     
     
+    string vouwels="";
 };
 
 

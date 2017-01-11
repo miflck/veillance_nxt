@@ -76,6 +76,10 @@ public:
     void checkSoundHack();
     void checksoundZpos();
     
+    
+    
+    void reset();
+    
 
 private:
     

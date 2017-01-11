@@ -18,7 +18,10 @@ User::User(){
 void User::setup(){
     
 
-    backgroundColor=ofColor(ofRandom(50,255),ofRandom(50,255),ofRandom(50,255));
+    
+   // backgroundColor=ofColor(ofRandom(50,255),ofRandom(50,255),ofRandom(50,255));
+    backgroundColor.setHsb(ofRandom(0,255),255,255);
+    
     myColor=ofColor(0,0,255);
     myInitColor=ofColor(0,0,255);
     
@@ -157,7 +160,7 @@ void User::checksoundZpos(){
     }
     
     
-    
+    /*
     if(hasSound){
         int i=getUserId();
         //int index=myMovingWords.size()-1;
@@ -167,7 +170,7 @@ void User::checksoundZpos(){
         float mappedZ=ofMap(p.z,0,500,0,1,true);
         float mappedX=ofMap(p.x,-1000,1000,-1,1,true);
 
-        
+        /*
         switch (i) {
             case 0:
                 //Send info to soundmanager -> hacky
@@ -201,12 +204,12 @@ void User::checksoundZpos(){
             default:
                 break;
         }
-
+*/
         
         
         
         
-        
+        /*
         if(p.z>550){
             switch (i) {
                 case 0:
@@ -246,7 +249,7 @@ void User::checksoundZpos(){
                     break;
             }
         }
-    }
+    }*/
 
 }
 
@@ -265,7 +268,7 @@ void User::checkSoundHack(){
 
     cout<<"hassound "<<hasSound<<" "<<i<<endl;
 
-    
+    /*
     if(!hasSound){
     int index=myMovingWords.size()-1;
         cout<<"set sound for "<<i<<endl;
@@ -303,7 +306,7 @@ void User::checkSoundHack(){
             break;
     }
 
-    }
+    }*/
 
 }
 
@@ -349,6 +352,10 @@ string User::getUserName(){
 
 void User::setUserId(int _id){
    userId=_id;
+    
+    //debug!!
+    backgroundColor.setHsb(255/10*_id,255,255);
+
 }
 
 int User::getUserId(){
@@ -361,13 +368,11 @@ int User::getNumWords(){
 
 int User::getNumWordsOnScreen(){
     int n=0;
-    
     for(auto w:myWords){
         if(w->checkIsOnScreen())n++;
     }
     
     return n;
-
 }
 
 
@@ -387,6 +392,13 @@ ofColor User::getColor(){
 
 ofColor User::getBackgroundColor(){
     return backgroundColor;
+}
+
+
+void User::reset(){
+
+
+
 }
 
 

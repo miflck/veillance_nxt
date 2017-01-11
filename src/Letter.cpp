@@ -16,6 +16,12 @@
 
 Letter::Letter(){
     data=NULL;
+    bIsOnScreen=false;
+    node.clearParent();
+    //cout<<"node"<<node.getParent()<<endl;
+    bRemove=false;
+    bRemoveMe=false;
+    bWasRemove=false;
     
 }
 
@@ -28,10 +34,36 @@ void Letter::setup(){
     ofRectangle textBounds = font->getStringBoundingBox("H", 0, 0);
     bIsOnScreen=false;
     node.clearParent();
+    //cout<<"node"<<node.getParent()<<endl;
+    bRemove=false;
+    bRemoveMe=false;
+    bWasRemove=false;
     
 }
 
 void Letter::update(){
+    
+    //check what to do
+    //if(bRemove && !bWasRemove){
+    
+    if(bRemove)bWasRemove=bRemove;
+    
+        if(bRemoveMe){
+            bRemove=true;
+           // cout<<"unregisterLetter "<<this<<endl;
+        //STM->unregisterLetter(this);
+
+   /*     bIsOnScreen=false;
+        STM->unregisterLetter(this);
+
+        myFragmentPointer->unregisterLetter(this);
+        myUserPointer->unregisterLetter(this);
+
+        myWordPointer->unregisterLetter(this);
+    */
+    }
+
+    
     if(bIsOnScreen){//check if is on screen
         angle+=0.5;
         if(angle>360)angle=360;
@@ -65,9 +97,9 @@ void Letter::draw(){
 
 void Letter::setData(char _data){
     data=_data;
-    myString=ofToUpper(ofToString(_data));
-    //  myString=ofToString(_data);
     
+   // myString=ofToUpper(ofToString(data));
+      myString=ofToString(_data);
     letterMesh = font->getStringMesh(myString, 0, 0);
 }
 
@@ -126,9 +158,20 @@ void Letter::setUserPointer(User *_u){
 
 
 void Letter::setPosition(ofVec2f _p){
+    if(bRemove)return;
+    if(bWasRemove){
+    return;
+    }else{
+
     if(getIsOnScreen()){
+       // if(STM->totalWordsInBuffer>100)_p+=ofRandom(-1,1);
+        
+      //if(STM->totalWordsInBuffer>2000) _p.y+=ofRandom(ofMap(STM->totalWordsInBuffer, 2000, 5000, 0, 10));
+        
+        
         position.set(_p);
         node.setGlobalPosition(position);
+    }
     }
 }
 
@@ -151,15 +194,26 @@ bool Letter::getIsOnScreen(){
 
 
 void Letter::setBRemove(bool _b){
-    bRemove=_b;
-    if(bRemove){
-        //cout<<"remove letter"<<myString<<endl;
-        myWordPointer->unregisterLetter(this);
-        myFragmentPointer->unregisterLetter(this);
-        myUserPointer->unregisterLetter(this);
+    //cout<<"setremove "<<this<< data<< " "<<myString<<endl;
+    bRemoveMe=_b;//bRemove=_b;
+    
+    if(bRemoveMe){
+        //cout<<"unregisterLetter "<<this<<endl;
+        STM->unregisterLetter(this);
         
+        /*     bIsOnScreen=false;
+         STM->unregisterLetter(this);
+         
+         myFragmentPointer->unregisterLetter(this);
+         myUserPointer->unregisterLetter(this);
+         
+         myWordPointer->unregisterLetter(this);
+         */
+        //bWasRemove=bRemove;
     }
-}
+
+    
+   }
 
 bool Letter::getBRemove(){
     return bRemove;
@@ -176,14 +230,19 @@ ofVec2f Letter::getVelocity(){
 
 
 ofVboMesh Letter::getUpdatedVboMesh(){
+    
     // node.roll(ofDegToRad(angle));
     vbom.clear();
-    if(bIsOnScreen){//check if is on screen
+    if(bIsOnScreen &! bRemove){//check if is on screen
         letterMesh = font->getStringMesh(myString, 0, 0);
         vector<ofVec3f>& verts = letterMesh.getVertices();
         for(int j=0; j <  verts.size() ; j++){
             letterMesh.setVertex(j,verts[j]*node.getGlobalTransformMatrix());
-            letterMesh.addColor(myWordPointer->getColor());
+            if(bIsDrawn){
+                letterMesh.addColor(myWordPointer->getColor());
+            }else{
+                letterMesh.addColor(ofColor(255,0));
+                }
             //  letterMesh.addColor(255);
             
         }
@@ -204,4 +263,12 @@ ofColor Letter::getBackgroundColor(){
         return(ofColor(255,0,0));
     }
 }
+
+void Letter::explode(){
+//setTarget
+    bIsExploding=true;
+    myWordPointer->explode();
+
+};
+
 

@@ -9,6 +9,9 @@ float angle=0;
 
 #include "MovingWords.hpp"
 #include "SceneManager.hpp"
+#include "SoundManager.hpp"
+
+
 MovingWords::MovingWords(){
 }
 
@@ -18,8 +21,24 @@ void MovingWords::setup(){
     bIsOnScreen=true;
     setIsAlive(true);
 
-    ofVec3f t=ofVec3f(1,0,0);
-    t.set(ofGetWidth()/4+ofRandom(-200,200),ofGetHeight()/2+ofRandom(-200,200),2000);
+    viewportwidth=STM->viewportwidth;
+    
+    
+    float r=ofRandom(0,1);
+    ofVec3f t;
+    if(r>0.5){
+        t=ofVec3f(1000,200,0);
+    }else{
+        t=ofVec3f(-500,200,0);
+
+    
+    }
+    
+    //t.set(ofGetWidth()/4+ofRandom(-200,200),ofGetHeight()/2+ofRandom(-200,200),5000);
+    //t.set(ofGetWidth()/4+ofRandom(-200,200),ofGetHeight()/2+ofRandom(-200,200),5000);
+   // t.set(ofGetWidth()*2,ofGetHeight()/2+ofRandom(-200,200),0);
+
+    
     /*
     t*=ofRandom(3000,5000);
     float angleY=ofRandom(-80,-70);
@@ -29,7 +48,7 @@ void MovingWords::setup(){
     */
     
     target.set(t);
-    startposition.set(ofRandom(ofGetWidth()/2-200,ofGetWidth()/2+200),ofGetHeight()/2,0);
+    startposition.set(ofRandom(ofGetWidth()/2-200,ofGetWidth()/2+200),ofGetHeight()/2,-1000);
     position.set(startposition);
     
     scalefact=0.2;
@@ -53,6 +72,9 @@ void MovingWords::setup(){
     
     myColor=ofColor(0,191,255);
     lookat.set(position+ofVec3f(0,0,1));
+    foregroundSound=nullptr;
+    
+   // addSound();
     
 }
 
@@ -81,6 +103,15 @@ void MovingWords::update(){
         node.roll(rollangle);
         node.tilt(tiltangle);
     }
+    
+    
+    
+    if(foregroundSound!=nullptr){
+        foregroundSound->setPosition(position);
+    
+    }
+    
+    
 }
 
 void MovingWords::draw(){
@@ -221,6 +252,8 @@ ofVec3f MovingWords::getDockPoint(){
 
 
 ofVboMesh MovingWords::getUpdatedVboMesh(){
+    ofPushStyle();
+    ofEnableBlendMode(OF_BLENDMODE_ADD);
     scalefact=ofLerp(scalefact,1,0.001);
     node.setScale(scalefact);
     spacingFact=ofLerp(spacingFact,1.2,0.01);
@@ -235,16 +268,27 @@ ofVboMesh MovingWords::getUpdatedVboMesh(){
         }
         vbom.append(letterMesh);
     }
+
+    ofPopStyle();
     return vbom;
+    
 }
 
 
 void MovingWords::setData(string _data){
     data=ofToUpper(_data);
     for(int i=0;i<data.size();i++){
-        if(isVowel(data[i]))numvowels++;
+        if(isVowel(data[i])){
+            numvowels++;
+            vouwels+data[i];
+        }
     }
     numsyllables=countSyllables(data);
+    
+    
+    addSound();
+    
+    
 }
 
 
@@ -337,7 +381,7 @@ void MovingWords::stopLifeTimer(){
 }
 
 bool MovingWords:: isVowel(char c) {
-    return std::string("AEIOU").find(c) != std::string::npos;
+    return std::string("AEIOUY").find(c) != std::string::npos;
 }
 
 bool MovingWords:: isVowelForSyllables(char c) {
@@ -397,4 +441,12 @@ void MovingWords::setUserPointer(User *_u){
 User * MovingWords::getUserPointer(){
     return userPointer;
 }
+
+
+void MovingWords::addSound(){
+    foregroundSound = SoundM->addForegroundSound(numsyllables,vouwels,ofVec3f(0,0,100));
+//STM->addForegroundSound
+
+}
+
 

@@ -19,6 +19,8 @@ class CarousselContainer{
     
 public:
     CarousselContainer();
+    virtual ~CarousselContainer();
+
     void setup();
     void update();
     void draw();
@@ -50,7 +52,10 @@ public:
     void setDimension(ofVec2f _dimension);
     ofVec2f getDimension();
     
+    void setId(int _id);
+    void setStackId(int _id);
     int id;
+    int stackId;
     
     char c=' ';
     
@@ -61,6 +66,11 @@ public:
     
     Letter*  myLetter=nullptr;
     void setLetterPointer(Letter * _l);
+    
+    void registerLetter(Letter * _l);
+    void unregisterLetter();
+    
+    
     Letter* getLetterPointer();
     
     
@@ -71,10 +81,16 @@ public:
     
     void setDebug(bool _debug);
     
+    ofColor getBackgroundColor();
+    void explode();
+    
 private:
     
     bool debug=false;
     ofVec2f velocity;
+    
+   bool bIsExploding=false;
+    
     
 };
 

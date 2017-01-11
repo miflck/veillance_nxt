@@ -106,6 +106,8 @@ public:
     
     
     void setIsDrawn(bool _isDrawn);
+    bool getIsDrawn();
+
     
     void startColorLerp();
     void stopColorLerp();
@@ -120,9 +122,14 @@ public:
     void lock(bool _l);
     bool getIsLocked();
     
+    void explode();
+    
 private:
     
     bool bRemove=false;
+    
+    bool bIsExploding=false;
+    
     bool bIsDrawn;
     string data; //declare a vector of strings to store data
     float lerpColorAmount;

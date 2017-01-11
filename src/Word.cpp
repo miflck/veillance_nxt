@@ -12,6 +12,8 @@
 #include "User.hpp"
 
 Word::Word(){
+    myColor=ofColor(0,0,255);
+
 }
 
 void Word::setup(int _index){
@@ -20,51 +22,57 @@ void Word::setup(int _index){
     lifeTime=ofGetElapsedTimeMillis()+int(ofRandom(50000,200000));
     
     backgroundColor=ofColor(ofRandom(50,255),ofRandom(50,255),ofRandom(50,255));
-    myColor=ofColor(0,0,255);
     myInitColor=ofColor(0,0,255);
-
+    
     mySuggestionColor=ofColor(0,191,255);
     targetColor=ofColor(0,0,255);
-   // bIsAlive=true;
+    // bIsAlive=true;
     lerpColorAmount=0.0f;
     bIsDrawn=true;
-
-
+    
+    
 }
 
 void Word::update(){
     
+    if(checkShouldRemove()){
+    setBRemove(true);
+    myFragmentPointer->unregisterWord(this);
+    myUserPointer->unregisterWord(this);
+    }
+    
     lerpColor();
     int now=ofGetElapsedTimeMillis();
     bool isOnScreen=checkIsOnScreen();
-
+   // cout<<myFragmentPointer->getFragmentId()<<endl;
     
-    if(isOnScreen&!wasOnScreen){
+    
+    if(isOnScreen &! wasOnScreen){
         //lifespan=int(ofRandom(20000,150000));
         //lifeTime=ofGetElapsedTimeMillis()+lifespan;
         bIsAlive=true;
         //startColorLerp();
         //if(bIsSuggestion)startColorLerp();
-
+        
         //lerpColorAmount=0.0f;
     }
     
     
     if(bIsAlive && bIsSuggestion && now>lifeTime){
-       /* bIsAlive=false;
-        myColor=ofColor(0,0,0);
-        STM->addMovingWord(this);
-        
-        for(auto letter:myLetters){
-            letter->setIsDrawn(false);
-        }*/
+        /* bIsAlive=false;
+         myColor=ofColor(0,0,0);
+         STM->addMovingWord(this);
+         
+         for(auto letter:myLetters){
+         letter->setIsDrawn(false);
+         }*/
         
         makeMovingWord();
         
     }
     
     wasOnScreen=isOnScreen;
-
+    
 }
 
 
@@ -77,30 +85,28 @@ void Word::draw(){
     if(getPosition().length()>3){
         STM->backgroundFbo.begin();
         ofEnableBlendMode(OF_BLENDMODE_ALPHA);
-
         
         for(int i=0;i<5;i++){
-
-         ofDrawRectangle(getPosition().x-getBoundingBox().width/2,getPosition().y-10*i, getBoundingBox().width*2,20*i);
+            ofDrawRectangle(getPosition().x-getBoundingBox().width/2,getPosition().y-10*i, getBoundingBox().width*2,20*i);
         }
         
         ofSetColor(255,0,0);
-        
-
-       ofDisableBlendMode();
- 
-
-       // ofDrawRectangle(getPosition().x,getPosition().y-30, getBoundingBox().width-10,60);
-
+        ofDisableBlendMode();
+        // ofDrawRectangle(getPosition().x,getPosition().y-30, getBoundingBox().width-10,60);
         /*ofSetColor(255,0,0,100);
-        ofDrawRectangle(getPosition().x,getPosition().y-10, getBoundingBox().width-10,20);
-        ofDrawRectangle(getPosition().x,getPosition().y-5, getBoundingBox().width-10,20);*/
-        
-
-
+         ofDrawRectangle(getPosition().x,getPosition().y-10, getBoundingBox().width-10,20);
+         ofDrawRectangle(getPosition().x,getPosition().y-5, getBoundingBox().width-10,20);*/
         STM->backgroundFbo.end();
     }
-    }
+    
+    
+    
+    
+    
+    
+    
+    
+}
 
 void Word::setData(string _data){
     data=_data;
@@ -124,7 +130,7 @@ ofRectangle Word::getBoundingBox(){
     ofVec2f p=myLetters[0]->getPosition();
     ofVec2f p2=myLetters[myLetters.size()-1]->getPosition();
     return ofRectangle(p,p2);
-
+    
 }
 
 
@@ -139,14 +145,14 @@ ofVec3f Word::getPosition(){
 
 void Word::setPosition(ofVec3f pos){
     position.set(pos);
-  }
+}
 
 void Word::setVelocity(ofVec3f _v){
     velocity.set(_v);
 }
 
 ofVec3f Word::getVelocity(){
-   // return velocity;
+    // return velocity;
     
     ofVec2f v=myLetters[0]->getVelocity();
     velocity.set(v.x,v.y,0);
@@ -172,20 +178,12 @@ void Word::registerLetter(Letter *_l){
 }
 
 void Word::unregisterLetter(Letter *_l){
-   
-   // cout<<" unregister letter from word  with pointer"<<myFragmentPointer->getFragmentId()<<endl;
+    
+   // cout<<" unregister letter "<<_l<<" "<<_l->getData()<<"from word"<<myFragmentPointer->getFragmentId()<<endl;
     auto it = std::find(myLetters.begin(), myLetters.end(), _l);
-    if (it != myLetters.end()) { myLetters.erase(it); }
-    
-    
-    if(myLetters.size()==0){
-        setBRemove(true);
-        myFragmentPointer->unregisterWord(this);
-        myUserPointer->unregisterWord(this);
-     //   cout<<"remove word"<<data<<endl;
+    if (it != myLetters.end()) {
+        myLetters.erase(it);
     }
-    
-   /// myLetters.push_back(_l);
 }
 
 void Word::setFragmentPointer(Fragment *_f){
@@ -209,33 +207,35 @@ void Word::setColor(ofColor _c){
 
 ofColor Word::getColor(){
     
-    if(bIsDrawn){
-    switch (STM->drawMode) {
-        case 0:
-            return myColor;
-            break;
-        case 1:
-            return ofColor(255);
-            break;
-        case 2:
-            return myFragmentPointer->getBackgroundColor();
-            break;
-            
-            
-        default:
-            return myColor;
-            break;
-    }
-    }else{
-    return ofColor(0);
-    
+    // schwerfŠllig?
+    if(bIsDrawn && ! bIsExploding){
+        switch (STM->drawMode) {
+            case 0:
+                return myColor;
+                break;
+            case 1:
+                return ofColor(255);
+                break;
+            case 2:
+                return myFragmentPointer->getBackgroundColor();
+                break;
+                
+            default:
+                return myColor;
+                break;
+        }
     }
     
+    else if(bIsDrawn && bIsExploding){
+         return myColor;
+    }
     
     
     
-    
-  
+    else{
+        return ofColor(0);
+        
+    }
 }
 
 ofColor Word::getBackgroundColor(){
@@ -252,9 +252,9 @@ void Word::makeMovingWord(){
     STM->addMovingWord(this);
     
     
-   /* for(auto letter:myLetters){
-        letter->setIsDrawn(false);
-    }*/
+    /* for(auto letter:myLetters){
+     letter->setIsDrawn(false);
+     }*/
     
     
 }
@@ -266,24 +266,20 @@ void Word::startColorLerp(){
 
 void Word::stopColorLerp(){
     bIsColorLerp=false;
-
+    
 }
 
 void Word::lerpColor(){
     if(bIsColorLerp){
+        
         int now=ofGetElapsedTimeMillis();
         float amount=ofMap(lifeTime-now,lifespan,0,0,1);
         lerpColorAmount=amount;
         
-        
-        
         ofColor c=myInitColor;
         c.lerp(targetColor,lerpColorAmount) ;
         myColor=c;
-        
-        
-      
-        
+            
         if(lerpColorAmount>0.99){
             lerpColorAmount=1;
             stopColorLerp();
@@ -313,10 +309,10 @@ bool Word::checkShouldRemove(){
 bool Word::checkIsOnScreen(){
     bool b=false;
     if(myLetters.size()>0){
-     b= myLetters[myLetters.size()-1]->getIsOnScreen();
+        b= myLetters[myLetters.size()-1]->getIsOnScreen();
     }
     return b;
-
+    
 }
 
 
@@ -328,7 +324,7 @@ void Word::setIsSuggestion(bool _s){
         targetColor=mySuggestionColor;
         lifespan=int(ofRandom(20000,150000));
         lifeTime=ofGetElapsedTimeMillis()+lifespan;
-       startColorLerp();
+        startColorLerp();
         lerpColorAmount=0.0f;
     }
 }
@@ -349,6 +345,10 @@ void Word::setIsDrawn(bool _isDrawn){
     }
 }
 
+bool Word::getIsDrawn(){
+    return bIsDrawn;
+}
+
 
 void Word::lock(bool _l){
     bIsLocked=_l;
@@ -357,3 +357,15 @@ void Word::lock(bool _l){
 bool Word::getIsLocked(){
     return bIsLocked;
 }
+
+void Word::explode(){
+    bIsExploding=true;
+    targetColor=ofColor(0,0);
+    myColor= myFragmentPointer->getBackgroundColor();
+    myInitColor= myFragmentPointer->getBackgroundColor();
+    lifespan=3000;
+    lifeTime=ofGetElapsedTimeMillis()+lifespan;
+    startColorLerp();
+    lerpColorAmount=0.0f;
+}
+

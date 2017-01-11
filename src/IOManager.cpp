@@ -19,7 +19,11 @@ IOManager::IOManager(){
 
 void IOManager::setup(){
 
-    
+    for(int i=0;i<10;i++){
+        string u="user ";
+        u+=ofToString(i);
+        fakeuser.push_back(u);
+    }
     
 }
 
@@ -54,7 +58,7 @@ void IOManager::onIdle( ofxLibwebsockets::Event& args ){
 
 //--------------------------------------------------------------
 void IOManager::onMessage( ofxLibwebsockets::Event& args ){
-    
+    cout<<"message "<<args.json<<endl;
     if(!pause){
         
         
@@ -63,22 +67,65 @@ void IOManager::onMessage( ofxLibwebsockets::Event& args ){
         
         if ( !args.json.isNull() ){
             
-            if(args.json["Type"]=="User"){
-                message m;
-                m.username=args.json["Name"].asString();
-                m.type=args.json["Type"].asString();
-                m.text=args.json["Text"].asString();
-                m.uuid=args.json["Id"].asInt();
-                STM->addMessage(m);
+            if(args.json["Type"]=="HTTP"){
+                cout<<"mcounter "<<messagecounter<<endl;
+                string username=args.json["Name"].asString();
+               
+                if(messagecounter>7){
+                username =fakeuser[fakecounter];
+                fakecounter++;
+                if(fakecounter>fakeuser.size()-1)fakecounter=0;
+                }
+                
+                string s=args.json["Text"].asString();
+                int maxLength=500;
+                // DEBUG? SPLIT MESSAGE IN TO SEVERAL
+                for (unsigned i = 0; i < s.length(); i += maxLength) {
+                    message m;
+                    m.username=username;
+                    m.type=args.json["Type"].asString();
+                    m.text=s.substr(i, maxLength);
+                    //id not working? 
+                    m.uuid=args.json["Id"].asInt();
+                    int count=0;
+                   count= std::distance(std::istream_iterator<std::string>(std::istringstream(m.text) >> std::ws),std::istream_iterator<std::string>());
+                    cout<<"i "<<i<<" "<<count<<endl;
+
+                    m.wordcount=count;
+                    
+                    if( STM->getUserByUsername(username)==nullptr &&i<6*maxLength){
+                        cout<<"++++++++++++++++ PRIORITY +++++++++++++++++++"<<endl;
+                        STM->addPriorityMessage(m);
+                    }else{
+                        STM->addMessage(m);
+                    }
+
+                    messagecounter++;
+                }
             }
             
-            if(args.json["Words"]!=" "){
+          /*  if(args.json["Words"]!=" "){
                 action a;
                 a.uuid=args.json["Id"].asInt();
                 a.startwordcounter=args.json["Words"][0].asInt();
                 a.endwordcounter=args.json["Words"][1].asInt();
-                STM->addAction(a);
+                //STM->addAction(a);
             }
+            */
+            
+            if(args.json["Type"]=="DNS"){
+                dns d;
+                string username=args.json["Name"].asString();
+                string s=args.json["Text"].asString();
+                d.type=args.json["Type"].asString();
+                d.username=username;
+                d.text=s;
+                d.uuid=args.json["Id"].asInt();
+                STM->addDNSEntity(d);
+
+                
+            }
+            
             
             
             
@@ -130,7 +177,7 @@ void IOManager::setupConnection(){
     client.addListener(this);
     ofSetLogLevel(OF_LOG_ERROR);
     
-    pause=true;
+    pause=false;
 
     
 }
