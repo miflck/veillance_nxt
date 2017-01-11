@@ -96,8 +96,8 @@ void SceneManager::initialize(int width, int height, int _entrypoints , int _lin
     
     numEntrypoints=_entrypoints;
     numLines=_linesPerPoint;
-    minspeed=1;
-    maxspeed=4;
+    minspeed=2;
+    maxspeed=5;
 
     
     initializeCaroussel();
@@ -154,41 +154,18 @@ void SceneManager::initialize(int width, int height, int _entrypoints , int _lin
     
     
     cam[1].setVFlip(true);
-   
     cam[1].setNearClip(10);
     cam[1].enableOrtho();
-
     cam[1].setPosition(-viewportwidth/2, ofGetHeight()/2, d);
-    
-    //cam[1].setPosition(viewportwidth/2, ofGetHeight()/2, d);
-  //  cam[1].pan(180);
-    
-    // front
-   // cam[2] = &camFront;
-    
-    
-    camFront.setPosition(viewportwidth/2, ofGetHeight()/2, d);
-    camFront.scale = 230;
-    
-    camFront2.setPosition(3*viewportwidth/2, ofGetHeight()/2, d);
-    camFront2.scale = 230;
-
     
     cam[2].setVFlip(true);
     cam[2].setNearClip(10);
-     cam[2].enableOrtho();
-   // cam[2].setPosition(viewportwidth/2, ofGetHeight()/2, d);
+    cam[2].enableOrtho();
     cam[2].setPosition(-viewportwidth/2, ofGetHeight()/2, d);
-    
-
-   // cam[2].pan(90);
-    
     
     cam[3].setVFlip(true);
     cam[3].setNearClip(10);
     cam[3].enableOrtho();
-
-    //cam[3].setPosition(viewportwidth/2, ofGetHeight()/2, d);
     cam[3].setPosition(-viewportwidth/2, ofGetHeight()/2, d);
 
    // cam[3].pan(-90);
@@ -210,9 +187,33 @@ void SceneManager::initialize(int width, int height, int _entrypoints , int _lin
     
     secondScreenbackgroundFbo.allocate(viewportwidth, ofGetHeight(),GL_RGBA);
     secondScreenbackgroundFbo.begin();
-    ofClear(255,255,255, 0);
+    ofClear(0,0,0,0);
     secondScreenbackgroundFbo.end();
+    
+    backgroundFBO0.allocate(viewportwidth, ofGetHeight(),GL_RGBA);
+    backgroundFBO0.begin();
+    ofClear(0,0,0,0);
+    backgroundFBO0.end();
+   
+    backgroundFBO1.allocate(viewportwidth, ofGetHeight(),GL_RGBA);
+    backgroundFBO1.begin();
+    ofClear(0,0,0,0);
+    backgroundFBO1.end();
+    
+    backgroundFBO2.allocate(viewportwidth, ofGetHeight(),GL_RGBA);
+    backgroundFBO2.begin();
+    ofClear(0,0,0,0);
+    backgroundFBO2.end();
+    
+    
+    backgroundFBO3.allocate(viewportwidth, ofGetHeight(),GL_RGBA);
+    backgroundFBO3.begin();
+    ofClear(0,0,0,0);
+    backgroundFBO3.end();
+    
     ofEnableAlphaBlending();
+    
+    
     
     
     backgroundcolor=ofColor(0);
@@ -371,8 +372,52 @@ void SceneManager::update(){
   //  ofSetColor(255,0,0);
 //ofDrawRectangle(0, 0, backgroundFbo.getWidth(), backgroundFbo.getHeight());
     ofEnableAlphaBlending();
-    if(ofGetFrameNum()%10==0)ofDrawRectangle(0, 0, backgroundFbo.getWidth(), backgroundFbo.getHeight());
+   // if(ofGetFrameNum()%10==0)ofDrawRectangle(0, 0, backgroundFbo.getWidth(), backgroundFbo.getHeight());
     secondScreenbackgroundFbo.end();
+    
+    
+    int fadetime=15;
+    
+    backgroundFBO0.begin();
+    ofSetColor(0,0,0,5);
+    ofEnableAlphaBlending();
+     if(ofGetFrameNum()%fadetime==0)ofDrawRectangle(0, 0, backgroundFBO0.getWidth(), backgroundFBO0.getHeight());
+    backgroundFBO0.end();
+    
+    backgroundFBO1.begin();
+    ofSetColor(0,0,0,5);
+    ofEnableAlphaBlending();
+     if(ofGetFrameNum()%fadetime==0)ofDrawRectangle(0, 0, backgroundFBO1.getWidth(), backgroundFBO1.getHeight());
+    backgroundFBO1.end();
+    
+    backgroundFBO2.begin();
+    ofSetColor(0,0,0,5);
+    ofEnableAlphaBlending();
+     if(ofGetFrameNum()%fadetime==0)ofDrawRectangle(0, 0, backgroundFBO2.getWidth(), backgroundFBO2.getHeight());
+    backgroundFBO2.end();
+    
+    backgroundFBO3.begin();
+    ofSetColor(0,0,0,5);
+    ofEnableAlphaBlending();
+     if(ofGetFrameNum()%fadetime==0)ofDrawRectangle(0, 0, backgroundFBO3.getWidth(), backgroundFBO3.getHeight());
+    backgroundFBO3.end();
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
     
     //Sound-> hacked draft constrain to 100 Words
    /* if(users.size()>0){
@@ -514,9 +559,18 @@ void SceneManager::draw(){
     
     ofSetColor(255);
     ofEnableAlphaBlending();
+    ofEnableBlendMode(OF_BLENDMODE_ALPHA);
+
     ofSetColor(255,255,255,255);
     //wichitg!
-    secondScreenbackgroundFbo.draw(viewportwidth*2,0);
+   // secondScreenbackgroundFbo.draw(viewportwidth*2,0);
+    
+    backgroundFBO0.draw(viewportwidth,0);
+    backgroundFBO1.draw(viewportwidth*2,0);
+    backgroundFBO2.draw(0,0);
+    backgroundFBO3.draw(viewportwidth*3,0);
+
+    
     
     cam[0].begin(viewFront);
 
@@ -673,8 +727,8 @@ ofEnableBlendMode(OF_BLENDMODE_ADD);
     cam[0].end();
     
     
-    /*
-    STM->secondScreenbackgroundFbo.begin();
+    
+  /*  STM->secondScreenbackgroundFbo.begin();
    // ofSetColor(255,0,0);
     STM->cam[0].begin();
     ofPushMatrix();
@@ -686,6 +740,56 @@ ofEnableBlendMode(OF_BLENDMODE_ADD);
     STM->cam[0].end();
     STM->secondScreenbackgroundFbo.end();
     */
+    
+    /*
+    STM->backgroundFBO1.begin();
+    // ofSetColor(255,0,0);
+    STM->cam[0].begin();
+    ofPushMatrix();
+    ofTranslate(-2*viewportwidth,0);
+    bigfont.getFontTexture().bind();
+    m.draw();
+    bigfont.getFontTexture().unbind();
+    ofPopMatrix();
+    STM->cam[0].end();
+    STM->backgroundFBO1.end();
+    
+    
+    STM->backgroundFBO2.begin();
+    // ofSetColor(255,0,0);
+    STM->cam[0].begin();
+    ofPushMatrix();
+   // ofTranslate(-3*viewportwidth,0);
+    bigfont.getFontTexture().bind();
+    m.draw();
+    bigfont.getFontTexture().unbind();
+    ofPopMatrix();
+    STM->cam[0].end();
+    STM->backgroundFBO2.end();
+    
+    
+    STM->backgroundFBO3.begin();
+    // ofSetColor(255,0,0);
+    STM->cam[0].begin();
+    ofPushMatrix();
+     ofTranslate(viewportwidth,0);
+    bigfont.getFontTexture().bind();
+    m.draw();
+    bigfont.getFontTexture().unbind();
+    ofPopMatrix();
+    
+    ofPushMatrix();
+    ofTranslate(-3*viewportwidth,0);
+    bigfont.getFontTexture().bind();
+    m.draw();
+    bigfont.getFontTexture().unbind();
+    ofPopMatrix();
+    */
+    
+    STM->cam[0].end();
+    STM->backgroundFBO3.end();
+    
+    
     
     
     /* ofEnableBlendMode(OF_BLENDMODE_ALPHA);
@@ -1093,17 +1197,19 @@ void SceneManager::addMovingWord(Word *_w){
     float r=ofRandom(0,1);
     ofVec3f t;
     if(r>0.5){
-        t=ofVec3f(viewportwidth+(2*viewportwidth/3),ofGetHeight()/2,0);
+      //  t=ofVec3f(viewportwidth+(2*viewportwidth/3),ofGetHeight()/2,0);
+        t=ofVec3f(2*viewportwidth-300,ofGetHeight()/2,0);
+
     }else{
-        t=ofVec3f(-viewportwidth-200,200,0);
+        t=ofVec3f(-viewportwidth+300,ofGetHeight()/2,0);
         
         
     }
     
     mw->setTarget(t);
-    mw->myColor=ofColor(_w->getBackgroundColor(),180);
-    mw->setLifeSpan(ofRandom(70000,30000));
-  //    mw->setLifeSpan(1000);
+    mw->myColor=ofColor(_w->getBackgroundColor(),200);
+    mw->setLifeSpan(ofRandom(15000,50000));
+      //mw->setLifeSpan(1000);
 
     
     /*

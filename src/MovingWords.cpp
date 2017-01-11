@@ -392,6 +392,39 @@ void MovingWords::stopLifeTimer(){
     
     
     STM->secondScreenbackgroundFbo.begin();
+     ofSetColor(myColor,255);
+
+    STM->cam[0].begin();
+    
+    
+    ofSetColor(myColor,255);
+   // ofEnableBlendMode(OF_BLENDMODE_ADD);
+    ofPushMatrix();
+    ofTranslate(-2*viewportwidth,0);
+    font->getFontTexture().bind();
+    getUpdatedVboMesh().draw();
+    font->getFontTexture().unbind();
+    ofPopMatrix();
+    STM->cam[0].end();
+    STM->secondScreenbackgroundFbo.end();
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    STM->backgroundFBO1.begin();
     // ofSetColor(255,0,0);
     STM->cam[0].begin();
     ofPushMatrix();
@@ -401,7 +434,59 @@ void MovingWords::stopLifeTimer(){
     font->getFontTexture().unbind();
     ofPopMatrix();
     STM->cam[0].end();
-    STM->secondScreenbackgroundFbo.end();
+    STM->backgroundFBO1.end();
+    
+    
+    STM->backgroundFBO2.begin();
+    // ofSetColor(255,0,0);
+    STM->cam[0].begin();
+    ofPushMatrix();
+    // ofTranslate(-3*viewportwidth,0);
+    font->getFontTexture().bind();
+    getUpdatedVboMesh().draw();
+    font->getFontTexture().unbind();
+    ofPopMatrix();
+    STM->cam[0].end();
+    STM->backgroundFBO2.end();
+    
+    
+    STM->backgroundFBO3.begin();
+    // ofSetColor(255,0,0);
+    STM->cam[0].begin();
+    ofPushMatrix();
+    ofTranslate(viewportwidth,0);
+    font->getFontTexture().bind();
+    getUpdatedVboMesh().draw();
+    font->getFontTexture().unbind();
+    ofPopMatrix();
+    
+    ofPushMatrix();
+    ofTranslate(-3*viewportwidth,0);
+    font->getFontTexture().bind();
+    getUpdatedVboMesh().draw();
+    font->getFontTexture().unbind();
+    ofPopMatrix();
+    
+    
+    STM->cam[0].end();
+    STM->backgroundFBO3.end();
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
     
 }
 
