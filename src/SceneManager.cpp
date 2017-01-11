@@ -78,9 +78,15 @@ void SceneManager::initialize(int width, int height, int _entrypoints , int _lin
 
     
     
-    font.load("FoundersGroteskMonoBold.ttf", CCwidth,true,true);
+    //font.load("FoundersGroteskMonoBold.ttf", CCwidth,true,true);
+    font.load("TwoPointH-128Medium.ttf", CCwidth,true,true);
+
+    
+    
     cout<<"Full "<<font.hasFullCharacterSet()<<endl;
-    bigfont.load("FoundersGroteskMonoBold.ttf", 60,true, true);
+  //  bigfont.load("FoundersGroteskMonoBold.ttf", 60,true, true);
+    bigfont.load("TwoPointH-128Medium.ttf", 60,true, true);
+
     
     viewportwidth=width;
     viewportheight=height;
