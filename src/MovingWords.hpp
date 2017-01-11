@@ -154,6 +154,8 @@ private:
     
     
     string vouwels="";
+    
+    float maxscale;
 };
 
 

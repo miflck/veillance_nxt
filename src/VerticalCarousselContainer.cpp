@@ -33,13 +33,13 @@ void VerticalCarousselContainer::draw(){
     ofPushStyle();
     ofPushMatrix();
     ofTranslate(position);
-    ofColor c=ofColor(255,0,0);
+    ofColor c=ofColor(255);
     ofNoFill();
     ofSetColor(c);
-    ofScale(0.6, 0.6);
+    //ofScale(0.6, 0.6);
     font->setLetterSpacing(1);
 
-    font->drawString(mystring, 0,bbox.getHeight()-font->getStringBoundingBox("H", 0, 0).getHeight());
+    font->drawString(mystring, -font->getStringBoundingBox(mystring, 0, 0).getWidth()/2,bbox.getHeight()-font->getStringBoundingBox("H", 0, 0).getHeight());
     ofPopMatrix();
     ofPopStyle();
     
@@ -87,7 +87,7 @@ ofVec2f VerticalCarousselContainer::getTarget(){
 }
 
 void VerticalCarousselContainer::setString(string _s){
-    mystring=_s;
+    mystring=ofToUpper(_s);
 }
 
 

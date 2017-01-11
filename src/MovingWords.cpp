@@ -57,6 +57,9 @@ void MovingWords::setup(){
     
     maxspeed=ofRandom(0.25,3);
     
+    maxscale=ofRandom(1,2.5);
+    
+    
     // plane.set(100, 100);   ///dimensions for width and height in pixels
     // plane.setPosition(startposition); /// position in x y z
     
@@ -83,6 +86,7 @@ void MovingWords::update(){
     
     int now=ofGetElapsedTimeMillis();
     if(bIsLifetimeRunning && now>lifetime){
+        cout<<"stopLifetimer"<<endl;
         stopLifeTimer();
     }
     
@@ -213,7 +217,7 @@ void MovingWords::startMoving(){
 void MovingWords::stopMoving(){
     startLifeTimer();
     bIsMoving=false;
-    bIsRotating=false;
+    //bIsRotating=false;
     STM->movingWordPositions.push_back(getDockPoint());
 }
 
@@ -254,7 +258,7 @@ ofVec3f MovingWords::getDockPoint(){
 ofVboMesh MovingWords::getUpdatedVboMesh(){
     ofPushStyle();
     ofEnableBlendMode(OF_BLENDMODE_ADD);
-    scalefact=ofLerp(scalefact,1,0.001);
+    scalefact=ofLerp(scalefact,maxscale,0.003);
     node.setScale(scalefact);
     spacingFact=ofLerp(spacingFact,1.2,0.01);
     font->setLetterSpacing(spacingFact);
@@ -368,16 +372,37 @@ void MovingWords::startLifeTimer(){
 }
 
 void MovingWords::stopLifeTimer(){
+    cout<<"STOP"<<endl;
     userPointer->unregisterMovingWord(this);
     bIsLifetimeRunning=false;
     bIsAlive=false;
-    STM->secondScreenbackgroundFbo.begin();
-    STM->cam[1].begin();
+   /* STM->secondScreenbackgroundFbo.begin();
+    ofSetColor(255,0,0);
+    ofDrawRectangle(0,0,100,100);
+    ofPushMatrix();
+    ofTranslate(-1900,0);
+    STM->cam[2].begin();
     font->getFontTexture().bind();
     getUpdatedVboMesh().draw();
     font->getFontTexture().unbind();
-    STM->cam[1].end();
+    STM->cam[2].end();
+    ofPopMatrix();
     STM->secondScreenbackgroundFbo.end();
+    */
+    
+    
+    STM->secondScreenbackgroundFbo.begin();
+    // ofSetColor(255,0,0);
+    STM->cam[0].begin();
+    ofPushMatrix();
+    ofTranslate(-2*viewportwidth,0);
+    font->getFontTexture().bind();
+    getUpdatedVboMesh().draw();
+    font->getFontTexture().unbind();
+    ofPopMatrix();
+    STM->cam[0].end();
+    STM->secondScreenbackgroundFbo.end();
+    
 }
 
 bool MovingWords:: isVowel(char c) {
@@ -444,7 +469,7 @@ User * MovingWords::getUserPointer(){
 
 
 void MovingWords::addSound(){
-    foregroundSound = SoundM->addForegroundSound(numsyllables,vouwels,ofVec3f(0,0,100));
+  //  foregroundSound = SoundM->addForegroundSound(numsyllables,vouwels,ofVec3f(0,0,100));
 //STM->addForegroundSound
 
 }

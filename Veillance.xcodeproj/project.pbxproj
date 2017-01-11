@@ -354,6 +354,7 @@
 		FACC9CDF1E263D4000B488E8 /* Background.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Background.h; sourceTree = "<group>"; };
 		FACC9CE01E263D4000B488E8 /* ForegroundSound.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = ForegroundSound.cpp; sourceTree = "<group>"; };
 		FACC9CE11E263D4000B488E8 /* ForegroundSound.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = ForegroundSound.hpp; sourceTree = "<group>"; };
+		FACC9CE61E264CAC00B488E8 /* settings.xml */ = {isa = PBXFileReference; lastKnownFileType = text.xml; name = settings.xml; path = bin/data/settings.xml; sourceTree = SOURCE_ROOT; };
 		FAF2838F1E02F55100B07266 /* allpass.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = allpass.cpp; sourceTree = "<group>"; };
 		FAF283901E02F55100B07266 /* allpass.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = allpass.hpp; sourceTree = "<group>"; };
 		FAF283911E02F55100B07266 /* comb.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = comb.cpp; sourceTree = "<group>"; };
@@ -753,6 +754,7 @@
 				ADCAEBB25647DC2282922649 /* Word.cpp */,
 				F11BA8009F1346D2F4A449FD /* Word.h */,
 				FA18B2871DF58A55005A2E07 /* helpers.hpp */,
+				FACC9CE61E264CAC00B488E8 /* settings.xml */,
 			);
 			path = src;
 			sourceTree = SOURCE_ROOT;

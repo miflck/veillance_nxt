@@ -126,11 +126,14 @@ void User::unregisterMovingWord(MovingWords *_w){
     
     
     auto it = std::find(myMovingWords.begin(), myMovingWords.end(), _w);
-    if (it != myMovingWords.end()) { myMovingWords.erase(it); }
+    
+    if (it != myMovingWords.end()) {
+        myMovingWords.erase(it);
+    }
     
     
     if(myMovingWords.size()==0){
-        //setBRemove(true);
+      //  setBRemove(true);
     }
     
     

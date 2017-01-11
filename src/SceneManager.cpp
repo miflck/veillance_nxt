@@ -78,14 +78,14 @@ void SceneManager::initialize(int width, int height, int _entrypoints , int _lin
 
     
     
-    //font.load("FoundersGroteskMonoBold.ttf", CCwidth,true,true);
-    font.load("TwoPointH-128Medium.ttf", CCwidth,true,true);
+    font.load("FoundersGroteskMonoBold.ttf", CCwidth,true,true);
+   // font.load("TwoPointH-128Medium.ttf", CCwidth,true,true);
 
     
     
     cout<<"Full "<<font.hasFullCharacterSet()<<endl;
-  //  bigfont.load("FoundersGroteskMonoBold.ttf", 60,true, true);
-    bigfont.load("TwoPointH-128Medium.ttf", 60,true, true);
+    bigfont.load("FoundersGroteskMonoBold.ttf", 60,true, true);
+   // bigfont.load("TwoPointH-128Medium.ttf", 60,true, true);
 
     
     viewportwidth=width;
@@ -97,7 +97,7 @@ void SceneManager::initialize(int width, int height, int _entrypoints , int _lin
     numEntrypoints=_entrypoints;
     numLines=_linesPerPoint;
     minspeed=1;
-    maxspeed=5;
+    maxspeed=4;
 
     
     initializeCaroussel();
@@ -105,10 +105,11 @@ void SceneManager::initialize(int width, int height, int _entrypoints , int _lin
     
     
     int h=50;
+    h=CCheight;
     ofVec2f position;
-    position.set(3*viewportwidth+100,-h);
+    position.set(3*viewportwidth+viewportwidth/2,-h);
     vC.setPosition(position);
-    vC.setFont(&bigfont);
+    vC.setFont(&font);
     vC.setup(position, 200, viewportheight+2*h, 200, h);
     
     
@@ -367,6 +368,8 @@ void SceneManager::update(){
     
     secondScreenbackgroundFbo.begin();
     ofSetColor(0,0,0,5);
+  //  ofSetColor(255,0,0);
+//ofDrawRectangle(0, 0, backgroundFbo.getWidth(), backgroundFbo.getHeight());
     ofEnableAlphaBlending();
     if(ofGetFrameNum()%10==0)ofDrawRectangle(0, 0, backgroundFbo.getWidth(), backgroundFbo.getHeight());
     secondScreenbackgroundFbo.end();
@@ -486,26 +489,24 @@ void SceneManager::draw(){
 */
     
    
+    /*
     backgroundFbo.begin();
     ofSetColor(0);
     ofDrawRectangle(0, 0, backgroundFbo.getWidth(), backgroundFbo.getHeight());
 
     
     ofEnableBlendMode(OF_BLENDMODE_ADD);
-   // ofSetColor(0, 255, 0);
     ofEnableAlphaBlending();
-   // glBlendFuncSeparate(GL_ONE, GL_SRC_COLOR, GL_ONE, GL_ONE_MINUS_SRC_ALPHA);
-    
-
     ofSetColor(0,255,0 );
     ofDrawRectangle(csm[0]->getPosition().x, csm[0]->getPosition().y, 10, 10);
    // cout<<csm[0]->getPosition()<<endl;
     png.draw(csm[0]->getPosition().x+viewportwidth-100, csm[0]->getPosition().y,100,100);
     ofSetColor(0,0,255);
     png.draw(csm[0]->getPosition().x+viewportwidth-150, csm[0]->getPosition().y,200,200);
-
    // ofDisableBlendMode();
     backgroundFbo.end();
+     
+     */
 
     for(int i=0;i<csm.size();i++){
         csm[i]->draw();
@@ -514,32 +515,22 @@ void SceneManager::draw(){
     ofSetColor(255);
     ofEnableAlphaBlending();
     ofSetColor(255,255,255,255);
-  //  backgroundFbo.draw(0,0);
-    
-  //  ofEnableBlendMode(OF_BLENDMODE_ALPHA);
-    
-    // background
-    //if(debug) backgroundFbo.draw(0,0);
-    // backgroundFbo.draw(0,0);
     //wichitg!
-   // secondScreenbackgroundFbo.draw(viewportwidth*3,0);
+    secondScreenbackgroundFbo.draw(viewportwidth*2,0);
     
     cam[0].begin(viewFront);
-  //camFront.begin(viewFront);
-    
-   // backgroundFbo.begin();
-    //ofEnableBlendMode(OF_BLENDMODE_ALPHA);
+
+
+    //Entrypoint PNG
+   
+    /*
     ofEnableAlphaBlending();
     ofSetColor(255,255,255,255);
 
 ofEnableBlendMode(OF_BLENDMODE_ADD);
     ofSetColor(255,0,0);
     
-    //ofSetColor(255,0,0 );
-    //cout<<csm[0]->getPosition()<<endl;
-   // png.draw(csm[0]->getPosition().x+viewportwidth, csm[0]->getPosition().y,200,200);
     int w=managerheight*4;
-
     for (int i=0;i<csm.size();i++){
         w=ofMap(csm[i]->getStringsize(),0,1200,managerheight*5,2000,true);
         ofColor c=csm[i]->getBackgroundColor();
@@ -548,9 +539,10 @@ ofEnableBlendMode(OF_BLENDMODE_ADD);
         ofSetColor(c,a);
         entrypointBackgrounds[i]->draw(csm[i]->getPosition().x+viewportwidth-w/2,csm[i]->getPosition().y+managerheight/1.5-w/2,w,w);
     }
+    */
+    
    ofEnableBlendMode(OF_BLENDMODE_ALPHA);
 
-   // ofDisableBlendMode();
     
 
     ofColor c = ofColor(255,0,0);
@@ -673,8 +665,28 @@ ofEnableBlendMode(OF_BLENDMODE_ADD);
     }*/
     
     
+    
+
+    
+    
     //camFront.end();
     cam[0].end();
+    
+    
+    /*
+    STM->secondScreenbackgroundFbo.begin();
+   // ofSetColor(255,0,0);
+    STM->cam[0].begin();
+    ofPushMatrix();
+    ofTranslate(-2*viewportwidth,0);
+    bigfont.getFontTexture().bind();
+    m.draw();
+    bigfont.getFontTexture().unbind();
+    ofPopMatrix();
+    STM->cam[0].end();
+    STM->secondScreenbackgroundFbo.end();
+    */
+    
     
     /* ofEnableBlendMode(OF_BLENDMODE_ALPHA);
      secondScreenbackgroundFbo.begin();
@@ -1081,7 +1093,7 @@ void SceneManager::addMovingWord(Word *_w){
     float r=ofRandom(0,1);
     ofVec3f t;
     if(r>0.5){
-        t=ofVec3f(2*viewportwidth+200,200,0);
+        t=ofVec3f(viewportwidth+(2*viewportwidth/3),ofGetHeight()/2,0);
     }else{
         t=ofVec3f(-viewportwidth-200,200,0);
         
@@ -1091,6 +1103,8 @@ void SceneManager::addMovingWord(Word *_w){
     mw->setTarget(t);
     mw->myColor=ofColor(_w->getBackgroundColor(),180);
     mw->setLifeSpan(ofRandom(70000,30000));
+  //    mw->setLifeSpan(1000);
+
     
     /*
     if(movingWordPositions.size()>0){
