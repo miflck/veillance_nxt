@@ -12,6 +12,7 @@
 #include "ofMain.h"
 #include "ofxTonic.h"
 #include "ofSoundUnit.h"
+#include "globals.hpp"
 
 
 using namespace Tonic;
@@ -69,7 +70,6 @@ private:
     int minX;
     float scaledXpos;
     
-    int viewportwidth;
     
     
     ControlTrigger fgtrig;

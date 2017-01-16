@@ -28,6 +28,7 @@
 #include "VerticalCaroussel.hpp"
 #include "OrthoCamera.h"
 
+#include "globals.hpp"
 
 
 
@@ -45,7 +46,7 @@ class SceneManager {
     
 public:
     static SceneManager* getInstance();
-    void initialize(int width, int height,int entrypoints,int linesPerPoint);
+    void initialize();
     bool isInitialized();
     
    void initializeCaroussel();
@@ -188,9 +189,9 @@ public:
     ofRectangle viewRight;
     
     
-    int viewportwidth; // FULLHD
+   // int viewportwidth; // FULLHD
     //int viewportwidth=1280; //WXGA
-    int viewportheight;
+   // int viewportheight;
     
 
     //DEBUG
@@ -218,9 +219,9 @@ public:
     
     
     // SYSTEM VARS
-    float fontsize;
-    float CCwidth;
-    float CCheight;
+   // float fontsize;
+   // float CCwidth;
+   // float CCheight;
     
     int minspeed=2;
     int maxspeed=5;
@@ -230,6 +231,10 @@ public:
     
     int maxWordsInBuffer=10000;
 
+    
+    void drawTrails(bool _b);
+    void toggleDrawTrails();
+    
     
 private:
     
@@ -246,6 +251,8 @@ private:
     bool bIsExploding=false;
     int explodestopcounter=0;
     bool bShouldReset=0;
+    
+    bool bDrawTrails=false;
     
 
 };

@@ -4,6 +4,10 @@
 #include "SoundManager.hpp"
 #include "IOManager.hpp"
 #include "ofxXmlSettings.h"
+#include "globals.hpp"
+
+#include "ofxGui.h"
+
 
 
 class ofApp : public ofBaseApp{
@@ -46,5 +50,12 @@ class ofApp : public ofBaseApp{
     bool bDraw=true;
     bool bDebug=false;
     
+    
+    
+    bool bHide=true;
+    void toggleGui();
+    ofxPanel gui;
+    
+
 		
 };

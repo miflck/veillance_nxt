@@ -15,7 +15,7 @@
 #include "CarousselLineManager.hpp"
 #include "CarousselEvent.hpp"
 #include "helpers.hpp"
-
+#include "globals.hpp"
 
 
 

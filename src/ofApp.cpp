@@ -18,22 +18,28 @@ void ofApp::setup(){
     IOmanager.setupConnection();
     
     
-    int width = settings.getValue("screensettings:width", 3840);
-    int viewportwidth = settings.getValue("screensettings:viewportwidth", 3840);
+     width = settings.getValue("screensettings:width", 3840);
+     viewportwidth = settings.getValue("screensettings:viewportwidth", 3840);
 
-    int height = settings.getValue("screensettings:height", 1080);
+     viewportheight = settings.getValue("screensettings:height", 1080);
     
-    int entrypoints = settings.getValue("rendering:entrypoints", 5);
-    int linesPerPoint = settings.getValue("rendering:numlines", 7);
-
-
+     entrypoints = settings.getValue("rendering:entrypoints", 5);
+     linesPerPoint = settings.getValue("rendering:numlines", 7);
     
     
-    ofSetWindowShape(width,height);
+    
+    
+    
+    
+
+
+    
+    
+    ofSetWindowShape(width,viewportheight);
     ofSetWindowPosition(10, 10);
 
     
-    STM->initialize(viewportwidth,height,entrypoints,linesPerPoint);
+    STM->initialize();
     SoundM->initialize();
     
   
@@ -47,6 +53,16 @@ void ofApp::setup(){
     for (auto line : buffer.getLines()){
         data.push_back(line);
     }
+    
+    
+    
+    
+    gui.setup();
+    fadetime.set("fadetime ",15,1,60);
+    fadeAlpha.set("fadealpha ",5,0,100);
+    gui.add(fadetime);
+    gui.add(fadeAlpha);
+
     
 }
 
@@ -117,6 +133,24 @@ void ofApp::draw(){
         
         
     }
+    
+    
+    
+    
+    if( !bHide ){
+        gui.draw();
+    }
+
+    
+    
+}
+
+
+//--------------------------------------------------------------
+void ofApp::toggleGui(){
+    bHide = !bHide;
+    
+    
 }
 
 //--------------------------------------------------------------
@@ -135,7 +169,7 @@ void ofApp::keyReleased(int key){
     
     
     if(key=='h'){
-        SoundM->toggleGui();
+      toggleGui();
     }
     
     
@@ -239,6 +273,12 @@ void ofApp::keyReleased(int key){
           //  STM->addData(line,fragmentId);
             fragmentId++;
        // }
+    }
+    
+    
+    if(key=='x'){
+        // bDraw=!bDraw;
+        STM->toggleDrawTrails();
     }
     
 }

@@ -12,7 +12,6 @@
 #include <stdio.h>
 #include "ofMain.h"
 #include "ofxTonic.h"
-#include "ofxGui.h"
 #include "Background.h"
 #include "ForegroundSound.hpp"
 #include "ofxReverb.h"
@@ -40,9 +39,7 @@ public:
 
    // void audioRequested (float * output, int bufferSize, int nChannels);
     
-    bool bHide=true;
-    
-    void toggleGui();
+
     
     ForegroundSound * addForegroundSound(int _numSyllables,string _vowels,ofVec3f _p);
     

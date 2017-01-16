@@ -104,6 +104,7 @@
 		FAB4EAD71DDC7B1100A5E61E /* ofxXmlSettings.cpp in Sources */ = {isa = PBXBuildFile; fileRef = FAB4EAD21DDC7B1100A5E61E /* ofxXmlSettings.cpp */; };
 		FACC9CE21E263D4000B488E8 /* Background.cpp in Sources */ = {isa = PBXBuildFile; fileRef = FACC9CDE1E263D4000B488E8 /* Background.cpp */; };
 		FACC9CE31E263D4000B488E8 /* ForegroundSound.cpp in Sources */ = {isa = PBXBuildFile; fileRef = FACC9CE01E263D4000B488E8 /* ForegroundSound.cpp */; };
+		FAEE4CFF1E2D025300216A5A /* globals.cpp in Sources */ = {isa = PBXBuildFile; fileRef = FAEE4CFD1E2D025300216A5A /* globals.cpp */; };
 		FAF283A11E02F55100B07266 /* allpass.cpp in Sources */ = {isa = PBXBuildFile; fileRef = FAF2838F1E02F55100B07266 /* allpass.cpp */; };
 		FAF283A21E02F55100B07266 /* comb.cpp in Sources */ = {isa = PBXBuildFile; fileRef = FAF283911E02F55100B07266 /* comb.cpp */; };
 		FAF283A31E02F55100B07266 /* revmodel.cpp in Sources */ = {isa = PBXBuildFile; fileRef = FAF283941E02F55100B07266 /* revmodel.cpp */; };
@@ -220,7 +221,6 @@
 		6C9F8BDF65AC6F7B9F73DB63 /* CarousselLineManager.hpp */ = {isa = PBXFileReference; explicitFileType = sourcecode.c.h; fileEncoding = 30; name = CarousselLineManager.hpp; path = src/CarousselLineManager.hpp; sourceTree = SOURCE_ROOT; };
 		6D4FEB2CA9433669368A022C /* CarousselLineManager.cpp */ = {isa = PBXFileReference; explicitFileType = sourcecode.cpp.cpp; fileEncoding = 30; name = CarousselLineManager.cpp; path = src/CarousselLineManager.cpp; sourceTree = SOURCE_ROOT; };
 		6EDB8369D3C03948742979CF /* ControlParameter.h */ = {isa = PBXFileReference; explicitFileType = sourcecode.c.h; fileEncoding = 30; name = ControlParameter.h; path = ../../../addons/ofxTonic/src/Tonic/ControlParameter.h; sourceTree = SOURCE_ROOT; };
-		6FFD838699537542FFEF8CCC /* SceneManager.hpp */ = {isa = PBXFileReference; explicitFileType = sourcecode.c.h; fileEncoding = 30; name = SceneManager.hpp; path = src/SceneManager.hpp; sourceTree = SOURCE_ROOT; };
 		7168589C85E02BDE46E4D1F1 /* ControlTrigger.cpp */ = {isa = PBXFileReference; explicitFileType = sourcecode.cpp.cpp; fileEncoding = 30; name = ControlTrigger.cpp; path = ../../../addons/ofxTonic/src/Tonic/ControlTrigger.cpp; sourceTree = SOURCE_ROOT; };
 		722EE33B8812BA047AE17612 /* Mixer.h */ = {isa = PBXFileReference; explicitFileType = sourcecode.c.h; fileEncoding = 30; name = Mixer.h; path = ../../../addons/ofxTonic/src/Tonic/Mixer.h; sourceTree = SOURCE_ROOT; };
 		73EFFC1B6385265BB25A321D /* Generator.cpp */ = {isa = PBXFileReference; explicitFileType = sourcecode.cpp.cpp; fileEncoding = 30; name = Generator.cpp; path = ../../../addons/ofxTonic/src/Tonic/Generator.cpp; sourceTree = SOURCE_ROOT; };
@@ -355,6 +355,9 @@
 		FACC9CE01E263D4000B488E8 /* ForegroundSound.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = ForegroundSound.cpp; sourceTree = "<group>"; };
 		FACC9CE11E263D4000B488E8 /* ForegroundSound.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = ForegroundSound.hpp; sourceTree = "<group>"; };
 		FACC9CE61E264CAC00B488E8 /* settings.xml */ = {isa = PBXFileReference; lastKnownFileType = text.xml; name = settings.xml; path = bin/data/settings.xml; sourceTree = SOURCE_ROOT; };
+		FAEE4CFD1E2D025300216A5A /* globals.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = globals.cpp; sourceTree = "<group>"; };
+		FAEE4CFE1E2D025300216A5A /* globals.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = globals.hpp; sourceTree = "<group>"; };
+		FAEE4D001E2D05E500216A5A /* SceneManager.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = SceneManager.hpp; sourceTree = "<group>"; };
 		FAF2838F1E02F55100B07266 /* allpass.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = allpass.cpp; sourceTree = "<group>"; };
 		FAF283901E02F55100B07266 /* allpass.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = allpass.hpp; sourceTree = "<group>"; };
 		FAF283911E02F55100B07266 /* comb.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = comb.cpp; sourceTree = "<group>"; };
@@ -746,7 +749,7 @@
 				5489F82C437EA9599501023A /* MovingWords.cpp */,
 				2C50F14C0E9F19764F11A1D0 /* MovingWords.hpp */,
 				22EDA5A62C642C37311C4384 /* SceneManager.cpp */,
-				6FFD838699537542FFEF8CCC /* SceneManager.hpp */,
+				FAEE4D001E2D05E500216A5A /* SceneManager.hpp */,
 				331CDCD4426D65097CFD44C1 /* SoundManager.cpp */,
 				BEF84527D955124E75EAA231 /* SoundManager.hpp */,
 				3F936587F2B56A06D14FEF13 /* User.cpp */,
@@ -755,6 +758,8 @@
 				F11BA8009F1346D2F4A449FD /* Word.h */,
 				FA18B2871DF58A55005A2E07 /* helpers.hpp */,
 				FACC9CE61E264CAC00B488E8 /* settings.xml */,
+				FAEE4CFD1E2D025300216A5A /* globals.cpp */,
+				FAEE4CFE1E2D025300216A5A /* globals.hpp */,
 			);
 			path = src;
 			sourceTree = SOURCE_ROOT;
@@ -993,6 +998,7 @@
 				7117CFB4C5AA56555CD4B687 /* ControlDelay.cpp in Sources */,
 				FC664DBA581A9170D7221E80 /* ControlFloor.cpp in Sources */,
 				F7E2CD66D34E349722F77978 /* ControlGenerator.cpp in Sources */,
+				FAEE4CFF1E2D025300216A5A /* globals.cpp in Sources */,
 				5649CF5FEB98D7F1C4A0815E /* ControlMetro.cpp in Sources */,
 				310BB1AD9E8C5EDD0F0CA370 /* ControlMetroDivider.cpp in Sources */,
 				6F28F56BB8B8CC2050FE656F /* ControlMidiToFreq.cpp in Sources */,

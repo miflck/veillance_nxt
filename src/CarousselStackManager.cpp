@@ -47,8 +47,8 @@ void CarousselStackManager::setup(int _id, ofVec2f _position,float _mywidth, flo
     
     
     float speed;
-    containerHeight=STM->CCheight;
-    float w=STM->CCwidth;
+    containerHeight=CCheight;
+    float w=CCwidth;
     int time=w/minspeed;//int(w/minspeed); ->smooth out
 
     int lines=floor(myheight/containerHeight);

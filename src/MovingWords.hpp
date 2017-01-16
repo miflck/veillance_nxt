@@ -12,6 +12,7 @@
 #include <stdio.h>
 #include "ofMain.h"
 #include "ForegroundSound.hpp"
+#include "globals.hpp"
 
 
 class User;
@@ -100,9 +101,7 @@ public:
     
     
 private:
-    
-    int viewportwidth;
-    
+        
     User * userPointer;
     ForegroundSound * foregroundSound;
     

@@ -26,17 +26,16 @@ void SceneManager::initializeCaroussel(){
     
     
     //make sure not two following points have same speed;
-    for (int i=0;i<numEntrypoints;i++){
+    for (int i=0;i<entrypoints;i++){
         float s=ofRandom(minspeed,maxspeed);
               cout<<"s"<<s<<endl;
         speeds.push_back(s);
     }
     
-    int linesPerManager=numLines;
-    int numManager=floor(ofGetHeight()/(linesPerManager*CCheight));
-     managerheight=linesPerManager*CCheight;
-    cout<<"numManager "<<numEntrypoints<<endl;
-    for(int i = 0; i < numEntrypoints; i++){
+    int numManager=floor(ofGetHeight()/(linesPerPoint*CCheight));
+     managerheight=linesPerPoint*CCheight;
+    cout<<"numManager "<<entrypoints<<endl;
+    for(int i = 0; i < entrypoints; i++){
         CarousselStackManager * sm = new CarousselStackManager();
         sm->minspeed=speeds[i];
         ofVec2f position;
@@ -61,7 +60,7 @@ void SceneManager::initializeCaroussel(){
 }
 
 
-void SceneManager::initialize(int width, int height, int _entrypoints , int _linesPerPoint) {
+void SceneManager::initialize() {
     
     png.load("png-01.png");
 
@@ -70,8 +69,8 @@ void SceneManager::initialize(int width, int height, int _entrypoints , int _lin
     cout<<"init SceneManager"<<endl;
     
     
-    CCwidth=15;
-    CCheight=20;
+    //CCwidth=15;
+    //CCheight=20;
     minspeed=ofRandom(1,3);
     
     
@@ -80,22 +79,19 @@ void SceneManager::initialize(int width, int height, int _entrypoints , int _lin
     
     font.load("FoundersGroteskMonoBold.ttf", CCwidth,true,true);
    // font.load("TwoPointH-128Medium.ttf", CCwidth,true,true);
+    bigfont.load("FoundersGroteskMonoBold.ttf", bigfontsize,true, true);
+   // bigfont.load("TwoPointH-128Medium.ttf", bigfontsize,true, true);
+
+    
 
     
     
-    cout<<"Full "<<font.hasFullCharacterSet()<<endl;
-    bigfont.load("FoundersGroteskMonoBold.ttf", 60,true, true);
-   // bigfont.load("TwoPointH-128Medium.ttf", 60,true, true);
-
-    
-    viewportwidth=width;
-    viewportheight=height;
+   // viewportwidth=width;
+   // viewportheight=height;
     // CAROUSSEL
     //These are the animationcontrollers of the background. Each one controlls a Line
     
     
-    numEntrypoints=_entrypoints;
-    numLines=_linesPerPoint;
     minspeed=2;
     maxspeed=5;
 
@@ -376,29 +372,32 @@ void SceneManager::update(){
     secondScreenbackgroundFbo.end();
     
     
-    int fadetime=15;
     
     backgroundFBO0.begin();
-    ofSetColor(0,0,0,5);
     ofEnableAlphaBlending();
+
+    ofSetColor(0,0,0,fadeAlpha);
      if(ofGetFrameNum()%fadetime==0)ofDrawRectangle(0, 0, backgroundFBO0.getWidth(), backgroundFBO0.getHeight());
     backgroundFBO0.end();
     
     backgroundFBO1.begin();
-    ofSetColor(0,0,0,5);
     ofEnableAlphaBlending();
+
+    ofSetColor(0,0,0,fadeAlpha);
      if(ofGetFrameNum()%fadetime==0)ofDrawRectangle(0, 0, backgroundFBO1.getWidth(), backgroundFBO1.getHeight());
     backgroundFBO1.end();
     
     backgroundFBO2.begin();
-    ofSetColor(0,0,0,5);
     ofEnableAlphaBlending();
+
+    ofSetColor(0,0,0,fadeAlpha);
      if(ofGetFrameNum()%fadetime==0)ofDrawRectangle(0, 0, backgroundFBO2.getWidth(), backgroundFBO2.getHeight());
     backgroundFBO2.end();
     
     backgroundFBO3.begin();
-    ofSetColor(0,0,0,5);
     ofEnableAlphaBlending();
+
+    ofSetColor(0,0,0,fadeAlpha);
      if(ofGetFrameNum()%fadetime==0)ofDrawRectangle(0, 0, backgroundFBO3.getWidth(), backgroundFBO3.getHeight());
     backgroundFBO3.end();
     
@@ -557,18 +556,7 @@ void SceneManager::draw(){
         csm[i]->draw();
     }
     
-    ofSetColor(255);
-    ofEnableAlphaBlending();
-    ofEnableBlendMode(OF_BLENDMODE_ALPHA);
 
-    ofSetColor(255,255,255,255);
-    //wichitg!
-   // secondScreenbackgroundFbo.draw(viewportwidth*2,0);
-    
-    backgroundFBO0.draw(viewportwidth,0);
-    backgroundFBO1.draw(viewportwidth*2,0);
-    backgroundFBO2.draw(0,0);
-    backgroundFBO3.draw(viewportwidth*3,0);
 
     
     
@@ -727,8 +715,7 @@ ofEnableBlendMode(OF_BLENDMODE_ADD);
     cam[0].end();
     
     
-    
-  /*  STM->secondScreenbackgroundFbo.begin();
+   /*   STM->secondScreenbackgroundFbo.begin();
    // ofSetColor(255,0,0);
     STM->cam[0].begin();
     ofPushMatrix();
@@ -741,7 +728,23 @@ ofEnableBlendMode(OF_BLENDMODE_ADD);
     STM->secondScreenbackgroundFbo.end();
     */
     
-    /*
+    
+    if(bDrawTrails){
+        
+        
+        STM->backgroundFBO0.begin();
+        // ofSetColor(255,0,0);
+        STM->cam[0].begin();
+        ofPushMatrix();
+        ofTranslate(-viewportwidth,0);
+        bigfont.getFontTexture().bind();
+        m.draw();
+        bigfont.getFontTexture().unbind();
+        ofPopMatrix();
+        STM->cam[0].end();
+        STM->backgroundFBO0.end();
+        
+    
     STM->backgroundFBO1.begin();
     // ofSetColor(255,0,0);
     STM->cam[0].begin();
@@ -759,7 +762,6 @@ ofEnableBlendMode(OF_BLENDMODE_ADD);
     // ofSetColor(255,0,0);
     STM->cam[0].begin();
     ofPushMatrix();
-   // ofTranslate(-3*viewportwidth,0);
     bigfont.getFontTexture().bind();
     m.draw();
     bigfont.getFontTexture().unbind();
@@ -784,14 +786,14 @@ ofEnableBlendMode(OF_BLENDMODE_ADD);
     m.draw();
     bigfont.getFontTexture().unbind();
     ofPopMatrix();
-    */
+    
     
     STM->cam[0].end();
     STM->backgroundFBO3.end();
     
     
     
-    
+    }
     /* ofEnableBlendMode(OF_BLENDMODE_ALPHA);
      secondScreenbackgroundFbo.begin();
      cam[1].begin();
@@ -860,6 +862,20 @@ ofEnableBlendMode(OF_BLENDMODE_ADD);
     ofPopMatrix();
     
     ofPopStyle();
+    
+    
+    ofSetColor(255);
+    ofEnableAlphaBlending();
+    ofEnableBlendMode(OF_BLENDMODE_ALPHA);
+    
+    ofSetColor(255,255,255,255);
+    //wichitg!
+    // secondScreenbackgroundFbo.draw(viewportwidth*2,0);
+    
+    backgroundFBO0.draw(viewportwidth,0);
+    backgroundFBO1.draw(viewportwidth*2,0);
+    backgroundFBO2.draw(0,0);
+    backgroundFBO3.draw(viewportwidth*3,0);
 
     
     checkRemove();
@@ -878,8 +894,8 @@ void SceneManager::carousselEvent(CarousselEvent &e){
     
     if(e.message=="EXPLODE STOP"){
         explodestopcounter++;
-        cout<<"explodestopcounter "<<explodestopcounter<<" "<<numEntrypoints*numLines<<endl;
-        if(explodestopcounter==numEntrypoints*numLines){
+        cout<<"explodestopcounter "<<explodestopcounter<<" "<<entrypoints*linesPerPoint<<endl;
+        if(explodestopcounter==entrypoints*linesPerPoint){
            // reset();
             bShouldReset=true;
         }
@@ -1578,6 +1594,16 @@ void SceneManager::unregisterLetter(Letter *l){
     
    
 
+}
+
+
+void SceneManager::drawTrails(bool _b){
+    bDrawTrails=_b;
+}
+
+void SceneManager::toggleDrawTrails(){
+
+    bDrawTrails=!bDrawTrails;
 }
 
 

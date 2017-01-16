@@ -21,7 +21,7 @@ void MovingWords::setup(){
     bIsOnScreen=true;
     setIsAlive(true);
 
-    viewportwidth=STM->viewportwidth;
+    //viewportwidth=STM->viewportwidth;
     
     
     float r=ofRandom(0,1);

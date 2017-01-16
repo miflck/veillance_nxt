@@ -28,7 +28,7 @@ void ForegroundSound::setSampleRate(int rate){
 
 void ForegroundSound::setup(){
     
-    viewportwidth=STM->viewportwidth;
+    //viewportwidth=STM->viewportwidth;
 
     
     
