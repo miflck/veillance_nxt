@@ -257,7 +257,6 @@ void ofApp::keyReleased(int key){
     
     
     if(key=='e'){
-        // bDraw=!bDraw;
         STM->explode();
     }
     

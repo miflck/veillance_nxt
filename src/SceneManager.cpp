@@ -237,10 +237,9 @@ void SceneManager::update(){
     for(int i=0;i<messageBuffer.size();i++){
         wordsInMessageBuffer+=messageBuffer[i].wordcount;
     }
-    
     totalWordsInBuffer=stackmanagertotalbuffer+wordsInMessageBuffer;
     
-    if(totalWordsInBuffer>maxWordsInBuffer)explode();
+    if(totalWordsInBuffer>maxWordsInBuffer && !bIsExploding)STM->explode();
     
     
     vC.update();
@@ -373,8 +372,8 @@ void SceneManager::update(){
     backgroundFBO0.begin();
     ofEnableAlphaBlending();
 
-    ofSetColor(0,0,0,clusterFadeAlpha);
-     if(ofGetFrameNum()%clusterFadetime==0)ofDrawRectangle(0, 0, backgroundFBO0.getWidth(), backgroundFBO0.getHeight());
+    ofSetColor(0,0,0,100);
+    ofDrawRectangle(0, 0, backgroundFBO0.getWidth(), backgroundFBO0.getHeight());
     backgroundFBO0.end();
     
     backgroundFBO1.begin();
@@ -562,6 +561,29 @@ void SceneManager::draw(){
 }
     
     
+    
+    /*
+    
+    STM->backgroundFBO0.begin();
+    // ofSetColor(255,0,0);
+    STM->cam[0].begin();
+    
+    letterMesh.clear();
+    for(auto letter:letters){
+        // cout<<letter->getData()<<" "<<letter->myWordPointer->getIndex()<<" "<<letter->myWordPointer->myFragmentPointer->getFragmentId()<<endl;
+        // letter->myWordPointer->myFragmentPointer->getFragmentId();
+        letterMesh.append(letter->getUpdatedVboMesh());
+    }
+    ofPushMatrix();
+    ofTranslate(-viewportwidth,0);
+    font.getFontTexture().bind();
+    letterMesh.draw();
+    font.getFontTexture().unbind();
+    ofPopMatrix();
+    STM->cam[0].end();
+    STM->backgroundFBO0.end();
+     */
+    
     cam[0].begin(viewFront);
 
 
@@ -598,9 +620,16 @@ ofEnableBlendMode(OF_BLENDMODE_ADD);
        // letter->myWordPointer->myFragmentPointer->getFragmentId();
         letterMesh.append(letter->getUpdatedVboMesh());
     }
+    ofPushMatrix();
+    ofTranslate(1, 1);
     font.getFontTexture().bind();
     letterMesh.draw();
     font.getFontTexture().unbind();
+    ofPopMatrix();
+    
+
+    
+    
     
     ofVboMesh m;
 
@@ -819,7 +848,7 @@ void SceneManager::carousselEvent(CarousselEvent &e){
     
     if(e.message=="EXPLODE STOP"){
         explodestopcounter++;
-        cout<<"explodestopcounter "<<explodestopcounter<<" "<<entrypoints*linesPerPoint<<endl;
+        cout<<"explodestopcounter "<<explodestopcounter<<" "<<entrypoints*linesPerPoint<<" "<<bShouldReset<<endl;
         if(explodestopcounter==entrypoints*linesPerPoint){
            // reset();
             bShouldReset=true;
@@ -1421,7 +1450,7 @@ User * SceneManager::getUserWithMostWordsInBuffer(){
     
     for(int i=0;i<messageBuffer.size();i++){
         User *u =getUserByUsername(messageBuffer[i].username);
-        u->addNumWordsInBuffer(messageBuffer[i].wordcount);
+        if(u!=nullptr) u->addNumWordsInBuffer(messageBuffer[i].wordcount);
     }
     
     

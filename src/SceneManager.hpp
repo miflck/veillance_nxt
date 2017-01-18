@@ -239,7 +239,7 @@ public:
     float sinTheta=0;
     
     
-    bool bGetMostUser=false;
+    bool bGetMostUser=true;
     
     
 private:

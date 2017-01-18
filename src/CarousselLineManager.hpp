@@ -48,6 +48,11 @@ public:
     
     
     float speed;
+    
+    float explosionimpulse=10;
+    float explosionspeed;
+    float damping=0.9999;
+    
   //  void move(ofVec2f target, CarousselContainer *c);
     void move();
 
