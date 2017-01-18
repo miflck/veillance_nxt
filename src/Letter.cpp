@@ -95,11 +95,11 @@ void Letter::draw(){
 }
 
 
-void Letter::setData(char _data){
-    data=_data;
+void Letter::setData(string _data){
+    //data=_data;
     
    // myString=ofToUpper(ofToString(data));
-      myString=ofToString(_data);
+     myString=ofToString(_data);
     letterMesh = font->getStringMesh(myString, 0, 0);
 }
 
@@ -235,6 +235,8 @@ ofVboMesh Letter::getUpdatedVboMesh(){
     vbom.clear();
     if(bIsOnScreen &! bRemove){//check if is on screen
         letterMesh = font->getStringMesh(myString, 0, 0);
+       // letterMesh = font->getStringMesh("…", 0, 0);
+
         vector<ofVec3f>& verts = letterMesh.getVertices();
         for(int j=0; j <  verts.size() ; j++){
             letterMesh.setVertex(j,verts[j]*node.getGlobalTransformMatrix());

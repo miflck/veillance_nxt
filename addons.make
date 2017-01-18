@@ -1,3 +1,8 @@
+ofxDspChain
 ofxGui
 ofxLibwebsockets
+ofxReverb
 ofxTonic
+ofxUnicode
+ofxWatchdog
+ofxXmlSettings

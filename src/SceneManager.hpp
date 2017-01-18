@@ -32,6 +32,10 @@
 
 
 
+
+#include "ofxUnicode.h"
+
+
 //for convenience
 #define STM SceneManager::getInstance()
 

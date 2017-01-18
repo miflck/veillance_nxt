@@ -9,6 +9,12 @@
 #include "SceneManager.hpp"
 #include "SoundManager.hpp"
 
+
+#include <codecvt>
+#include <locale>
+#include <iostream>
+#include <string>
+
 SceneManager* SceneManager::instance = 0;
 SceneManager* SceneManager::getInstance() {
     if (!instance) {
@@ -1011,14 +1017,53 @@ void SceneManager::addWordFromManager(CarousselStackManager *_s, message _m){
         w->setFragmentPointer(f);
         w->setUserPointer(u);
     
-        for (auto ss : myword){
-            char c = ss;
-            Letter * l =new Letter();
-            l->setFont(&font);
-            l->setData(c);
-            l->setup();
+   /* std::wstring_convert<std::codecvt_utf8<char32_t>, char32_t> converter;
+    for(char32_t c : myword)
+    {
+        std::cout << converter.to_bytes(c) << std::endl;
+    }*/
+    
 
-            l->setWordId(wIndex);
+    
+    // Convert it to utf32 text for easier output.
+    auto text32 = ofx::TextConverter::toUTF32(myword);
+    
+    auto breaks = ofx::Wordbreaker::findBreaks(text32, "de");
+    
+    for (std::size_t i = 0; i < breaks.size(); ++i)
+    {
+        //std::cout << ofx::TextConverter::toUTF8(text32[i]) << endl;
+        
+        string c = ofx::TextConverter::toUTF8(text32[i]);
+        Letter * l =new Letter();
+        l->setFont(&font);
+        l->setData(c);
+        l->setup();
+        
+        l->setWordId(wIndex);
+        l->setWordPointer(w);
+        l->setFragmentPointer(f);
+        l->setUserPointer(u);
+        
+        lettermap[l]=l;
+        sm->addMovement(lettermap[l]);
+        
+        w->registerLetter(l);
+        f->registerLetter(l);
+        u->registerLetter(l);
+    }
+    
+    
+
+    
+    /*for (auto ss : myword){
+        char32_t c = ss;
+        Letter * l =new Letter();
+        l->setFont(&font);
+        l->setData(c);
+        l->setup();
+        
+        l->setWordId(wIndex);
             l->setWordPointer(w);
             l->setFragmentPointer(f);
             l->setUserPointer(u);
@@ -1029,14 +1074,14 @@ void SceneManager::addWordFromManager(CarousselStackManager *_s, message _m){
             w->registerLetter(l);
             f->registerLetter(l);
             u->registerLetter(l);
-        }
+        }*/
         
         // ADD SPACE
         Letter * l2 =new Letter();
         l2->setFont(&font);
     l2->setup();
 
-        l2->setData(' ');
+        l2->setData(" ");
         l2->setWordId(wIndex);
         l2->setWordPointer(w);
         l2->setFragmentPointer(f);

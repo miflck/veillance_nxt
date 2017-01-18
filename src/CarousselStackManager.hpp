@@ -17,6 +17,8 @@
 #include "helpers.hpp"
 #include "globals.hpp"
 
+#include "ofxUnicode.h"
+
 
 
 

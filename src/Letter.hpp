@@ -39,8 +39,11 @@ public:
     ofTrueTypeFont  *font;
     void setFont(ofTrueTypeFont *f);
     
-    void setData(char data);
+    //void setData(char data);
+    void setData(string data);
+
     char data;
+    
     
     string myString;
     string getString();

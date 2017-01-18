@@ -9,6 +9,9 @@
 #include "CarousselStackManager.hpp"
 #include "SceneManager.hpp"
 
+#include "stdio.h"
+#include "assert.h"
+
 CarousselStackManager::CarousselStackManager(){
 }
 
@@ -229,7 +232,11 @@ void CarousselStackManager::addDataFromBuffer(){
         
         */
         message m=mymessage;
-        m.text=messagestring[0];
+        
+        m.text= messagestring[0];
+        
+
+        
         messagestring.erase(messagestring.begin());
         STM->addWordFromManager(this, m);
     }
@@ -247,9 +254,16 @@ void CarousselStackManager::addMessage(message _m){
     mymessage=_m;
     mymessage.text.erase( std::remove(mymessage.text.begin(), mymessage.text.end(), '\r'), mymessage.text.end() );
     mymessage.text=ofToUpper(mymessage.text);
+    
+    std::string utf8_6_toUpper = ofx::UTF8::toUpper(mymessage.text);
+
+    
+    cout<<mymessage.text<<" "<<utf8_6_toUpper<<endl;
     messagestring.clear();
 
     messagestring = ofSplitString(mymessage.text , " ");
+    messagestring = ofSplitString(utf8_6_toUpper, " ");
+
     addDataFromBuffer();
 }
 

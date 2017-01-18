@@ -49,12 +49,7 @@ void ofApp::setup(){
     ofSetVerticalSync(true);
     ofSetFrameRate(60);
     
-    ofBuffer buffer = ofBufferFromFile("heartofdarkness.txt");
-    for (auto line : buffer.getLines()){
-        data.push_back(line);
-    }
-    
-    
+       
     ofxGuiSetDefaultWidth(500);
     
     gui.setup("GUI","gui.xml");

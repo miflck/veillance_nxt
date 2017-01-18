@@ -114,7 +114,7 @@ void CarousselLineManager::move(){
         
         if(elapsedTime*speedfactor+(8000*speedfactor)>time){
            // if(elapsedTime>time){
-               cout<<elapsedTime<<" "<<time<<" "<<time-(elapsedTime)<<" "<<deltaTime<<endl;
+               //cout<<elapsedTime<<" "<<time<<" "<<time-(elapsedTime)<<" "<<deltaTime<<endl;
 
            // cout<<elapsedTime*speedfactor<<" "<<time<<" "<<time-(elapsedTime*speedfactor+(10000*speedfactor))<<" "<<deltaTime<<endl;
 
