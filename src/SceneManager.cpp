@@ -616,8 +616,6 @@ ofEnableBlendMode(OF_BLENDMODE_ADD);
     // getting the lettermesh
     letterMesh.clear();
     for(auto letter:letters){
-       // cout<<letter->getData()<<" "<<letter->myWordPointer->getIndex()<<" "<<letter->myWordPointer->myFragmentPointer->getFragmentId()<<endl;
-       // letter->myWordPointer->myFragmentPointer->getFragmentId();
         letterMesh.append(letter->getUpdatedVboMesh());
     }
     ofPushMatrix();
@@ -632,30 +630,21 @@ ofEnableBlendMode(OF_BLENDMODE_ADD);
     
     
     ofVboMesh m;
-
     if(!bIsExploding){
-
-
     ofPushStyle();
     // moving words mesh
         ofEnableAlphaBlending();
         ofEnableBlendMode(OF_BLENDMODE_ADD);
-    for(auto movingWord:movingWords){
-        m.append(movingWord->getUpdatedVboMesh());
-    }
+        for(auto movingWord:movingWords){
+            m.append(movingWord->getUpdatedVboMesh());
+        }
     bigfont.getFontTexture().bind();
     m.draw();
     bigfont.getFontTexture().unbind();
-   
     ofPopStyle();
     }
     
-    
-    
 
-    
-    
-    //camFront.end();
     cam[0].end();
     
     
@@ -764,6 +753,13 @@ ofEnableBlendMode(OF_BLENDMODE_ADD);
         png.draw(p.x-1000, p.y-1000,p.z,2000,2000);
     }*/
     
+    
+    if(bIsExploding){
+        font.getFontTexture().bind();
+        letterMesh.draw();
+        font.getFontTexture().unbind();
+    }
+    
 
     bigfont.getFontTexture().bind();
     m.draw();
@@ -787,12 +783,22 @@ ofEnableBlendMode(OF_BLENDMODE_ADD);
     
     
    cam[2].begin(viewRight);
+    if(bIsExploding){
+        font.getFontTexture().bind();
+        letterMesh.draw();
+        font.getFontTexture().unbind();
+    }
     bigfont.getFontTexture().bind();
     m.draw();
     bigfont.getFontTexture().unbind();
      cam[2].end();
     
     cam[3].begin(viewLeft);
+    if(bIsExploding){
+        font.getFontTexture().bind();
+        letterMesh.draw();
+        font.getFontTexture().unbind();
+    }
     bigfont.getFontTexture().bind();
     m.draw();
     bigfont.getFontTexture().unbind();

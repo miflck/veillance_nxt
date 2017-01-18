@@ -69,12 +69,12 @@ public:
     
     
     double maxspeed;
-    float deltaTime;
-    float lastTime;
-    float now;
-    float starttime;
-    float time;
-    float elapsedTime;
+    double deltaTime;
+    double lastTime;
+    double now;
+    double starttime;
+    double time;
+    double elapsedTime;
     
     void setId(int _id);
     void setStackId(int _id);
