@@ -20,3 +20,12 @@ int bigfontsize=60;
 
 ofParameter<int> fadetime;
 ofParameter<int> fadeAlpha;
+ofParameter<int> fboAlpha;
+
+
+ofParameter<int> clusterFadetime;
+ofParameter<int> clusterFadeAlpha;
+
+
+ofParameter<int> maxWordsInBuffer;
+ ofParameter<float> speedfactor;

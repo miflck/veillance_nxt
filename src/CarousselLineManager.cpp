@@ -21,6 +21,7 @@ CarousselLineManager::~CarousselLineManager(){
         delete (containers[i]);
     }
     containers.clear();
+    lastTime=0;
     
 }
 
@@ -44,9 +45,11 @@ void CarousselLineManager::setup(int _numlines, int _stackId, int _lineId, ofVec
     
     ofVec3f pos = ofVec3f(-letterWidth,position.y);
     float dl=mywidth/letterWidth+1;
+  
     for(int i=0;i<dl;i++){
         CarousselContainer *c =new CarousselContainer();
         c->setBoundingBox(pos, ofVec2f(letterWidth,letterHeight));
+        targetpositions.push_back(pos);
         c->id=i;
         containers.push_back(c);
         pos.x+=letterWidth;
@@ -67,6 +70,11 @@ void CarousselLineManager::unregisterLetter(Letter *_l){
 
 
 void CarousselLineManager::update(){
+    now=ofGetElapsedTimeMicros();
+    deltaTime=lastTime-now;
+    elapsedTime=now-starttime;
+    
+    
     if(bIsMoving){
         move();
     }
@@ -74,7 +82,7 @@ void CarousselLineManager::update(){
     for(int i=0;i<containers.size();i++){
         containers[i]->update();
     }
-    
+    lastTime=now;
 }
 
 void CarousselLineManager::draw(){
@@ -100,21 +108,47 @@ void CarousselLineManager::move(){
         ofVec2f target=containers[i]->getTarget();
         ofVec2f dist=target-p;
         ofVec2f speed=dist;
-       speed.limit(maxspeed);
-        p+=speed;
+        speed.normalize();
         
-        if(dist.length()<maxspeed+1){
+       
+        
+        //speed.scale(maxspeed*speedfactor);
+      // speed.limit(maxspeed*speedfactor);
+       // p+=speed;
+        p.x+= deltaTime*maxspeed*speedfactor;
+        
+      /*  if(elapsedTime>time){
             p.set(target);
             speed.set(ofVec2f(0,0));
             containers[i]->bIsMoving=false;
-        }
+        }*/
+        
+        
+       // if(dist.length()<maxspeed*speedfactor+1){
+     /*   if(dist.length()<deltaTime*maxspeed*speedfactor){
+
+            p.set(target);
+            speed.set(ofVec2f(0,0));
+            containers[i]->bIsMoving=false;
+        }*/
         
         containers[i]->setPosition(p);
         containers[i]->setVelocity(speed);
     }
     
+    
+    if(elapsedTime*speedfactor+10000>time){
+        for(int i=0;i<containers.size();i++){
+           containers[i]->setPosition(containers[i]->getTarget());
+             containers[i]->bIsMoving=false;
+        }
+        stopMoving();
+
+    }
+    
+    
     //check if finished;
-    bool move=false;
+  /*  bool move=false;
     for(int i=0;i<containers.size();i++){
         if(containers[i]->bIsMoving){
             move=true;
@@ -123,7 +157,7 @@ void CarousselLineManager::move(){
     }
     if(!move){
         stopMoving();
-    }
+    }*/
     
 }
 
@@ -132,10 +166,17 @@ void CarousselLineManager::move(){
 void CarousselLineManager::cicle(){
     if(!bIsMoving){
         for(int i=1;i<containers.size();i++){
-            containers[i]->setTarget(containers[i-1]->getPosition());
-          
+            
+            
+           // containers[i]->setTarget(containers[i-1]->getPosition());
+            containers[i]->setTarget(targetpositions[i-1]);
+
+            
+            
         }
-        ofVec2f p=containers[containers.size()-1]->getPosition();
+       // ofVec2f p=containers[containers.size()-1]->getPosition();
+        ofVec2f p=targetpositions[targetpositions.size()-1];
+
         ofVec2f d=ofVec2f(containers[containers.size()-1]->getDimension().x,0);
         containers[0]->setPosition(p+d);
         containers[0]->setTarget(p);
@@ -150,6 +191,9 @@ void CarousselLineManager::startMoving(){
     buffer.erase(buffer.begin());
     containers[containers.size()-1]->setLetterPointer(l);
    
+    
+    starttime=ofGetElapsedTimeMicros();
+    
     
     // if first line
     if(lineId==numlines-1){

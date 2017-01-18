@@ -66,6 +66,7 @@ public:
     
 
     int getStringsize();
+
     
     ofColor getBackgroundColor();
     
@@ -75,6 +76,8 @@ public:
     bool bIsCountingDown=false;
     float lifespan;
     float lifetime;
+    
+    float time;
     
 private:
     

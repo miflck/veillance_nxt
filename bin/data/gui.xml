@@ -1,0 +1,12 @@
+<GUI>
+	<fadetime_>34</fadetime_>
+	<fadealpha_>3</fadealpha_>
+<GUI/>
+<FBO_Alpha_>255</FBO_Alpha_>
+<fadetime>4</fadetime>
+	<fadealpha>3</fadealpha>
+	<FBO_Alpha>96</FBO_Alpha>
+	<clusterfadetime_>52</clusterfadetime_>
+	<clusterfadealpha_>5</clusterfadealpha_>
+<maxWordsInBuffer_>4585</maxWordsInBuffer_>
+</GUI>

@@ -10,6 +10,7 @@
 #define helpers_hpp
 
 #include <stdio.h>
+#include "ofMain.h"
 
 
 struct message {
@@ -48,6 +49,12 @@ struct dns {
     string type;
     string text;    
 };
+
+
+struct clusterpoint {
+    ofVec3f position;
+};
+
 
 
 

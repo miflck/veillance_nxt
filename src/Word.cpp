@@ -34,8 +34,8 @@ void Word::setup(int _index){
 }
 
 void Word::update(){
-    
-    if(checkShouldRemove()){
+    //hacked in wasOnScreen check, weil vielleicht wird removed bevor die buchstaben gemacht werden?
+    if(wasOnScreen && checkShouldRemove()){
     setBRemove(true);
     myFragmentPointer->unregisterWord(this);
     myUserPointer->unregisterWord(this);
@@ -83,7 +83,7 @@ void Word::update(){
 void Word::draw(){
     ofSetColor(backgroundColor,100);
     if(getPosition().length()>3){
-        STM->backgroundFbo.begin();
+        STM->backgroundFBO.begin();
         ofEnableBlendMode(OF_BLENDMODE_ALPHA);
         
         for(int i=0;i<5;i++){
@@ -96,7 +96,7 @@ void Word::draw(){
         /*ofSetColor(255,0,0,100);
          ofDrawRectangle(getPosition().x,getPosition().y-10, getBoundingBox().width-10,20);
          ofDrawRectangle(getPosition().x,getPosition().y-5, getBoundingBox().width-10,20);*/
-        STM->backgroundFbo.end();
+        STM->backgroundFBO.end();
     }
     
     

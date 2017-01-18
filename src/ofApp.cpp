@@ -55,15 +55,39 @@ void ofApp::setup(){
     }
     
     
+    ofxGuiSetDefaultWidth(500);
     
-    
-    gui.setup();
-    fadetime.set("fadetime ",15,1,60);
-    fadeAlpha.set("fadealpha ",5,0,100);
-    gui.add(fadetime);
-    gui.add(fadeAlpha);
+    gui.setup("GUI","gui.xml");
+    gui.setPosition(viewportwidth,0);
+
 
     
+    fadetime.set("fadetime",15,1,60);
+    fadeAlpha.set("fadealpha",5,0,100);
+    fboAlpha.set("FBO_Alpha",180,0,255);
+
+    gui.add(fadetime);
+    gui.add(fadeAlpha);
+    gui.add(fboAlpha);
+
+    
+    clusterFadetime.set("clusterfadetime ",15,1,60);
+    clusterFadeAlpha.set("clusterfadealpha ",5,0,100);
+    
+    gui.add(clusterFadetime);
+    gui.add(clusterFadeAlpha);
+
+    
+    maxWordsInBuffer.set("maxWordsInBuffer ",5000,500,10000);
+
+    gui.add(maxWordsInBuffer);
+
+    
+    speedfactor.set("speedfactor ",1,0.1,20);
+    gui.add(speedfactor);
+    
+    gui.loadFromFile("gui.xml");
+
 }
 
 //--------------------------------------------------------------
@@ -173,6 +197,7 @@ void ofApp::keyReleased(int key){
     }
     
     
+    
     if(key=='H'){
         bSound=!bSound;
     }
@@ -214,7 +239,8 @@ void ofApp::keyReleased(int key){
     
     
     if(key=='u'){
-        bUpdate=!bUpdate;
+       // bUpdate=!bUpdate;
+        STM->bGetMostUser=!STM->bGetMostUser;
     }
     
     if(key=='d'){

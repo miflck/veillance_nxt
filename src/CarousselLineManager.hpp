@@ -18,7 +18,7 @@
 
 #include "Letter.hpp"
 
-
+#include "globals.hpp"
 
 class CarousselLineManager {
     
@@ -40,6 +40,8 @@ public:
     
     ofVec2f position;
     ofVec2f parentposition;
+    
+    vector<ofVec3f> targetpositions;
 
 
     void setPosition(ofVec2f _p);
@@ -62,6 +64,12 @@ public:
     
     
     double maxspeed;
+    float deltaTime;
+    float lastTime;
+    float now;
+    float starttime;
+    float time;
+    float elapsedTime;
     
     void setId(int _id);
     void setStackId(int _id);

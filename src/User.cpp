@@ -12,6 +12,8 @@
 #include "SoundManager.hpp"
 
 User::User(){
+    backgroundColor.setHsb(ofRandom(0,255),255,255);
+
 }
 
 
@@ -403,6 +405,21 @@ void User::reset(){
 
 
 }
+
+
+void User::setNumWordsInBuffer(int _num){
+    numWordsInBuffer=_num;
+}
+
+void User::addNumWordsInBuffer(int _num){
+    numWordsInBuffer+=_num;
+}
+
+int User::getNumWordsInBuffer(){
+    return numWordsInBuffer;
+}
+
+
 
 
 

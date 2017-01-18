@@ -28,5 +28,20 @@ extern int bigfontsize;
 //Background
 extern ofParameter<int> fadetime;
 extern ofParameter<int> fadeAlpha;
+extern ofParameter<int> fboAlpha;
+
+
+
+
+extern ofParameter<int> clusterFadetime;
+extern ofParameter<int> clusterFadeAlpha;
+
+
+extern ofParameter<int> maxWordsInBuffer;
+
+
+extern ofParameter<float> speedfactor;
+
+
 
 #endif /* globals_hpp */

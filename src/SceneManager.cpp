@@ -27,7 +27,9 @@ void SceneManager::initializeCaroussel(){
     
     //make sure not two following points have same speed;
     for (int i=0;i<entrypoints;i++){
-        float s=ofRandom(minspeed,maxspeed);
+        float r=ofRandom(minspeed,maxspeed);
+        
+       float s= roundf(r*100)/100;
               cout<<"s"<<s<<endl;
         speeds.push_back(s);
     }
@@ -71,7 +73,7 @@ void SceneManager::initialize() {
     
     //CCwidth=15;
     //CCheight=20;
-    minspeed=ofRandom(1,3);
+   // minspeed=ofRandom(1,3);
     
     
 
@@ -92,14 +94,15 @@ void SceneManager::initialize() {
     //These are the animationcontrollers of the background. Each one controlls a Line
     
     
-    minspeed=2;
-    maxspeed=5;
+    minspeed=1.5;
+    maxspeed=7;
 
     
     initializeCaroussel();
     
     
     
+    //Vertical Caroussel
     int h=50;
     h=CCheight;
     ofVec2f position;
@@ -176,15 +179,14 @@ void SceneManager::initialize() {
     
     // BACKGROUNDCOLOR
     // Background FBO for Backgroundcolorstuff.
-    backgroundFbo.allocate(viewportwidth, ofGetHeight(),GL_RGBA);
-    backgroundFbo.begin();
+    backgroundFBO.allocate(width, ofGetHeight(),GL_RGBA);
+//    backgroundFBO.allocate(viewportwidth, ofGetHeight(),GL_RGBA);
+
+    backgroundFBO.begin();
     ofClear(25,255,255,0);
-    backgroundFbo.end();
+    backgroundFBO.end();
     
-    secondScreenbackgroundFbo.allocate(viewportwidth, ofGetHeight(),GL_RGBA);
-    secondScreenbackgroundFbo.begin();
-    ofClear(0,0,0,0);
-    secondScreenbackgroundFbo.end();
+   
     
     backgroundFBO0.allocate(viewportwidth, ofGetHeight(),GL_RGBA);
     backgroundFBO0.begin();
@@ -217,6 +219,11 @@ void SceneManager::initialize() {
     color2=ofColor(0);
     
 
+    clusterpointright.position.set(2*viewportwidth-300,ofGetHeight()/2,-500);
+    clusterpointleft.position.set(-viewportwidth+300,ofGetHeight()/2,-500);
+
+    
+   
     
 }
 
@@ -247,7 +254,6 @@ void SceneManager::update(){
             stackManagerBuffer.erase(stackManagerBuffer.begin());
             addMessageFromPriorityBuffer(sm);
         }else{
-            //CarousselStackManager * sm=stackManagerBuffer[0];
             
             addMessageFromPriorityBuffer(getStackmanagerWithSmallestBuffer());
         
@@ -351,59 +357,50 @@ void SceneManager::update(){
  
     
 
-    
+    if(bDrawTrails){
+
     
     // ADD BLACK SQUARE TO BACKGROUNDCOLOR
-  //  backgroundFbo.begin();
-   // ofSetColor(0,0,0,1);
-    //ofEnableBlendMode(OF_BLENDMODE_ALPHA);
-    
-    //ofEnableAlphaBlending();
-   //if(ofGetFrameNum()%100==0) ofDrawRectangle(0, 0, backgroundFbo.getWidth(), backgroundFbo.getHeight());
-   // ofDisableBlendMode();
-   // backgroundFbo.end();
-    
-    secondScreenbackgroundFbo.begin();
-    ofSetColor(0,0,0,5);
-  //  ofSetColor(255,0,0);
-//ofDrawRectangle(0, 0, backgroundFbo.getWidth(), backgroundFbo.getHeight());
+    backgroundFBO.begin();
+    ofSetColor(0,0,0,fadeAlpha);
+    ofEnableBlendMode(OF_BLENDMODE_ALPHA);
     ofEnableAlphaBlending();
-   // if(ofGetFrameNum()%10==0)ofDrawRectangle(0, 0, backgroundFbo.getWidth(), backgroundFbo.getHeight());
-    secondScreenbackgroundFbo.end();
-    
+    if(ofGetFrameNum()%fadetime==0) ofDrawRectangle(0, 0, backgroundFBO.getWidth(), backgroundFBO.getHeight());
+    backgroundFBO.end();
+        
     
     
     backgroundFBO0.begin();
     ofEnableAlphaBlending();
 
-    ofSetColor(0,0,0,fadeAlpha);
-     if(ofGetFrameNum()%fadetime==0)ofDrawRectangle(0, 0, backgroundFBO0.getWidth(), backgroundFBO0.getHeight());
+    ofSetColor(0,0,0,clusterFadeAlpha);
+     if(ofGetFrameNum()%clusterFadetime==0)ofDrawRectangle(0, 0, backgroundFBO0.getWidth(), backgroundFBO0.getHeight());
     backgroundFBO0.end();
     
     backgroundFBO1.begin();
     ofEnableAlphaBlending();
 
-    ofSetColor(0,0,0,fadeAlpha);
-     if(ofGetFrameNum()%fadetime==0)ofDrawRectangle(0, 0, backgroundFBO1.getWidth(), backgroundFBO1.getHeight());
+    ofSetColor(0,0,0,clusterFadeAlpha);
+     if(ofGetFrameNum()%clusterFadetime==0)ofDrawRectangle(0, 0, backgroundFBO1.getWidth(), backgroundFBO1.getHeight());
     backgroundFBO1.end();
     
     backgroundFBO2.begin();
     ofEnableAlphaBlending();
 
-    ofSetColor(0,0,0,fadeAlpha);
-     if(ofGetFrameNum()%fadetime==0)ofDrawRectangle(0, 0, backgroundFBO2.getWidth(), backgroundFBO2.getHeight());
+    ofSetColor(0,0,0,clusterFadeAlpha);
+     if(ofGetFrameNum()%clusterFadetime==0)ofDrawRectangle(0, 0, backgroundFBO2.getWidth(), backgroundFBO2.getHeight());
     backgroundFBO2.end();
     
     backgroundFBO3.begin();
     ofEnableAlphaBlending();
 
-    ofSetColor(0,0,0,fadeAlpha);
-     if(ofGetFrameNum()%fadetime==0)ofDrawRectangle(0, 0, backgroundFBO3.getWidth(), backgroundFBO3.getHeight());
+    ofSetColor(0,0,0,clusterFadeAlpha);
+     if(ofGetFrameNum()%clusterFadetime==0)ofDrawRectangle(0, 0, backgroundFBO3.getWidth(), backgroundFBO3.getHeight());
     backgroundFBO3.end();
     
     
     
-    
+    }
     
     
     
@@ -510,7 +507,17 @@ void SceneManager::checkRemove(){
     }
 
     
+    //sinTheta+=0.02;
+    
+    
+    float s=sin(sinTheta);
+    float s2=cos(sinTheta);
 
+
+    clusterpointleft.position.x-=s;
+   // clusterpointleft.position.y+=s2;
+
+  //  cout<<"sin "<<sinTheta<<clusterpointleft.position<<endl;
 
 
 
@@ -519,45 +526,40 @@ void SceneManager::checkRemove(){
 void SceneManager::draw(){
  
     vC.draw();
-    
-   // ofColor bg=backgroundcolor;
-   // bg.setBrightness(50);
-    //ofBackground(bg);
-    
-   /* ofSetColor(0,255,0 );
-
-    png.draw(csm[0]->getPosition().x+viewportwidth-100, csm[0]->getPosition().y+300,100,100);
-    ofSetColor(0,0,255);
-
-    png.draw(csm[0]->getPosition().x+viewportwidth-150, csm[0]->getPosition().y+300,100,100);
-*/
-    
-   
-    /*
-    backgroundFbo.begin();
-    ofSetColor(0);
-    ofDrawRectangle(0, 0, backgroundFbo.getWidth(), backgroundFbo.getHeight());
-
-    
-    ofEnableBlendMode(OF_BLENDMODE_ADD);
-    ofEnableAlphaBlending();
-    ofSetColor(0,255,0 );
-    ofDrawRectangle(csm[0]->getPosition().x, csm[0]->getPosition().y, 10, 10);
-   // cout<<csm[0]->getPosition()<<endl;
-    png.draw(csm[0]->getPosition().x+viewportwidth-100, csm[0]->getPosition().y,100,100);
-    ofSetColor(0,0,255);
-    png.draw(csm[0]->getPosition().x+viewportwidth-150, csm[0]->getPosition().y,200,200);
-   // ofDisableBlendMode();
-    backgroundFbo.end();
-     
-     */
+ 
 
     for(int i=0;i<csm.size();i++){
         csm[i]->draw();
     }
     
+    
+    ofEnableBlendMode(OF_BLENDMODE_ALPHA);
+    ofColor usercolor;
+    usercolor.setHsb(0,0,0);
+    
+    if(bGetMostUser){
+    if(users.size()>0){
+        User *u=getUserWithMostWordsInBuffer();
+        if(u!=nullptr)
+            usercolor=getUserWithMostWordsInBuffer()->getBackgroundColor();
+    }
+    if(!bIsExploding){
+        ofColor c;
+        float  h=ofMap(totalWordsInBuffer, 0, maxWordsInBuffer, 0, 255);
+        float  s=ofMap(totalWordsInBuffer, 0, maxWordsInBuffer, 0, 255);
+        float  b=ofMap(totalWordsInBuffer, 0, maxWordsInBuffer, 0, 255);
+        c.setHsb(usercolor.getHue(), s, b);
+        backgroundcolor.lerp(c,0.05);
+    }else{
+        backgroundcolor.lerp(ofColor(0),0.1);
+        
+    }
+    ofSetColor(backgroundcolor,200);
+    png.draw(0, -2000,4000,4000);
+    png.draw(2000, -2000,4000,4000);
 
 
+}
     
     
     cam[0].begin(viewFront);
@@ -583,98 +585,10 @@ ofEnableBlendMode(OF_BLENDMODE_ADD);
     }
     */
     
-   ofEnableBlendMode(OF_BLENDMODE_ALPHA);
 
     
 
-    ofColor c = ofColor(255,0,0);
-    if(!bIsExploding){
-    // c=csm[csm.size()-1]->containers[csm[csm.size()-1]->containers.size()-1].getBackgroundColor();
-    //c.setBrightness(200);
-    }
-    //color1.lerp(c,0.01);
-    //ofSetColor(color1);
-   
-    
-    
-   // png.draw(viewportwidth-1800, viewportheight-1300,3000,3000);
-    
-    
-    // c=cms[cms.size()-1].containers[0].getBackgroundColor();
-    //c.setBrightness(200);
-
-    //color2.lerp(c,0.01);
-      //  ofSetColor(color2);
-    
-        //png.draw(-1000, viewportheight-1000,2000,2000);
-
-   // backgroundFbo.end();
-
-    
-    
-    if(!bIsExploding){
-        
-        ofColor c;
-        float  h=ofMap(totalWordsInBuffer, 0, maxWordsInBuffer, 0, 255);
-        float  s=ofMap(totalWordsInBuffer, 0, maxWordsInBuffer, 0, 255);
-        float  b=ofMap(totalWordsInBuffer, 0, maxWordsInBuffer, 0, 255);
-
-        
-        c.setHsb(255, s, b);
-
-        
-        //backgroundcolor.lerp(c,d);
-        
-        backgroundcolor.lerp(c,0.05);
-        
-    //User * u=getUserWithMostLetters();
-    /*if(u!=nullptr) {
-        ofColor c=u->getBackgroundColor();
-        c.setBrightness(160);
-        //if(ofGetFrameNum()%10==0)backgroundcolor.lerp(c,0.02);
-        backgroundcolor.lerp(c,0.01);
-        
-        // cout<<backgroundcolor<<endl;
-        //backgroundcolor=u->getBackgroundColor();
-        
-    }*/
-    }else{
-     backgroundcolor.lerp(ofColor(0),0.1);
-    
-    }
-    
-
-    
-    
-    
-    ofSetColor(backgroundcolor,200);
-    
-    png.draw(-2000, -2000,4000,4000);
-    
-    
-
-  //  backgroundFbo.end();
-    
-
-    //No need to draw each element. Doing this now with one mesh for better performance
-    /*
-     
-     for(auto letter:letters){
-     letter->draw();
-     }
-     
-    for(auto word:words){
-        word->draw();
-    }
-    
-    for(auto fragment:fragments){
-        fragment->draw();
-    }
-    */
-    
   
-    
-
     
     
     // getting the lettermesh
@@ -688,11 +602,15 @@ ofEnableBlendMode(OF_BLENDMODE_ADD);
     letterMesh.draw();
     font.getFontTexture().unbind();
     
+    ofVboMesh m;
+
+    if(!bIsExploding){
+
+
     ofPushStyle();
     // moving words mesh
-    ofEnableAlphaBlending();
-    ofEnableBlendMode(OF_BLENDMODE_ADD);
-    ofVboMesh m;
+        ofEnableAlphaBlending();
+        ofEnableBlendMode(OF_BLENDMODE_ADD);
     for(auto movingWord:movingWords){
         m.append(movingWord->getUpdatedVboMesh());
     }
@@ -701,10 +619,7 @@ ofEnableBlendMode(OF_BLENDMODE_ADD);
     bigfont.getFontTexture().unbind();
    
     ofPopStyle();
-    
-   /* for(auto cs:csm){
-        cs->draw();
-    }*/
+    }
     
     
     
@@ -715,23 +630,33 @@ ofEnableBlendMode(OF_BLENDMODE_ADD);
     cam[0].end();
     
     
-   /*   STM->secondScreenbackgroundFbo.begin();
-   // ofSetColor(255,0,0);
-    STM->cam[0].begin();
-    ofPushMatrix();
-    ofTranslate(-2*viewportwidth,0);
-    bigfont.getFontTexture().bind();
-    m.draw();
-    bigfont.getFontTexture().unbind();
-    ofPopMatrix();
-    STM->cam[0].end();
-    STM->secondScreenbackgroundFbo.end();
-    */
+    
+
     
     
     if(bDrawTrails){
+       backgroundFBO.begin();
+        STM->cam[0].begin();
+        ofEnableAlphaBlending();
+        ofEnableBlendMode(OF_BLENDMODE_ALPHA);
+        ofPushMatrix();
+        ofTranslate(-viewportwidth/2-viewportwidth,0);
+        bigfont.getFontTexture().bind();
+        m.draw();
+        bigfont.getFontTexture().unbind();
         
+        ofSetColor(255,0,0);
+        ofFill();
+        ofDrawRectangle(clusterpointleft.position.x,clusterpointleft.position.y,50,50);
+
         
+        ofPopMatrix();
+        STM->cam[0].end();
+        backgroundFBO.end();
+
+
+        
+        /*
         STM->backgroundFBO0.begin();
         // ofSetColor(255,0,0);
         STM->cam[0].begin();
@@ -790,19 +715,11 @@ ofEnableBlendMode(OF_BLENDMODE_ADD);
     
     STM->cam[0].end();
     STM->backgroundFBO3.end();
-    
+    */
     
     
     }
-    /* ofEnableBlendMode(OF_BLENDMODE_ALPHA);
-     secondScreenbackgroundFbo.begin();
-     cam[1].begin();
-     bigfont.getFontTexture().bind();
-     m.draw();
-     bigfont.getFontTexture().unbind();
-     cam[1].end();
-     secondScreenbackgroundFbo.end();
-     */
+
     
     ofPushStyle();
     ofEnableBlendMode(OF_BLENDMODE_ADD);
@@ -866,21 +783,29 @@ ofEnableBlendMode(OF_BLENDMODE_ADD);
     
     ofSetColor(255);
     ofEnableAlphaBlending();
-    ofEnableBlendMode(OF_BLENDMODE_ALPHA);
     
-    ofSetColor(255,255,255,255);
-    //wichitg!
-    // secondScreenbackgroundFbo.draw(viewportwidth*2,0);
+   
     
+   // if(!bIsExploding){
+    
+    if(bDrawTrails){
+        ofEnableBlendMode(OF_BLENDMODE_ALPHA);
+        ofSetColor(255,255,255,fboAlpha);
+        backgroundFBO.draw(0,0);
+        
+        ofSetColor(255,255,255,255);
+
+        ofEnableBlendMode(OF_BLENDMODE_ADD);
+
     backgroundFBO0.draw(viewportwidth,0);
     backgroundFBO1.draw(viewportwidth*2,0);
     backgroundFBO2.draw(0,0);
     backgroundFBO3.draw(viewportwidth*3,0);
-
+    }
+ //   }
     
     checkRemove();
 
-    
     
     
 }
@@ -1005,11 +930,12 @@ void SceneManager::addWordFromManager(CarousselStackManager *_s, message _m){
     
     User * u=getUserByUsername(m.username);
     if(u==nullptr){
+        int id=users.size();
         u=new User();
         u->setup();
         u->setUserName(m.username);
-        int id=users.size();
         u->setUserId(id);
+
         cout<<"new user "<<u->getUserName()<<" id "<<id<<endl;
         isUserNew=true;
         
@@ -1214,10 +1140,12 @@ void SceneManager::addMovingWord(Word *_w){
     ofVec3f t;
     if(r>0.5){
       //  t=ofVec3f(viewportwidth+(2*viewportwidth/3),ofGetHeight()/2,0);
-        t=ofVec3f(2*viewportwidth-300,ofGetHeight()/2,0);
+       // t=ofVec3f(2*viewportwidth-300,ofGetHeight()/2,0);
+        t=clusterpointright.position;
 
     }else{
-        t=ofVec3f(-viewportwidth+300,ofGetHeight()/2,0);
+       // t=ofVec3f(-viewportwidth+300,ofGetHeight()/2,0);
+        t=clusterpointleft.position;
         
         
     }
@@ -1228,8 +1156,8 @@ void SceneManager::addMovingWord(Word *_w){
       //mw->setLifeSpan(1000);
 
     
-    /*
-    if(movingWordPositions.size()>0){
+    
+  /*  if(movingWordPositions.size()>0){
         int i=int(ofRandom(movingWordPositions.size()));
         mw->setTarget(movingWordPositions[i]);
         movingWordPositions.erase(movingWordPositions.begin()+i);
@@ -1473,7 +1401,42 @@ User * SceneManager::getUserWithMostLetters(){
         }
        
     }
+    return u;
+}
 
+
+User * SceneManager::getUserWithMostWordsInBuffer(){
+    
+    //reset wordcount
+    for (int i=0;i<users.size();i++){
+        users[i]->setNumWordsInBuffer(0);
+    }
+    
+    
+    for(int i=0;i<priorityMessageBuffer.size();i++){
+        User *u =getUserByUsername(priorityMessageBuffer[i].username);
+        if(u!=nullptr)u->addNumWordsInBuffer(priorityMessageBuffer[i].wordcount);
+    }
+    
+    
+    for(int i=0;i<messageBuffer.size();i++){
+        User *u =getUserByUsername(messageBuffer[i].username);
+        u->addNumWordsInBuffer(messageBuffer[i].wordcount);
+    }
+    
+    
+    int num=0;
+    User * u =nullptr;
+    for (int i=0;i<users.size();i++){
+        int n=users[i]->getNumWordsInBuffer();
+        // cout<<n<<endl;
+        if(n>num){
+            u=users[i];
+            num=n;
+        }
+        
+    }
+    //cout<<"user "<<u->getUserId()<<"has "<<num<<" words"<<endl;
     return u;
 }
 

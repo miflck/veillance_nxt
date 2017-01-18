@@ -58,6 +58,14 @@ public:
     int getUserId();
     int getNumWords();
     int getNumLetters();
+    
+    
+    int getNumWordsInBuffer();
+    void setNumWordsInBuffer(int _num);
+    void addNumWordsInBuffer(int _num);
+
+
+
 
     void setBRemove(bool _r);
     bool getBRemove();
@@ -101,7 +109,7 @@ private:
     ofColor backgroundColor;
 
 
-
+    int numWordsInBuffer;
 
 };
 

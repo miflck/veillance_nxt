@@ -110,6 +110,9 @@ public:
     int getUserIndexByUsername(string _name);
     User * getUserWithMostLetters();
     
+    User * getUserWithMostWordsInBuffer();
+
+    
     
     //FRAGMENTS WORDS LETTERs
     vector<Fragment *> fragments;
@@ -137,9 +140,7 @@ public:
 
     
     // BACKGROUNDS
-    ofFbo backgroundFbo; //FBO for screen One. To do the backgroundcolors
-    ofFbo secondScreenbackgroundFbo; // FBO for screen two. Holds the freezed Moving Words and fades out
-    
+    ofFbo backgroundFBO; //FBO for all screens
     
     ofFbo backgroundFBO0; // FBO for screen two. Holds the freezed Moving Words and fades out
     ofFbo backgroundFBO1; // FBO for screen two. Holds the freezed Moving Words and fades out
@@ -198,7 +199,7 @@ public:
     bool debug=false;
     void setDebug(bool debug);
     int drawMode=2;
-    bool bSoundStuff=true;
+    bool bSoundStuff=false;
     vector<float>speeds;
 
     
@@ -229,15 +230,24 @@ public:
 
     int totalWordsInBuffer=0;
     
-    int maxWordsInBuffer=10000;
+    //int maxWordsInBuffer=10000;
 
     
     void drawTrails(bool _b);
     void toggleDrawTrails();
     
+    float sinTheta=0;
+    
+    
+    bool bGetMostUser=false;
+    
     
 private:
     
+    
+    clusterpoint clusterpointleft;
+    clusterpoint clusterpointright;
+
     int numEntrypoints;
     int numLines;
     int managerheight;
@@ -252,7 +262,7 @@ private:
     int explodestopcounter=0;
     bool bShouldReset=0;
     
-    bool bDrawTrails=false;
+    bool bDrawTrails=true;
     
 
 };

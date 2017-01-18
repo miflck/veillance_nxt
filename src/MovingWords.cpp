@@ -218,7 +218,8 @@ void MovingWords::stopMoving(){
     startLifeTimer();
     bIsMoving=false;
     //bIsRotating=false;
-    STM->movingWordPositions.push_back(getDockPoint());
+   // STM->movingWordPositions.push_back(getDockPoint());
+    STM->sinTheta+=0.005;
 }
 
 
@@ -376,50 +377,7 @@ void MovingWords::stopLifeTimer(){
     userPointer->unregisterMovingWord(this);
     bIsLifetimeRunning=false;
     bIsAlive=false;
-   /* STM->secondScreenbackgroundFbo.begin();
-    ofSetColor(255,0,0);
-    ofDrawRectangle(0,0,100,100);
-    ofPushMatrix();
-    ofTranslate(-1900,0);
-    STM->cam[2].begin();
-    font->getFontTexture().bind();
-    getUpdatedVboMesh().draw();
-    font->getFontTexture().unbind();
-    STM->cam[2].end();
-    ofPopMatrix();
-    STM->secondScreenbackgroundFbo.end();
-    */
-    
-    
-    STM->secondScreenbackgroundFbo.begin();
-     ofSetColor(myColor,255);
 
-    STM->cam[0].begin();
-    
-    
-    ofSetColor(myColor,255);
-   // ofEnableBlendMode(OF_BLENDMODE_ADD);
-    ofPushMatrix();
-    ofTranslate(-2*viewportwidth,0);
-    font->getFontTexture().bind();
-    getUpdatedVboMesh().draw();
-    font->getFontTexture().unbind();
-    ofPopMatrix();
-    STM->cam[0].end();
-    STM->secondScreenbackgroundFbo.end();
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
     
     
     
