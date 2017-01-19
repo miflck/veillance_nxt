@@ -96,7 +96,8 @@ void ofApp::update(){
 //--------------------------------------------------------------
 void ofApp::draw(){
     ofSetColor(255);
-    STM->draw();
+    if(!bDraw){
+        STM->draw();}
    SoundM->draw();
     if(bDebug)	{
     ofDisableBlendMode();
@@ -247,9 +248,15 @@ void ofApp::keyReleased(int key){
     if(key=='D'){
         // bDraw=!bDraw;
         bDraw=!bDraw;
-         STM->setDebug(bDraw);
+        // STM->setDebug(bDraw);
     }
     
+    
+    if(key=='l'){
+        // bDraw=!bDraw;
+        //bDraw=!bDraw;
+         STM->debug=!STM->debug;
+    }
     
     if(key=='e'){
         STM->explode();

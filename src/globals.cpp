@@ -15,7 +15,7 @@ int entrypoints =  5;
 int linesPerPoint = 7;
 
 int CCwidth=15;
-int CCheight=20;
+int CCheight=22;
 int bigfontsize=60;
 
 ofParameter<int> fadetime;

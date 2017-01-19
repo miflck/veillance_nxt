@@ -253,15 +253,11 @@ void CarousselStackManager::addDataFromBuffer(){
 void CarousselStackManager::addMessage(message _m){
     mymessage=_m;
     mymessage.text.erase( std::remove(mymessage.text.begin(), mymessage.text.end(), '\r'), mymessage.text.end() );
-    mymessage.text=ofToUpper(mymessage.text);
     
     std::string utf8_6_toUpper = ofx::UTF8::toUpper(mymessage.text);
-
-    
-    cout<<mymessage.text<<" "<<utf8_6_toUpper<<endl;
+    // cout<<mymessage.text<<" "<<utf8_6_toUpper<<endl;
     messagestring.clear();
-
-    messagestring = ofSplitString(mymessage.text , " ");
+   // messagestring = ofSplitString(mymessage.text , " ");
     messagestring = ofSplitString(utf8_6_toUpper, " ");
 
     addDataFromBuffer();

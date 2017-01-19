@@ -45,6 +45,8 @@ void Letter::update(){
     
     //check what to do
     //if(bRemove && !bWasRemove){
+    letterMesh = font->getStringMesh(myString, 0, 0);
+
     
     if(bRemove)bWasRemove=bRemove;
     
@@ -234,24 +236,19 @@ ofVboMesh Letter::getUpdatedVboMesh(){
     // node.roll(ofDegToRad(angle));
     vbom.clear();
     if(bIsOnScreen &! bRemove){//check if is on screen
-        letterMesh = font->getStringMesh(myString, 0, 0);
-       // letterMesh = font->getStringMesh("…", 0, 0);
-
         vector<ofVec3f>& verts = letterMesh.getVertices();
         for(int j=0; j <  verts.size() ; j++){
             letterMesh.setVertex(j,verts[j]*node.getGlobalTransformMatrix());
             if(bIsDrawn){
                 letterMesh.addColor(myWordPointer->getColor());
+
             }else{
                 letterMesh.addColor(ofColor(255,0));
                 }
-            //  letterMesh.addColor(255);
-            
         }
         vbom.append(letterMesh);
     }
     return vbom;
-    
 }
 
 ofColor Letter::getColor(){

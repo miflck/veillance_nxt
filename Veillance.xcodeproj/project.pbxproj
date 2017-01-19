@@ -412,6 +412,7 @@
 		FA462E611E30238E009F3D43 /* README.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = "<group>"; };
 		FA462E631E30238E009F3D43 /* ofxTrueTypeFontUC.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = ofxTrueTypeFontUC.cpp; sourceTree = "<group>"; };
 		FA462E641E30238E009F3D43 /* ofxTrueTypeFontUC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ofxTrueTypeFontUC.h; sourceTree = "<group>"; };
+		FA462E6A1E315337009F3D43 /* settings.xml */ = {isa = PBXFileReference; lastKnownFileType = text.xml; name = settings.xml; path = bin/data/settings.xml; sourceTree = SOURCE_ROOT; };
 		FB5AEBCD574AD1AC8CEB20EB /* Noise.h */ = {isa = PBXFileReference; explicitFileType = sourcecode.c.h; fileEncoding = 30; name = Noise.h; path = ../../../addons/ofxTonic/src/Tonic/Noise.h; sourceTree = SOURCE_ROOT; };
 		FC08F5C0B381C6EE1CD9B9AF /* Unicode.cpp */ = {isa = PBXFileReference; explicitFileType = sourcecode.cpp.cpp; fileEncoding = 30; name = Unicode.cpp; path = ../../../addons/ofxUnicode/libs/ofxUnicode/src/Unicode.cpp; sourceTree = SOURCE_ROOT; };
 		FC5DA1C87211D4F6377DA719 /* tinyxmlparser.cpp */ = {isa = PBXFileReference; explicitFileType = sourcecode.cpp.cpp; fileEncoding = 30; name = tinyxmlparser.cpp; path = ../../../addons/ofxXmlSettings/libs/tinyxmlparser.cpp; sourceTree = SOURCE_ROOT; };
@@ -992,6 +993,7 @@
 				5284ABE77B72837B4FF826B8 /* VerticalCarousselContainer.hpp */,
 				ADCAEBB25647DC2282922649 /* Word.cpp */,
 				F11BA8009F1346D2F4A449FD /* Word.h */,
+				FA462E6A1E315337009F3D43 /* settings.xml */,
 			);
 			path = src;
 			sourceTree = SOURCE_ROOT;
