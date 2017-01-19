@@ -27,6 +27,8 @@ extern int bigfontsize;
 // User
 extern bool bSimUser;
 
+extern int maxForegroundSound;
+
 
 
 //Background

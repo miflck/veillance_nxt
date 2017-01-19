@@ -89,15 +89,18 @@ void ofApp::setup(){
 void ofApp::update(){
     IOmanager.update();
     STM->update();
-  SoundM->update();
+    if(!muteSound){
+        SoundM->update();
+    }
     
 }
 
 //--------------------------------------------------------------
 void ofApp::draw(){
     ofSetColor(255);
-    if(!bDraw){
-        STM->draw();}
+    if(bDraw){
+        STM->draw();
+    }
    SoundM->draw();
     if(bDebug)	{
     ofDisableBlendMode();
@@ -223,8 +226,8 @@ void ofApp::keyReleased(int key){
     
     
     if(key=='m'){
-        STM->bSoundStuff=!STM->bSoundStuff;
-        
+        //STM->bSoundStuff=!STM->bSoundStuff;
+        muteSound=!muteSound;
     }
 
     

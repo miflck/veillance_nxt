@@ -33,3 +33,5 @@ ofParameter<int> clusterFadeAlpha;
 
 ofParameter<int> maxWordsInBuffer;
  ofParameter<float> speedfactor;
+
+int maxForegroundSound=10;

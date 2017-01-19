@@ -512,7 +512,9 @@ User * MovingWords::getUserPointer(){
 
 
 void MovingWords::addSound(){
-  //  foregroundSound = SoundM->addForegroundSound(numsyllables,vouwels,ofVec3f(0,0,100));
+    if(SoundM->foregrounds.size()<maxForegroundSound){
+        foregroundSound = SoundM->addForegroundSound(numsyllables,vouwels,ofVec3f(0,0,0));
+    }
 //STM->addForegroundSound
 
 }

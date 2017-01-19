@@ -79,10 +79,15 @@ void User::unregisterLetter(Letter *_l){
 void User::unregisterWord(Word *_w){
     auto it = std::find(myWords.begin(), myWords.end(), _w);
     if (it != myWords.end()) { myWords.erase(it); }
+
     
+    if(backgroundSound!=nullptr){
+        backgroundSound->setNumWords(myWords.size());
+    }
     
     if(myWords.size()==0){
       //  setBRemove(true);
+        
     }
     
     /// myLetters.push_back(_l);
@@ -92,7 +97,8 @@ void User::unregisterWord(Word *_w){
 void User::registerWord(Word *_w){
     myWords.push_back(_w);
     if(backgroundSound!=nullptr){
-        backgroundSound->setNumWords(myWords.size());}
+        backgroundSound->setNumWords(myWords.size());
+    }
 }
 
 
@@ -148,7 +154,7 @@ void User::unregisterMovingWord(MovingWords *_w){
 
 void User::registerMovingWord(MovingWords *_w){
     myMovingWords.push_back(_w);
-    if(STM->bSoundStuff)checkSoundHack();
+    //if(STM->bSoundStuff)checkSoundHack();
 }
 
 

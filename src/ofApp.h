@@ -49,7 +49,7 @@ class ofApp : public ofBaseApp{
     bool bUpdate=true;
     bool bDraw=true;
     bool bDebug=false;
-    
+    bool muteSound=false;
     
     
     bool bHide=true;

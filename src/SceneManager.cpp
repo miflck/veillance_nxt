@@ -1234,7 +1234,7 @@ void SceneManager::addMovingWord(Word *_w){
     
     mw->setTarget(t);
     mw->myColor=ofColor(_w->getBackgroundColor(),200);
-    mw->setLifeSpan(ofRandom(15000,50000));
+    mw->setLifeSpan(ofRandom(3000,10000));
     //mw->setLifeSpan(1000);
     
     

@@ -146,7 +146,7 @@ void ForegroundSound::update(){
     if (position.z >= maxZ)bRemove=true;
     
     scaledXpos=ofMap(position.x,minX,maxX,0,1,true);
-    cout<<scaledXpos<<endl;
+    //cout<<scaledXpos<<endl;
     if (position.x >= maxX || position.x <=minX)bRemove=true;
     
     //synth.setParameter("volume", scaledZpos);
