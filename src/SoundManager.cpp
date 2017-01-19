@@ -65,6 +65,12 @@ for (int i=0;i<foregrounds.size();i++){
         
         
     }
+    
+    for (int i=0;i<backgrounds.size();i++){
+        backgrounds[i]->update();
+        
+        
+    }
 
     
     
@@ -162,6 +168,23 @@ ForegroundSound* SoundManager::addForegroundSound(int _numSyllables,string _vowe
     cout<<"Number of foreground sounds: "<<foregrounds.size()<<endl;
     return fg;
 }
+
+
+
+Background* SoundManager::addBackgroundSound(){
+    
+    if(backgrounds.size()<4){
+    Background *bg = new Background();
+    bg->setup(backgrounds.size());
+    mixer.addInputFrom(bg);
+    backgrounds.push_back(bg);
+        cout<<"Number of background sounds: "<<backgrounds.size()<<endl;
+        return bg;
+
+    }else return nullptr;
+}
+
+
 
 void SoundManager::deleteAllDeletedSounds(){
     if(removedforegrounds.size()>0){

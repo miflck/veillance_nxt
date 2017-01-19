@@ -1613,8 +1613,6 @@ void SceneManager::reset(){
     initializeCaroussel();
     
     cout<<"num stack manager after"<<csm.size()<<endl;
-    
-    
     cout<<"USers "<<users.size()<<endl;
     
     
@@ -1628,17 +1626,9 @@ void SceneManager::registerStackManagerReady(CarousselStackManager *_s){
 }
 
 void SceneManager::unregisterLetter(Letter *l){
-    
-    //  cout<<"unregister in SceneManager "<<l <<endl;
-    /*for(int i=0;i<csm.size();i++){
-     csm[i]->unregisterLetter(l);
-     }*/
     l->myWordPointer->unregisterLetter(l);
     l->myFragmentPointer->unregisterLetter(l);
     l->myUserPointer->unregisterLetter(l);
-    
-    
-    
 }
 
 

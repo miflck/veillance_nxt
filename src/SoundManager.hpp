@@ -57,6 +57,14 @@ public:
     vector< ForegroundSound * > foregrounds;
     vector< ForegroundSound * > removedforegrounds;
 
+    
+    
+    Background * addBackgroundSound();
+
+    vector< Background * > backgrounds;
+
+    
+    
     //Reverb
     float 	volume;
     ofxReverb	reverb;

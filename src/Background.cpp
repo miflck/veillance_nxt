@@ -9,10 +9,8 @@
 
 #include "Background.h"
 
-ControlTrigger triggeroo;
 int seqlength = 0;
 float bgvol;
-int speed = 6;
 
 // with x and userbgbeat something is not right. you reset x if its bigger than sequence, but sequence is equal wordcount. so if wordcount is bigger than 64 you get an error accessing userbgbeat[x]
 int x = 0;
@@ -28,10 +26,43 @@ void Background::setSampleRate(int rate){
 
 
 
-void Background::setup(){
+void Background::setup(int _id){
+    myId=_id;
+     speed = int(ofRandom(5,9));
+    stretchBg=int(ofRandom(0,4));
+
     volume	= 0.79f;
 
     
+    
+    switch (myId) {
+        case 0:
+            speed = 6;
+            stretchBg=2;
+            break;
+        case 1:
+            speed = 7;
+            stretchBg=1;
+            break;
+            
+        case 2:
+            speed = 5;
+            stretchBg=4;
+            break;
+        case 3:
+            speed = 5;
+            stretchBg=2;
+            break;
+            
+        default:
+            speed = int(ofRandom(5,9));
+            stretchBg=int(ofRandom(0,4));
+            break;
+    }
+    
+    
+    cout<<"ID "<<myId<<" Speed "<<speed<< " stretch "<<stretchBg<<endl;;
+
     
     for(int p = 0; p < 64; p ++){                   // Populates the background note arrays
         userbgbeat[p] = int(ofRandom(8));
@@ -85,12 +116,12 @@ void Background::update(){
     }
     
     synth.setParameter("panning", 0);               // panning and volume - currently static
-    synth.setParameter("volume", 0.8);
+    synth.setParameter("volume", 0.3);
     
     
     if(ofGetFrameNum() % speed == 0)                //  sequencer section timed from frame count
     {
-        synth.setParameter("userbg", userbgnotes[userbgbeat[x]] * 2);
+        synth.setParameter("userbg", userbgnotes[userbgbeat[x]]*stretchBg);
         triggeroo.trigger();
         x ++;                                      //scrolls through the beat number/position within the note array thenresets
         //if(x >= seqlength){ //-> i dont know whats up here, but x cant get bigger than 64 because of userbgbeat[x]
@@ -98,13 +129,15 @@ void Background::update(){
             x = 0;
         }
     }
-
+    
     
 }
 
 
 void Background::setNumWords(int _num){
     wordcount=_num;
+    if(wordcount>100)wordcount=100;
+
 }
 
 int Background::getNumWords(){

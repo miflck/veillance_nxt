@@ -23,11 +23,11 @@ void User::setup(){
     
    // backgroundColor=ofColor(ofRandom(50,255),ofRandom(50,255),ofRandom(50,255));
     backgroundColor.setHsb(ofRandom(0,255),255,255);
-    
     myColor=ofColor(0,0,255);
     myInitColor=ofColor(0,0,255);
-    
     targetColor=ofColor(0,0,255);
+    
+    backgroundSound=SoundM->addBackgroundSound();
 
 
 }
@@ -91,6 +91,8 @@ void User::unregisterWord(Word *_w){
 
 void User::registerWord(Word *_w){
     myWords.push_back(_w);
+    if(backgroundSound!=nullptr){
+        backgroundSound->setNumWords(myWords.size());}
 }
 
 

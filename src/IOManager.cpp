@@ -58,7 +58,7 @@ void IOManager::onIdle( ofxLibwebsockets::Event& args ){
 
 //--------------------------------------------------------------
 void IOManager::onMessage( ofxLibwebsockets::Event& args ){
-    cout<<"message "<<args.json<<endl;
+    //cout<<"message "<<args.json<<endl;
     if(!pause){
         
         
@@ -68,7 +68,7 @@ void IOManager::onMessage( ofxLibwebsockets::Event& args ){
         if ( !args.json.isNull() ){
             
             if(args.json["Type"]=="HTTP"){
-                cout<<"mcounter "<<messagecounter<<endl;
+               // cout<<"mcounter "<<messagecounter<<endl;
                 string username=args.json["Name"].asString();
                
                 if(messagecounter>7){
@@ -79,6 +79,7 @@ void IOManager::onMessage( ofxLibwebsockets::Event& args ){
                 
                 string s=args.json["Text"].asString();
                 int maxLength=500;
+                
                 // DEBUG? SPLIT MESSAGE IN TO SEVERAL
                 for (unsigned i = 0; i < s.length(); i += maxLength) {
                     message m;

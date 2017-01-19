@@ -18,6 +18,10 @@ int CCwidth=15;
 int CCheight=22;
 int bigfontsize=60;
 
+
+ bool bSimUser=true;
+
+
 ofParameter<int> fadetime;
 ofParameter<int> fadeAlpha;
 ofParameter<int> fboAlpha;

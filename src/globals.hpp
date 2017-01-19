@@ -24,6 +24,10 @@ extern int   CCwidth;
 extern int CCheight;
 extern int bigfontsize;
 
+// User
+extern bool bSimUser;
+
+
 
 //Background
 extern ofParameter<int> fadetime;

@@ -27,7 +27,7 @@ public:
     int	sampleRate;
     float volume;
     
-    void setup();
+    void setup(int _id);
     void update();
     void setNumWords(int _num);
     int getNumWords();
@@ -40,11 +40,17 @@ public:
     
 
 
+    int speed;
 
-
+    ControlTrigger triggeroo;
 private:
     //params
     int wordcount;
+    int myId;
+    
+    int stretchBg;
+    
+    bool shouldPlay=false;
 };
 
 #endif /* defined(__example_Basic__MySynth__) */

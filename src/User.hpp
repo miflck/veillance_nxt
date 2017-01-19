@@ -11,6 +11,7 @@
 
 #include <stdio.h>
 #include "ofMain.h"
+#include "Background.h"
 
 class Letter;
 class Word;
@@ -88,6 +89,9 @@ public:
     
     void reset();
     
+    
+    
+    Background * backgroundSound;
 
 private:
     

@@ -951,48 +951,23 @@
 		E4B69E1C0A3A1BDC003C02F2 /* src */ = {
 			isa = PBXGroup;
 			children = (
+				FA462E6C1E3156E9009F3D43 /* Caroussel */,
+				FA462E6B1E3156C6009F3D43 /* Sound */,
 				E4B69E1D0A3A1BDC003C02F2 /* main.cpp */,
 				E4B69E1E0A3A1BDC003C02F2 /* ofApp.cpp */,
+				FA462E6D1E31571C009F3D43 /* Structure */,
 				E4B69E1F0A3A1BDC003C02F2 /* ofApp.h */,
-				78B4DD4C24FC54C8C74248AC /* Background.cpp */,
-				924AF3FA453349835ECBE466 /* Background.h */,
-				7A713BE5573BB5E0030AF5DA /* CarousselContainer.cpp */,
-				4E9A46046F16EA39C2893568 /* CarousselContainer.hpp */,
-				E3C19F78D15CA0EF3F50659E /* CarousselEvent.cpp */,
-				E2318BC197437E2688871D33 /* CarousselEvent.hpp */,
-				4F92779076A6D955949EE075 /* CarousselLineManager.cpp */,
-				3B6F6F04BAD90E7E7D96549F /* CarousselLineManager.hpp */,
-				24BD6F2270677F40542F6AF5 /* CarousselStackManager.cpp */,
-				9BB67CC9BC0E3628322BA7A2 /* CarousselStackManager.hpp */,
-				49B43B70941D1D3732FF8D4B /* ForegroundSound.cpp */,
-				AAB1C9B995D41052084A8195 /* ForegroundSound.hpp */,
-				9C8915CDA201FD63BA747BD0 /* Fragment.cpp */,
-				3FB19E8EFF8E89957581C6CF /* Fragment.hpp */,
 				E24D9D7607931EE882C50190 /* globals.cpp */,
 				8861CBE772437A8AA6559BDE /* globals.hpp */,
 				D15E442DA7D78DB7BEDDF331 /* helpers.hpp */,
 				CB12D2602935492A04A59107 /* IOManager.cpp */,
 				94BE744954B55BD36ADC6C99 /* IOManager.hpp */,
-				7F8CB16CFDCB5893AB42EC5D /* Letter.cpp */,
-				AE4172C4257B7BF71760139A /* Letter.hpp */,
-				D4BF1FFE18E83CA14EBA3B41 /* LetterEvent.cpp */,
-				80C32A10A3EC8FA716033889 /* LetterEvent.hpp */,
 				5489F82C437EA9599501023A /* MovingWords.cpp */,
 				2C50F14C0E9F19764F11A1D0 /* MovingWords.hpp */,
 				D17E4D7076B6AC99E0AADDA7 /* OrthoCamera.cpp */,
 				349BD507FC72A7257D9B0A35 /* OrthoCamera.h */,
 				22EDA5A62C642C37311C4384 /* SceneManager.cpp */,
 				6FFD838699537542FFEF8CCC /* SceneManager.hpp */,
-				331CDCD4426D65097CFD44C1 /* SoundManager.cpp */,
-				BEF84527D955124E75EAA231 /* SoundManager.hpp */,
-				3F936587F2B56A06D14FEF13 /* User.cpp */,
-				8A73ACD4A7512BA21ADCC36B /* User.hpp */,
-				A636E663A77A7C52C41597F5 /* VerticalCaroussel.cpp */,
-				DA1EEFBFEF9EAC1329EA5F36 /* VerticalCaroussel.hpp */,
-				DE4A802B93801FF2C199FEF0 /* VerticalCarousselContainer.cpp */,
-				5284ABE77B72837B4FF826B8 /* VerticalCarousselContainer.hpp */,
-				ADCAEBB25647DC2282922649 /* Word.cpp */,
-				F11BA8009F1346D2F4A449FD /* Word.h */,
 				FA462E6A1E315337009F3D43 /* settings.xml */,
 			);
 			path = src;
@@ -1072,6 +1047,55 @@
 				FA462E641E30238E009F3D43 /* ofxTrueTypeFontUC.h */,
 			);
 			path = src;
+			sourceTree = "<group>";
+		};
+		FA462E6B1E3156C6009F3D43 /* Sound */ = {
+			isa = PBXGroup;
+			children = (
+				78B4DD4C24FC54C8C74248AC /* Background.cpp */,
+				924AF3FA453349835ECBE466 /* Background.h */,
+				49B43B70941D1D3732FF8D4B /* ForegroundSound.cpp */,
+				AAB1C9B995D41052084A8195 /* ForegroundSound.hpp */,
+				331CDCD4426D65097CFD44C1 /* SoundManager.cpp */,
+				BEF84527D955124E75EAA231 /* SoundManager.hpp */,
+			);
+			name = Sound;
+			sourceTree = "<group>";
+		};
+		FA462E6C1E3156E9009F3D43 /* Caroussel */ = {
+			isa = PBXGroup;
+			children = (
+				7A713BE5573BB5E0030AF5DA /* CarousselContainer.cpp */,
+				4E9A46046F16EA39C2893568 /* CarousselContainer.hpp */,
+				E3C19F78D15CA0EF3F50659E /* CarousselEvent.cpp */,
+				E2318BC197437E2688871D33 /* CarousselEvent.hpp */,
+				4F92779076A6D955949EE075 /* CarousselLineManager.cpp */,
+				3B6F6F04BAD90E7E7D96549F /* CarousselLineManager.hpp */,
+				24BD6F2270677F40542F6AF5 /* CarousselStackManager.cpp */,
+				9BB67CC9BC0E3628322BA7A2 /* CarousselStackManager.hpp */,
+				A636E663A77A7C52C41597F5 /* VerticalCaroussel.cpp */,
+				DA1EEFBFEF9EAC1329EA5F36 /* VerticalCaroussel.hpp */,
+				DE4A802B93801FF2C199FEF0 /* VerticalCarousselContainer.cpp */,
+				5284ABE77B72837B4FF826B8 /* VerticalCarousselContainer.hpp */,
+			);
+			name = Caroussel;
+			sourceTree = "<group>";
+		};
+		FA462E6D1E31571C009F3D43 /* Structure */ = {
+			isa = PBXGroup;
+			children = (
+				9C8915CDA201FD63BA747BD0 /* Fragment.cpp */,
+				3FB19E8EFF8E89957581C6CF /* Fragment.hpp */,
+				7F8CB16CFDCB5893AB42EC5D /* Letter.cpp */,
+				AE4172C4257B7BF71760139A /* Letter.hpp */,
+				D4BF1FFE18E83CA14EBA3B41 /* LetterEvent.cpp */,
+				80C32A10A3EC8FA716033889 /* LetterEvent.hpp */,
+				3F936587F2B56A06D14FEF13 /* User.cpp */,
+				8A73ACD4A7512BA21ADCC36B /* User.hpp */,
+				ADCAEBB25647DC2282922649 /* Word.cpp */,
+				F11BA8009F1346D2F4A449FD /* Word.h */,
+			);
+			name = Structure;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
