@@ -46,6 +46,8 @@ public:
     void setTimingSubDiv(int _timeSubDiv);
     
     bool getBRemove();
+    void setBRemove();
+
 
     void setMaxZ(int _maxZ);
     

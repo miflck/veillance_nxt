@@ -143,11 +143,11 @@ void ForegroundSound::update(){
     scaledZpos=ofMap(position.z,0,maxZ,0,1,true);
     
     
-    if (position.z >= maxZ)bRemove=true;
+   // if (position.z >= maxZ)bRemove=true;
     
     scaledXpos=ofMap(position.x,minX,maxX,0,1,true);
     //cout<<scaledXpos<<endl;
-    if (position.x >= maxX || position.x <=minX)bRemove=true;
+   // if (position.x >= maxX || position.x <=minX)bRemove=true;
     
     //synth.setParameter("volume", scaledZpos);
     synth.setParameter("volume", 1);                                    //  Sound setup parameters
@@ -229,6 +229,10 @@ void ForegroundSound::audioRequested (float * output, int bufferSize, int nChann
 
 bool ForegroundSound::getBRemove(){
     return bRemove;
+}
+
+void ForegroundSound::setBRemove(){
+     bRemove=true;
 }
 
 void ForegroundSound::setMaxZ(int _maxZ){

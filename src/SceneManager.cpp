@@ -762,11 +762,11 @@ void SceneManager::draw(){
      }*/
     
     
-    if(bIsExploding){
+    /*if(bIsExploding){
         font.getFontTexture().bind();
         letterMesh.draw();
         font.getFontTexture().unbind();
-    }
+    }*/
     
     
     bigfont.getFontTexture().bind();
@@ -1524,6 +1524,8 @@ User * SceneManager::getUserWithMostWordsInBuffer(){
 
 
 void SceneManager::explode(){
+    
+    SoundM->explode();
     bIsExploding=true;
     // UPDATE CAROUSSEL
     /*  for(int i=0;i<cms.size();i++){
@@ -1614,6 +1616,9 @@ void SceneManager::reset(){
     
     cout<<"num stack manager after"<<csm.size()<<endl;
     cout<<"USers "<<users.size()<<endl;
+    
+    SoundM->explode();
+
     
     
 }

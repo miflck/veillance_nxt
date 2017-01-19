@@ -76,6 +76,9 @@ public:
     
     void deleteAllDeletedSounds();
 
+    
+    void explode();
+    
 private:
     
     SoundManager();

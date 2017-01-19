@@ -43,7 +43,15 @@ public:
     int speed;
 
     ControlTrigger triggeroo;
+    
+    bool getBRemove();
+    void setBRemove();
+    
+    
 private:
+    
+    bool bRemove;
+
     //params
     int wordcount;
     int myId;

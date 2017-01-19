@@ -81,11 +81,8 @@ for (int i=0;i<foregrounds.size();i++){
             cout<<"remove! "<<foregrounds[i]<<endl;
             mixer.removeInputFrom(foregrounds[i]);
             //delete (foregrounds[i]);
-            
-            removedforegrounds.push_back(foregrounds[i]);
+            //removedforegrounds.push_back(foregrounds[i]);
             foregrounds.erase(foregrounds.begin()+i);
-
-            
         }
     }
 
@@ -96,6 +93,18 @@ for (int i=0;i<foregrounds.size();i++){
           //  delete removedforegrounds[i]; // Calls ~object and deallocates *tmp[i]
         }
         //removedforegrounds.clear();
+    }
+    
+    
+    
+    for (int i=backgrounds.size()-1;i>=0;i--){
+        if(backgrounds[i]->getBRemove()){
+            cout<<"remove! "<<backgrounds[i]<<endl;
+            mixer.removeInputFrom(backgrounds[i]);
+            //delete (backgrounds[i]);
+            //removedforegrounds.push_back(foregrounds[i]);
+            backgrounds.erase(backgrounds.begin()+i);
+        }
     }
 
 
@@ -193,6 +202,19 @@ void SoundManager::deleteAllDeletedSounds(){
         }
     removedforegrounds.clear();
     }
+
+}
+
+
+void SoundManager::explode(){
+    for (int i=0;i<foregrounds.size();i++){
+        foregrounds[i]->setBRemove();
+    }
+    
+    for (int i=0;i<backgrounds.size();i++){
+        backgrounds[i]->setBRemove();
+    }
+
 
 }
 

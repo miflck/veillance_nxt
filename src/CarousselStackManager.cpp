@@ -146,6 +146,12 @@ void CarousselStackManager::carousselEvent(CarousselEvent &e){
     
     if(e.message=="STOP" && bIsExploding){
         startCountdown();
+        if(e.lineId>0 ){
+            Letter *l=cms[e.lineId]->getLastElementPointer();
+            if(l!=nullptr){
+                cms[e.lineId-1]->addMovement(l);
+            }
+        }
      //cms[e.lineId]->explode();
     }
 

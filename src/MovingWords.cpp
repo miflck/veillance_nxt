@@ -220,6 +220,12 @@ void MovingWords::stopMoving(){
     //bIsRotating=false;
    // STM->movingWordPositions.push_back(getDockPoint());
     STM->sinTheta+=0.005;
+    
+    if(foregroundSound!=nullptr){
+
+    foregroundSound->setBRemove();
+        foregroundSound=nullptr;
+    }
 }
 
 

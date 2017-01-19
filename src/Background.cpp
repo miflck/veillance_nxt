@@ -150,5 +150,13 @@ void Background::audioRequested (float * output, int bufferSize, int nChannels){
 }
 
 
+bool Background::getBRemove(){
+    return bRemove;
+}
+
+void Background::setBRemove(){
+    bRemove=true;
+}
+
 
 
