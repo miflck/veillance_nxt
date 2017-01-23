@@ -197,8 +197,8 @@ void MovingWords::move(){
         velocity+=acc;
         p+=velocity;
         
-        if(d<1){
-            p.set(target);
+        if(d<4){
+            //p.set(target);
             stopMoving();
         }
         position.set(p);
@@ -219,9 +219,9 @@ void MovingWords::stopMoving(){
     bIsMoving=false;
     //bIsRotating=false;
    // STM->movingWordPositions.push_back(getDockPoint());
-    if(bIsLeft) {STM->leftTheta+=0.005;}else{
-    STM->rightTheta+=0.005;
-    }
+    //if(bIsLeft) {STM->leftTheta+=0.005;}else{
+    //STM->rightTheta+=0.005;
+   // }
     
     if(foregroundSound!=nullptr){
 
@@ -393,6 +393,8 @@ void MovingWords::stopLifeTimer(){
     STM->backgroundFBO1.begin();
     // ofSetColor(255,0,0);
     STM->cam[0].begin();
+    ofEnableBlendMode(OF_BLENDMODE_ADD);
+    ofEnableAlphaBlending();
     ofPushMatrix();
     ofTranslate(-2*viewportwidth,0);
     font->getFontTexture().bind();
@@ -406,6 +408,8 @@ void MovingWords::stopLifeTimer(){
     STM->backgroundFBO2.begin();
     // ofSetColor(255,0,0);
     STM->cam[0].begin();
+    ofEnableBlendMode(OF_BLENDMODE_ADD);
+    ofEnableAlphaBlending();
     ofPushMatrix();
     // ofTranslate(-3*viewportwidth,0);
     font->getFontTexture().bind();
@@ -419,6 +423,8 @@ void MovingWords::stopLifeTimer(){
     STM->backgroundFBO3.begin();
     // ofSetColor(255,0,0);
     STM->cam[0].begin();
+    ofEnableBlendMode(OF_BLENDMODE_ADD);
+    ofEnableAlphaBlending();
     ofPushMatrix();
     ofTranslate(viewportwidth,0);
     font->getFontTexture().bind();

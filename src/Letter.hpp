@@ -28,6 +28,8 @@ class Letter {
     
 public:
     Letter();
+    virtual ~Letter();
+
     void setup();
     void update();
     void draw();
@@ -108,12 +110,15 @@ private:
     
     
     ofNode node;
-    ofVboMesh letterMesh;
+    ofMesh letterMesh;
+    ofMesh originalletterMesh;
+
     float angle=0;
     
     ofVboMesh vbom;
-
     
+
+    ofColor myColor;
     
 };
 

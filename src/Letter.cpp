@@ -14,6 +14,11 @@
 #include "SceneManager.hpp"
 
 
+
+Letter::~Letter(){
+    
+}
+
 Letter::Letter(){
     data=NULL;
     bIsOnScreen=false;
@@ -22,15 +27,16 @@ Letter::Letter(){
     bRemove=false;
     bRemoveMe=false;
     bWasRemove=false;
+    myString="";
     
 }
 
 void Letter::setup(){
     position.set(ofRandom(100,500),ofRandom(100,500));
     static LetterEvent newEvent;
-    newEvent.message = "New Letter";
-    newEvent.letter     = this;
-    ofNotifyEvent(LetterEvent::events, newEvent);
+   // newEvent.message = "New Letter";
+   // newEvent.letter     = this;
+  //  ofNotifyEvent(LetterEvent::events, newEvent);
     ofRectangle textBounds = font->getStringBoundingBox("H", 0, 0);
     bIsOnScreen=false;
     node.clearParent();
@@ -38,14 +44,15 @@ void Letter::setup(){
     bRemove=false;
     bRemoveMe=false;
     bWasRemove=false;
-    
+  
 }
 
 void Letter::update(){
     
     //check what to do
     //if(bRemove && !bWasRemove){
-    letterMesh = font->getStringMesh(myString, 0, 0);
+    //letterMesh = font->getStringMesh(myString, 0, 0);
+
 
     
     if(bRemove)bWasRemove=bRemove;
@@ -66,10 +73,10 @@ void Letter::update(){
     }
 
     
-    if(bIsOnScreen){//check if is on screen
+   /* if(bIsOnScreen){//check if is on screen
         angle+=0.5;
         if(angle>360)angle=360;
-    }
+    }*/
 }
 
 void Letter::draw(){
@@ -102,7 +109,10 @@ void Letter::setData(string _data){
     
    // myString=ofToUpper(ofToString(data));
      myString=ofToString(_data);
-    letterMesh = font->getStringMesh(myString, 0, 0);
+    originalletterMesh = font->getStringMesh(myString, 0, 0);
+    
+    //vector<ofVec3f>& verts = originalletterMesh.getVertices();
+
 }
 
 void Letter::setWordId(int _id){
@@ -145,6 +155,7 @@ void Letter::setDebug(bool _debug){
 
 void Letter::setWordPointer(Word *_w){
     myWordPointer=_w;
+    myColor=myWordPointer->getColor();
 }
 
 
@@ -233,20 +244,53 @@ ofVec2f Letter::getVelocity(){
 
 ofVboMesh Letter::getUpdatedVboMesh(){
     
+    
+
+    
     // node.roll(ofDegToRad(angle));
     vbom.clear();
-    if(bIsOnScreen &! bRemove){//check if is on screen
-        vector<ofVec3f>& verts = letterMesh.getVertices();
-        for(int j=0; j <  verts.size() ; j++){
+   ofVboMesh myletterMesh = font->getStringMesh(myString, 0, 0);
+//    letterMesh.clear();
+
+//    vector<ofVec3f>& verts = myletterMesh.getVertices();
+    //cout<<"updated"<<verts.size()<<verts[0].x<<endl;
+    
+   if(bIsOnScreen &! bRemove){//check if is on screen
+       
+       
+       for(auto & vertex: myletterMesh.getVertices()){
+           vertex =vertex*node.getGlobalTransformMatrix();
+         // myletterMesh.addColor(myWordPointer->getColor());
+           if(bIsDrawn){
+               myletterMesh.addColor(myColor);
+               
+           }else{
+               myletterMesh.addColor(ofColor(255,0));
+           }
+
+    }
+      /* for(int j=0; j <  verts.size() ; j++){
+       if(bIsDrawn){
+           myletterMesh.addColor(myWordPointer->getColor());
+           
+       }else{
+           myletterMesh.addColor(ofColor(255,0));
+       }
+       }*/
+       
+       
+       /* for(int j=0; j <  verts.size() ; j++){
             letterMesh.setVertex(j,verts[j]*node.getGlobalTransformMatrix());
+           // letterMesh.addVertex(verts[j]+position);
+
             if(bIsDrawn){
                 letterMesh.addColor(myWordPointer->getColor());
 
             }else{
                 letterMesh.addColor(ofColor(255,0));
                 }
-        }
-        vbom.append(letterMesh);
+        }*/
+        vbom.append(myletterMesh);
     }
     return vbom;
 }

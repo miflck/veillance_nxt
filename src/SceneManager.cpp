@@ -251,7 +251,7 @@ void SceneManager::update(){
     if(totalWordsInBuffer>maxWordsInBuffer && !bIsExploding)STM->explode();
     
     
-    //vC.update();
+   // vC.update();
     
     if(bShouldReset==true)reset();
     
@@ -413,13 +413,7 @@ void SceneManager::update(){
     
     
     
-    
-    // getting the lettermesh
-    
-    letterMesh.clear();
-    for(auto letter:letters){
-        letterMesh.append(letter->getUpdatedVboMesh());
-    }
+
     
     
     
@@ -542,7 +536,7 @@ void SceneManager::checkRemove(){
 
 void SceneManager::draw(){
     
-    vC.draw();
+   // vC.draw();
     
     
     for(int i=0;i<csm.size();i++){
@@ -631,6 +625,12 @@ void SceneManager::draw(){
     
     
     
+    // getting the lettermesh
+    
+    letterMesh.clear();
+    for(auto letter:letters){
+        letterMesh.append(letter->getUpdatedVboMesh());
+    }
     
     ofPushMatrix();
     ofTranslate(1, 1);

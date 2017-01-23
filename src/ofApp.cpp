@@ -46,8 +46,8 @@ void ofApp::setup(){
     
     
     ofBackground(0);
-    ofSetVerticalSync(false);
-    ofSetFrameRate(60);
+    ofSetVerticalSync(true);
+   // ofSetFrameRate(60);
     
        
     ofxGuiSetDefaultWidth(500);
@@ -83,7 +83,7 @@ void ofApp::setup(){
     gui.add(speedfactor);
     
     
-    suggestionTrigger.set("suggsetiontrigger ",0.95,0.1,1);
+    suggestionTrigger.set("suggestionTrigger ",0.95,0.1,1);
     gui.add(suggestionTrigger);
     
     

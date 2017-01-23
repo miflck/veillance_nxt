@@ -6,8 +6,9 @@
 <fadetime>4</fadetime>
 	<fadealpha>3</fadealpha>
 	<FBO_Alpha>96</FBO_Alpha>
-	<clusterfadetime_>60</clusterfadetime_>
-	<clusterfadealpha_>4</clusterfadealpha_>
+	<clusterfadetime_>76</clusterfadetime_>
+	<clusterfadealpha_>2</clusterfadealpha_>
 <maxWordsInBuffer_>4585</maxWordsInBuffer_>
-<speedfactor_>1.1746</speedfactor_>
+<speedfactor_>0.896</speedfactor_>
+<suggestionTrigger_>0.95</suggestionTrigger_>
 </GUI>
