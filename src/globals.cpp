@@ -14,6 +14,9 @@ int viewportheight = 1080;
 int entrypoints =  5;
 int linesPerPoint = 7;
 
+ ofParameter<float> suggestionTrigger=0.95;
+
+
 int CCwidth=15;
 int CCheight=22;
 int bigfontsize=60;

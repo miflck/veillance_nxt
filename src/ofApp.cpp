@@ -46,7 +46,7 @@ void ofApp::setup(){
     
     
     ofBackground(0);
-    ofSetVerticalSync(true);
+    ofSetVerticalSync(false);
     ofSetFrameRate(60);
     
        
@@ -56,7 +56,7 @@ void ofApp::setup(){
     gui.setPosition(viewportwidth,0);
 
 
-    
+
     fadetime.set("fadetime",15,1,60);
     fadeAlpha.set("fadealpha",5,0,100);
     fboAlpha.set("FBO_Alpha",180,0,255);
@@ -66,7 +66,8 @@ void ofApp::setup(){
     gui.add(fboAlpha);
 
     
-    clusterFadetime.set("clusterfadetime ",15,1,60);
+
+    clusterFadetime.set("clusterfadetime ",15,1,100);
     clusterFadeAlpha.set("clusterfadealpha ",5,0,100);
     
     gui.add(clusterFadetime);
@@ -80,6 +81,12 @@ void ofApp::setup(){
     
     speedfactor.set("speedfactor ",1,0.1,20);
     gui.add(speedfactor);
+    
+    
+    suggestionTrigger.set("suggsetiontrigger ",0.95,0.1,1);
+    gui.add(suggestionTrigger);
+    
+    
     
     gui.loadFromFile("gui.xml");
 
@@ -101,6 +108,9 @@ void ofApp::draw(){
     if(bDraw){
         STM->draw();
     }
+    
+    
+    
    SoundM->draw();
     if(bDebug)	{
     ofDisableBlendMode();

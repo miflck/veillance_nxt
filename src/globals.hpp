@@ -19,6 +19,10 @@ extern int viewportheight;
 extern int entrypoints;
 extern int linesPerPoint;
 
+
+extern ofParameter<float> suggestionTrigger;
+
+
 //Typography
 extern int   CCwidth;
 extern int CCheight;

@@ -100,6 +100,9 @@ public:
     void addSound();
     
     
+    bool bIsLeft =false;
+    
+    
 private:
         
     User * userPointer;

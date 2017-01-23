@@ -240,8 +240,9 @@ public:
     void drawTrails(bool _b);
     void toggleDrawTrails();
     
-    float sinTheta=0;
-    
+    float leftTheta=0;
+    float rightTheta=0;
+
     
     bool bGetMostUser=true;
     

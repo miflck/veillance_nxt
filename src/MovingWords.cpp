@@ -219,7 +219,9 @@ void MovingWords::stopMoving(){
     bIsMoving=false;
     //bIsRotating=false;
    // STM->movingWordPositions.push_back(getDockPoint());
-    STM->sinTheta+=0.005;
+    if(bIsLeft) {STM->leftTheta+=0.005;}else{
+    STM->rightTheta+=0.005;
+    }
     
     if(foregroundSound!=nullptr){
 
@@ -519,7 +521,7 @@ User * MovingWords::getUserPointer(){
 
 void MovingWords::addSound(){
     if(SoundM->foregrounds.size()<maxForegroundSound){
-        foregroundSound = SoundM->addForegroundSound(numsyllables,vouwels,ofVec3f(0,0,0));
+      //  foregroundSound = SoundM->addForegroundSound(numsyllables,vouwels,ofVec3f(0,0,0));
     }
 //STM->addForegroundSound
 

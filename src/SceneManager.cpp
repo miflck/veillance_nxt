@@ -243,12 +243,15 @@ void SceneManager::update(){
     for(int i=0;i<messageBuffer.size();i++){
         wordsInMessageBuffer+=messageBuffer[i].wordcount;
     }
+    
+    
+    
     totalWordsInBuffer=stackmanagertotalbuffer+wordsInMessageBuffer;
     
     if(totalWordsInBuffer>maxWordsInBuffer && !bIsExploding)STM->explode();
     
     
-    vC.update();
+    //vC.update();
     
     if(bShouldReset==true)reset();
     
@@ -521,12 +524,15 @@ void SceneManager::checkRemove(){
     //sinTheta+=0.02;
     
     
-    float s=sin(sinTheta);
-    float s2=cos(sinTheta);
+    float s=sin(leftTheta);
+    float s2=sin(rightTheta);
     
     
     clusterpointleft.position.x-=s;
-    // clusterpointleft.position.y+=s2;
+
+    clusterpointright.position.x+=s2;
+
+    
     
     //  cout<<"sin "<<sinTheta<<clusterpointleft.position<<endl;
     
@@ -1010,7 +1016,7 @@ void SceneManager::addWordFromManager(CarousselStackManager *_s, message _m){
     w->setData(myword);
     
     float r=ofRandom(1);
-    if(r>0.95){
+    if(r>suggestionTrigger){
         w->setIsSuggestion(true);
     }
     
@@ -1225,10 +1231,13 @@ void SceneManager::addMovingWord(Word *_w){
         // t=ofVec3f(2*viewportwidth-300,ofGetHeight()/2,0);
         t=clusterpointright.position;
         
+        mw->bIsLeft=false;
+        
     }else{
         // t=ofVec3f(-viewportwidth+300,ofGetHeight()/2,0);
         t=clusterpointleft.position;
-        
+        mw->bIsLeft=true;
+
         
     }
     
