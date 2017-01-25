@@ -9,6 +9,6 @@
 	<clusterfadetime_>76</clusterfadetime_>
 	<clusterfadealpha_>2</clusterfadealpha_>
 <maxWordsInBuffer_>4585</maxWordsInBuffer_>
-<speedfactor_>0.896</speedfactor_>
-<suggestionTrigger_>0.95</suggestionTrigger_>
+<speedfactor_>20</speedfactor_>
+<suggestionTrigger_>1</suggestionTrigger_>
 </GUI>

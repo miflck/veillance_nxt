@@ -229,7 +229,8 @@ void SceneManager::initialize() {
     clusterpointleft.position.set(-viewportwidth+300,ofGetHeight()/2,-500);
     
     
-    
+    //letterMesh.setUsage(GL_DYNAMIC_DRAW);
+
     
 }
 
@@ -243,11 +244,7 @@ void SceneManager::update(){
     for(int i=0;i<messageBuffer.size();i++){
         wordsInMessageBuffer+=messageBuffer[i].wordcount;
     }
-    
-    
-    
     totalWordsInBuffer=stackmanagertotalbuffer+wordsInMessageBuffer;
-    
     if(totalWordsInBuffer>maxWordsInBuffer && !bIsExploding)STM->explode();
     
     
@@ -262,13 +259,9 @@ void SceneManager::update(){
             stackManagerBuffer.erase(stackManagerBuffer.begin());
             addMessageFromPriorityBuffer(sm);
         }else{
-            
             addMessageFromPriorityBuffer(getStackmanagerWithSmallestBuffer());
-            
         }
     }
-    
-    
     
     // check if a stackmanager has capacity to add new message
     if(stackManagerBuffer.size()>0 && messageBuffer.size()>0){
@@ -301,6 +294,7 @@ void SceneManager::update(){
         
     }
     
+    /*
     // Check if we have dns to add
     if(dnsBuffer.size()>0){
         for (int i=0;i<dnsBuffer.size();i++){
@@ -311,7 +305,7 @@ void SceneManager::update(){
         
     }
     
-    
+    */
     
     
     
@@ -521,9 +515,7 @@ void SceneManager::checkRemove(){
     float s=sin(leftTheta);
     float s2=sin(rightTheta);
     
-    
     clusterpointleft.position.x-=s;
-
     clusterpointright.position.x+=s2;
 
     
@@ -626,11 +618,11 @@ void SceneManager::draw(){
     
     
     // getting the lettermesh
-    
+    if(!debug){
     letterMesh.clear();
     for(auto letter:letters){
         letterMesh.append(letter->getUpdatedVboMesh());
-    }
+    }}
     
     ofPushMatrix();
     ofTranslate(1, 1);

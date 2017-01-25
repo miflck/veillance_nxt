@@ -109,7 +109,7 @@ private:
     bool bIsOnScreen=false;
     
     
-    ofNode node;
+    //ofNode node;
     ofMesh letterMesh;
     ofMesh originalletterMesh;
 

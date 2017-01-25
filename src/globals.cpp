@@ -22,7 +22,7 @@ int CCheight=22;
 int bigfontsize=60;
 
 
- bool bSimUser=true;
+ bool bSimUser=false;
 
 
 ofParameter<int> fadetime;
