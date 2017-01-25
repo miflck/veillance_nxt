@@ -248,7 +248,7 @@ void SceneManager::update(){
     if(totalWordsInBuffer>maxWordsInBuffer && !bIsExploding)STM->explode();
     
     
-   // vC.update();
+    vC.update();
     
     if(bShouldReset==true)reset();
     
@@ -294,8 +294,8 @@ void SceneManager::update(){
         
     }
     
-    /*
-    // Check if we have dns to add
+    
+  //   Check if we have dns to add
     if(dnsBuffer.size()>0){
         for (int i=0;i<dnsBuffer.size();i++){
             dns d=dnsBuffer[i];
@@ -305,7 +305,7 @@ void SceneManager::update(){
         
     }
     
-    */
+    
     
     
     
@@ -528,7 +528,7 @@ void SceneManager::checkRemove(){
 
 void SceneManager::draw(){
     
-   // vC.draw();
+    vC.draw();
     
     
     for(int i=0;i<csm.size();i++){

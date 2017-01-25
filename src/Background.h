@@ -48,6 +48,15 @@ public:
     void setBRemove();
     
     
+    int seqlength = 0;
+    float bgvol;
+    
+    // with x and userbgbeat something is not right. you reset x if its bigger than sequence, but sequence is equal wordcount. so if wordcount is bigger than 64 you get an error accessing userbgbeat[x]
+    int x = 0;
+    int userbgbeat[64] = {};
+    int userbgnotes[9] = {};
+    
+    
 private:
     
     bool bRemove;

@@ -51,6 +51,9 @@ public:
 
     void setMaxZ(int _maxZ);
     
+    void setScalefact (float _s);
+    float scalefact;
+    
     
 private:
     //flag to remove sound if reached foreground;
@@ -65,7 +68,7 @@ private:
     
     ofVec3f position;
     int maxZ;
-    float scaledZpos;
+    float scaledScalefact;
     
     
     int maxX;
@@ -83,7 +86,7 @@ private:
     */
     
     vector< int > fgnotes= {0,0,0,0,0,0,0,0,0,0,0,0,0,0};
-    vector< int > fgbeats = {0,1,1,1,1,1,1,1,1,1,1};
+    vector< int > fgbeats = {1,1,1,1,1,1,1,1,1,1,1};
     // SCALE HERE IN MIDI NOTE NUMBERS FROM KEYBOARD http://newt.phys.unsw.edu.au/jw/graphics/notesinvert.GIF
     vector< int > scale = {64,66,67,69,71,72,74,76,64,66,67,69,71,72,74,76};
     
@@ -98,7 +101,7 @@ private:
     */
     
     float userPan;
-    int sylcont1,sylcont2,sylcont3,sylcont4,sylcont5,sylcont6;
+    int sylcont0,sylcont1,sylcont2,sylcont3,sylcont4,sylcont5,sylcont6;
     
     int	sampleRate;
     float volumeForMixer;

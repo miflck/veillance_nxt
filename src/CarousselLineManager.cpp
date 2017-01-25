@@ -9,6 +9,7 @@
 #include "CarousselLineManager.hpp"
 #include "SceneManager.hpp"
 
+
 CarousselLineManager::CarousselLineManager(){
     
 }

@@ -55,9 +55,9 @@ void MovingWords::setup(){
     node.setScale(scalefact);
     
     
-    maxspeed=ofRandom(0.25,3);
+    maxspeed=ofRandom(0.3,3);
     
-    maxscale=ofRandom(1,2.5);
+    maxscale=ofRandom(1,fgmaxScalefact);
     
     
     // plane.set(100, 100);   ///dimensions for width and height in pixels
@@ -112,7 +112,7 @@ void MovingWords::update(){
     
     if(foregroundSound!=nullptr){
         foregroundSound->setPosition(position);
-    
+        foregroundSound->setScalefact(scalefact);    
     }
     
     
@@ -268,6 +268,8 @@ ofVboMesh MovingWords::getUpdatedVboMesh(){
     ofPushStyle();
     ofEnableBlendMode(OF_BLENDMODE_ADD);
     scalefact=ofLerp(scalefact,maxscale,0.003);
+    
+    
     node.setScale(scalefact);
     spacingFact=ofLerp(spacingFact,1.2,0.01);
     font->setLetterSpacing(spacingFact);
@@ -293,7 +295,7 @@ void MovingWords::setData(string _data){
     for(int i=0;i<data.size();i++){
         if(isVowel(data[i])){
             numvowels++;
-            vouwels+data[i];
+            vouwels+=data[i];
         }
     }
     numsyllables=countSyllables(data);
@@ -526,9 +528,10 @@ User * MovingWords::getUserPointer(){
 
 
 void MovingWords::addSound(){
-    if(SoundM->foregrounds.size()<maxForegroundSound){
-      //  foregroundSound = SoundM->addForegroundSound(numsyllables,vouwels,ofVec3f(0,0,0));
-    }
+    cout<<vouwels<<endl;
+   // if(SoundM->foregrounds.size()<maxForegroundSound){
+        foregroundSound = SoundM->addForegroundSound(numsyllables,vouwels,ofVec3f(0,0,0));
+   // }
 //STM->addForegroundSound
 
 }

@@ -27,7 +27,7 @@ void User::setup(){
     myInitColor=ofColor(0,0,255);
     targetColor=ofColor(0,0,255);
     
-    backgroundSound=SoundM->addBackgroundSound();
+   // backgroundSound=SoundM->addBackgroundSound();
 
 
 }
@@ -81,9 +81,9 @@ void User::unregisterWord(Word *_w){
     if (it != myWords.end()) { myWords.erase(it); }
 
     
-    if(backgroundSound!=nullptr){
+    /*if(backgroundSound!=nullptr){
         backgroundSound->setNumWords(myWords.size());
-    }
+    }*/
     
     if(myWords.size()==0){
       //  setBRemove(true);
@@ -96,9 +96,9 @@ void User::unregisterWord(Word *_w){
 
 void User::registerWord(Word *_w){
     myWords.push_back(_w);
-    if(backgroundSound!=nullptr){
+   /* if(backgroundSound!=nullptr){
         backgroundSound->setNumWords(myWords.size());
-    }
+    }*/
 }
 
 

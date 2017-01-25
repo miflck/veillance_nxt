@@ -53,5 +53,9 @@ extern ofParameter<int> maxWordsInBuffer;
 extern ofParameter<float> speedfactor;
 
 
+extern ofParameter<float> fgmaxScalefact;
+
+
+
 
 #endif /* globals_hpp */

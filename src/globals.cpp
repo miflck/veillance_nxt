@@ -37,4 +37,6 @@ ofParameter<int> clusterFadeAlpha;
 ofParameter<int> maxWordsInBuffer;
  ofParameter<float> speedfactor;
 
-int maxForegroundSound=10;
+int maxForegroundSound=50;
+
+ofParameter<float> fgmaxScalefact=2.5;

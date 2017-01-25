@@ -80,7 +80,7 @@ for (int i=0;i<foregrounds.size();i++){
         if(foregrounds[i]->getBRemove()){
             cout<<"remove! "<<foregrounds[i]<<endl;
             mixer.removeInputFrom(foregrounds[i]);
-            //delete (foregrounds[i]);
+            delete (foregrounds[i]);
             //removedforegrounds.push_back(foregrounds[i]);
             foregrounds.erase(foregrounds.begin()+i);
         }
@@ -165,24 +165,33 @@ void SoundManager::audioOut(float * output, int bufferSize, int nChannels){
 
 
 ForegroundSound* SoundManager::addForegroundSound(int _numSyllables,string _vowels,ofVec3f _p){
+    
+    cout<<"New  FGSound"<< _numSyllables<<" vowels "<<_vowels<<endl;
+    
+     if(foregrounds.size()<maxForegroundSound){
+
     ForegroundSound *fg = new ForegroundSound();
+         fg->setNumSyllables(_numSyllables);
+         fg->setVowels(_vowels);
+         fg->setTimingSubDiv(10 + int(ofRandom(20)));
+         fg->setPosition(_p);
+
+
     fg->setup();
-    //hello
-    fg->setNumSyllables(_numSyllables);
-    fg->setVowels(_vowels);
-    fg->setPosition(_p);
-    fg->setTimingSubDiv(10 + int(ofRandom(20)));
     mixer.addInputFrom(fg);
     foregrounds.push_back(fg);
     cout<<"Number of foreground sounds: "<<foregrounds.size()<<endl;
-    return fg;
+         return fg;
+     }else{
+         return nullptr;
+     }
 }
 
 
 
 Background* SoundManager::addBackgroundSound(){
-    
-    if(backgrounds.size()<4){
+   // return;
+    if(backgrounds.size()<8){
     Background *bg = new Background();
     bg->setup(backgrounds.size());
     mixer.addInputFrom(bg);

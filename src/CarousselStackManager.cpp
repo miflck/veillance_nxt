@@ -8,6 +8,8 @@
 
 #include "CarousselStackManager.hpp"
 #include "SceneManager.hpp"
+#include "SoundManager.hpp"
+
 
 #include "stdio.h"
 #include "assert.h"
@@ -79,6 +81,12 @@ void CarousselStackManager::setup(int _id, ofVec2f _position,float _mywidth, flo
     ofAddListener(CarousselEvent::events, this, &CarousselStackManager::carousselEvent);
     cout<<"Setup Stack Manager "<<stackId<<" "<<cms.size()<<endl;
     messagestring.clear();
+    
+    
+    backgroundSound=SoundM->addBackgroundSound();
+
+    
+    
 }
 
 void CarousselStackManager::update(){
@@ -99,9 +107,25 @@ void CarousselStackManager::update(){
         stopCountDown();
     }
     
+    
+    bool ismoving=false;
+    
     for(int i=0;i<cms.size();i++){
         cms[i]->update();
+        if(cms[i]->bIsMoving)ismoving=true;
     }
+
+
+    if(backgroundSound!=nullptr){
+        if(ismoving){
+            backgroundSound->setNumWords(    ofMap(getStringsize(),0,200,1,100,true));
+        }else{
+            backgroundSound->setNumWords(0);
+        }
+        //backgroundSound->setNumWords(myWords.size());
+    }
+
+
 }
 
 void CarousselStackManager::draw(){

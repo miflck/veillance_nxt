@@ -91,7 +91,7 @@ public:
     
     
     
-    Background * backgroundSound;
+  //  Background * backgroundSound;
 
 private:
     
