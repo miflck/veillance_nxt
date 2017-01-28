@@ -380,7 +380,7 @@ void User::setUserId(int _id){
     //debug!!
     
     if(!bIsIpColor)
-    backgroundColor.setHsb(255/10*_id,255,255);
+    backgroundColor.setHsb(((255/10*_id)%255)+15,255,255);
 
 }
 
