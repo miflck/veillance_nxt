@@ -36,7 +36,7 @@ extern int maxForegroundSound;
 extern int burstInterval;
 extern int minBurstMovingWords;
 extern int burstAmmount;
-
+extern bool doBurst;
 
 
 //Background

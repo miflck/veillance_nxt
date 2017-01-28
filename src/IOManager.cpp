@@ -117,11 +117,21 @@ void IOManager::onMessage( ofxLibwebsockets::Event& args ){
             if(args.json["Type"]=="DNS"){
                 dns d;
                 string username=args.json["Name"].asString();
+                
+                User * u=STM->getUserByUsername(username);
+                ofColor c;
+                if(u!=nullptr){
+                   c=u->getBackgroundColor();
+                }else{
+                    c=ofColor(255,255,255);
+                }
+                
                 string s=args.json["Text"].asString();
                 d.type=args.json["Type"].asString();
                 d.username=username;
                 d.text=s;
                 d.uuid=args.json["Id"].asInt();
+                d.color=c;;
                 STM->addDNSEntity(d);
 
                 

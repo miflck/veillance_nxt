@@ -85,6 +85,8 @@ public:
     
     VerticalCaroussel vC;
     void addDNS(string _s);
+    void addDNS(dns _dns);
+
     void addDNSEntity(dns _dns);
     vector <dns> dnsBuffer;
 

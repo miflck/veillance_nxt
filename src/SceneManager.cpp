@@ -300,7 +300,8 @@ void SceneManager::update(){
     if(dnsBuffer.size()>0){
         for (int i=0;i<dnsBuffer.size();i++){
             dns d=dnsBuffer[i];
-            addDNS(d.text);
+            addDNS(d);//d.text);
+            
             dnsBuffer.erase(dnsBuffer.begin()+i);
         }
         
@@ -443,12 +444,14 @@ void SceneManager::update(){
     
     
     //check for Burst
+    if(doBurst){
     int now=ofGetElapsedTimeMillis();
     if(now>burstTimer+burstTimerDuration){
         if(movingWords.size()<minBurstMovingWords){
         makeRandomBurst(burstAmmount);
         }
         burstTimer=0;
+    }
     }
     
     
@@ -523,8 +526,8 @@ void SceneManager::checkRemove(){
     float s=sin(leftTheta);
     float s2=sin(rightTheta);
     
-    clusterpointleft.position.x-=s;
-    clusterpointright.position.x+=s2;
+   // clusterpointleft.position.x-=s;
+   // clusterpointright.position.x+=s2;
 
     
     
@@ -1499,7 +1502,6 @@ void SceneManager::addAction(action _a){
 
 void SceneManager::addDNSEntity(dns _dns){
     dnsBuffer.push_back(_dns);
-    
 }
 
 
@@ -1681,5 +1683,10 @@ void SceneManager::toggleDrawTrails(){
 
 void SceneManager::addDNS(string _s){
     vC.addMovement(_s);
+    
+}
+
+void SceneManager::addDNS(dns _dns){
+    vC.addMovement(_dns);
     
 }

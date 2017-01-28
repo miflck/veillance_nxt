@@ -24,9 +24,11 @@ int bigfontsize=60;
 
  bool bSimUser=false;
 
+bool useBursts=false;
 int burstInterval = 1000;
 int minBurstMovingWords=50;
 int burstAmmount=50;
+bool doBurst=false;
 
 
 ofParameter<int> fadetime;

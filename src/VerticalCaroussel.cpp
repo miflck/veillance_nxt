@@ -125,10 +125,14 @@ void VerticalCaroussel::cicle(){
 }
 
 void VerticalCaroussel::startMoving(){
-    string s=buffer[0];
-    buffer.erase(buffer.begin());
+    
+    dns d=dnsbuffer[0];
+    
+    
+    string s=d.text;
+    dnsbuffer.erase(dnsbuffer.begin());
     containers[containers.size()-1].setString(s);
-   
+    containers[containers.size()-1].setColor(d.color);
 
     
     
@@ -197,6 +201,13 @@ void VerticalCaroussel::addMovement(string _s){
 }
 
 
+
+void VerticalCaroussel::addMovement(dns _dns){
+    dnsbuffer.push_back(_dns);
+    cicle();
+}
+
+
 void VerticalCaroussel::setDebugDraw(bool _d){
     bDebugDraw=_d;
 };
@@ -213,3 +224,6 @@ void VerticalCaroussel::explode(){
 void VerticalCaroussel::setFont(ofTrueTypeFont *f){
     font=f;    
 }
+
+
+

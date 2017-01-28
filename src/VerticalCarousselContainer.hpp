@@ -66,6 +66,10 @@ public:
     void setDebug(bool _debug);
     void explode();
     
+    
+    ofColor color;
+    void setColor(ofColor _color);
+    
 private:
     
     bool debug=false;
