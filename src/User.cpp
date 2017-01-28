@@ -356,6 +356,17 @@ void User::addWordPointer(Word *_w){
 
 void User::setUserName(string _name){
     username=_name;
+    
+    if(bIsIpColor){
+    vector<string> split;
+    split = ofSplitString(_name, ".");
+    
+    //if(split)
+    string s = split[0];
+   backgroundColor.setHsb(ofToInt(s),255,255);
+    }
+    
+    
 }
 
 string User::getUserName(){
@@ -367,6 +378,8 @@ void User::setUserId(int _id){
    userId=_id;
     
     //debug!!
+    
+    if(!bIsIpColor)
     backgroundColor.setHsb(255/10*_id,255,255);
 
 }

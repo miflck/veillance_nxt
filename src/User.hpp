@@ -89,7 +89,8 @@ public:
     
     void reset();
     
-    
+    bool bIsIpColor=false;
+
     
   //  Background * backgroundSound;
 
@@ -114,6 +115,7 @@ private:
 
 
     int numWordsInBuffer;
+    
 
 };
 

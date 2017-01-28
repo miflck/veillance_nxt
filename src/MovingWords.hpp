@@ -103,6 +103,8 @@ public:
     bool bIsLeft =false;
     
     
+    
+    
 private:
         
     User * userPointer;

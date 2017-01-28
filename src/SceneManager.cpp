@@ -642,6 +642,9 @@ void SceneManager::draw(){
     
     
     
+   
+    
+    
     
     ofVboMesh m;
     if(!bIsExploding){
@@ -667,6 +670,16 @@ void SceneManager::draw(){
     
     
     if(bDrawTrails){
+        
+        
+        ofVboMesh trailmesh;
+            for(auto movingWord:movingWords){
+                if(!movingWord->bIsLeft)
+                trailmesh.append(movingWord->getUpdatedVboMesh());
+            }
+        
+        
+        
         backgroundFBO.begin();
         STM->cam[0].begin();
         ofEnableAlphaBlending();
@@ -674,7 +687,7 @@ void SceneManager::draw(){
         ofPushMatrix();
         ofTranslate(-viewportwidth/2-viewportwidth,0);
         bigfont.getFontTexture().bind();
-        m.draw();
+        trailmesh.draw();
         bigfont.getFontTexture().unbind();
         
         ofSetColor(255,0,0);
