@@ -71,7 +71,7 @@ void IOManager::onMessage( ofxLibwebsockets::Event& args ){
                // cout<<"mcounter "<<messagecounter<<endl;
                 string username=args.json["Name"].asString();
                
-                if(messagecounter>7){
+                if(messagecounter>7 && bSimUser){
                 username =fakeuser[fakecounter];
                 fakecounter++;
                 if(fakecounter>fakeuser.size()-1)fakecounter=0;
@@ -118,7 +118,27 @@ void IOManager::onMessage( ofxLibwebsockets::Event& args ){
                 dns d;
                 string username=args.json["Name"].asString();
                 
+               // User * u=STM->getUserByUsername(username);
+               // STM->users.push_back(u);
+                
+                bool isUserNew=false;
+
                 User * u=STM->getUserByUsername(username);
+                if(u==nullptr){
+                    int id=STM->users.size();
+                    u=new User();
+                    u->setup();
+                    u->setUserName(username);
+                    u->setUserId(id);
+                    
+                    cout<<"new user "<<u->getUserName()<<" id "<<id<<endl;
+                    isUserNew=true;
+                    
+                }
+                
+                
+                
+
                 ofColor c;
                 if(u!=nullptr){
                    c=u->getBackgroundColor();
@@ -133,6 +153,12 @@ void IOManager::onMessage( ofxLibwebsockets::Event& args ){
                 d.uuid=args.json["Id"].asInt();
                 d.color=c;;
                 STM->addDNSEntity(d);
+                
+                
+                //only push new users
+                if(isUserNew){
+                   STM->users.push_back(u);
+                }
 
                 
             }
