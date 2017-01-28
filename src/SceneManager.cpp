@@ -61,7 +61,8 @@ void SceneManager::initializeCaroussel(){
     }
     cout<<"messagebuffer "<<wordsInMessageBuffer<<endl;
     
-    
+    burstTimer=ofGetElapsedTimeMillis();
+    burstTimerDuration=burstInterval;
     
     
     
@@ -441,7 +442,14 @@ void SceneManager::update(){
      */
     
     
-    
+    //check for Burst
+    int now=ofGetElapsedTimeMillis();
+    if(now>burstTimer+burstTimerDuration){
+        if(movingWords.size()<minBurstMovingWords){
+        makeRandomBurst(burstAmmount);
+        }
+        burstTimer=0;
+    }
     
     
 }
@@ -1325,6 +1333,7 @@ Fragment* SceneManager::getFragmentById(int _id){
 
 
 void SceneManager::makeRandomMovingWord(){
+    if(fragments.size()<1)return;
     int n=int(ofRandom(0,fragments.size()-1));
     // cout<<fragmentid<<endl;
     Fragment *f=fragments[n]; //getFragmentById(fragmentid);
@@ -1340,7 +1349,7 @@ void SceneManager::makeRandomMovingWord(){
         // cout<<"making moving word"<<endl;
     }else {
         //  cout<<"another try"<<endl;
-        makeRandomMovingWord();
+        //makeRandomMovingWord();
     }
 }
 

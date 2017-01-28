@@ -248,6 +248,11 @@ public:
     bool bGetMostUser=true;
     
     
+    int burstTimer=0;
+    int burstTimerDuration=1000;
+    bool bIsBursting=false;
+    
+    
 private:
     
     

@@ -30,8 +30,12 @@ extern int bigfontsize;
 
 // User
 extern bool bSimUser;
-
 extern int maxForegroundSound;
+
+//burst
+extern int burstInterval;
+extern int minBurstMovingWords;
+extern int burstAmmount;
 
 
 

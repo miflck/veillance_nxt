@@ -24,6 +24,10 @@ int bigfontsize=60;
 
  bool bSimUser=false;
 
+int burstInterval = 1000;
+int minBurstMovingWords=50;
+int burstAmmount=50;
+
 
 ofParameter<int> fadetime;
 ofParameter<int> fadeAlpha;

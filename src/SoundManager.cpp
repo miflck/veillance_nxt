@@ -83,6 +83,11 @@ for (int i=0;i<foregrounds.size();i++){
             delete (foregrounds[i]);
             //removedforegrounds.push_back(foregrounds[i]);
             foregrounds.erase(foregrounds.begin()+i);
+            
+            if(foregrounds.size()<1){
+                if(synths.size()>0)synths.erase(synths.begin());
+
+            }
         }
     }
 
@@ -177,6 +182,7 @@ ForegroundSound* SoundManager::addForegroundSound(int _numSyllables,string _vowe
     fg->setup();
     mixer.addInputFrom(fg);
     foregrounds.push_back(fg);
+         if(synths.size()<0)addDrone();
     cout<<"Number of foreground sounds: "<<foregrounds.size()<<endl;
          return fg;
      }else{
