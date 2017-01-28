@@ -141,6 +141,7 @@ public:
     void makeMovingWordByFragmentId(int _id,int _wordindex);
     bool tryMakeMovingWordByFragmentId(int _id,int _wordindex);
     void makeRandomMovingWord();
+    void makeRandomBurst(int _amt);
 
     
     // BACKGROUNDS

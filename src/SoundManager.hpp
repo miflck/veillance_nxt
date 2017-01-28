@@ -14,6 +14,7 @@
 #include "ofxTonic.h"
 #include "Background.h"
 #include "ForegroundSound.hpp"
+#include "MySynth.h"
 #include "ofxReverb.h"
 
 
@@ -78,6 +79,11 @@ public:
 
     
     void explode();
+    
+    void addDrone();
+    vector< MySynth * > synths;
+
+    
     
 private:
     

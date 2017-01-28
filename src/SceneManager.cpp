@@ -1235,7 +1235,9 @@ void SceneManager::addMovingWord(Word *_w){
     
     mw->setTarget(t);
     mw->myColor=ofColor(_w->getBackgroundColor(),200);
-    mw->setLifeSpan(ofRandom(3000,10000));
+   // mw->setLifeSpan(ofRandom(3000,10000));
+    mw->setLifeSpan(ofRandom(10000,30000));
+
     //mw->setLifeSpan(1000);
     
     
@@ -1341,6 +1343,13 @@ void SceneManager::makeRandomMovingWord(){
         makeRandomMovingWord();
     }
 }
+
+void SceneManager::makeRandomBurst(int _amt){
+    for(int i=0;i<_amt;i++){
+        makeRandomMovingWord();
+    }
+}
+
 
 
 bool SceneManager::tryMakeMovingWordByFragmentId(int _id, int _wordIndex){

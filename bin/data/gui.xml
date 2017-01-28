@@ -8,7 +8,7 @@
 	<FBO_Alpha>96</FBO_Alpha>
 	<clusterfadetime_>76</clusterfadetime_>
 	<clusterfadealpha_>2</clusterfadealpha_>
-<maxWordsInBuffer_>4585</maxWordsInBuffer_>
-<speedfactor_>20</speedfactor_>
+<maxWordsInBuffer_>4452</maxWordsInBuffer_>
+<speedfactor_>2.0502</speedfactor_>
 <suggestionTrigger_>1</suggestionTrigger_>
 </GUI>

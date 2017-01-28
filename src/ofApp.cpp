@@ -201,6 +201,12 @@ void ofApp::keyReleased(int key){
     }
     
     
+    
+    
+    if(key=='b'){
+        STM->makeRandomBurst(100);        //SoundM->addForegroundSound();
+    }
+    
     if(key=='h'){
       toggleGui();
     }

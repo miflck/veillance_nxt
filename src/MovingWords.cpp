@@ -86,7 +86,6 @@ void MovingWords::update(){
     
     int now=ofGetElapsedTimeMillis();
     if(bIsLifetimeRunning && now>lifetime){
-        cout<<"stopLifetimer"<<endl;
         stopLifeTimer();
     }
     
@@ -383,7 +382,6 @@ void MovingWords::startLifeTimer(){
 }
 
 void MovingWords::stopLifeTimer(){
-    cout<<"STOP"<<endl;
     userPointer->unregisterMovingWord(this);
     bIsLifetimeRunning=false;
     bIsAlive=false;
@@ -528,7 +526,6 @@ User * MovingWords::getUserPointer(){
 
 
 void MovingWords::addSound(){
-    cout<<vouwels<<endl;
    // if(SoundM->foregrounds.size()<maxForegroundSound){
         foregroundSound = SoundM->addForegroundSound(numsyllables,vouwels,ofVec3f(0,0,0));
    // }

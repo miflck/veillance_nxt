@@ -111,6 +111,7 @@
 		F4719BC241F46198F5185EC7 /* ForegroundSound.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 49B43B70941D1D3732FF8D4B /* ForegroundSound.cpp */; };
 		F7DBF98108C24B1D576DE0E6 /* ControlSwitcher.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 84466286B8E03BE7D2AE88DF /* ControlSwitcher.cpp */; };
 		F7E2CD66D34E349722F77978 /* ControlGenerator.cpp in Sources */ = {isa = PBXBuildFile; fileRef = BA1A28B41F62F3FDCF0A67CE /* ControlGenerator.cpp */; };
+		FA3046431E3C93D900457C02 /* MySynth.cpp in Sources */ = {isa = PBXBuildFile; fileRef = FA3046411E3C93D900457C02 /* MySynth.cpp */; };
 		FA462E561E301627009F3D43 /* ofSoundEffect.cpp in Sources */ = {isa = PBXBuildFile; fileRef = FA462E521E301627009F3D43 /* ofSoundEffect.cpp */; };
 		FA462E571E301627009F3D43 /* ofSoundUnit.cpp in Sources */ = {isa = PBXBuildFile; fileRef = FA462E541E301627009F3D43 /* ofSoundUnit.cpp */; };
 		FA462E671E30238E009F3D43 /* README.md in Sources */ = {isa = PBXBuildFile; fileRef = FA462E611E30238E009F3D43 /* README.md */; };
@@ -401,6 +402,8 @@
 		F40658A17A816A5238C493AE /* ucdn.c */ = {isa = PBXFileReference; explicitFileType = sourcecode.c.c; fileEncoding = 30; name = ucdn.c; path = ../../../addons/ofxUnicode/libs/ucdn/src/ucdn.c; sourceTree = SOURCE_ROOT; };
 		F8836A0D4C01F8713843CB8F /* ControlValue.h */ = {isa = PBXFileReference; explicitFileType = sourcecode.c.h; fileEncoding = 30; name = ControlValue.h; path = ../../../addons/ofxTonic/src/Tonic/ControlValue.h; sourceTree = SOURCE_ROOT; };
 		F94B5F9261430D3EF3491600 /* ControlFloor.h */ = {isa = PBXFileReference; explicitFileType = sourcecode.c.h; fileEncoding = 30; name = ControlFloor.h; path = ../../../addons/ofxTonic/src/Tonic/ControlFloor.h; sourceTree = SOURCE_ROOT; };
+		FA3046411E3C93D900457C02 /* MySynth.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = MySynth.cpp; sourceTree = "<group>"; };
+		FA3046421E3C93D900457C02 /* MySynth.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MySynth.h; sourceTree = "<group>"; };
 		FA3806E5CC3407A997C05CEC /* ControlPrinter.cpp */ = {isa = PBXFileReference; explicitFileType = sourcecode.cpp.cpp; fileEncoding = 30; name = ControlPrinter.cpp; path = ../../../addons/ofxTonic/src/Tonic/ControlPrinter.cpp; sourceTree = SOURCE_ROOT; };
 		FA462E521E301627009F3D43 /* ofSoundEffect.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = ofSoundEffect.cpp; sourceTree = "<group>"; };
 		FA462E531E301627009F3D43 /* ofSoundEffect.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ofSoundEffect.h; sourceTree = "<group>"; };
@@ -1052,6 +1055,8 @@
 		FA462E6B1E3156C6009F3D43 /* Sound */ = {
 			isa = PBXGroup;
 			children = (
+				FA3046411E3C93D900457C02 /* MySynth.cpp */,
+				FA3046421E3C93D900457C02 /* MySynth.h */,
 				78B4DD4C24FC54C8C74248AC /* Background.cpp */,
 				924AF3FA453349835ECBE466 /* Background.h */,
 				49B43B70941D1D3732FF8D4B /* ForegroundSound.cpp */,
@@ -1192,6 +1197,7 @@
 				6468C686EED25914CE633F3C /* CarousselEvent.cpp in Sources */,
 				79A3B06FD145044127D776A7 /* CarousselLineManager.cpp in Sources */,
 				560BABBD6A01FB94A5A00394 /* CarousselStackManager.cpp in Sources */,
+				FA3046431E3C93D900457C02 /* MySynth.cpp in Sources */,
 				F4719BC241F46198F5185EC7 /* ForegroundSound.cpp in Sources */,
 				B93EFBAD27581E0E059272AA /* Fragment.cpp in Sources */,
 				161FDE95984DBAABAF3A15C0 /* globals.cpp in Sources */,

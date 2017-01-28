@@ -27,9 +27,9 @@ void Background::setup(int _id){
 
     volume	= 0.79f;
 
+    int speedscale=2;
     
-    
-    switch (myId) {
+   /* switch (myId) {
         case 0:
             speed = 6;
             stretchBg=2;
@@ -53,6 +53,33 @@ void Background::setup(int _id){
             stretchBg=int(ofRandom(1,4));
             break;
     }
+    */
+    
+    switch (myId) {
+        case 0:
+            speed = 6*speedscale;
+            stretchBg=2;
+            break;
+        case 1:
+            speed = 7*speedscale;
+            stretchBg=1;
+            break;
+            
+        case 2:
+            speed = 5*speedscale;
+            stretchBg=4;
+            break;
+        case 3:
+            speed = 5*speedscale;
+            stretchBg=2;
+            break;
+            
+        default:
+            speed = int(ofRandom(4,7));
+            stretchBg=int(ofRandom(1,4));
+            break;
+    }
+
     
     
     cout<<"ID "<<myId<<" Speed "<<speed<< " stretch "<<stretchBg<<endl;;

@@ -165,9 +165,6 @@ void SoundManager::audioOut(float * output, int bufferSize, int nChannels){
 
 
 ForegroundSound* SoundManager::addForegroundSound(int _numSyllables,string _vowels,ofVec3f _p){
-    
-    cout<<"New  FGSound"<< _numSyllables<<" vowels "<<_vowels<<endl;
-    
      if(foregrounds.size()<maxForegroundSound){
 
     ForegroundSound *fg = new ForegroundSound();
@@ -226,4 +223,16 @@ void SoundManager::explode(){
 
 
 }
+
+
+void SoundManager::addDrone(){
+MySynth *s = new MySynth();
+s->setup(55);        // ANT frequency here should be from scale
+s->update();
+mixer.addInputFrom(s);
+synths.push_back(s);
+cout<<synths.size()<<endl;
+
+}
+
 
