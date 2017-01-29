@@ -96,7 +96,7 @@ void MovingWords::update(){
     if(bIsLeft)
         distanceToMidscreen=ABS(-viewportwidth/2-position.x);
     if(!bIsLeft)
-        distanceToMidscreen=ABS(viewportwidth/2-position.x);
+        distanceToMidscreen=ABS(viewportwidth+viewportwidth/2-position.x);
     
     
     

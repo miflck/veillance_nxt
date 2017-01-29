@@ -167,7 +167,7 @@ void ForegroundSound::update(){
     
     float scaledCut=ofMap(SoundM->foregrounds.size(),0,50,500,200,true);
     
-    float scaledVol=ofMap(distanceToMidScreen,0,viewportwidth/2,0,1,true);;
+    float scaledVol=ofMap(distanceToMidScreen,0,viewportwidth,1,0,true);;
     
     //cout<<scaledXpos<<endl;
    // if (position.x >= maxX || position.x <=minX)bRemove=true;
