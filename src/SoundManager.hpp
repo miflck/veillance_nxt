@@ -81,6 +81,9 @@ public:
     void explode();
     
     void addDrone();
+    
+    void removeDrone();
+    
     vector< MySynth * > synths;
 
     
