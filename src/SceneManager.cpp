@@ -1043,7 +1043,7 @@ void SceneManager::addWordFromManager(CarousselStackManager *_s, message _m){
     
     if (it != badwords.end()){
         cout << it->first <<" .. "<<myword<< " founded!" <<endl;
-    //    w->setIsSuggestion(true);
+        w->setIsSuggestion(true);
         w->bIsLeft=true;
     }
     }
@@ -1055,7 +1055,7 @@ void SceneManager::addWordFromManager(CarousselStackManager *_s, message _m){
         
         if (it != goodwords.end()){
             cout << it->first <<" .goodwords. "<<myword<< " founded!" <<endl;
-          //  w->setIsSuggestion(true);
+            w->setIsSuggestion(true);
             w->bIsLeft=false;
 
         }
