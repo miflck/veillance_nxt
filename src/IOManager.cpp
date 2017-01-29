@@ -94,10 +94,17 @@ void IOManager::onMessage( ofxLibwebsockets::Event& args ){
 
                     m.wordcount=count;
                     
-                    if( STM->getUserByUsername(username)==nullptr &&i<6*maxLength){
+                    
+                    
+                    
+                    if( STM->getUserByUsername(username)==nullptr &&i<4*maxLength){
                         cout<<"++++++++++++++++ PRIORITY +++++++++++++++++++"<<endl;
                         STM->addPriorityMessage(m);
-                    }else{
+                    }else if(STM->getUserByUsername(username)!=nullptr && STM->getUserByUsername(username)->getNumWordsOnScreen()<100 &&i<2*maxLength){
+                        cout<<"+ PRIORITY  Not much words on screen++"<<endl;
+                        STM->addPriorityMessage(m);
+                    }
+                    else{
                         STM->addMessage(m);
                     }
 

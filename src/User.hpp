@@ -92,6 +92,7 @@ public:
     bool bIsIpColor=true;
 
     
+    
   //  Background * backgroundSound;
 
 private:
@@ -115,7 +116,7 @@ private:
 
 
     int numWordsInBuffer;
-    
+
 
 };
 
