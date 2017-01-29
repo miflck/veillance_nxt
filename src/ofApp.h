@@ -35,6 +35,7 @@ class ofApp : public ofBaseApp{
     // Typography
     ofTrueTypeFont  font;
     ofTrueTypeFont  bigfont;
+
     
     
     // Server

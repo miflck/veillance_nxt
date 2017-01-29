@@ -83,13 +83,16 @@ void SceneManager::initialize() {
     // minspeed=ofRandom(1,3);
     
     
-    
+    int h=30;
+
     
     
     font.load("FoundersGroteskMonoBold.ttf", CCwidth,true,true);
     // font.load("TwoPointH-128Medium.ttf", CCwidth,true,true);
     bigfont.load("FoundersGroteskMonoBold.ttf", bigfontsize,true, true);
     // bigfont.load("TwoPointH-128Medium.ttf", bigfontsize,true, true);
+    
+    dnsfont.load("FoundersGroteskMonoBold.ttf", h,true, true);
     
     
     
@@ -110,12 +113,13 @@ void SceneManager::initialize() {
     
     
     //Vertical Caroussel
-    int h=50;
-    h=CCheight;
+   // int h=50;
+   // h=100;//CCheight;
+    h+=5;
     ofVec2f position;
     position.set(3*viewportwidth+viewportwidth/2,-h);
     vC.setPosition(position);
-    vC.setFont(&font);
+    vC.setFont(&dnsfont);
     vC.setup(position, 200, viewportheight+2*h, 200, h);
     
     
@@ -226,8 +230,8 @@ void SceneManager::initialize() {
     color2=ofColor(0);
     
     
-    clusterpointright.position.set(2*viewportwidth-300,ofGetHeight()/2,-500);
-    clusterpointleft.position.set(-viewportwidth+300,ofGetHeight()/2,-500);
+    clusterpointright.position.set(2*viewportwidth-500,ofGetHeight()/2,-500);
+    clusterpointleft.position.set(-viewportwidth+200,ofGetHeight()/2,-500);
     
     
     //letterMesh.setUsage(GL_DYNAMIC_DRAW);
@@ -677,7 +681,7 @@ void SceneManager::draw(){
         
         ofVboMesh trailmesh;
             for(auto movingWord:movingWords){
-                if(!movingWord->bIsLeft)
+               // if(!movingWord->bIsLeft)
                 trailmesh.append(movingWord->getUpdatedVboMesh());
             }
         
@@ -695,7 +699,7 @@ void SceneManager::draw(){
         
         ofSetColor(255,0,0);
         ofFill();
-        ofDrawRectangle(clusterpointleft.position.x,clusterpointleft.position.y,50,50);
+       // ofDrawRectangle(clusterpointleft.position.x,clusterpointleft.position.y,50,50);
         
         
         ofPopMatrix();

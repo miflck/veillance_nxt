@@ -161,6 +161,7 @@ public:
     //FONT
     ofTrueTypeFont  font;
     ofTrueTypeFont  bigfont;
+    ofTrueTypeFont  dnsfont;
     
     
     //INCOMING MESSAGES BUFFER

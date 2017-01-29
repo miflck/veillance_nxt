@@ -33,6 +33,8 @@ void VerticalCarousselContainer::draw(){
     ofPushStyle();
     ofPushMatrix();
     ofTranslate(position);
+
+   // ofScale(0.8,0,8);
     ofColor c=ofColor(255);
     ofNoFill();
     //ofSetColor(c);

@@ -130,7 +130,7 @@ Viral Hemorrhagic Fever
 E. Coli
 Infrastructure security
 Airport
-CIKR (Critical Infrastructure & Key Resources)
+CIKR Critical Infrastructure Key Resources
 AMTRAK
 Collapse
 Computer infrastructure

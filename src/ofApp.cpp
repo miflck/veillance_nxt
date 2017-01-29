@@ -94,7 +94,7 @@ void ofApp::setup(){
     
     
     
-    string filename = ofToDataPath("badwords_2  .txt");
+    string filename = ofToDataPath("badwords_2.txt");
     ifstream f(filename.c_str(),ios::in);
     string line;
     while (getline(f,line)) {

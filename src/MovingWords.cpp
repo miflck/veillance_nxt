@@ -55,7 +55,7 @@ void MovingWords::setup(){
     node.setScale(scalefact);
     
     
-    maxspeed=ofRandom(0.3,3);
+    maxspeed=ofRandom(0.5,2);
     
     maxscale=ofRandom(1,fgmaxScalefact);
     
