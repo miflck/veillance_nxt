@@ -98,7 +98,7 @@ void MovingWords::update(){
     
     if(bIsLeft){
         distanceToMidscreen=ABS(-viewportwidth/2-position.x);
-        if(position.x>-viewportwidth){
+        if(position.x>-viewportwidth-viewportwidth/3){
             scalefact=ofLerp(scalefact,maxscale,0.003);
         }else{
             scalefact=ofLerp(scalefact,0,0.002);
@@ -107,7 +107,7 @@ void MovingWords::update(){
     }
     if(!bIsLeft){
         distanceToMidscreen=ABS(viewportwidth+viewportwidth/2-position.x);
-        if(position.x<3*viewportwidth){
+        if(position.x<2*viewportwidth+viewportwidth/3){
             scalefact=ofLerp(scalefact,maxscale,0.003);
         }else{
             scalefact=ofLerp(scalefact,0,0.002);
@@ -421,7 +421,7 @@ void MovingWords::stopLifeTimer(){
     
     
     
-    
+    /*
     STM->backgroundFBO1.begin();
     // ofSetColor(255,0,0);
     STM->cam[0].begin();
@@ -475,7 +475,7 @@ void MovingWords::stopLifeTimer(){
     STM->cam[0].end();
     STM->backgroundFBO3.end();
     
-    
+    */
     
     
     

@@ -399,11 +399,19 @@ void SceneManager::update(){
         if(ofGetFrameNum()%clusterFadetime==0)ofDrawRectangle(0, 0, backgroundFBO2.getWidth(), backgroundFBO2.getHeight());
         backgroundFBO2.end();
         
-        backgroundFBO3.begin();
+      /*  backgroundFBO3.begin();
         ofEnableAlphaBlending();
         
         ofSetColor(0,0,0,clusterFadeAlpha);
         if(ofGetFrameNum()%clusterFadetime==0)ofDrawRectangle(0, 0, backgroundFBO3.getWidth(), backgroundFBO3.getHeight());
+        backgroundFBO3.end();
+        */
+        
+        backgroundFBO3.begin();
+        ofSetColor(0,0,0,fadeAlpha);
+        ofEnableBlendMode(OF_BLENDMODE_ALPHA);
+        ofEnableAlphaBlending();
+        if(ofGetFrameNum()%fadetime==0) ofDrawRectangle(0, 0, backgroundFBO.getWidth(), backgroundFBO.getHeight());
         backgroundFBO3.end();
         
         
@@ -705,7 +713,22 @@ void SceneManager::draw(){
         ofPopMatrix();
         STM->cam[0].end();
         backgroundFBO.end();
+        STM->backgroundFBO3.begin();
+        // ofSetColor(255,0,0);
+        STM->cam[0].begin();
+        ofPushMatrix();
+        ofTranslate(viewportwidth,0);
+        bigfont.getFontTexture().bind();
+        trailmesh.draw();
+        bigfont.getFontTexture().unbind();
+
         
+        ofPopMatrix();
+        
+        
+        STM->cam[0].end();
+        STM->backgroundFBO3.end();
+
         
         
         /*
