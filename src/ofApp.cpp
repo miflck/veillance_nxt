@@ -89,6 +89,38 @@ void ofApp::setup(){
     
     
     gui.loadFromFile("gui.xml");
+    
+       // badwords["hello"]=1;
+    
+    
+    
+    string filename = ofToDataPath("badwords_2  .txt");
+    ifstream f(filename.c_str(),ios::in);
+    string line;
+    while (getline(f,line)) {
+        //lines.push_back(ofxTrimStringRight(line));
+        vector<string> items = ofSplitString(line, " ");
+        for (int i=0; i<items.size(); i++) {
+            badwords[ofToUpper(items[i])]++;
+        }
+    }
+    f.close();
+
+    for (const auto& words : badwords )
+        cout << words.first << endl;
+    
+    
+    
+    //auto it = my_map.find("x");
+  //  if (it != my_map.end()) std::cout << "x: " << it->second << "\n";
+    
+    
+    map<string,int>::iterator it = badwords.find("Trump");
+    
+    if (it != badwords.end())
+        cout << it->first << " founded!" <<endl;
+    else
+        cout << "city not found" << endl;
 
 }
 

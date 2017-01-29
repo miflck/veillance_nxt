@@ -31,6 +31,10 @@ int burstAmmount=50;
 bool doBurst=false;
 
 
+ map<string,int> badwords;
+
+
+
 ofParameter<int> fadetime;
 ofParameter<int> fadeAlpha;
 ofParameter<int> fboAlpha;

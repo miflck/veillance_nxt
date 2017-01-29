@@ -46,6 +46,12 @@ extern ofParameter<int> fboAlpha;
 
 
 
+// List
+extern map<string,int> badwords;
+
+
+
+
 
 extern ofParameter<int> clusterFadetime;
 extern ofParameter<int> clusterFadeAlpha;

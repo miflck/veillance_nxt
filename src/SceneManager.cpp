@@ -1030,12 +1030,35 @@ void SceneManager::addWordFromManager(CarousselStackManager *_s, message _m){
     Word * w=new Word();
     w->setup(wIndex);
     w->setData(myword);
+   
+    //cout<<"word"<<myword<<endl;
     
-    float r=ofRandom(1);
+    if(myword!=""){
+    
+    map<string,int>::iterator it = badwords.find(myword);
+    
+    if (it != badwords.end()){
+        cout << it->first <<" .. "<<myword<< " founded!" <<endl;
+        w->setIsSuggestion(true);
+    }
+    }
+    
+    /*if(myword!=""){
+    map<string,int>::iterator it; // make the iterator, say it's going to iterate over a map<float, string>
+
+    if (badwords.find(myword) != badwords.end()){
+        cout <<"- "<<myword<< " ---------found----------" <<endl;
+    w->setIsSuggestion(true);
+    }
+    }
+*/
+    
+    
+  /*  float r=ofRandom(1);
     if(r>suggestionTrigger){
         w->setIsSuggestion(true);
     }
-    
+*/
     int lifeTime=ofGetElapsedTimeMillis()+int(ofRandom(10000,50000));
     w->setLifeTime(lifeTime);
     w->setFragmentPointer(f);

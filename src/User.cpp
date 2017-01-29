@@ -362,7 +362,8 @@ void User::setUserName(string _name){
     split = ofSplitString(_name, ".");
     
     //if(split)
-    string s = split[0];
+    string s = split[3];
+        cout<<"name "<<username<<" mycolor is "<<s<<endl;
    backgroundColor.setHsb(ofToInt(s),255,255);
     }
     

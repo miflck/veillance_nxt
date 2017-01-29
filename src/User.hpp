@@ -89,7 +89,7 @@ public:
     
     void reset();
     
-    bool bIsIpColor=false;
+    bool bIsIpColor=true;
 
     
   //  Background * backgroundSound;
