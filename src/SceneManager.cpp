@@ -713,9 +713,13 @@ void SceneManager::draw(){
         ofPopMatrix();
         STM->cam[0].end();
         backgroundFBO.end();
+        
+        
         STM->backgroundFBO3.begin();
         // ofSetColor(255,0,0);
         STM->cam[0].begin();
+        ofEnableAlphaBlending();
+        ofEnableBlendMode(OF_BLENDMODE_ALPHA);
         ofPushMatrix();
         ofTranslate(viewportwidth,0);
         bigfont.getFontTexture().bind();
