@@ -563,9 +563,9 @@ void SceneManager::draw(){
         }
         if(!bIsExploding){
             ofColor c;
-            float  h=ofMap(totalWordsInBuffer, 0, maxWordsInBuffer, 0, 255);
-            float  s=ofMap(totalWordsInBuffer, 0, maxWordsInBuffer, 0, 255);
-            float  b=ofMap(totalWordsInBuffer, 0, maxWordsInBuffer, 0, 255);
+            float  h=ofMap(totalWordsInBuffer, 0, backgroundcolorlerp, 0, 255,true);
+            float  s=ofMap(totalWordsInBuffer, 0, backgroundcolorlerp, 0, 255,true);
+            float  b=ofMap(totalWordsInBuffer, 0, backgroundcolorlerp, 0, 255,true);
             c.setHsb(usercolor.getHue(), s, b);
             backgroundcolor.lerp(c,0.05);
         }else{

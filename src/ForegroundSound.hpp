@@ -45,6 +45,9 @@ public:
     void setPosition (ofVec3f _pos);
     void setTimingSubDiv(int _timeSubDiv);
     
+    void setDistanceToMidScreen(float _d);
+    
+    
     bool getBRemove();
     void setBRemove();
 
@@ -108,6 +111,8 @@ private:
     
     int z;
     int transpose,transposeRandom;
+    
+    float distanceToMidScreen;
 
     
 };

@@ -93,6 +93,13 @@ void MovingWords::update(){
     move();
     node.setPosition(position);
     
+    if(bIsLeft)
+        distanceToMidscreen=ABS(-viewportwidth/2-position.x);
+    if(!bIsLeft)
+        distanceToMidscreen=ABS(viewportwidth/2-position.x);
+    
+    
+    
     //do the rotation
     if(spacingFact<1.6 && bIsRotating){
         rollangle+=rollspeed;
@@ -111,8 +118,14 @@ void MovingWords::update(){
     
     if(foregroundSound!=nullptr){
         foregroundSound->setPosition(position);
-        foregroundSound->setScalefact(scalefact);    
+        foregroundSound->setScalefact(scalefact);
+        foregroundSound->setDistanceToMidScreen(distanceToMidscreen);
+
     }
+    
+    
+    
+    
     
     
 }

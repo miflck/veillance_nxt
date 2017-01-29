@@ -160,6 +160,10 @@ private:
     string vouwels="";
     
     float maxscale;
+    
+    float distanceToMidscreen;
+    
+    
 };
 
 

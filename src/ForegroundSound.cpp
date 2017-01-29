@@ -157,6 +157,8 @@ void ForegroundSound::update(){
     
     
     scaledScalefact=ofMap(scalefact,0,fgmaxScalefact,0,1,true);
+    
+    
 
     
    // if (position.z >= maxZ)bRemove=true;
@@ -165,11 +167,13 @@ void ForegroundSound::update(){
     
     float scaledCut=ofMap(SoundM->foregrounds.size(),0,50,500,200,true);
     
+    float scaledVol=ofMap(distanceToMidScreen,0,viewportwidth/2,0,1,true);;
+    
     //cout<<scaledXpos<<endl;
    // if (position.x >= maxX || position.x <=minX)bRemove=true;
     
     //synth.setParameter("volume", scaledZpos);
-    synth.setParameter("volume", scaledScalefact);                                    //  Sound setup parameters
+    synth.setParameter("volume", scaledVol);                                    //  Sound setup parameters
     synth.setParameter("panning", scaledXpos);
     synth.setParameter("cutoff", scaledCut);
 
@@ -248,6 +252,10 @@ void ForegroundSound::parseVowels(string _vowels){
     
     
     
+}
+
+void ForegroundSound::setDistanceToMidScreen(float _d){
+    distanceToMidScreen=_d;
 }
 
 

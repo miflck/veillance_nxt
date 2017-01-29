@@ -87,6 +87,8 @@ void ofApp::setup(){
     gui.add(suggestionTrigger);
     
     
+    backgroundcolorlerp.set("backgroundcolorlerp ",100,100,3000);
+    gui.add(backgroundcolorlerp);
     
     gui.loadFromFile("gui.xml");
     

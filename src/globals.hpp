@@ -67,6 +67,9 @@ extern ofParameter<float> speedfactor;
 extern ofParameter<float> fgmaxScalefact;
 
 
+extern ofParameter<float> backgroundcolorlerp;
+
+
 
 
 #endif /* globals_hpp */
