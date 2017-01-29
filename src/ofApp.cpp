@@ -326,7 +326,8 @@ void ofApp::keyReleased(int key){
     if(key=='l'){
         // bDraw=!bDraw;
         //bDraw=!bDraw;
-         STM->debug=!STM->debug;
+        // STM->debug=!STM->debug;
+        STM->bIsDNSList=!STM->bIsDNSList;
     }
     
     if(key=='e'){

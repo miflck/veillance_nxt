@@ -257,6 +257,8 @@ public:
     int burstTimerDuration=1000;
     bool bIsBursting=false;
     
+    bool bIsDNSList=true;
+    
     
 private:
     
