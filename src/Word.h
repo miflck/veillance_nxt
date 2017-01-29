@@ -124,6 +124,10 @@ public:
     
     void explode();
     
+    
+    bool bIsLeft;
+    
+    
 private:
     
     bool bRemove=false;

@@ -48,6 +48,7 @@ extern ofParameter<int> fboAlpha;
 
 // List
 extern map<string,int> badwords;
+extern map<string,int> goodwords;
 
 
 

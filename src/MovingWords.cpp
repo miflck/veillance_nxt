@@ -215,6 +215,9 @@ void MovingWords::startMoving(){
 
 void MovingWords::stopMoving(){
     startLifeTimer();
+    
+    // HACK we dont have clusters anymore. so stop everything...
+   // stopLifeTimer();
     bIsMoving=false;
     //bIsRotating=false;
    // STM->movingWordPositions.push_back(getDockPoint());

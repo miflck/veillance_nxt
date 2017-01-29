@@ -32,7 +32,7 @@ bool doBurst=false;
 
 
  map<string,int> badwords;
-
+map<string,int> goodwords;
 
 
 ofParameter<int> fadetime;

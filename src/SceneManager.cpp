@@ -230,8 +230,8 @@ void SceneManager::initialize() {
     color2=ofColor(0);
     
     
-    clusterpointright.position.set(2*viewportwidth-500,ofGetHeight()/2,-500);
-    clusterpointleft.position.set(-viewportwidth+200,ofGetHeight()/2,-500);
+    clusterpointright.position.set(3*viewportwidth,ofGetHeight()/2,-500);
+    clusterpointleft.position.set(-2*viewportwidth,ofGetHeight()/2,-500);
     
     
     //letterMesh.setUsage(GL_DYNAMIC_DRAW);
@@ -1044,8 +1044,24 @@ void SceneManager::addWordFromManager(CarousselStackManager *_s, message _m){
     if (it != badwords.end()){
         cout << it->first <<" .. "<<myword<< " founded!" <<endl;
         w->setIsSuggestion(true);
+        w->bIsLeft=true;
     }
     }
+    
+    
+    if(myword!=""){
+        
+        map<string,int>::iterator it = goodwords.find(myword);
+        
+        if (it != goodwords.end()){
+            cout << it->first <<" .goodwords. "<<myword<< " founded!" <<endl;
+            w->setIsSuggestion(true);
+            w->bIsLeft=false;
+
+        }
+    }
+    
+    
     
     /*if(myword!=""){
     map<string,int>::iterator it; // make the iterator, say it's going to iterate over a map<float, string>
@@ -1267,6 +1283,9 @@ void SceneManager::addMovingWord(Word *_w){
     
     
     
+    
+    
+   /*
     float r=ofRandom(0,1);
     ofVec3f t;
     if(r>0.5){
@@ -1282,7 +1301,22 @@ void SceneManager::addMovingWord(Word *_w){
         mw->bIsLeft=true;
 
         
+    }*/
+    
+    bool l=_w->bIsLeft;
+    ofVec3f t;
+    if(l){
+        t=clusterpointleft.position;
+        mw->bIsLeft=true;
+      
+        
+    }else{
+        t=clusterpointright.position;
+        mw->bIsLeft=false;
     }
+
+    
+    
     
     mw->setTarget(t);
     mw->myColor=ofColor(_w->getBackgroundColor(),200);
@@ -1678,7 +1712,7 @@ void SceneManager::reset(){
     cout<<"num stack manager after"<<csm.size()<<endl;
     cout<<"USers "<<users.size()<<endl;
     
-    SoundM->explode();
+   // SoundM->explode();
 
     
     

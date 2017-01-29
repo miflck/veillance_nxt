@@ -104,7 +104,7 @@ for (int i=0;i<foregrounds.size();i++){
     
     for (int i=backgrounds.size()-1;i>=0;i--){
         if(backgrounds[i]->getBRemove()){
-            cout<<"remove! "<<backgrounds[i]<<endl;
+            cout<<"remove Background! "<<backgrounds[i]<<endl;
             mixer.removeInputFrom(backgrounds[i]);
             //delete (backgrounds[i]);
             //removedforegrounds.push_back(foregrounds[i]);
@@ -182,7 +182,7 @@ ForegroundSound* SoundManager::addForegroundSound(int _numSyllables,string _vowe
     fg->setup();
     mixer.addInputFrom(fg);
     foregrounds.push_back(fg);
-         if(synths.size()<0)addDrone();
+         if(synths.size()<1)addDrone();
     cout<<"Number of foreground sounds: "<<foregrounds.size()<<endl;
          return fg;
      }else{
