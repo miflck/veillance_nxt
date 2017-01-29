@@ -83,7 +83,7 @@ void SceneManager::initialize() {
     // minspeed=ofRandom(1,3);
     
     
-    int h=30;
+    int h=25;
 
     
     
@@ -1019,7 +1019,7 @@ void SceneManager::addWordFromManager(CarousselStackManager *_s, message _m){
         u->registerFragment(f);
         f->setUserPointer(u);
         isFragmentNew=true;
-        cout<<" ********* new Fragment "<<endl;
+      //  cout<<" ********* new Fragment "<<endl;
     }
     
     
@@ -1042,7 +1042,7 @@ void SceneManager::addWordFromManager(CarousselStackManager *_s, message _m){
     map<string,int>::iterator it = badwords.find(myword);
     
     if (it != badwords.end()){
-        cout << it->first <<" .. "<<myword<< " founded!" <<endl;
+     //   cout << it->first <<" .. "<<myword<< " founded!" <<endl;
         w->setIsSuggestion(true);
         w->bIsLeft=true;
     }
@@ -1054,7 +1054,7 @@ void SceneManager::addWordFromManager(CarousselStackManager *_s, message _m){
         map<string,int>::iterator it = goodwords.find(myword);
         
         if (it != goodwords.end()){
-            cout << it->first <<" .goodwords. "<<myword<< " founded!" <<endl;
+         //   cout << it->first <<" .goodwords. "<<myword<< " founded!" <<endl;
             w->setIsSuggestion(true);
             w->bIsLeft=false;
 

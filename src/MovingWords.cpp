@@ -20,7 +20,7 @@ void MovingWords::setup(){
     
     bIsOnScreen=true;
     setIsAlive(true);
-
+    
     //viewportwidth=STM->viewportwidth;
     
     
@@ -30,22 +30,22 @@ void MovingWords::setup(){
         t=ofVec3f(1000,200,0);
     }else{
         t=ofVec3f(-500,200,0);
-
-    
+        
+        
     }
     
     //t.set(ofGetWidth()/4+ofRandom(-200,200),ofGetHeight()/2+ofRandom(-200,200),5000);
     //t.set(ofGetWidth()/4+ofRandom(-200,200),ofGetHeight()/2+ofRandom(-200,200),5000);
-   // t.set(ofGetWidth()*2,ofGetHeight()/2+ofRandom(-200,200),0);
-
+    // t.set(ofGetWidth()*2,ofGetHeight()/2+ofRandom(-200,200),0);
+    
     
     /*
-    t*=ofRandom(3000,5000);
-    float angleY=ofRandom(-80,-70);
-    t.rotate(angleY, ofVec3f(0,1,0));
-    float angleZ=ofRandom(-90);
-    t.rotate(angleZ, ofVec3f(0,0,1));
-    */
+     t*=ofRandom(3000,5000);
+     float angleY=ofRandom(-80,-70);
+     t.rotate(angleY, ofVec3f(0,1,0));
+     float angleZ=ofRandom(-90);
+     t.rotate(angleZ, ofVec3f(0,0,1));
+     */
     
     target.set(t);
     startposition.set(ofRandom(ofGetWidth()/2-200,ofGetWidth()/2+200),ofGetHeight()/2,-1000);
@@ -77,7 +77,7 @@ void MovingWords::setup(){
     lookat.set(position+ofVec3f(0,0,1));
     foregroundSound=nullptr;
     
-   // addSound();
+    // addSound();
     
 }
 
@@ -93,10 +93,26 @@ void MovingWords::update(){
     move();
     node.setPosition(position);
     
-    if(bIsLeft)
+    
+    
+    
+    if(bIsLeft){
         distanceToMidscreen=ABS(-viewportwidth/2-position.x);
-    if(!bIsLeft)
+        if(position.x>-viewportwidth){
+            scalefact=ofLerp(scalefact,maxscale,0.003);
+        }else{
+            scalefact=ofLerp(scalefact,0,0.002);
+
+        }
+    }
+    if(!bIsLeft){
         distanceToMidscreen=ABS(viewportwidth+viewportwidth/2-position.x);
+        if(position.x<3*viewportwidth){
+            scalefact=ofLerp(scalefact,maxscale,0.003);
+        }else{
+            scalefact=ofLerp(scalefact,0,0.002);
+        }
+    }
     
     
     
@@ -120,7 +136,7 @@ void MovingWords::update(){
         foregroundSound->setPosition(position);
         foregroundSound->setScalefact(scalefact);
         foregroundSound->setDistanceToMidScreen(distanceToMidscreen);
-
+        
     }
     
     
@@ -132,53 +148,53 @@ void MovingWords::update(){
 
 void MovingWords::draw(){
     /*
-    ofPushMatrix();
-    ofSetColor(0,0,255,100);
-    //ofDrawLine(startposition, target);
-    ofNoFill();
-    
-    ofSetColor(255,0,0);
-    //  node.draw();
-    ofSetColor(0,255,0);
-    
-    ofPushMatrix();
-    ofTranslate(position);
-    
-    
-    float angle;
-    ofVec3f axis;//(0,0,1.0f);
-    
-    ofQuaternion q;
-    q=node.getGlobalOrientation();
-    q.getRotate(angle, axis);
-    
-    ofPushMatrix();
-    ofSetColor(0,191,255);
-    
-    ofRotate(angle, axis.x, axis.y, axis.z); // rotate with quaternion
-    //name = ofUTF8::toUpper(name);
-    font->drawString(data,0,0);
-    ofPopMatrix();
-    
-    // float angle;
-    // ofVec3f axis;//(0,0,1.0f);
-    
-    //q.getRotate(angle, axis);
-    //ofRotate(angle, axis.x, axis.y, axis.z); // rotate with quaternion
-    ofSetColor(0,0,255);
-    
-    ofNoFill();
-    //ofDrawBox(0, 0, 0, 50); // OF 0.74: ofBox(0, 0, 0, 220);
-    //ofDrawAxis(100);
-    
-    //node.rotate(q);
-    // plane.drawWireframe();
-    
-    // font->drawString(data,0,0);
-    ofPopMatrix();
-    ofPopMatrix();
-    
-    */
+     ofPushMatrix();
+     ofSetColor(0,0,255,100);
+     //ofDrawLine(startposition, target);
+     ofNoFill();
+     
+     ofSetColor(255,0,0);
+     //  node.draw();
+     ofSetColor(0,255,0);
+     
+     ofPushMatrix();
+     ofTranslate(position);
+     
+     
+     float angle;
+     ofVec3f axis;//(0,0,1.0f);
+     
+     ofQuaternion q;
+     q=node.getGlobalOrientation();
+     q.getRotate(angle, axis);
+     
+     ofPushMatrix();
+     ofSetColor(0,191,255);
+     
+     ofRotate(angle, axis.x, axis.y, axis.z); // rotate with quaternion
+     //name = ofUTF8::toUpper(name);
+     font->drawString(data,0,0);
+     ofPopMatrix();
+     
+     // float angle;
+     // ofVec3f axis;//(0,0,1.0f);
+     
+     //q.getRotate(angle, axis);
+     //ofRotate(angle, axis.x, axis.y, axis.z); // rotate with quaternion
+     ofSetColor(0,0,255);
+     
+     ofNoFill();
+     //ofDrawBox(0, 0, 0, 50); // OF 0.74: ofBox(0, 0, 0, 220);
+     //ofDrawAxis(100);
+     
+     //node.rotate(q);
+     // plane.drawWireframe();
+     
+     // font->drawString(data,0,0);
+     ofPopMatrix();
+     ofPopMatrix();
+     
+     */
     
     // ofDrawBox(position.x,position.y,position.z,20,20,20);
 }
@@ -230,17 +246,17 @@ void MovingWords::stopMoving(){
     startLifeTimer();
     
     // HACK we dont have clusters anymore. so stop everything...
-   // stopLifeTimer();
+    // stopLifeTimer();
     bIsMoving=false;
     //bIsRotating=false;
-   // STM->movingWordPositions.push_back(getDockPoint());
+    // STM->movingWordPositions.push_back(getDockPoint());
     //if(bIsLeft) {STM->leftTheta+=0.005;}else{
     //STM->rightTheta+=0.005;
-   // }
+    // }
     
     if(foregroundSound!=nullptr){
-
-    foregroundSound->setBRemove();
+        
+        foregroundSound->setBRemove();
         foregroundSound=nullptr;
     }
 }
@@ -282,7 +298,7 @@ ofVec3f MovingWords::getDockPoint(){
 ofVboMesh MovingWords::getUpdatedVboMesh(){
     ofPushStyle();
     ofEnableBlendMode(OF_BLENDMODE_ADD);
-    scalefact=ofLerp(scalefact,maxscale,0.003);
+    
     
     
     node.setScale(scalefact);
@@ -298,7 +314,7 @@ ofVboMesh MovingWords::getUpdatedVboMesh(){
         }
         vbom.append(letterMesh);
     }
-
+    
     ofPopStyle();
     return vbom;
     
@@ -401,7 +417,7 @@ void MovingWords::stopLifeTimer(){
     userPointer->unregisterMovingWord(this);
     bIsLifetimeRunning=false;
     bIsAlive=false;
-
+    
     
     
     
@@ -542,11 +558,11 @@ User * MovingWords::getUserPointer(){
 
 
 void MovingWords::addSound(){
-   // if(SoundM->foregrounds.size()<maxForegroundSound){
-        foregroundSound = SoundM->addForegroundSound(numsyllables,vouwels,ofVec3f(0,0,0));
-   // }
-//STM->addForegroundSound
-
+    // if(SoundM->foregrounds.size()<maxForegroundSound){
+    foregroundSound = SoundM->addForegroundSound(numsyllables,vouwels,ofVec3f(0,0,0));
+    // }
+    //STM->addForegroundSound
+    
 }
 
 
