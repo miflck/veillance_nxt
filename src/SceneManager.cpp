@@ -220,6 +220,13 @@ void SceneManager::initialize() {
     ofClear(0,0,0,0);
     backgroundFBO3.end();
     
+    backgroundDNSFBO.allocate(viewportwidth, ofGetHeight(),GL_RGBA);
+    backgroundDNSFBO.begin();
+    ofClear(0,0,0,0);
+    backgroundDNSFBO.end();
+    
+    
+    
     ofEnableAlphaBlending();
     
     
@@ -391,6 +398,19 @@ void SceneManager::update(){
         ofSetColor(0,0,0,clusterFadeAlpha);
         if(ofGetFrameNum()%clusterFadetime==0)ofDrawRectangle(0, 0, backgroundFBO1.getWidth(), backgroundFBO1.getHeight());
         backgroundFBO1.end();
+        
+        
+        backgroundDNSFBO.begin();
+        ofEnableAlphaBlending();
+        
+        ofSetColor(0,0,0,clusterFadeAlpha);
+        if(ofGetFrameNum()%clusterFadetime==0)ofDrawRectangle(0, 0, backgroundDNSFBO.getWidth(), backgroundDNSFBO.getHeight());
+        backgroundDNSFBO.end();
+        
+        
+        
+        
+        
         
         backgroundFBO2.begin();
         ofEnableAlphaBlending();
@@ -895,6 +915,10 @@ void SceneManager::draw(){
         
         backgroundFBO0.draw(viewportwidth,0);
         backgroundFBO1.draw(viewportwidth*2,0);
+        
+        backgroundDNSFBO.draw(viewportwidth*2,0);
+        
+        
         backgroundFBO2.draw(0,0);
         backgroundFBO3.draw(viewportwidth*3,0);
     }
@@ -1771,6 +1795,34 @@ void SceneManager::toggleDrawTrails(){
 
 void SceneManager::addDNS(string _s){
     vC.addMovement(_s);
+    
+       
+    
+    STM->backgroundFBO1.begin();
+    // ofSetColor(255,0,0);
+    STM->cam[0].begin();
+    ofPushMatrix();
+    ofTranslate(-2*viewportwidth,0);
+    ofPushStyle();
+    ofPushMatrix();
+    ofTranslate(ofRandom(0,viewportwidth),ofRandom(0,ofGetHeight()));
+    
+    // ofScale(0.8,0,8);
+    ofColor c=ofColor(255);
+    ofNoFill();
+    //ofSetColor(c);
+    ofSetColor(c);
+    
+    //ofScale(0.6, 0.6);
+    dnsfont.setLetterSpacing(1);
+    
+   dnsfont.drawString(_s, -dnsfont.getStringBoundingBox(_s, 0, 0).getWidth()/2,dnsfont.getStringBoundingBox("H", 0, 0).getHeight());
+    ofPopMatrix();
+    ofPopStyle();
+    ofPopMatrix();
+    STM->cam[0].end();
+    
+    
     
 }
 
