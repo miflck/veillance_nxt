@@ -48,7 +48,16 @@ ofParameter<int> maxWordsInBuffer;
  ofParameter<float> speedfactor;
 
 
-ofParameter<float> movingWordRotationspeed;
+ofParameter<float> rollfact;
+ofParameter<float> panfact;
+ofParameter<float> tiltfact;
+
+ofParameter<float> movingwordSpeedFact;
+
+
+
+
+
 int maxForegroundSound=15;
 
 ofParameter<float> fgmaxScalefact=2.5;
