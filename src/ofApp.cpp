@@ -86,6 +86,10 @@ void ofApp::setup(){
     speedfactor.set("speedfactor ",1,0.1,20);
     gui.add(speedfactor);
     
+    
+    movingWordRotationspeed.set("movingWord Rotationspeed ",1,0.1,2);
+    gui.add(movingWordRotationspeed);
+    
     gui.loadFromFile("gui.xml");
 
 }

@@ -55,7 +55,7 @@ void MovingWords::setup(){
     node.setScale(scalefact);
     
     
-    maxspeed=ofRandom(0.25,3);
+    maxspeed=ofRandom(0.25,2);
     
     maxscale=ofRandom(1,2.5);
     
@@ -96,9 +96,9 @@ void MovingWords::update(){
     
     //do the rotation
     if(spacingFact<1.6 && bIsRotating){
-        rollangle+=rollspeed;
-        panangle+=panspeed;
-        tiltangle+=tiltspeed;
+        rollangle+=(rollspeed*movingWordRotationspeed);
+        panangle+=(panspeed*movingWordRotationspeed);
+        tiltangle+=(tiltspeed*movingWordRotationspeed);
         
         lookat.set(position+ofVec3f(0,0,1));
         

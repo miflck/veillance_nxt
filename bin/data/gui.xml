@@ -10,4 +10,5 @@
 	<clusterfadealpha_>5</clusterfadealpha_>
 <maxWordsInBuffer_>4585</maxWordsInBuffer_>
 <speedfactor_>1.891</speedfactor_>
+<movingWord_Rotationspeed_>0.594</movingWord_Rotationspeed_>
 </GUI>

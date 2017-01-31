@@ -44,4 +44,9 @@ extern ofParameter<float> speedfactor;
 
 
 
+extern ofParameter<float> movingWordRotationspeed;
+
+
+
+
 #endif /* globals_hpp */
