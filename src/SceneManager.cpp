@@ -220,6 +220,13 @@ void SceneManager::initialize() {
     ofClear(0,0,0,0);
     backgroundFBO3.end();
     
+    backgroundDNSFBO.allocate(viewportwidth, ofGetHeight(),GL_RGBA);
+    backgroundDNSFBO.begin();
+    ofClear(0,0,0,0);
+    backgroundDNSFBO.end();
+    
+    
+    
     ofEnableAlphaBlending();
     
     
@@ -230,8 +237,8 @@ void SceneManager::initialize() {
     color2=ofColor(0);
     
     
-    clusterpointright.position.set(4*viewportwidth,ofGetHeight()/2,-500);
-    clusterpointleft.position.set(-3*viewportwidth,ofGetHeight()/2,-500);
+    clusterpointright.position.set(4*viewportwidth,ofGetHeight()/2,-1000);
+    clusterpointleft.position.set(-3*viewportwidth,ofGetHeight()/2,-1000);
     
     
     //letterMesh.setUsage(GL_DYNAMIC_DRAW);
@@ -392,6 +399,21 @@ void SceneManager::update(){
         if(ofGetFrameNum()%clusterFadetime==0)ofDrawRectangle(0, 0, backgroundFBO1.getWidth(), backgroundFBO1.getHeight());
         backgroundFBO1.end();
         
+        
+        backgroundDNSFBO.begin();
+        ofEnableBlendMode(OF_BLENDMODE_ALPHA);
+
+        ofEnableAlphaBlending();
+        
+        ofSetColor(0,0,0,clusterFadeAlpha);
+        if(ofGetFrameNum()%clusterFadetime==0)ofDrawRectangle(0, 0, backgroundDNSFBO.getWidth(), backgroundDNSFBO.getHeight());
+        backgroundDNSFBO.end();
+        
+        
+        
+        
+        
+        
         backgroundFBO2.begin();
         ofEnableAlphaBlending();
         
@@ -411,7 +433,7 @@ void SceneManager::update(){
         ofSetColor(0,0,0,fadeAlpha);
         ofEnableBlendMode(OF_BLENDMODE_ALPHA);
         ofEnableAlphaBlending();
-        if(ofGetFrameNum()%fadetime==0) ofDrawRectangle(0, 0, backgroundFBO.getWidth(), backgroundFBO.getHeight());
+        if(ofGetFrameNum()%fadetime==0) ofDrawRectangle(0, 0, backgroundFBO3.getWidth(), backgroundFBO3.getHeight());
         backgroundFBO3.end();
         
         
@@ -551,8 +573,11 @@ void SceneManager::checkRemove(){
 
 void SceneManager::draw(){
     
-    vC.draw();
-    
+    if(bIsDNSList)vC.draw();
+    if(!bIsDNSList)  {
+    ofEnableBlendMode(OF_BLENDMODE_ADD);
+    backgroundDNSFBO.draw(viewportwidth*3,0);
+    }
     
     for(int i=0;i<csm.size();i++){
         csm[i]->draw();
@@ -895,6 +920,9 @@ void SceneManager::draw(){
         
         backgroundFBO0.draw(viewportwidth,0);
         backgroundFBO1.draw(viewportwidth*2,0);
+        
+        
+        
         backgroundFBO2.draw(0,0);
         backgroundFBO3.draw(viewportwidth*3,0);
     }
@@ -1772,9 +1800,82 @@ void SceneManager::toggleDrawTrails(){
 void SceneManager::addDNS(string _s){
     vC.addMovement(_s);
     
+    
+    STM->backgroundDNSFBO.begin();
+    // ofSetColor(255,0,0);
+    STM->cam[0].begin();
+    ofPushMatrix();
+    //ofTranslate(-viewportwidth,0);
+    //ofTranslate(-viewportwidth/2-viewportwidth,0);
+
+    ofPushStyle();
+    ofPushMatrix();
+   // ofTranslate(ofRandom(0,viewportwidth),ofRandom(0,ofGetHeight()));
+    
+    // ofScale(0.8,0,8);
+    ofColor c=ofColor(255,200,0);
+    //ofNoFill();
+    //ofSetColor(c);
+    ofSetColor(c);
+    
+    //ofScale(0.6, 0.6);
+    dnsfont.setLetterSpacing(1);
+    
+//   dnsfont.drawString("hello", -dnsfont.getStringBoundingBox(, 0, 0).getWidth()/2,dnsfont.getStringBoundingBox("H", 0, 0).getHeight());
+    dnsfont.drawString("hello", 500,500);
+
+    ofFill();
+    ofSetColor(0, 0, 255);
+    ofDrawRectangle(0, 0, backgroundDNSFBO.getWidth(), backgroundDNSFBO.getHeight());
+
+    ofPopMatrix();
+    ofPopStyle();
+    ofPopMatrix();
+    STM->cam[0].end();
+    STM->backgroundDNSFBO.end();
+
+    
+    
 }
 
 void SceneManager::addDNS(dns _dns){
+
     vC.addMovement(_dns);
+    string _s=ofToUpper(_dns.text);
+    
+    STM->backgroundDNSFBO.begin();
+    // ofSetColor(255,0,0);
+    STM->cam[0].begin();
+    ofPushMatrix();
+    //ofTranslate(-viewportwidth,0);
+    ofTranslate(-viewportwidth,0);
+    
+    ofPushStyle();
+    ofPushMatrix();
+     ofTranslate(ofRandom(0,viewportwidth),ofRandom(0,ofGetHeight()));
+    
+    // ofScale(0.8,0,8);
+    ofColor c=_dns.color;
+    //ofNoFill();
+    //ofSetColor(c);
+    ofSetColor(c);
+    ofFill();
+
+    //ofScale(0.6, 0.6);
+    dnsfont.setLetterSpacing(1);
+    
+    dnsfont.drawString(_s, 0,0);
+ //   dnsfont.drawString("hello", 500,500);
+    
+    ofFill();
+    ofSetColor(0, 0, 255);
+    //ofDrawRectangle(0, 0, backgroundDNSFBO.getWidth(), backgroundDNSFBO.getHeight());
+    
+    ofPopMatrix();
+    ofPopStyle();
+    ofPopMatrix();
+    STM->cam[0].end();
+    STM->backgroundDNSFBO.end();
+
     
 }

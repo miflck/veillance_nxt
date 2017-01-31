@@ -154,6 +154,8 @@ public:
     ofFbo backgroundFBO2; // FBO for screen two. Holds the freezed Moving Words and fades out
     ofFbo backgroundFBO3; // FBO for screen two. Holds the freezed Moving Words and fades out
 
+    ofFbo backgroundDNSFBO; // FBO for screen two. Holds the freezed Moving Words and fades out
+
     
     
     ofColor backgroundcolor;
@@ -254,6 +256,8 @@ public:
     int burstTimer=0;
     int burstTimerDuration=1000;
     bool bIsBursting=false;
+    
+    bool bIsDNSList=true;
     
     
 private:

@@ -56,6 +56,7 @@ void MovingWords::setup(){
     
     
     maxspeed=ofRandom(0.5,2);
+
     
     maxscale=ofRandom(1,fgmaxScalefact);
     
@@ -68,9 +69,9 @@ void MovingWords::setup(){
     tiltangle=0;
     
     
-    rollspeed=ofRandom(0.01,0.2);
-    panspeed=ofRandom(0.01,0.2);
-    tiltspeed=ofRandom(0.01,0.2);
+    rollspeed=ofRandom(0.1,0.2);
+    panspeed=ofRandom(0.1,0.2);
+    tiltspeed=ofRandom(0.1,0.2);
     
     
     myColor=ofColor(0,191,255);
@@ -118,9 +119,9 @@ void MovingWords::update(){
     
     //do the rotation
     if(spacingFact<1.6 && bIsRotating){
-        rollangle+=rollspeed;
-        panangle+=panspeed;
-        tiltangle+=tiltspeed;
+        rollangle+=(rollspeed*rollfact);
+        panangle+=(panspeed*panfact);
+        tiltangle+=(tiltspeed*tiltfact);
         
         lookat.set(position+ofVec3f(0,0,1));
         
@@ -212,11 +213,11 @@ void MovingWords::move(){
         desired.normalize();
         float d=dist.length();
         if(d < 500){
-            float m = ofMap(d,0,500,0,maxspeed);
+            float m = ofMap(d,0,500,0,maxspeed*movingwordSpeedFact);
             desired*=m;
             
         }else{
-            desired*=maxspeed;
+            desired*=maxspeed*movingwordSpeedFact;
         }
         
         ofVec3f steer=desired-velocity;

@@ -54,41 +54,64 @@ void ofApp::setup(){
     
     gui.setup("GUI","gui.xml");
     gui.setPosition(viewportwidth,0);
+    
+    ofParameterGroup frontwall;
+    frontwall.setName("Front Wall");
+    maxWordsInBuffer.set("maxWordsInBuffer ",5000,500,10000);
+    frontwall.add(maxWordsInBuffer);
+    
+    speedfactor.set("speedfactor ",1,0.1,20);
+    frontwall.add(speedfactor);
+    
+    // suggestionTrigger.set("suggestionTrigger ",0.95,0.1,1);
+    // gui.add(suggestionTrigger);
+    
+    backgroundcolorlerp.set("backgroundcolorlerp ",100,100,3000);
+    frontwall.add(backgroundcolorlerp);
+    gui.add(frontwall);
 
+ 
+    
 
-
+    ofParameterGroup dns;
+    dns.setName("DNS Placement");
+    clusterFadetime.set("DNS Fadetime ",15,1,100);
+    clusterFadeAlpha.set("DNS Alpha ",5,0,100);
+    
+    dns.add(clusterFadetime);
+    dns.add(clusterFadeAlpha);
+    gui.add(dns);
+    
+    
+    ofParameterGroup movingwords;
+    movingwords.setName("Moving Words");
+    rollfact.set("Roll Scale",1,0.01,2);
+    movingwords.add(rollfact);
+    
+    panfact.set("Pan Scale",1,0.01,2);
+    movingwords.add(panfact);
+    
+    tiltfact.set("Tilt Scale",1,0.01,2);
+    movingwords.add(tiltfact);
+    
+    movingwordSpeedFact.set("Speed Scale",1,0.01,2);
+    movingwords.add(movingwordSpeedFact);
+    
+    gui.add(movingwords);
+    
+    
+    ofParameterGroup trails;
+    trails.setName("Trails");
     fadetime.set("fadetime",15,1,60);
     fadeAlpha.set("fadealpha",5,0,100);
     fboAlpha.set("FBO_Alpha",180,0,255);
-
-    gui.add(fadetime);
-    gui.add(fadeAlpha);
-    gui.add(fboAlpha);
-
     
-
-    clusterFadetime.set("clusterfadetime ",15,1,100);
-    clusterFadeAlpha.set("clusterfadealpha ",5,0,100);
+    trails.add(fadetime);
+    trails.add(fadeAlpha);
+    trails.add(fboAlpha);
     
-    gui.add(clusterFadetime);
-    gui.add(clusterFadeAlpha);
-
+    gui.add(trails);
     
-    maxWordsInBuffer.set("maxWordsInBuffer ",5000,500,10000);
-
-    gui.add(maxWordsInBuffer);
-
-    
-    speedfactor.set("speedfactor ",1,0.1,20);
-    gui.add(speedfactor);
-    
-    
-    suggestionTrigger.set("suggestionTrigger ",0.95,0.1,1);
-    gui.add(suggestionTrigger);
-    
-    
-    backgroundcolorlerp.set("backgroundcolorlerp ",100,100,3000);
-    gui.add(backgroundcolorlerp);
     
     gui.loadFromFile("gui.xml");
     
@@ -326,7 +349,8 @@ void ofApp::keyReleased(int key){
     if(key=='l'){
         // bDraw=!bDraw;
         //bDraw=!bDraw;
-         STM->debug=!STM->debug;
+        // STM->debug=!STM->debug;
+        STM->bIsDNSList=!STM->bIsDNSList;
     }
     
     if(key=='e'){

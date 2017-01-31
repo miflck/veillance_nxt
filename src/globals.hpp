@@ -72,4 +72,14 @@ extern ofParameter<float> backgroundcolorlerp;
 
 
 
+extern ofParameter<float> rollfact;
+extern ofParameter<float> panfact;
+extern ofParameter<float> tiltfact;
+
+extern ofParameter<float> movingwordSpeedFact;
+
+
+
+
+
 #endif /* globals_hpp */
