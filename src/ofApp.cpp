@@ -114,7 +114,7 @@ void ofApp::setup(){
     gui.add(trails);
     
     
-  //  gui.loadFromFile("gui.xml");
+    gui.loadFromFile("gui.xml");
     
        // badwords["hello"]=1;
     
