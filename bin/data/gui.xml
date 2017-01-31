@@ -1,42 +1,23 @@
 <GUI>
-	<fadetime_>34</fadetime_>
-	<fadealpha_>3</fadealpha_>
-<GUI/>
-<FBO_Alpha_>255</FBO_Alpha_>
-<fadetime>5</fadetime>
-	<fadealpha>3</fadealpha>
-	<FBO_Alpha>96</FBO_Alpha>
-	<clusterfadetime_>52</clusterfadetime_>
-	<clusterfadealpha_>5</clusterfadealpha_>
-<maxWordsInBuffer_>4585</maxWordsInBuffer_>
-<speedfactor_>1.095</speedfactor_>
-<movingWord_Rotationspeed_>0.594</movingWord_Rotationspeed_>
-	<FBO_Alpha>164</FBO_Alpha>
-	<clusterfadetime_>61</clusterfadetime_>
-	<clusterfadealpha_>2</clusterfadealpha_>
-<maxWordsInBuffer_>4452</maxWordsInBuffer_>
-<speedfactor_>0.9358</speedfactor_>
-<suggestionTrigger_>1</suggestionTrigger_>
-<backgroundcolorlerp_>2512.8</backgroundcolorlerp_>
-<Moving_Words>
-		<movingWord_Rotationspeed_>0.208571</movingWord_Rotationspeed_>
-	<Roll_Scale>0.54202</Roll_Scale>
-		<Pan_Scale>0.54202</Pan_Scale>
-		<Tilt_Scale>0.54202</Tilt_Scale>
-		<Speed_Scale>0.403939</Speed_Scale>
-	</Moving_Words>
-<Front_Wall>
-		<maxWordsInBuffer_>3485</maxWordsInBuffer_>
-		<speedfactor_>0.952857</speedfactor_>
-		<backgroundcolorlerp_>2343.06</backgroundcolorlerp_>
+	<Front_Wall>
+		<maxWordsInBuffer_>4571</maxWordsInBuffer_>
+		<speedfactor_>1</speedfactor_>
+		<backgroundcolorlerp_>3000</backgroundcolorlerp_>
 	</Front_Wall>
-	<Trails>
-		<fadetime>15</fadetime>
-		<fadealpha>5</fadealpha>
-		<FBO_Alpha>180</FBO_Alpha>
-	</Trails>
 	<DNS_Placement>
-		<DNS_Fadetime_>15</DNS_Fadetime_>
-		<DNS_Alpha_>5</DNS_Alpha_>
+		<DNS_Fadetime_>61</DNS_Fadetime_>
+		<DNS_Alpha_>2</DNS_Alpha_>
 	</DNS_Placement>
+	<Moving_Words>
+		<Roll_Scale>0.562327</Roll_Scale>
+		<Pan_Scale>0.0668571</Pan_Scale>
+		<Tilt_Scale>0.0627959</Tilt_Scale>
+		<Speed_Scale>0.428306</Speed_Scale>
+	</Moving_Words>
+	<Trails>
+		<fadetime>4</fadetime>
+		<fadealpha>3</fadealpha>
+		<FBO_Alpha>168</FBO_Alpha>
+	</Trails>
+<GUI/>
 </GUI>

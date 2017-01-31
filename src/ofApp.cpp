@@ -49,6 +49,7 @@ void ofApp::setup(){
     ofSetVerticalSync(true);
    // ofSetFrameRate(60);
     
+   
        
     ofxGuiSetDefaultWidth(500);
     
@@ -63,7 +64,7 @@ void ofApp::setup(){
     speedfactor.set("speedfactor ",1,0.1,20);
     frontwall.add(speedfactor);
     
-    // suggestionTrigger.set("suggestionTrigger ",0.95,0.1,1);
+    // suggestionTrigger.set("suggestionTrigger ",1,0.1,1);
     // gui.add(suggestionTrigger);
     
     backgroundcolorlerp.set("backgroundcolorlerp ",100,100,3000);
@@ -75,8 +76,8 @@ void ofApp::setup(){
 
     ofParameterGroup dns;
     dns.setName("DNS Placement");
-    clusterFadetime.set("DNS Fadetime ",15,1,100);
-    clusterFadeAlpha.set("DNS Alpha ",5,0,100);
+    clusterFadetime.set("DNS Fadetime ",61,1,100);
+    clusterFadeAlpha.set("DNS Alpha ",2,0,100);
     
     dns.add(clusterFadetime);
     dns.add(clusterFadeAlpha);
@@ -102,9 +103,9 @@ void ofApp::setup(){
     
     ofParameterGroup trails;
     trails.setName("Trails");
-    fadetime.set("fadetime",15,1,60);
-    fadeAlpha.set("fadealpha",5,0,100);
-    fboAlpha.set("FBO_Alpha",180,0,255);
+    fadetime.set("fadetime",5,1,60);
+    fadeAlpha.set("fadealpha",3,0,100);
+    fboAlpha.set("FBO_Alpha",164,0,255);
     
     trails.add(fadetime);
     trails.add(fadeAlpha);
@@ -113,7 +114,7 @@ void ofApp::setup(){
     gui.add(trails);
     
     
-    gui.loadFromFile("gui.xml");
+  //  gui.loadFromFile("gui.xml");
     
        // badwords["hello"]=1;
     
