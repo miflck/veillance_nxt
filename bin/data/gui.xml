@@ -3,7 +3,7 @@
 	<fadealpha_>3</fadealpha_>
 <GUI/>
 <FBO_Alpha_>255</FBO_Alpha_>
-<fadetime>4</fadetime>
+<fadetime>5</fadetime>
 	<fadealpha>3</fadealpha>
 	<FBO_Alpha>96</FBO_Alpha>
 	<clusterfadetime_>52</clusterfadetime_>
@@ -11,4 +11,11 @@
 <maxWordsInBuffer_>4585</maxWordsInBuffer_>
 <speedfactor_>1.891</speedfactor_>
 <movingWord_Rotationspeed_>0.594</movingWord_Rotationspeed_>
+	<FBO_Alpha>164</FBO_Alpha>
+	<clusterfadetime_>61</clusterfadetime_>
+	<clusterfadealpha_>2</clusterfadealpha_>
+<maxWordsInBuffer_>4452</maxWordsInBuffer_>
+<speedfactor_>0.9358</speedfactor_>
+<suggestionTrigger_>1</suggestionTrigger_>
+<backgroundcolorlerp_>2512.8</backgroundcolorlerp_>
 </GUI>

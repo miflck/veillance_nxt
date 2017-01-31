@@ -17,6 +17,12 @@
 #include "helpers.hpp"
 #include "globals.hpp"
 
+#include "ofxUnicode.h"
+
+
+#include "Background.h"
+
+
 
 
 
@@ -78,6 +84,11 @@ public:
     float lifetime;
     
     float time;
+    
+    
+    Background * backgroundSound;
+
+    
     
 private:
     

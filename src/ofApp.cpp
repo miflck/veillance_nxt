@@ -47,21 +47,16 @@ void ofApp::setup(){
     
     ofBackground(0);
     ofSetVerticalSync(true);
-    ofSetFrameRate(60);
+   // ofSetFrameRate(60);
     
-    ofBuffer buffer = ofBufferFromFile("heartofdarkness.txt");
-    for (auto line : buffer.getLines()){
-        data.push_back(line);
-    }
-    
-    
+       
     ofxGuiSetDefaultWidth(500);
     
     gui.setup("GUI","gui.xml");
     gui.setPosition(viewportwidth,0);
 
 
-    
+
     fadetime.set("fadetime",15,1,60);
     fadeAlpha.set("fadealpha",5,0,100);
     fboAlpha.set("FBO_Alpha",180,0,255);
@@ -71,7 +66,8 @@ void ofApp::setup(){
     gui.add(fboAlpha);
 
     
-    clusterFadetime.set("clusterfadetime ",15,1,60);
+
+    clusterFadetime.set("clusterfadetime ",15,1,100);
     clusterFadeAlpha.set("clusterfadealpha ",5,0,100);
     
     gui.add(clusterFadetime);
@@ -89,23 +85,86 @@ void ofApp::setup(){
     
     movingWordRotationspeed.set("movingWord Rotationspeed ",1,0.1,2);
     gui.add(movingWordRotationspeed);
+    suggestionTrigger.set("suggestionTrigger ",0.95,0.1,1);
+    gui.add(suggestionTrigger);
+    
+    
+    backgroundcolorlerp.set("backgroundcolorlerp ",100,100,3000);
+    gui.add(backgroundcolorlerp);
     
     gui.loadFromFile("gui.xml");
+    
+       // badwords["hello"]=1;
+    
+    
+    
+    string filename = ofToDataPath("badwords_2.txt");
+    ifstream f(filename.c_str(),ios::in);
+    string line;
+    while (getline(f,line)) {
+        //lines.push_back(ofxTrimStringRight(line));
+        vector<string> items = ofSplitString(line, " ");
+        for (int i=0; i<items.size(); i++) {
+            badwords[ofToUpper(items[i])]++;
+        }
+    }
+    f.close();
 
+    for (const auto& words : badwords )
+        cout << words.first << endl;
+    
+    
+    string filename2 = ofToDataPath("goodwords.txt");
+    ifstream f2(filename2.c_str(),ios::in);
+    string line2;
+    while (getline(f2,line2)) {
+        //lines.push_back(ofxTrimStringRight(line));
+        vector<string> items = ofSplitString(line2, " ");
+        for (int i=0; i<items.size(); i++) {
+            goodwords[ofToUpper(items[i])]++;
+        }
+    }
+    f2.close();
+    cout << "------------ Good -------------" << endl;
+
+    for (const auto& words2 : goodwords )
+        cout << words2.first << endl;
+    
+
+    
+    
+    //auto it = my_map.find("x");
+  //  if (it != my_map.end()) std::cout << "x: " << it->second << "\n";
+    
+   /*
+    map<string,int>::iterator it = badwords.find("Trump");
+    
+    if (it != badwords.end())
+        cout << it->first << " founded!" <<endl;
+    else
+        cout << "city not found" << endl;
+*/
 }
 
 //--------------------------------------------------------------
 void ofApp::update(){
     IOmanager.update();
     STM->update();
-  SoundM->update();
+    if(!muteSound){
+        SoundM->update();
+    }
     
 }
 
 //--------------------------------------------------------------
 void ofApp::draw(){
     ofSetColor(255);
-    STM->draw();
+    if(bDraw){
+        STM->draw();
+    }
+    
+    
+    
    SoundM->draw();
     if(bDebug)	{
     ofDisableBlendMode();
@@ -196,6 +255,12 @@ void ofApp::keyReleased(int key){
     }
     
     
+    
+    
+    if(key=='b'){
+        STM->makeRandomBurst(100);        //SoundM->addForegroundSound();
+    }
+    
     if(key=='h'){
       toggleGui();
     }
@@ -231,8 +296,8 @@ void ofApp::keyReleased(int key){
     
     
     if(key=='m'){
-        STM->bSoundStuff=!STM->bSoundStuff;
-        
+        //STM->bSoundStuff=!STM->bSoundStuff;
+        muteSound=!muteSound;
     }
 
     
@@ -256,9 +321,16 @@ void ofApp::keyReleased(int key){
     if(key=='D'){
         // bDraw=!bDraw;
         bDraw=!bDraw;
-         STM->setDebug(bDraw);
+        // STM->setDebug(bDraw);
     }
     
+    
+    if(key=='l'){
+        // bDraw=!bDraw;
+        //bDraw=!bDraw;
+        // STM->debug=!STM->debug;
+        STM->bIsDNSList=!STM->bIsDNSList;
+    }
     
     if(key=='e'){
         STM->explode();

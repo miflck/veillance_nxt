@@ -14,6 +14,7 @@
 #include "ofxTonic.h"
 #include "Background.h"
 #include "ForegroundSound.hpp"
+#include "MySynth.h"
 #include "ofxReverb.h"
 
 
@@ -57,6 +58,14 @@ public:
     vector< ForegroundSound * > foregrounds;
     vector< ForegroundSound * > removedforegrounds;
 
+    
+    
+    Background * addBackgroundSound();
+
+    vector< Background * > backgrounds;
+
+    
+    
     //Reverb
     float 	volume;
     ofxReverb	reverb;
@@ -68,6 +77,17 @@ public:
     
     void deleteAllDeletedSounds();
 
+    
+    void explode();
+    
+    void addDrone();
+    
+    void removeDrone();
+    
+    vector< MySynth * > synths;
+
+    
+    
 private:
     
     SoundManager();

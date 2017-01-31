@@ -32,6 +32,10 @@
 
 
 
+
+#include "ofxUnicode.h"
+
+
 //for convenience
 #define STM SceneManager::getInstance()
 
@@ -81,6 +85,8 @@ public:
     
     VerticalCaroussel vC;
     void addDNS(string _s);
+    void addDNS(dns _dns);
+
     void addDNSEntity(dns _dns);
     vector <dns> dnsBuffer;
 
@@ -137,6 +143,7 @@ public:
     void makeMovingWordByFragmentId(int _id,int _wordindex);
     bool tryMakeMovingWordByFragmentId(int _id,int _wordindex);
     void makeRandomMovingWord();
+    void makeRandomBurst(int _amt);
 
     
     // BACKGROUNDS
@@ -147,6 +154,8 @@ public:
     ofFbo backgroundFBO2; // FBO for screen two. Holds the freezed Moving Words and fades out
     ofFbo backgroundFBO3; // FBO for screen two. Holds the freezed Moving Words and fades out
 
+    ofFbo backgroundDNSFBO; // FBO for screen two. Holds the freezed Moving Words and fades out
+
     
     
     ofColor backgroundcolor;
@@ -154,6 +163,7 @@ public:
     //FONT
     ofTrueTypeFont  font;
     ofTrueTypeFont  bigfont;
+    ofTrueTypeFont  dnsfont;
     
     
     //INCOMING MESSAGES BUFFER
@@ -236,10 +246,18 @@ public:
     void drawTrails(bool _b);
     void toggleDrawTrails();
     
-    float sinTheta=0;
-    
+    float leftTheta=0;
+    float rightTheta=0;
+
     
     bool bGetMostUser=true;
+    
+    
+    int burstTimer=0;
+    int burstTimerDuration=1000;
+    bool bIsBursting=false;
+    
+    bool bIsDNSList=true;
     
     
 private:

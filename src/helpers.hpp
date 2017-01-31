@@ -47,7 +47,8 @@ struct dns {
     int uuid;
     string username;
     string type;
-    string text;    
+    string text;
+    ofColor color;
 };
 
 

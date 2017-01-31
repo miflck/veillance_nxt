@@ -9,6 +9,7 @@
 #include "CarousselLineManager.hpp"
 #include "SceneManager.hpp"
 
+
 CarousselLineManager::CarousselLineManager(){
     
 }
@@ -71,7 +72,7 @@ void CarousselLineManager::unregisterLetter(Letter *_l){
 
 void CarousselLineManager::update(){
     now=ofGetElapsedTimeMicros();
-    deltaTime=lastTime-now;
+    deltaTime=now-lastTime;
     elapsedTime=now-starttime;
     
     
@@ -106,11 +107,20 @@ void CarousselLineManager::move(){
     if(!bIsExploding){
         for(int i=0;i<containers.size();i++){
             ofVec2f p=containers[i]->getPosition();
-            p.x+= deltaTime*maxspeed*speedfactor;
+            p.x-= deltaTime*maxspeed*speedfactor;
+            //p.x-= deltaTime*maxspeed;
+
             containers[i]->setPosition(p);
         }
         
-        if(elapsedTime*speedfactor+5000*speedfactor>time){
+        if(elapsedTime*speedfactor+(8000*speedfactor)>time){
+           // if(elapsedTime>time){
+               //cout<<elapsedTime<<" "<<time<<" "<<time-(elapsedTime)<<" "<<deltaTime<<endl;
+
+           // cout<<elapsedTime*speedfactor<<" "<<time<<" "<<time-(elapsedTime*speedfactor+(10000*speedfactor))<<" "<<deltaTime<<endl;
+
+        //    if(elapsedTime*speedfactor>time){
+
             for(int i=0;i<containers.size();i++){
                 containers[i]->setPosition(containers[i]->getTarget());
                 containers[i]->bIsMoving=false;

@@ -14,37 +14,46 @@
 #include "SceneManager.hpp"
 
 
+
+Letter::~Letter(){
+    
+}
+
 Letter::Letter(){
     data=NULL;
     bIsOnScreen=false;
-    node.clearParent();
+    //node.clearParent();
     //cout<<"node"<<node.getParent()<<endl;
     bRemove=false;
     bRemoveMe=false;
     bWasRemove=false;
+    myString="";
     
 }
 
 void Letter::setup(){
     position.set(ofRandom(100,500),ofRandom(100,500));
     static LetterEvent newEvent;
-    newEvent.message = "New Letter";
-    newEvent.letter     = this;
-    ofNotifyEvent(LetterEvent::events, newEvent);
+   // newEvent.message = "New Letter";
+   // newEvent.letter     = this;
+  //  ofNotifyEvent(LetterEvent::events, newEvent);
     ofRectangle textBounds = font->getStringBoundingBox("H", 0, 0);
     bIsOnScreen=false;
-    node.clearParent();
+   // node.clearParent();
     //cout<<"node"<<node.getParent()<<endl;
     bRemove=false;
     bRemoveMe=false;
     bWasRemove=false;
-    
+  
 }
 
 void Letter::update(){
     
     //check what to do
     //if(bRemove && !bWasRemove){
+    //letterMesh = font->getStringMesh(myString, 0, 0);
+
+    myColor=myWordPointer->getColor();
     
     if(bRemove)bWasRemove=bRemove;
     
@@ -64,10 +73,10 @@ void Letter::update(){
     }
 
     
-    if(bIsOnScreen){//check if is on screen
+   /* if(bIsOnScreen){//check if is on screen
         angle+=0.5;
         if(angle>360)angle=360;
-    }
+    }*/
 }
 
 void Letter::draw(){
@@ -95,12 +104,15 @@ void Letter::draw(){
 }
 
 
-void Letter::setData(char _data){
-    data=_data;
+void Letter::setData(string _data){
+    //data=_data;
     
    // myString=ofToUpper(ofToString(data));
-      myString=ofToString(_data);
-    letterMesh = font->getStringMesh(myString, 0, 0);
+     myString=ofToString(_data);
+    originalletterMesh = font->getStringMesh(myString, 0, 0);
+    
+    //vector<ofVec3f>& verts = originalletterMesh.getVertices();
+
 }
 
 void Letter::setWordId(int _id){
@@ -143,6 +155,7 @@ void Letter::setDebug(bool _debug){
 
 void Letter::setWordPointer(Word *_w){
     myWordPointer=_w;
+    myColor=myWordPointer->getColor();
 }
 
 
@@ -170,7 +183,7 @@ void Letter::setPosition(ofVec2f _p){
         
         
         position.set(_p);
-        node.setGlobalPosition(position);
+       // node.setGlobalPosition(position);
     }
     }
 }
@@ -231,25 +244,68 @@ ofVec2f Letter::getVelocity(){
 
 ofVboMesh Letter::getUpdatedVboMesh(){
     
-    // node.roll(ofDegToRad(angle));
-    vbom.clear();
-    if(bIsOnScreen &! bRemove){//check if is on screen
-        letterMesh = font->getStringMesh(myString, 0, 0);
-        vector<ofVec3f>& verts = letterMesh.getVertices();
-        for(int j=0; j <  verts.size() ; j++){
+    
+
+    
+vbom.clear();
+   ofMesh m = font->getStringMesh(myString, 0, 0);
+//    letterMesh.clear();
+
+//    vector<ofVec3f>& verts = myletterMesh.getVertices();
+    //cout<<"updated"<<verts.size()<<verts[0].x<<endl;
+    
+   if(bIsOnScreen &! bRemove){//check if is on screen
+       
+       
+       for(auto & vertex: m.getVertices()){
+           vertex =vertex+position;
+           if(bIsDrawn){
+               m.addColor(myColor);
+           }else{
+               m.addColor(ofColor(255,0));
+           }
+           
+    }
+       
+       
+      
+       
+       
+       
+       /*for(auto & vertex: m.getVertices()){
+           if(bIsDrawn){
+               m.addColor(myColor);
+           }else{
+               m.addColor(ofColor(255,0));
+           }
+           
+       }*/
+      /* for(int j=0; j <  verts.size() ; j++){
+       if(bIsDrawn){
+           myletterMesh.addColor(myWordPointer->getColor());
+           
+       }else{
+           myletterMesh.addColor(ofColor(255,0));
+       }
+       }*/
+       
+       
+       /* for(int j=0; j <  verts.size() ; j++){
             letterMesh.setVertex(j,verts[j]*node.getGlobalTransformMatrix());
+           // letterMesh.addVertex(verts[j]+position);
+
             if(bIsDrawn){
                 letterMesh.addColor(myWordPointer->getColor());
+
             }else{
                 letterMesh.addColor(ofColor(255,0));
                 }
-            //  letterMesh.addColor(255);
-            
-        }
-        vbom.append(letterMesh);
+        }*/
+        //vbom.append(myletterMesh);
+       vbom.append(m);
+
     }
     return vbom;
-    
 }
 
 ofColor Letter::getColor(){

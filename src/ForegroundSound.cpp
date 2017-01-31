@@ -8,6 +8,8 @@
 
 #include "ForegroundSound.hpp"
 #include "SceneManager.hpp"
+#include "SoundManager.hpp"
+
 
 
 ForegroundSound::ForegroundSound(){
@@ -30,7 +32,6 @@ void ForegroundSound::setup(){
     
     //viewportwidth=STM->viewportwidth;
 
-    
     
     transposeRandom = int(ofRandom(4));
     switch (transposeRandom) {
@@ -55,7 +56,7 @@ void ForegroundSound::setup(){
     }
     
     
-    
+    sylcont0=int(ofRandom(7)+1);
     sylcont1=int(ofRandom(7)+1);
     sylcont2=int(ofRandom(7)+1);
     sylcont3=int(ofRandom(7)+1);
@@ -79,7 +80,11 @@ void ForegroundSound::setup(){
     /////////Sound and control setup here/////////////
     //////////////////////////////////////////////////
     
-    const int NUM_STEPS = int(ofRandom(9));                            // This needs to be implemented this so that it is controlled by vowel count
+     int NUM_STEPS;// = vowelsCount;//int(ofRandom(9));// This needs to be implemented this so that it is controlled by vowel count
+    
+    if(vowelsCount>0)     NUM_STEPS = vowelsCount;//int(ofRandom(9));// This needs to be implemented this so that it is controlled by vowel count
+    else NUM_STEPS=1;
+    
     
     SineWave            tone = SineWave();
     SineWave            modulator = SineWave();
@@ -117,6 +122,7 @@ void ForegroundSound::setup(){
         ControlGenerator pitchForThisStep = synth.addParameter("step" + to_string(i) + "Pitch", (fgnotes[i] + transpose));
         pitches.addInput(pitchForThisStep);
         
+        
         ControlGenerator volume3 = synth.addParameter("step" + to_string(i) + "Volume", fgbeats[i]);
         volumes.addInput(volume3);
     }
@@ -126,12 +132,19 @@ void ForegroundSound::setup(){
     synth.setOutputGen(panner);
     bRemove=false;
     maxZ=300;
-    position.set(0,0,0);
+   // position.set(0,0,0);
     
     
     
-    maxX=viewportwidth*2;
-    minX=-viewportwidth;
+    maxX=viewportwidth+viewportwidth*2/3;
+    minX=-viewportwidth*2/3;
+    
+    
+    synth.setParameter("fmAmt", ofRandom(0.05));                         // Timbre variation for each instance ... Currently set randomly each time
+    synth.setParameter("fmRatio", 0.5);
+    float scaledCut=ofMap(SoundM->foregrounds.size(),0,20,0,1,true);
+    synth.setParameter("fgcut", 0.2);
+
     
 }
 
@@ -140,22 +153,34 @@ void ForegroundSound::update(){
     //scale zpos between background and screen2-zpos
     // that remap of position seems a bit overcomplicated, but that gives me the possibility to
     // set or move the both screen planes in virtual room later. these are not yet definitively set....
-    scaledZpos=ofMap(position.z,0,maxZ,0,1,true);
+   // scaledZpos=ofMap(position.z,0,maxZ,0,1,true);
     
     
-    if (position.z >= maxZ)bRemove=true;
+    scaledScalefact=ofMap(scalefact,0,fgmaxScalefact,0,1,true);
     
-    scaledXpos=ofMap(position.x,minX,maxX,0,1,true);
-    cout<<scaledXpos<<endl;
-    if (position.x >= maxX || position.x <=minX)bRemove=true;
+    
+
+    
+   // if (position.z >= maxZ)bRemove=true;
+    
+    scaledXpos=ofMap(position.x,minX,maxX,-1,1,true);
+    
+    float scaledCut=ofMap(SoundM->foregrounds.size(),0,50,500,200,true);
+    
+    float scaledVol=ofMap(distanceToMidScreen,0,viewportwidth,1,0,true);;
+    
+    //cout<<scaledXpos<<endl;
+   // if (position.x >= maxX || position.x <=minX)bRemove=true;
     
     //synth.setParameter("volume", scaledZpos);
-    synth.setParameter("volume", 1);                                    //  Sound setup parameters
-    synth.setParameter("fgcut", 0.1);
-    synth.setParameter("panning", scaledXpos,true);
-    synth.setParameter("fmAmt", ofRandom(0.05));                         // Timbre variation for each instance ... Currently set randomly each time
-    synth.setParameter("fmRatio", 0.5);
-    synth.setParameter("cutoff", 300);
+    synth.setParameter("volume", scaledVol);                                    //  Sound setup parameters
+    synth.setParameter("panning", scaledXpos);
+    synth.setParameter("cutoff", scaledCut);
+
+    
+  //  synth.setParameter("fmAmt", ofRandom(0.05));                         // Timbre variation for each instance ... Currently set randomly each time
+//    synth.setParameter("fmRatio", 0.5);
+  //  synth.setParameter("cutoff", 300);
     
   
     
@@ -163,6 +188,7 @@ void ForegroundSound::update(){
    }
 
 void ForegroundSound::setVowels(string _vowels){
+    cout<<"v "<<_vowels<<endl;
   //  vowelsString=_vowels;
 // vowelsCount=_vowels.length();
     parseVowels(_vowels);
@@ -178,6 +204,12 @@ void ForegroundSound::setPosition(ofVec3f _position){
    // cout<<"My Position "<<position;
 }
 
+
+void ForegroundSound::setScalefact(float _s){
+    scalefact=_s;
+}
+
+
 void ForegroundSound::setTimingSubDiv(int _timeSubDiv) {
     timeSubDiv = _timeSubDiv;
 }
@@ -186,6 +218,7 @@ void ForegroundSound::setTimingSubDiv(int _timeSubDiv) {
 void ForegroundSound::parseVowels(string _vowels){
     vowelsString=_vowels;
     vowelsCount=_vowels.length();
+    cout<<"vC"<<vowelsCount<<endl;
     
     int  index;
     for (auto s:vowelsString){
@@ -221,6 +254,10 @@ void ForegroundSound::parseVowels(string _vowels){
     
 }
 
+void ForegroundSound::setDistanceToMidScreen(float _d){
+    distanceToMidScreen=_d;
+}
+
 
 void ForegroundSound::audioRequested (float * output, int bufferSize, int nChannels){
     synth.fillBufferOfFloats(output, bufferSize, nChannels);
@@ -229,6 +266,10 @@ void ForegroundSound::audioRequested (float * output, int bufferSize, int nChann
 
 bool ForegroundSound::getBRemove(){
     return bRemove;
+}
+
+void ForegroundSound::setBRemove(){
+     bRemove=true;
 }
 
 void ForegroundSound::setMaxZ(int _maxZ){

@@ -11,6 +11,7 @@
 
 #include <stdio.h>
 #include "ofMain.h"
+#include "Background.h"
 
 class Letter;
 class Word;
@@ -88,6 +89,11 @@ public:
     
     void reset();
     
+    bool bIsIpColor=true;
+
+    
+    
+  //  Background * backgroundSound;
 
 private:
     
@@ -110,6 +116,7 @@ private:
 
 
     int numWordsInBuffer;
+
 
 };
 

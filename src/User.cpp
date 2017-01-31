@@ -23,11 +23,11 @@ void User::setup(){
     
    // backgroundColor=ofColor(ofRandom(50,255),ofRandom(50,255),ofRandom(50,255));
     backgroundColor.setHsb(ofRandom(0,255),255,255);
-    
     myColor=ofColor(0,0,255);
     myInitColor=ofColor(0,0,255);
-    
     targetColor=ofColor(0,0,255);
+    
+   // backgroundSound=SoundM->addBackgroundSound();
 
 
 }
@@ -79,10 +79,15 @@ void User::unregisterLetter(Letter *_l){
 void User::unregisterWord(Word *_w){
     auto it = std::find(myWords.begin(), myWords.end(), _w);
     if (it != myWords.end()) { myWords.erase(it); }
+
     
+    /*if(backgroundSound!=nullptr){
+        backgroundSound->setNumWords(myWords.size());
+    }*/
     
     if(myWords.size()==0){
       //  setBRemove(true);
+        
     }
     
     /// myLetters.push_back(_l);
@@ -91,6 +96,9 @@ void User::unregisterWord(Word *_w){
 
 void User::registerWord(Word *_w){
     myWords.push_back(_w);
+   /* if(backgroundSound!=nullptr){
+        backgroundSound->setNumWords(myWords.size());
+    }*/
 }
 
 
@@ -146,7 +154,7 @@ void User::unregisterMovingWord(MovingWords *_w){
 
 void User::registerMovingWord(MovingWords *_w){
     myMovingWords.push_back(_w);
-    if(STM->bSoundStuff)checkSoundHack();
+    //if(STM->bSoundStuff)checkSoundHack();
 }
 
 
@@ -348,6 +356,18 @@ void User::addWordPointer(Word *_w){
 
 void User::setUserName(string _name){
     username=_name;
+    
+    if(bIsIpColor){
+    vector<string> split;
+    split = ofSplitString(_name, ".");
+    
+    //if(split)
+    string s = split[3];
+        cout<<"name "<<username<<" mycolor is "<<s<<endl;
+   backgroundColor.setHsb(ofToInt(s),255,255);
+    }
+    
+    
 }
 
 string User::getUserName(){
@@ -359,7 +379,9 @@ void User::setUserId(int _id){
    userId=_id;
     
     //debug!!
-    backgroundColor.setHsb(255/10*_id,255,255);
+    
+    if(!bIsIpColor)
+    backgroundColor.setHsb(((255/10*_id)%255)+15,255,255);
 
 }
 

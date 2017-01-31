@@ -9,10 +9,12 @@
 /* Begin PBXBuildFile section */
 		00F6B708CB7DDC8FC6C6F97B /* ControlCallback.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 7E168DFAE8544371E9957908 /* ControlCallback.cpp */; };
 		08A6D973887595CDADAF4FD7 /* ControlSnapToScale.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 03534BF03E1FEEDFCA986E14 /* ControlSnapToScale.cpp */; };
+		0D14E6CA479D37C472F527E9 /* VerticalCarousselContainer.cpp in Sources */ = {isa = PBXBuildFile; fileRef = DE4A802B93801FF2C199FEF0 /* VerticalCarousselContainer.cpp */; };
 		0FDEAE908DF4F7871B7660D8 /* LetterEvent.cpp in Sources */ = {isa = PBXBuildFile; fileRef = D4BF1FFE18E83CA14EBA3B41 /* LetterEvent.cpp */; };
+		161FDE95984DBAABAF3A15C0 /* globals.cpp in Sources */ = {isa = PBXBuildFile; fileRef = E24D9D7607931EE882C50190 /* globals.cpp */; };
 		190A67A17C3BB24DB37DD44F /* Generator.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 73EFFC1B6385265BB25A321D /* Generator.cpp */; };
-		19E586C8B60FD9B3B70BDC40 /* CarousselLineManager.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 6D4FEB2CA9433669368A022C /* CarousselLineManager.cpp */; };
 		1CD33E884D9E3358252E82A1 /* ofxToggle.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 907C5B5E104864A2D3A25745 /* ofxToggle.cpp */; };
+		1D6897B825ABE75483AA595E /* Background.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 78B4DD4C24FC54C8C74248AC /* Background.cpp */; };
 		234661DE137E48CF52BC5886 /* DelayUtils.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 468236C41BF7AEA58BC8F27D /* DelayUtils.cpp */; };
 		23E21567BA4C43105A9339A9 /* ControlTrigger.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 7168589C85E02BDE46E4D1F1 /* ControlTrigger.cpp */; };
 		2CE855FA9BE7AC5BB1024308 /* RingBuffer.cpp in Sources */ = {isa = PBXBuildFile; fileRef = FD28E2D7F19057D05148E286 /* RingBuffer.cpp */; };
@@ -24,28 +26,38 @@
 		3D6F4383B3859873D055D7F5 /* ControlCounter.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B3B9C5B8F26032F8C3A6D7D8 /* ControlCounter.cpp */; };
 		3F63B4CE561C9ADEF941D745 /* ControlRecorder.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 4E4AEC87B93B4D8DD9E210A8 /* ControlRecorder.cpp */; };
 		3FC056F4F8588B5E3EBDB974 /* Letter.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 7F8CB16CFDCB5893AB42EC5D /* Letter.cpp */; };
+		43FFE5A7FCAB58406F31511A /* comb.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 6AD72C435068D62F270812E4 /* comb.cpp */; };
 		45C0F0010A3C5C850DD0ADCE /* SineWave.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 21C5A241041A3ED5052CE4A1 /* SineWave.cpp */; };
 		4833BD459D3123366D3528F0 /* FixedValue.cpp in Sources */ = {isa = PBXBuildFile; fileRef = DA940AB65E694852A4445693 /* FixedValue.cpp */; };
 		483908258D00B98B4BE69F07 /* ofxLabel.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 78D67A00EB899FAC09430597 /* ofxLabel.cpp */; };
+		4AB34D803E548285EC4D729B /* VerticalCaroussel.cpp in Sources */ = {isa = PBXBuildFile; fileRef = A636E663A77A7C52C41597F5 /* VerticalCaroussel.cpp */; };
+		4D818F2B33CCAE20B3ACEBCD /* revmodel.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 176580196663C59FB3D76784 /* revmodel.cpp */; };
+		5027A09737DE983F850557F9 /* OrthoCamera.cpp in Sources */ = {isa = PBXBuildFile; fileRef = D17E4D7076B6AC99E0AADDA7 /* OrthoCamera.cpp */; };
 		507BEC86EF35AAA2F6C91520 /* SampleTable.cpp in Sources */ = {isa = PBXBuildFile; fileRef = CB6F4829BDF57C516A335B45 /* SampleTable.cpp */; };
+		560BABBD6A01FB94A5A00394 /* CarousselStackManager.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 24BD6F2270677F40542F6AF5 /* CarousselStackManager.cpp */; };
 		5649CF5FEB98D7F1C4A0815E /* ControlMetro.cpp in Sources */ = {isa = PBXBuildFile; fileRef = E96E870C4145622E8AFB8D70 /* ControlMetro.cpp */; };
+		5A4349E9754D6FA14C0F2A3A /* tinyxmlparser.cpp in Sources */ = {isa = PBXBuildFile; fileRef = FC5DA1C87211D4F6377DA719 /* tinyxmlparser.cpp */; };
 		5CBB2AB3A60F65431D7B555D /* ofxButton.cpp in Sources */ = {isa = PBXBuildFile; fileRef = C88333E71C9457E441C33474 /* ofxButton.cpp */; };
 		613570C868C725D3793F33D9 /* Mixer.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 695C4690BBFEAD1AED50B2F2 /* Mixer.cpp */; };
 		61FB003EA31E8CC722F7A0EF /* ControlStepper.cpp in Sources */ = {isa = PBXBuildFile; fileRef = AC361B46FBD15811B251D6F8 /* ControlStepper.cpp */; };
 		620C73F8A367D8F03998125D /* SoundManager.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 331CDCD4426D65097CFD44C1 /* SoundManager.cpp */; };
 		622E342068345324CB740646 /* DSPUtils.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 33E340D87D73243BAEF0822A /* DSPUtils.cpp */; };
 		625A58C885E761753345831F /* LFNoise.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 7CD0A5DB6CE3801FED02387A /* LFNoise.cpp */; };
+		63B57AC5BF4EF088491E0317 /* ofxXmlSettings.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 50DF87D612C5AAE17AAFA6C0 /* ofxXmlSettings.cpp */; };
 		6468C686EED25914CE633F3C /* CarousselEvent.cpp in Sources */ = {isa = PBXBuildFile; fileRef = E3C19F78D15CA0EF3F50659E /* CarousselEvent.cpp */; };
 		64F4AA5FD33A2E65D8E17217 /* Reverb.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 0349252FBB436CDC2E6A694F /* Reverb.cpp */; };
 		687619414A00F0D4EDA9E897 /* ControlDbToLinear.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 7890C9E0B3C853711884EB42 /* ControlDbToLinear.cpp */; };
 		6A33212F7D8BC75F53361169 /* CompressorLimiter.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 321FC44080A75AD7A1E79D2E /* CompressorLimiter.cpp */; };
 		6A9FF5E7244C5229CDB118E6 /* AudioFileUtils.cpp in Sources */ = {isa = PBXBuildFile; fileRef = AB0A3C27F32E3CC6ED870512 /* AudioFileUtils.cpp */; };
+		6B4AB7C991CAD8A65D09003F /* Unicode.cpp in Sources */ = {isa = PBXBuildFile; fileRef = FC08F5C0B381C6EE1CD9B9AF /* Unicode.cpp */; };
 		6BBC287AB24A076787C83135 /* RampedValue.cpp in Sources */ = {isa = PBXBuildFile; fileRef = A1CF6E3E5E4B05A101E2F6E1 /* RampedValue.cpp */; };
 		6D73A566CFEC0B462FE6E43C /* Reactor.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 2232A9453E355593EF36ADA7 /* Reactor.cpp */; };
 		6F28F56BB8B8CC2050FE656F /* ControlMidiToFreq.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B5B923FA6048C8D2737DDFC2 /* ControlMidiToFreq.cpp */; };
 		6FCAE57DA591456638D24BA3 /* StereoDelay.cpp in Sources */ = {isa = PBXBuildFile; fileRef = E1943C13AEB5FD77273B3C72 /* StereoDelay.cpp */; };
 		7117CFB4C5AA56555CD4B687 /* ControlDelay.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 914B990983A7F60F69D7488F /* ControlDelay.cpp */; };
+		74CECDA8FA89F918DDA2B94A /* ofxWatchdog.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 8D2C5D2DBAE701D317331A6C /* ofxWatchdog.cpp */; };
 		7573AC1CDADE011131CF4541 /* TonicFrames.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 3D1CC6C1763B553DEFDDD420 /* TonicFrames.cpp */; };
+		79A3B06FD145044127D776A7 /* CarousselLineManager.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 4F92779076A6D955949EE075 /* CarousselLineManager.cpp */; };
 		7AF35F772B5BBAA52ED23DE4 /* IOManager.cpp in Sources */ = {isa = PBXBuildFile; fileRef = CB12D2602935492A04A59107 /* IOManager.cpp */; };
 		7F10C60DBDE2E4FFD7F244DB /* TableLookupOsc.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 6B61B2028CC70AFF71A9E65C /* TableLookupOsc.cpp */; };
 		837220E80EB56CD44AD27F2A /* ofxSlider.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 15F2C6477A769C03A56D1401 /* ofxSlider.cpp */; };
@@ -54,13 +66,17 @@
 		88F0141963F235083C77F226 /* BufferFiller.cpp in Sources */ = {isa = PBXBuildFile; fileRef = D8D5E467EBBF786CB8A4F7FB /* BufferFiller.cpp */; };
 		8B72AE5AA49843C668896D2D /* ControlValue.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 4EE282E831795B8D17A8C4FA /* ControlValue.cpp */; };
 		92AE3EF9D1E9798885317D7E /* ADSR.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 4F283396E9D4DB2EE1F3D5C6 /* ADSR.cpp */; };
+		933A2227713C720CEFF80FD9 /* tinyxml.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 2B40EDA85BEB63E46785BC29 /* tinyxml.cpp */; };
 		94CFDE65C69CD26F372F652B /* MovingWords.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 5489F82C437EA9599501023A /* MovingWords.cpp */; };
+		961C938A9DE29978E6071159 /* allpass.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 1283FB785281B120BEB53515 /* allpass.cpp */; };
 		98576F60E227C1D99FE2F41A /* BasicDelay.cpp in Sources */ = {isa = PBXBuildFile; fileRef = E746A5674F1A5642F7D5CFF0 /* BasicDelay.cpp */; };
 		9BFA84E5222E04EC8EA818BA /* BLEPOscillator.cpp in Sources */ = {isa = PBXBuildFile; fileRef = CCCEE1BC957A63A62E7FD406 /* BLEPOscillator.cpp */; };
+		9D44DC88EF9E7991B4A09951 /* tinyxmlerror.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 832BDC407620CDBA568B713D /* tinyxmlerror.cpp */; };
 		9DB461599923EDAAA53F7320 /* ControlPrinter.cpp in Sources */ = {isa = PBXBuildFile; fileRef = FA3806E5CC3407A997C05CEC /* ControlPrinter.cpp */; };
 		9EF1133BC23669A5C94FE30F /* jsoncpp.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 69668FDE141262BC3C6CA929 /* jsoncpp.cpp */; };
 		A08D9CF6078FDA57A7CE04C4 /* ofxTonicSynth.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 4D93B72FD7946A3E4E687039 /* ofxTonicSynth.cpp */; };
 		A5C7D7C073773C0816ECA2C4 /* User.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 3F936587F2B56A06D14FEF13 /* User.cpp */; };
+		A5E7686E7E05CE646DFF4630 /* ucdn.c in Sources */ = {isa = PBXBuildFile; fileRef = F40658A17A816A5238C493AE /* ucdn.c */; };
 		A66513664925AA4A16521B35 /* BufferPlayer.cpp in Sources */ = {isa = PBXBuildFile; fileRef = F0813E968BEF55DAC88B7C7B /* BufferPlayer.cpp */; };
 		A78C77753D562AE8F0E928ED /* Connection.cpp in Sources */ = {isa = PBXBuildFile; fileRef = EDF52649DEB8D25CA011EB41 /* Connection.cpp */; };
 		AA6DAFB687721C5B4E20A079 /* Effect.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 3D4945007AB93F050CE3306F /* Effect.cpp */; };
@@ -92,25 +108,14 @@
 		F1AC6AEFB9B93C6AC45C9CA8 /* Events.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 34A70E2C091020EE93F6B1CE /* Events.cpp */; };
 		F285EB3169F1566CA3D93C20 /* ofxPanel.cpp in Sources */ = {isa = PBXBuildFile; fileRef = E112B3AEBEA2C091BF2B40AE /* ofxPanel.cpp */; };
 		F3AD9E2A2E56B6AF32A0BDAF /* Server.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 5D95092D59E7A34C9DB7823E /* Server.cpp */; };
+		F4719BC241F46198F5185EC7 /* ForegroundSound.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 49B43B70941D1D3732FF8D4B /* ForegroundSound.cpp */; };
 		F7DBF98108C24B1D576DE0E6 /* ControlSwitcher.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 84466286B8E03BE7D2AE88DF /* ControlSwitcher.cpp */; };
 		F7E2CD66D34E349722F77978 /* ControlGenerator.cpp in Sources */ = {isa = PBXBuildFile; fileRef = BA1A28B41F62F3FDCF0A67CE /* ControlGenerator.cpp */; };
-		FA6879DC1DFEFB0800619A40 /* VerticalCaroussel.cpp in Sources */ = {isa = PBXBuildFile; fileRef = FA6879DA1DFEFB0800619A40 /* VerticalCaroussel.cpp */; };
-		FA6879DF1DFEFB5D00619A40 /* VerticalCarousselContainer.cpp in Sources */ = {isa = PBXBuildFile; fileRef = FA6879DD1DFEFB5D00619A40 /* VerticalCarousselContainer.cpp */; };
-		FA6E66E41E1EFB4E008615E9 /* OrthoCamera.cpp in Sources */ = {isa = PBXBuildFile; fileRef = FA6E66E21E1EFB4E008615E9 /* OrthoCamera.cpp */; };
-		FAAAC04B1DEF3ACE00F25A4A /* CarousselStackManager.cpp in Sources */ = {isa = PBXBuildFile; fileRef = FAAAC0491DEF3ACE00F25A4A /* CarousselStackManager.cpp */; };
-		FAB4EAD41DDC7B1100A5E61E /* tinyxml.cpp in Sources */ = {isa = PBXBuildFile; fileRef = FAB4EACD1DDC7B1100A5E61E /* tinyxml.cpp */; };
-		FAB4EAD51DDC7B1100A5E61E /* tinyxmlerror.cpp in Sources */ = {isa = PBXBuildFile; fileRef = FAB4EACF1DDC7B1100A5E61E /* tinyxmlerror.cpp */; };
-		FAB4EAD61DDC7B1100A5E61E /* tinyxmlparser.cpp in Sources */ = {isa = PBXBuildFile; fileRef = FAB4EAD01DDC7B1100A5E61E /* tinyxmlparser.cpp */; };
-		FAB4EAD71DDC7B1100A5E61E /* ofxXmlSettings.cpp in Sources */ = {isa = PBXBuildFile; fileRef = FAB4EAD21DDC7B1100A5E61E /* ofxXmlSettings.cpp */; };
-		FACC9CE21E263D4000B488E8 /* Background.cpp in Sources */ = {isa = PBXBuildFile; fileRef = FACC9CDE1E263D4000B488E8 /* Background.cpp */; };
-		FACC9CE31E263D4000B488E8 /* ForegroundSound.cpp in Sources */ = {isa = PBXBuildFile; fileRef = FACC9CE01E263D4000B488E8 /* ForegroundSound.cpp */; };
-		FAEE4CFF1E2D025300216A5A /* globals.cpp in Sources */ = {isa = PBXBuildFile; fileRef = FAEE4CFD1E2D025300216A5A /* globals.cpp */; };
-		FAF283A11E02F55100B07266 /* allpass.cpp in Sources */ = {isa = PBXBuildFile; fileRef = FAF2838F1E02F55100B07266 /* allpass.cpp */; };
-		FAF283A21E02F55100B07266 /* comb.cpp in Sources */ = {isa = PBXBuildFile; fileRef = FAF283911E02F55100B07266 /* comb.cpp */; };
-		FAF283A31E02F55100B07266 /* revmodel.cpp in Sources */ = {isa = PBXBuildFile; fileRef = FAF283941E02F55100B07266 /* revmodel.cpp */; };
-		FAF283A41E02F55100B07266 /* README.md in Sources */ = {isa = PBXBuildFile; fileRef = FAF283971E02F55100B07266 /* README.md */; };
-		FAF283A51E02F55100B07266 /* ofSoundEffect.cpp in Sources */ = {isa = PBXBuildFile; fileRef = FAF2839B1E02F55100B07266 /* ofSoundEffect.cpp */; };
-		FAF283A61E02F55100B07266 /* ofSoundUnit.cpp in Sources */ = {isa = PBXBuildFile; fileRef = FAF2839D1E02F55100B07266 /* ofSoundUnit.cpp */; };
+		FA3046431E3C93D900457C02 /* MySynth.cpp in Sources */ = {isa = PBXBuildFile; fileRef = FA3046411E3C93D900457C02 /* MySynth.cpp */; };
+		FA462E561E301627009F3D43 /* ofSoundEffect.cpp in Sources */ = {isa = PBXBuildFile; fileRef = FA462E521E301627009F3D43 /* ofSoundEffect.cpp */; };
+		FA462E571E301627009F3D43 /* ofSoundUnit.cpp in Sources */ = {isa = PBXBuildFile; fileRef = FA462E541E301627009F3D43 /* ofSoundUnit.cpp */; };
+		FA462E671E30238E009F3D43 /* README.md in Sources */ = {isa = PBXBuildFile; fileRef = FA462E611E30238E009F3D43 /* README.md */; };
+		FA462E681E30238E009F3D43 /* ofxTrueTypeFontUC.cpp in Sources */ = {isa = PBXBuildFile; fileRef = FA462E631E30238E009F3D43 /* ofxTrueTypeFontUC.cpp */; };
 		FB0CEC2120B7ECC76CA7681F /* RectWave.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 2E90A19ED1C18D71FCFF4311 /* RectWave.cpp */; };
 		FC664DBA581A9170D7221E80 /* ControlFloor.cpp in Sources */ = {isa = PBXBuildFile; fileRef = A2CF9DA1939F4FBF25F5464C /* ControlFloor.cpp */; };
 		FEA5296A25F0CE0014A38A0D /* SawtoothWave.cpp in Sources */ = {isa = PBXBuildFile; fileRef = C1291F0DE19D1635A4F0CD3D /* SawtoothWave.cpp */; };
@@ -146,6 +151,9 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
+		01DCC0911400F9ACF5B65578 /* ofxXmlSettings.h */ = {isa = PBXFileReference; explicitFileType = sourcecode.c.h; fileEncoding = 30; name = ofxXmlSettings.h; path = ../../../addons/ofxXmlSettings/src/ofxXmlSettings.h; sourceTree = SOURCE_ROOT; };
+		01E31E55B78016AD65139C94 /* fribidi-begindecls.h */ = {isa = PBXFileReference; explicitFileType = sourcecode.c.h; fileEncoding = 30; name = "fribidi-begindecls.h"; path = "../../../addons/ofxUnicode/libs/fribidi/include/fribidi/fribidi-begindecls.h"; sourceTree = SOURCE_ROOT; };
+		02F39B2C48BCD65D206EA865 /* fribidi-config.h */ = {isa = PBXFileReference; explicitFileType = sourcecode.c.h; fileEncoding = 30; name = "fribidi-config.h"; path = "../../../addons/ofxUnicode/libs/fribidi/include/fribidi/fribidi-config.h"; sourceTree = SOURCE_ROOT; };
 		0349252FBB436CDC2E6A694F /* Reverb.cpp */ = {isa = PBXFileReference; explicitFileType = sourcecode.cpp.cpp; fileEncoding = 30; name = Reverb.cpp; path = ../../../addons/ofxTonic/src/Tonic/Reverb.cpp; sourceTree = SOURCE_ROOT; };
 		03534BF03E1FEEDFCA986E14 /* ControlSnapToScale.cpp */ = {isa = PBXFileReference; explicitFileType = sourcecode.cpp.cpp; fileEncoding = 30; name = ControlSnapToScale.cpp; path = ../../../addons/ofxTonic/src/Tonic/ControlSnapToScale.cpp; sourceTree = SOURCE_ROOT; };
 		0777B63CCC82F5205799A654 /* ControlXYSpeed.cpp */ = {isa = PBXFileReference; explicitFileType = sourcecode.cpp.cpp; fileEncoding = 30; name = ControlXYSpeed.cpp; path = ../../../addons/ofxTonic/src/Tonic/ControlXYSpeed.cpp; sourceTree = SOURCE_ROOT; };
@@ -153,19 +161,28 @@
 		0A1DAC09F322AE313A40706D /* ofxToggle.h */ = {isa = PBXFileReference; explicitFileType = sourcecode.c.h; fileEncoding = 30; name = ofxToggle.h; path = ../../../addons/ofxGui/src/ofxToggle.h; sourceTree = SOURCE_ROOT; };
 		0AD0C215A06776DA0A1BB84A /* BitCrusher.h */ = {isa = PBXFileReference; explicitFileType = sourcecode.c.h; fileEncoding = 30; name = BitCrusher.h; path = ../../../addons/ofxTonic/src/Tonic/BitCrusher.h; sourceTree = SOURCE_ROOT; };
 		0B526CAFB9743B54BB3F5CE9 /* TonicCore.h */ = {isa = PBXFileReference; explicitFileType = sourcecode.c.h; fileEncoding = 30; name = TonicCore.h; path = ../../../addons/ofxTonic/src/Tonic/TonicCore.h; sourceTree = SOURCE_ROOT; };
+		10B9F3BDEFC359E3670E7B46 /* linebreakdef.h */ = {isa = PBXFileReference; explicitFileType = sourcecode.c.h; fileEncoding = 30; name = linebreakdef.h; path = ../../../addons/ofxUnicode/libs/unibreak/include/linebreakdef.h; sourceTree = SOURCE_ROOT; };
 		123354539C152F1EE3FFC190 /* json-forwards.h */ = {isa = PBXFileReference; explicitFileType = sourcecode.c.h; fileEncoding = 30; name = "json-forwards.h"; path = "../../../addons/ofxLibwebsockets/libs/jsoncpp/json/json-forwards.h"; sourceTree = SOURCE_ROOT; };
+		1283FB785281B120BEB53515 /* allpass.cpp */ = {isa = PBXFileReference; explicitFileType = sourcecode.cpp.cpp; fileEncoding = 30; name = allpass.cpp; path = ../../../addons/ofxReverb/libs/allpass.cpp; sourceTree = SOURCE_ROOT; };
 		1502C03C48800273C68D9BB5 /* Tonic.h */ = {isa = PBXFileReference; explicitFileType = sourcecode.c.h; fileEncoding = 30; name = Tonic.h; path = ../../../addons/ofxTonic/src/Tonic.h; sourceTree = SOURCE_ROOT; };
 		15F2C6477A769C03A56D1401 /* ofxSlider.cpp */ = {isa = PBXFileReference; explicitFileType = sourcecode.cpp.cpp; fileEncoding = 30; name = ofxSlider.cpp; path = ../../../addons/ofxGui/src/ofxSlider.cpp; sourceTree = SOURCE_ROOT; };
+		16FA4F012E9184C19286F8E6 /* fribidi-arabic.h */ = {isa = PBXFileReference; explicitFileType = sourcecode.c.h; fileEncoding = 30; name = "fribidi-arabic.h"; path = "../../../addons/ofxUnicode/libs/fribidi/include/fribidi/fribidi-arabic.h"; sourceTree = SOURCE_ROOT; };
+		176580196663C59FB3D76784 /* revmodel.cpp */ = {isa = PBXFileReference; explicitFileType = sourcecode.cpp.cpp; fileEncoding = 30; name = revmodel.cpp; path = ../../../addons/ofxReverb/libs/revmodel.cpp; sourceTree = SOURCE_ROOT; };
 		17E65988300FBD9AAA2CD0CA /* ofxGui.h */ = {isa = PBXFileReference; explicitFileType = sourcecode.c.h; fileEncoding = 30; name = ofxGui.h; path = ../../../addons/ofxGui/src/ofxGui.h; sourceTree = SOURCE_ROOT; };
 		1816162DC196322C5D709C96 /* Server.h */ = {isa = PBXFileReference; explicitFileType = sourcecode.c.h; fileEncoding = 30; name = Server.h; path = ../../../addons/ofxLibwebsockets/libs/ofxLibwebsockets/include/ofxLibwebsockets/Server.h; sourceTree = SOURCE_ROOT; };
+		18F06FF359803571E065B432 /* unicodedata_db.h */ = {isa = PBXFileReference; explicitFileType = sourcecode.c.h; fileEncoding = 30; name = unicodedata_db.h; path = ../../../addons/ofxUnicode/libs/ucdn/src/unicodedata_db.h; sourceTree = SOURCE_ROOT; };
 		1BF769F5FB3452E1B2AB9B33 /* ControlCounter.h */ = {isa = PBXFileReference; explicitFileType = sourcecode.c.h; fileEncoding = 30; name = ControlCounter.h; path = ../../../addons/ofxTonic/src/Tonic/ControlCounter.h; sourceTree = SOURCE_ROOT; };
 		1C0DA2561397A7DE0246858B /* ofxGuiGroup.h */ = {isa = PBXFileReference; explicitFileType = sourcecode.c.h; fileEncoding = 30; name = ofxGuiGroup.h; path = ../../../addons/ofxGui/src/ofxGuiGroup.h; sourceTree = SOURCE_ROOT; };
 		1CB151730663DA88C0A57A2A /* ofxTonic.h */ = {isa = PBXFileReference; explicitFileType = sourcecode.c.h; fileEncoding = 30; name = ofxTonic.h; path = ../../../addons/ofxTonic/src/ofxTonic.h; sourceTree = SOURCE_ROOT; };
 		1CD3D323E0C0D04E978F2CD0 /* ControlArithmetic.h */ = {isa = PBXFileReference; explicitFileType = sourcecode.c.h; fileEncoding = 30; name = ControlArithmetic.h; path = ../../../addons/ofxTonic/src/Tonic/ControlArithmetic.h; sourceTree = SOURCE_ROOT; };
+		217560FDAF856CC193D076A5 /* ucdn.h */ = {isa = PBXFileReference; explicitFileType = sourcecode.c.h; fileEncoding = 30; name = ucdn.h; path = ../../../addons/ofxUnicode/libs/ucdn/src/ucdn.h; sourceTree = SOURCE_ROOT; };
 		21C5A241041A3ED5052CE4A1 /* SineWave.cpp */ = {isa = PBXFileReference; explicitFileType = sourcecode.cpp.cpp; fileEncoding = 30; name = SineWave.cpp; path = ../../../addons/ofxTonic/src/Tonic/SineWave.cpp; sourceTree = SOURCE_ROOT; };
 		2232A9453E355593EF36ADA7 /* Reactor.cpp */ = {isa = PBXFileReference; explicitFileType = sourcecode.cpp.cpp; fileEncoding = 30; name = Reactor.cpp; path = ../../../addons/ofxLibwebsockets/libs/ofxLibwebsockets/src/Reactor.cpp; sourceTree = SOURCE_ROOT; };
 		22EDA5A62C642C37311C4384 /* SceneManager.cpp */ = {isa = PBXFileReference; explicitFileType = sourcecode.cpp.cpp; fileEncoding = 30; name = SceneManager.cpp; path = src/SceneManager.cpp; sourceTree = SOURCE_ROOT; };
+		24BD6F2270677F40542F6AF5 /* CarousselStackManager.cpp */ = {isa = PBXFileReference; explicitFileType = sourcecode.cpp.cpp; fileEncoding = 30; name = CarousselStackManager.cpp; path = src/CarousselStackManager.cpp; sourceTree = SOURCE_ROOT; wrapsLines = 0; };
 		2834D88A62CD23F3DE2C47D1 /* ofxButton.h */ = {isa = PBXFileReference; explicitFileType = sourcecode.c.h; fileEncoding = 30; name = ofxButton.h; path = ../../../addons/ofxGui/src/ofxButton.h; sourceTree = SOURCE_ROOT; };
+		289618F9610B231A3CC1E23A /* linebreak.h */ = {isa = PBXFileReference; explicitFileType = sourcecode.c.h; fileEncoding = 30; name = linebreak.h; path = ../../../addons/ofxUnicode/libs/unibreak/include/linebreak.h; sourceTree = SOURCE_ROOT; };
+		2B40EDA85BEB63E46785BC29 /* tinyxml.cpp */ = {isa = PBXFileReference; explicitFileType = sourcecode.cpp.cpp; fileEncoding = 30; name = tinyxml.cpp; path = ../../../addons/ofxXmlSettings/libs/tinyxml.cpp; sourceTree = SOURCE_ROOT; };
 		2C50F14C0E9F19764F11A1D0 /* MovingWords.hpp */ = {isa = PBXFileReference; explicitFileType = sourcecode.c.h; fileEncoding = 30; name = MovingWords.hpp; path = src/MovingWords.hpp; sourceTree = SOURCE_ROOT; };
 		2CEF666C08A2DE98DF95A12F /* MonoToStereoPanner.h */ = {isa = PBXFileReference; explicitFileType = sourcecode.c.h; fileEncoding = 30; name = MonoToStereoPanner.h; path = ../../../addons/ofxTonic/src/Tonic/MonoToStereoPanner.h; sourceTree = SOURCE_ROOT; };
 		2D9CBFAD8F8687EA9E43B832 /* FilterUtils.cpp */ = {isa = PBXFileReference; explicitFileType = sourcecode.cpp.cpp; fileEncoding = 30; name = FilterUtils.cpp; path = ../../../addons/ofxTonic/src/Tonic/FilterUtils.cpp; sourceTree = SOURCE_ROOT; };
@@ -177,8 +194,10 @@
 		3352F8B118C428B1BDB71B25 /* SineWave.h */ = {isa = PBXFileReference; explicitFileType = sourcecode.c.h; fileEncoding = 30; name = SineWave.h; path = ../../../addons/ofxTonic/src/Tonic/SineWave.h; sourceTree = SOURCE_ROOT; };
 		33E08D9F0A5900C70C810E93 /* FilterUtils.h */ = {isa = PBXFileReference; explicitFileType = sourcecode.c.h; fileEncoding = 30; name = FilterUtils.h; path = ../../../addons/ofxTonic/src/Tonic/FilterUtils.h; sourceTree = SOURCE_ROOT; };
 		33E340D87D73243BAEF0822A /* DSPUtils.cpp */ = {isa = PBXFileReference; explicitFileType = sourcecode.cpp.cpp; fileEncoding = 30; name = DSPUtils.cpp; path = ../../../addons/ofxTonic/src/Tonic/DSPUtils.cpp; sourceTree = SOURCE_ROOT; };
+		349BD507FC72A7257D9B0A35 /* OrthoCamera.h */ = {isa = PBXFileReference; explicitFileType = sourcecode.c.h; fileEncoding = 30; name = OrthoCamera.h; path = src/OrthoCamera.h; sourceTree = SOURCE_ROOT; };
 		34A70E2C091020EE93F6B1CE /* Events.cpp */ = {isa = PBXFileReference; explicitFileType = sourcecode.cpp.cpp; fileEncoding = 30; name = Events.cpp; path = ../../../addons/ofxLibwebsockets/libs/ofxLibwebsockets/src/Events.cpp; sourceTree = SOURCE_ROOT; };
 		3972E542CC20CF48053A12ED /* ControlMidiToFreq.h */ = {isa = PBXFileReference; explicitFileType = sourcecode.c.h; fileEncoding = 30; name = ControlMidiToFreq.h; path = ../../../addons/ofxTonic/src/Tonic/ControlMidiToFreq.h; sourceTree = SOURCE_ROOT; };
+		3B6F6F04BAD90E7E7D96549F /* CarousselLineManager.hpp */ = {isa = PBXFileReference; explicitFileType = sourcecode.c.h; fileEncoding = 30; name = CarousselLineManager.hpp; path = src/CarousselLineManager.hpp; sourceTree = SOURCE_ROOT; };
 		3D1CC6C1763B553DEFDDD420 /* TonicFrames.cpp */ = {isa = PBXFileReference; explicitFileType = sourcecode.cpp.cpp; fileEncoding = 30; name = TonicFrames.cpp; path = ../../../addons/ofxTonic/src/Tonic/TonicFrames.cpp; sourceTree = SOURCE_ROOT; };
 		3D4945007AB93F050CE3306F /* Effect.cpp */ = {isa = PBXFileReference; explicitFileType = sourcecode.cpp.cpp; fileEncoding = 30; name = Effect.cpp; path = ../../../addons/ofxTonic/src/Tonic/Effect.cpp; sourceTree = SOURCE_ROOT; };
 		3D93B5BF07A5D1D156029EA1 /* ControlDbToLinear.h */ = {isa = PBXFileReference; explicitFileType = sourcecode.c.h; fileEncoding = 30; name = ControlDbToLinear.h; path = ../../../addons/ofxTonic/src/Tonic/ControlDbToLinear.h; sourceTree = SOURCE_ROOT; };
@@ -190,6 +209,7 @@
 		43BC9427F5801A209DFBF842 /* ControlChangeNotifier.cpp */ = {isa = PBXFileReference; explicitFileType = sourcecode.cpp.cpp; fileEncoding = 30; name = ControlChangeNotifier.cpp; path = ../../../addons/ofxTonic/src/Tonic/ControlChangeNotifier.cpp; sourceTree = SOURCE_ROOT; };
 		468236C41BF7AEA58BC8F27D /* DelayUtils.cpp */ = {isa = PBXFileReference; explicitFileType = sourcecode.cpp.cpp; fileEncoding = 30; name = DelayUtils.cpp; path = ../../../addons/ofxTonic/src/Tonic/DelayUtils.cpp; sourceTree = SOURCE_ROOT; };
 		4764363E56B44EB3D65BA934 /* AudioFileUtils.h */ = {isa = PBXFileReference; explicitFileType = sourcecode.c.h; fileEncoding = 30; name = AudioFileUtils.h; path = ../../../addons/ofxTonic/src/Tonic/AudioFileUtils.h; sourceTree = SOURCE_ROOT; };
+		49B43B70941D1D3732FF8D4B /* ForegroundSound.cpp */ = {isa = PBXFileReference; explicitFileType = sourcecode.cpp.cpp; fileEncoding = 30; name = ForegroundSound.cpp; path = src/ForegroundSound.cpp; sourceTree = SOURCE_ROOT; };
 		49F74D58E791C18D1D7F5E6F /* ofxTonicSynth.h */ = {isa = PBXFileReference; explicitFileType = sourcecode.c.h; fileEncoding = 30; name = ofxTonicSynth.h; path = ../../../addons/ofxTonic/src/ofxTonicSynth.h; sourceTree = SOURCE_ROOT; };
 		4A5282B59FE55EEED7421C06 /* ControlComparison.cpp */ = {isa = PBXFileReference; explicitFileType = sourcecode.cpp.cpp; fileEncoding = 30; name = ControlComparison.cpp; path = ../../../addons/ofxTonic/src/Tonic/ControlComparison.cpp; sourceTree = SOURCE_ROOT; };
 		4BB4CCB6D9C661BF0F88385C /* CompressorLimiter.h */ = {isa = PBXFileReference; explicitFileType = sourcecode.c.h; fileEncoding = 30; name = CompressorLimiter.h; path = ../../../addons/ofxTonic/src/Tonic/CompressorLimiter.h; sourceTree = SOURCE_ROOT; };
@@ -199,61 +219,88 @@
 		4E9A46046F16EA39C2893568 /* CarousselContainer.hpp */ = {isa = PBXFileReference; explicitFileType = sourcecode.c.h; fileEncoding = 30; name = CarousselContainer.hpp; path = src/CarousselContainer.hpp; sourceTree = SOURCE_ROOT; };
 		4EE282E831795B8D17A8C4FA /* ControlValue.cpp */ = {isa = PBXFileReference; explicitFileType = sourcecode.cpp.cpp; fileEncoding = 30; name = ControlValue.cpp; path = ../../../addons/ofxTonic/src/Tonic/ControlValue.cpp; sourceTree = SOURCE_ROOT; };
 		4F283396E9D4DB2EE1F3D5C6 /* ADSR.cpp */ = {isa = PBXFileReference; explicitFileType = sourcecode.cpp.cpp; fileEncoding = 30; name = ADSR.cpp; path = ../../../addons/ofxTonic/src/Tonic/ADSR.cpp; sourceTree = SOURCE_ROOT; };
+		4F92779076A6D955949EE075 /* CarousselLineManager.cpp */ = {isa = PBXFileReference; explicitFileType = sourcecode.cpp.cpp; fileEncoding = 30; name = CarousselLineManager.cpp; path = src/CarousselLineManager.cpp; sourceTree = SOURCE_ROOT; };
 		4FFBE72E6858540D5D742495 /* BufferPlayer.h */ = {isa = PBXFileReference; explicitFileType = sourcecode.c.h; fileEncoding = 30; name = BufferPlayer.h; path = ../../../addons/ofxTonic/src/Tonic/BufferPlayer.h; sourceTree = SOURCE_ROOT; };
 		507C9163723C92CE09C2EFF6 /* SampleTable.h */ = {isa = PBXFileReference; explicitFileType = sourcecode.c.h; fileEncoding = 30; name = SampleTable.h; path = ../../../addons/ofxTonic/src/Tonic/SampleTable.h; sourceTree = SOURCE_ROOT; };
+		50DF87D612C5AAE17AAFA6C0 /* ofxXmlSettings.cpp */ = {isa = PBXFileReference; explicitFileType = sourcecode.cpp.cpp; fileEncoding = 30; name = ofxXmlSettings.cpp; path = ../../../addons/ofxXmlSettings/src/ofxXmlSettings.cpp; sourceTree = SOURCE_ROOT; };
+		50FECBF169B8D396F702EC49 /* allpass.hpp */ = {isa = PBXFileReference; explicitFileType = sourcecode.c.h; fileEncoding = 30; name = allpass.hpp; path = ../../../addons/ofxReverb/libs/allpass.hpp; sourceTree = SOURCE_ROOT; };
+		5284ABE77B72837B4FF826B8 /* VerticalCarousselContainer.hpp */ = {isa = PBXFileReference; explicitFileType = sourcecode.c.h; fileEncoding = 30; name = VerticalCarousselContainer.hpp; path = src/VerticalCarousselContainer.hpp; sourceTree = SOURCE_ROOT; };
 		52AFA1F08C420992CAAAE648 /* ofxSlider.h */ = {isa = PBXFileReference; explicitFileType = sourcecode.c.h; fileEncoding = 30; name = ofxSlider.h; path = ../../../addons/ofxGui/src/ofxSlider.h; sourceTree = SOURCE_ROOT; };
 		5489F82C437EA9599501023A /* MovingWords.cpp */ = {isa = PBXFileReference; explicitFileType = sourcecode.cpp.cpp; fileEncoding = 30; name = MovingWords.cpp; path = src/MovingWords.cpp; sourceTree = SOURCE_ROOT; };
+		56E6F0FA144407B1A831D5BB /* wordbreak.h */ = {isa = PBXFileReference; explicitFileType = sourcecode.c.h; fileEncoding = 30; name = wordbreak.h; path = ../../../addons/ofxUnicode/libs/unibreak/include/wordbreak.h; sourceTree = SOURCE_ROOT; };
 		575BD41C90373F972BD7C281 /* ControlGenerator.h */ = {isa = PBXFileReference; explicitFileType = sourcecode.c.h; fileEncoding = 30; name = ControlGenerator.h; path = ../../../addons/ofxTonic/src/Tonic/ControlGenerator.h; sourceTree = SOURCE_ROOT; };
 		57EEFEC8B85F7C3B15DD45A4 /* Protocol.cpp */ = {isa = PBXFileReference; explicitFileType = sourcecode.cpp.cpp; fileEncoding = 30; name = Protocol.cpp; path = ../../../addons/ofxLibwebsockets/libs/ofxLibwebsockets/src/Protocol.cpp; sourceTree = SOURCE_ROOT; };
 		588E4C00D51F5D45C3C344B2 /* ControlTriggerFilter.h */ = {isa = PBXFileReference; explicitFileType = sourcecode.c.h; fileEncoding = 30; name = ControlTriggerFilter.h; path = ../../../addons/ofxTonic/src/Tonic/ControlTriggerFilter.h; sourceTree = SOURCE_ROOT; };
+		5BFB9DDBD832BD4D8BEA2800 /* fribidi-bidi.h */ = {isa = PBXFileReference; explicitFileType = sourcecode.c.h; fileEncoding = 30; name = "fribidi-bidi.h"; path = "../../../addons/ofxUnicode/libs/fribidi/include/fribidi/fribidi-bidi.h"; sourceTree = SOURCE_ROOT; };
 		5C302CDCEF3B434D523B564E /* ControlConditioner.cpp */ = {isa = PBXFileReference; explicitFileType = sourcecode.cpp.cpp; fileEncoding = 30; name = ControlConditioner.cpp; path = ../../../addons/ofxTonic/src/Tonic/ControlConditioner.cpp; sourceTree = SOURCE_ROOT; };
 		5D95092D59E7A34C9DB7823E /* Server.cpp */ = {isa = PBXFileReference; explicitFileType = sourcecode.cpp.cpp; fileEncoding = 30; name = Server.cpp; path = ../../../addons/ofxLibwebsockets/libs/ofxLibwebsockets/src/Server.cpp; sourceTree = SOURCE_ROOT; };
 		605CE146F51F0DD0489F20C8 /* MonoToStereoPanner.cpp */ = {isa = PBXFileReference; explicitFileType = sourcecode.cpp.cpp; fileEncoding = 30; name = MonoToStereoPanner.cpp; path = ../../../addons/ofxTonic/src/Tonic/MonoToStereoPanner.cpp; sourceTree = SOURCE_ROOT; };
 		6098632AA51D25D3FBA5B699 /* Synth.cpp */ = {isa = PBXFileReference; explicitFileType = sourcecode.cpp.cpp; fileEncoding = 30; name = Synth.cpp; path = ../../../addons/ofxTonic/src/Tonic/Synth.cpp; sourceTree = SOURCE_ROOT; };
 		613C931BD26D95CFAA736A69 /* ControlPrinter.h */ = {isa = PBXFileReference; explicitFileType = sourcecode.c.h; fileEncoding = 30; name = ControlPrinter.h; path = ../../../addons/ofxTonic/src/Tonic/ControlPrinter.h; sourceTree = SOURCE_ROOT; };
+		62FA1947A2C07A26AEC5F380 /* ofxWatchdog.h */ = {isa = PBXFileReference; explicitFileType = sourcecode.c.h; fileEncoding = 30; name = ofxWatchdog.h; path = ../../../addons/ofxWatchdog/src/ofxWatchdog.h; sourceTree = SOURCE_ROOT; };
+		634CF5DB4D0364E8359AC52E /* fribidi-joining-types.h */ = {isa = PBXFileReference; explicitFileType = sourcecode.c.h; fileEncoding = 30; name = "fribidi-joining-types.h"; path = "../../../addons/ofxUnicode/libs/fribidi/include/fribidi/fribidi-joining-types.h"; sourceTree = SOURCE_ROOT; };
 		63B514D9603E1B80E9C798B5 /* StereoDelay.h */ = {isa = PBXFileReference; explicitFileType = sourcecode.c.h; fileEncoding = 30; name = StereoDelay.h; path = ../../../addons/ofxTonic/src/Tonic/StereoDelay.h; sourceTree = SOURCE_ROOT; };
 		65E2547E340E3DCF7CD5EA19 /* ControlTrigger.h */ = {isa = PBXFileReference; explicitFileType = sourcecode.c.h; fileEncoding = 30; name = ControlTrigger.h; path = ../../../addons/ofxTonic/src/Tonic/ControlTrigger.h; sourceTree = SOURCE_ROOT; };
 		668088FE3C62B6B187A05117 /* Arithmetic.h */ = {isa = PBXFileReference; explicitFileType = sourcecode.c.h; fileEncoding = 30; name = Arithmetic.h; path = ../../../addons/ofxTonic/src/Tonic/Arithmetic.h; sourceTree = SOURCE_ROOT; };
 		67D49948EBA7B86CF87C4847 /* ControlRandom.cpp */ = {isa = PBXFileReference; explicitFileType = sourcecode.cpp.cpp; fileEncoding = 30; name = ControlRandom.cpp; path = ../../../addons/ofxTonic/src/Tonic/ControlRandom.cpp; sourceTree = SOURCE_ROOT; };
+		6936B48AED4F2A6AEAE25974 /* fribidi-common.h */ = {isa = PBXFileReference; explicitFileType = sourcecode.c.h; fileEncoding = 30; name = "fribidi-common.h"; path = "../../../addons/ofxUnicode/libs/fribidi/include/fribidi/fribidi-common.h"; sourceTree = SOURCE_ROOT; };
 		695C4690BBFEAD1AED50B2F2 /* Mixer.cpp */ = {isa = PBXFileReference; explicitFileType = sourcecode.cpp.cpp; fileEncoding = 30; name = Mixer.cpp; path = ../../../addons/ofxTonic/src/Tonic/Mixer.cpp; sourceTree = SOURCE_ROOT; };
 		69668FDE141262BC3C6CA929 /* jsoncpp.cpp */ = {isa = PBXFileReference; explicitFileType = sourcecode.cpp.cpp; fileEncoding = 30; name = jsoncpp.cpp; path = ../../../addons/ofxLibwebsockets/libs/jsoncpp/jsoncpp.cpp; sourceTree = SOURCE_ROOT; };
+		6AD72C435068D62F270812E4 /* comb.cpp */ = {isa = PBXFileReference; explicitFileType = sourcecode.cpp.cpp; fileEncoding = 30; name = comb.cpp; path = ../../../addons/ofxReverb/libs/comb.cpp; sourceTree = SOURCE_ROOT; };
 		6B61B2028CC70AFF71A9E65C /* TableLookupOsc.cpp */ = {isa = PBXFileReference; explicitFileType = sourcecode.cpp.cpp; fileEncoding = 30; name = TableLookupOsc.cpp; path = ../../../addons/ofxTonic/src/Tonic/TableLookupOsc.cpp; sourceTree = SOURCE_ROOT; };
-		6C9F8BDF65AC6F7B9F73DB63 /* CarousselLineManager.hpp */ = {isa = PBXFileReference; explicitFileType = sourcecode.c.h; fileEncoding = 30; name = CarousselLineManager.hpp; path = src/CarousselLineManager.hpp; sourceTree = SOURCE_ROOT; };
-		6D4FEB2CA9433669368A022C /* CarousselLineManager.cpp */ = {isa = PBXFileReference; explicitFileType = sourcecode.cpp.cpp; fileEncoding = 30; name = CarousselLineManager.cpp; path = src/CarousselLineManager.cpp; sourceTree = SOURCE_ROOT; };
 		6EDB8369D3C03948742979CF /* ControlParameter.h */ = {isa = PBXFileReference; explicitFileType = sourcecode.c.h; fileEncoding = 30; name = ControlParameter.h; path = ../../../addons/ofxTonic/src/Tonic/ControlParameter.h; sourceTree = SOURCE_ROOT; };
+		6FFD838699537542FFEF8CCC /* SceneManager.hpp */ = {isa = PBXFileReference; explicitFileType = sourcecode.c.h; fileEncoding = 30; name = SceneManager.hpp; path = src/SceneManager.hpp; sourceTree = SOURCE_ROOT; };
 		7168589C85E02BDE46E4D1F1 /* ControlTrigger.cpp */ = {isa = PBXFileReference; explicitFileType = sourcecode.cpp.cpp; fileEncoding = 30; name = ControlTrigger.cpp; path = ../../../addons/ofxTonic/src/Tonic/ControlTrigger.cpp; sourceTree = SOURCE_ROOT; };
 		722EE33B8812BA047AE17612 /* Mixer.h */ = {isa = PBXFileReference; explicitFileType = sourcecode.c.h; fileEncoding = 30; name = Mixer.h; path = ../../../addons/ofxTonic/src/Tonic/Mixer.h; sourceTree = SOURCE_ROOT; };
+		7292868FE2D901CC63F7F94A /* comb.hpp */ = {isa = PBXFileReference; explicitFileType = sourcecode.c.h; fileEncoding = 30; name = comb.hpp; path = ../../../addons/ofxReverb/libs/comb.hpp; sourceTree = SOURCE_ROOT; };
 		73EFFC1B6385265BB25A321D /* Generator.cpp */ = {isa = PBXFileReference; explicitFileType = sourcecode.cpp.cpp; fileEncoding = 30; name = Generator.cpp; path = ../../../addons/ofxTonic/src/Tonic/Generator.cpp; sourceTree = SOURCE_ROOT; };
 		74031F38BEF660C64DEEC20C /* ControlPulse.h */ = {isa = PBXFileReference; explicitFileType = sourcecode.c.h; fileEncoding = 30; name = ControlPulse.h; path = ../../../addons/ofxTonic/src/Tonic/ControlPulse.h; sourceTree = SOURCE_ROOT; };
 		75DCA31CF0745355CC4AD2DD /* libwebsockets.h */ = {isa = PBXFileReference; explicitFileType = sourcecode.c.h; fileEncoding = 30; name = libwebsockets.h; path = ../../../addons/ofxLibwebsockets/libs/libwebsockets/include/libwebsockets.h; sourceTree = SOURCE_ROOT; };
+		77DB58E2F135FCDC55B4F81B /* fribidi-mirroring.h */ = {isa = PBXFileReference; explicitFileType = sourcecode.c.h; fileEncoding = 30; name = "fribidi-mirroring.h"; path = "../../../addons/ofxUnicode/libs/fribidi/include/fribidi/fribidi-mirroring.h"; sourceTree = SOURCE_ROOT; };
 		7890C9E0B3C853711884EB42 /* ControlDbToLinear.cpp */ = {isa = PBXFileReference; explicitFileType = sourcecode.cpp.cpp; fileEncoding = 30; name = ControlDbToLinear.cpp; path = ../../../addons/ofxTonic/src/Tonic/ControlDbToLinear.cpp; sourceTree = SOURCE_ROOT; };
+		78B4DD4C24FC54C8C74248AC /* Background.cpp */ = {isa = PBXFileReference; explicitFileType = sourcecode.cpp.cpp; fileEncoding = 30; name = Background.cpp; path = src/Background.cpp; sourceTree = SOURCE_ROOT; };
 		78D67A00EB899FAC09430597 /* ofxLabel.cpp */ = {isa = PBXFileReference; explicitFileType = sourcecode.cpp.cpp; fileEncoding = 30; name = ofxLabel.cpp; path = ../../../addons/ofxGui/src/ofxLabel.cpp; sourceTree = SOURCE_ROOT; };
 		7A2C29D012EC2E697BBE9C2F /* ControlDelay.h */ = {isa = PBXFileReference; explicitFileType = sourcecode.c.h; fileEncoding = 30; name = ControlDelay.h; path = ../../../addons/ofxTonic/src/Tonic/ControlDelay.h; sourceTree = SOURCE_ROOT; };
+		7A67C2931749B9D04E3FAE22 /* unibreakbase.h */ = {isa = PBXFileReference; explicitFileType = sourcecode.c.h; fileEncoding = 30; name = unibreakbase.h; path = ../../../addons/ofxUnicode/libs/unibreak/include/unibreakbase.h; sourceTree = SOURCE_ROOT; };
 		7A713BE5573BB5E0030AF5DA /* CarousselContainer.cpp */ = {isa = PBXFileReference; explicitFileType = sourcecode.cpp.cpp; fileEncoding = 30; name = CarousselContainer.cpp; path = src/CarousselContainer.cpp; sourceTree = SOURCE_ROOT; };
 		7CD0A5DB6CE3801FED02387A /* LFNoise.cpp */ = {isa = PBXFileReference; explicitFileType = sourcecode.cpp.cpp; fileEncoding = 30; name = LFNoise.cpp; path = ../../../addons/ofxTonic/src/Tonic/LFNoise.cpp; sourceTree = SOURCE_ROOT; };
 		7E168DFAE8544371E9957908 /* ControlCallback.cpp */ = {isa = PBXFileReference; explicitFileType = sourcecode.cpp.cpp; fileEncoding = 30; name = ControlCallback.cpp; path = ../../../addons/ofxTonic/src/Tonic/ControlCallback.cpp; sourceTree = SOURCE_ROOT; };
 		7F8CB16CFDCB5893AB42EC5D /* Letter.cpp */ = {isa = PBXFileReference; explicitFileType = sourcecode.cpp.cpp; fileEncoding = 30; name = Letter.cpp; path = src/Letter.cpp; sourceTree = SOURCE_ROOT; };
 		802251BAF1B35B1D67B32FD0 /* ofxSliderGroup.cpp */ = {isa = PBXFileReference; explicitFileType = sourcecode.cpp.cpp; fileEncoding = 30; name = ofxSliderGroup.cpp; path = ../../../addons/ofxGui/src/ofxSliderGroup.cpp; sourceTree = SOURCE_ROOT; };
 		80C32A10A3EC8FA716033889 /* LetterEvent.hpp */ = {isa = PBXFileReference; explicitFileType = sourcecode.c.h; fileEncoding = 30; name = LetterEvent.hpp; path = src/LetterEvent.hpp; sourceTree = SOURCE_ROOT; };
+		810AEC298096EAFB2F52A40F /* fribidi-unicode.h */ = {isa = PBXFileReference; explicitFileType = sourcecode.c.h; fileEncoding = 30; name = "fribidi-unicode.h"; path = "../../../addons/ofxUnicode/libs/fribidi/include/fribidi/fribidi-unicode.h"; sourceTree = SOURCE_ROOT; };
+		832BDC407620CDBA568B713D /* tinyxmlerror.cpp */ = {isa = PBXFileReference; explicitFileType = sourcecode.cpp.cpp; fileEncoding = 30; name = tinyxmlerror.cpp; path = ../../../addons/ofxXmlSettings/libs/tinyxmlerror.cpp; sourceTree = SOURCE_ROOT; };
 		84466286B8E03BE7D2AE88DF /* ControlSwitcher.cpp */ = {isa = PBXFileReference; explicitFileType = sourcecode.cpp.cpp; fileEncoding = 30; name = ControlSwitcher.cpp; path = ../../../addons/ofxTonic/src/Tonic/ControlSwitcher.cpp; sourceTree = SOURCE_ROOT; };
 		84FECF1983A44881FF0B9D9B /* DSPUtils.h */ = {isa = PBXFileReference; explicitFileType = sourcecode.c.h; fileEncoding = 30; name = DSPUtils.h; path = ../../../addons/ofxTonic/src/Tonic/DSPUtils.h; sourceTree = SOURCE_ROOT; };
 		87F26B4B24CBD428AD9EEBAA /* ofxBaseGui.h */ = {isa = PBXFileReference; explicitFileType = sourcecode.c.h; fileEncoding = 30; name = ofxBaseGui.h; path = ../../../addons/ofxGui/src/ofxBaseGui.h; sourceTree = SOURCE_ROOT; };
+		8861CBE772437A8AA6559BDE /* globals.hpp */ = {isa = PBXFileReference; explicitFileType = sourcecode.c.h; fileEncoding = 30; name = globals.hpp; path = src/globals.hpp; sourceTree = SOURCE_ROOT; };
 		89449E3044D456F7DE7BEA14 /* ofxPanel.h */ = {isa = PBXFileReference; explicitFileType = sourcecode.c.h; fileEncoding = 30; name = ofxPanel.h; path = ../../../addons/ofxGui/src/ofxPanel.h; sourceTree = SOURCE_ROOT; };
+		898A0E31A20CBEA249648908 /* fribidi.h */ = {isa = PBXFileReference; explicitFileType = sourcecode.c.h; fileEncoding = 30; name = fribidi.h; path = ../../../addons/ofxUnicode/libs/fribidi/include/fribidi/fribidi.h; sourceTree = SOURCE_ROOT; };
 		8A73ACD4A7512BA21ADCC36B /* User.hpp */ = {isa = PBXFileReference; explicitFileType = sourcecode.c.h; fileEncoding = 30; name = User.hpp; path = src/User.hpp; sourceTree = SOURCE_ROOT; };
 		8A781C912CD5B01022F6BB2C /* Util.cpp */ = {isa = PBXFileReference; explicitFileType = sourcecode.cpp.cpp; fileEncoding = 30; name = Util.cpp; path = ../../../addons/ofxLibwebsockets/libs/ofxLibwebsockets/src/Util.cpp; sourceTree = SOURCE_ROOT; };
 		8A7A54FC0AEF8A0E41CFF07C /* Connection.h */ = {isa = PBXFileReference; explicitFileType = sourcecode.c.h; fileEncoding = 30; name = Connection.h; path = ../../../addons/ofxLibwebsockets/libs/ofxLibwebsockets/include/ofxLibwebsockets/Connection.h; sourceTree = SOURCE_ROOT; };
+		8C36B274C8F70E7CDE525AC3 /* ofxReverb.h */ = {isa = PBXFileReference; explicitFileType = sourcecode.c.h; fileEncoding = 30; name = ofxReverb.h; path = ../../../addons/ofxReverb/src/ofxReverb.h; sourceTree = SOURCE_ROOT; };
 		8CFCB9E703483B63052DAFE7 /* ControlArithmetic.cpp */ = {isa = PBXFileReference; explicitFileType = sourcecode.cpp.cpp; fileEncoding = 30; name = ControlArithmetic.cpp; path = ../../../addons/ofxTonic/src/Tonic/ControlArithmetic.cpp; sourceTree = SOURCE_ROOT; };
+		8D2C5D2DBAE701D317331A6C /* ofxWatchdog.cpp */ = {isa = PBXFileReference; explicitFileType = sourcecode.cpp.cpp; fileEncoding = 30; name = ofxWatchdog.cpp; path = ../../../addons/ofxWatchdog/src/ofxWatchdog.cpp; sourceTree = SOURCE_ROOT; };
 		907C5B5E104864A2D3A25745 /* ofxToggle.cpp */ = {isa = PBXFileReference; explicitFileType = sourcecode.cpp.cpp; fileEncoding = 30; name = ofxToggle.cpp; path = ../../../addons/ofxGui/src/ofxToggle.cpp; sourceTree = SOURCE_ROOT; };
 		914B990983A7F60F69D7488F /* ControlDelay.cpp */ = {isa = PBXFileReference; explicitFileType = sourcecode.cpp.cpp; fileEncoding = 30; name = ControlDelay.cpp; path = ../../../addons/ofxTonic/src/Tonic/ControlDelay.cpp; sourceTree = SOURCE_ROOT; };
+		924AF3FA453349835ECBE466 /* Background.h */ = {isa = PBXFileReference; explicitFileType = sourcecode.c.h; fileEncoding = 30; name = Background.h; path = src/Background.h; sourceTree = SOURCE_ROOT; };
+		92E2A9B9B019116D24B5D2D5 /* fribidi-flags.h */ = {isa = PBXFileReference; explicitFileType = sourcecode.c.h; fileEncoding = 30; name = "fribidi-flags.h"; path = "../../../addons/ofxUnicode/libs/fribidi/include/fribidi/fribidi-flags.h"; sourceTree = SOURCE_ROOT; };
 		9334F49EDD8D9A4DC42C109F /* ControlComparison.h */ = {isa = PBXFileReference; explicitFileType = sourcecode.c.h; fileEncoding = 30; name = ControlComparison.h; path = ../../../addons/ofxTonic/src/Tonic/ControlComparison.h; sourceTree = SOURCE_ROOT; };
 		93ABAD2A6EAD875C509EE859 /* CombFilter.h */ = {isa = PBXFileReference; explicitFileType = sourcecode.c.h; fileEncoding = 30; name = CombFilter.h; path = ../../../addons/ofxTonic/src/Tonic/CombFilter.h; sourceTree = SOURCE_ROOT; };
 		94BE744954B55BD36ADC6C99 /* IOManager.hpp */ = {isa = PBXFileReference; explicitFileType = sourcecode.c.h; fileEncoding = 30; name = IOManager.hpp; path = src/IOManager.hpp; sourceTree = SOURCE_ROOT; };
+		95FA5ED9BAEE259E66789724 /* fribidi-shape.h */ = {isa = PBXFileReference; explicitFileType = sourcecode.c.h; fileEncoding = 30; name = "fribidi-shape.h"; path = "../../../addons/ofxUnicode/libs/fribidi/include/fribidi/fribidi-shape.h"; sourceTree = SOURCE_ROOT; };
 		9604B925D32EE39065747725 /* ofxBaseGui.cpp */ = {isa = PBXFileReference; explicitFileType = sourcecode.cpp.cpp; fileEncoding = 30; name = ofxBaseGui.cpp; path = ../../../addons/ofxGui/src/ofxBaseGui.cpp; sourceTree = SOURCE_ROOT; };
+		962BC828F67D3CD325BBC7C3 /* fribidi-bidi-types.h */ = {isa = PBXFileReference; explicitFileType = sourcecode.c.h; fileEncoding = 30; name = "fribidi-bidi-types.h"; path = "../../../addons/ofxUnicode/libs/fribidi/include/fribidi/fribidi-bidi-types.h"; sourceTree = SOURCE_ROOT; };
+		9697FF1285A65C0AC8DEE783 /* unibreakdef.h */ = {isa = PBXFileReference; explicitFileType = sourcecode.c.h; fileEncoding = 30; name = unibreakdef.h; path = ../../../addons/ofxUnicode/libs/unibreak/include/unibreakdef.h; sourceTree = SOURCE_ROOT; };
+		96FAC441E0D5B1BCB60E12DE /* Unicode.h */ = {isa = PBXFileReference; explicitFileType = sourcecode.c.h; fileEncoding = 30; name = Unicode.h; path = ../../../addons/ofxUnicode/libs/ofxUnicode/include/ofx/Unicode.h; sourceTree = SOURCE_ROOT; };
+		98B25A7A7707F1484A3FE476 /* ofxUnicode.h */ = {isa = PBXFileReference; explicitFileType = sourcecode.c.h; fileEncoding = 30; name = ofxUnicode.h; path = ../../../addons/ofxUnicode/src/ofxUnicode.h; sourceTree = SOURCE_ROOT; };
 		994406BBEBD87315814BF2C7 /* Filters.h */ = {isa = PBXFileReference; explicitFileType = sourcecode.c.h; fileEncoding = 30; name = Filters.h; path = ../../../addons/ofxTonic/src/Tonic/Filters.h; sourceTree = SOURCE_ROOT; };
 		9A02B10B2C029F200DF63D72 /* ControlMetroDivider.cpp */ = {isa = PBXFileReference; explicitFileType = sourcecode.cpp.cpp; fileEncoding = 30; name = ControlMetroDivider.cpp; path = ../../../addons/ofxTonic/src/Tonic/ControlMetroDivider.cpp; sourceTree = SOURCE_ROOT; };
 		9A6E16EA3FDE79BFD7AE78D4 /* Generator.h */ = {isa = PBXFileReference; explicitFileType = sourcecode.c.h; fileEncoding = 30; name = Generator.h; path = ../../../addons/ofxTonic/src/Tonic/Generator.h; sourceTree = SOURCE_ROOT; };
 		9AC473B1EFE2F39A8BEB54D8 /* FixedValue.h */ = {isa = PBXFileReference; explicitFileType = sourcecode.c.h; fileEncoding = 30; name = FixedValue.h; path = ../../../addons/ofxTonic/src/Tonic/FixedValue.h; sourceTree = SOURCE_ROOT; };
 		9B98C32AEFD6FCEF7D470224 /* ControlPulse.cpp */ = {isa = PBXFileReference; explicitFileType = sourcecode.cpp.cpp; fileEncoding = 30; name = ControlPulse.cpp; path = ../../../addons/ofxTonic/src/Tonic/ControlPulse.cpp; sourceTree = SOURCE_ROOT; };
+		9BB67CC9BC0E3628322BA7A2 /* CarousselStackManager.hpp */ = {isa = PBXFileReference; explicitFileType = sourcecode.c.h; fileEncoding = 30; name = CarousselStackManager.hpp; path = src/CarousselStackManager.hpp; sourceTree = SOURCE_ROOT; };
 		9C4F9B516C9E0F1EBD0169AD /* ControlMetro.h */ = {isa = PBXFileReference; explicitFileType = sourcecode.c.h; fileEncoding = 30; name = ControlMetro.h; path = ../../../addons/ofxTonic/src/Tonic/ControlMetro.h; sourceTree = SOURCE_ROOT; };
 		9C8915CDA201FD63BA747BD0 /* Fragment.cpp */ = {isa = PBXFileReference; explicitFileType = sourcecode.cpp.cpp; fileEncoding = 30; name = Fragment.cpp; path = src/Fragment.cpp; sourceTree = SOURCE_ROOT; };
 		9CB74859F378F043E3E15239 /* DelayUtils.h */ = {isa = PBXFileReference; explicitFileType = sourcecode.c.h; fileEncoding = 30; name = DelayUtils.h; path = ../../../addons/ofxTonic/src/Tonic/DelayUtils.h; sourceTree = SOURCE_ROOT; };
@@ -265,23 +312,31 @@
 		A24ACE98E63AE529A9D3EAE4 /* BufferFiller.h */ = {isa = PBXFileReference; explicitFileType = sourcecode.c.h; fileEncoding = 30; name = BufferFiller.h; path = ../../../addons/ofxTonic/src/Tonic/BufferFiller.h; sourceTree = SOURCE_ROOT; };
 		A2CF9DA1939F4FBF25F5464C /* ControlFloor.cpp */ = {isa = PBXFileReference; explicitFileType = sourcecode.cpp.cpp; fileEncoding = 30; name = ControlFloor.cpp; path = ../../../addons/ofxTonic/src/Tonic/ControlFloor.cpp; sourceTree = SOURCE_ROOT; };
 		A4E73E7202509B8E556BAA91 /* Synth.h */ = {isa = PBXFileReference; explicitFileType = sourcecode.c.h; fileEncoding = 30; name = Synth.h; path = ../../../addons/ofxTonic/src/Tonic/Synth.h; sourceTree = SOURCE_ROOT; };
+		A636E663A77A7C52C41597F5 /* VerticalCaroussel.cpp */ = {isa = PBXFileReference; explicitFileType = sourcecode.cpp.cpp; fileEncoding = 30; name = VerticalCaroussel.cpp; path = src/VerticalCaroussel.cpp; sourceTree = SOURCE_ROOT; };
+		A796DA6DFEE7AAEDC900DA52 /* fribidi-joining.h */ = {isa = PBXFileReference; explicitFileType = sourcecode.c.h; fileEncoding = 30; name = "fribidi-joining.h"; path = "../../../addons/ofxUnicode/libs/fribidi/include/fribidi/fribidi-joining.h"; sourceTree = SOURCE_ROOT; };
 		A881453E52CE0251DEC076CD /* Events.h */ = {isa = PBXFileReference; explicitFileType = sourcecode.c.h; fileEncoding = 30; name = Events.h; path = ../../../addons/ofxLibwebsockets/libs/ofxLibwebsockets/include/ofxLibwebsockets/Events.h; sourceTree = SOURCE_ROOT; };
+		AAB1C9B995D41052084A8195 /* ForegroundSound.hpp */ = {isa = PBXFileReference; explicitFileType = sourcecode.c.h; fileEncoding = 30; name = ForegroundSound.hpp; path = src/ForegroundSound.hpp; sourceTree = SOURCE_ROOT; };
 		AAB9DDA5DE02A95B98057509 /* ControlConditioner.h */ = {isa = PBXFileReference; explicitFileType = sourcecode.c.h; fileEncoding = 30; name = ControlConditioner.h; path = ../../../addons/ofxTonic/src/Tonic/ControlConditioner.h; sourceTree = SOURCE_ROOT; };
 		AB0A3C27F32E3CC6ED870512 /* AudioFileUtils.cpp */ = {isa = PBXFileReference; explicitFileType = sourcecode.cpp.cpp; fileEncoding = 30; name = AudioFileUtils.cpp; path = ../../../addons/ofxTonic/src/Tonic/AudioFileUtils.cpp; sourceTree = SOURCE_ROOT; };
+		AB579E1E14491AC846004ED2 /* fribidi-bidi-types-list.h */ = {isa = PBXFileReference; explicitFileType = sourcecode.c.h; fileEncoding = 30; name = "fribidi-bidi-types-list.h"; path = "../../../addons/ofxUnicode/libs/fribidi/include/fribidi/fribidi-bidi-types-list.h"; sourceTree = SOURCE_ROOT; };
 		AC361B46FBD15811B251D6F8 /* ControlStepper.cpp */ = {isa = PBXFileReference; explicitFileType = sourcecode.cpp.cpp; fileEncoding = 30; name = ControlStepper.cpp; path = ../../../addons/ofxTonic/src/Tonic/ControlStepper.cpp; sourceTree = SOURCE_ROOT; };
 		ADCAEBB25647DC2282922649 /* Word.cpp */ = {isa = PBXFileReference; explicitFileType = sourcecode.cpp.cpp; fileEncoding = 30; name = Word.cpp; path = src/Word.cpp; sourceTree = SOURCE_ROOT; };
 		AE0E20DCD146B0EA557EAE23 /* BLEPOscillator.h */ = {isa = PBXFileReference; explicitFileType = sourcecode.c.h; fileEncoding = 30; name = BLEPOscillator.h; path = ../../../addons/ofxTonic/src/Tonic/BLEPOscillator.h; sourceTree = SOURCE_ROOT; };
 		AE4172C4257B7BF71760139A /* Letter.hpp */ = {isa = PBXFileReference; explicitFileType = sourcecode.c.h; fileEncoding = 30; name = Letter.hpp; path = src/Letter.hpp; sourceTree = SOURCE_ROOT; };
 		B0124AC6A11F35F1B18FCFD5 /* ControlParameter.cpp */ = {isa = PBXFileReference; explicitFileType = sourcecode.cpp.cpp; fileEncoding = 30; name = ControlParameter.cpp; path = ../../../addons/ofxTonic/src/Tonic/ControlParameter.cpp; sourceTree = SOURCE_ROOT; };
+		B15E300CFFDC6EBBE87F1CC6 /* fribidi-char-sets-list.h */ = {isa = PBXFileReference; explicitFileType = sourcecode.c.h; fileEncoding = 30; name = "fribidi-char-sets-list.h"; path = "../../../addons/ofxUnicode/libs/fribidi/include/fribidi/fribidi-char-sets-list.h"; sourceTree = SOURCE_ROOT; };
+		B21E7E5F548EEA92F368040B /* tinyxml.h */ = {isa = PBXFileReference; explicitFileType = sourcecode.c.h; fileEncoding = 30; name = tinyxml.h; path = ../../../addons/ofxXmlSettings/libs/tinyxml.h; sourceTree = SOURCE_ROOT; };
 		B3B9C5B8F26032F8C3A6D7D8 /* ControlCounter.cpp */ = {isa = PBXFileReference; explicitFileType = sourcecode.cpp.cpp; fileEncoding = 30; name = ControlCounter.cpp; path = ../../../addons/ofxTonic/src/Tonic/ControlCounter.cpp; sourceTree = SOURCE_ROOT; };
 		B594F5DD51D8B551D8474BE5 /* RectWave.h */ = {isa = PBXFileReference; explicitFileType = sourcecode.c.h; fileEncoding = 30; name = RectWave.h; path = ../../../addons/ofxTonic/src/Tonic/RectWave.h; sourceTree = SOURCE_ROOT; };
 		B5B923FA6048C8D2737DDFC2 /* ControlMidiToFreq.cpp */ = {isa = PBXFileReference; explicitFileType = sourcecode.cpp.cpp; fileEncoding = 30; name = ControlMidiToFreq.cpp; path = ../../../addons/ofxTonic/src/Tonic/ControlMidiToFreq.cpp; sourceTree = SOURCE_ROOT; };
+		B5D6F8D192DFE4361DD554E4 /* fribidi-enddecls.h */ = {isa = PBXFileReference; explicitFileType = sourcecode.c.h; fileEncoding = 30; name = "fribidi-enddecls.h"; path = "../../../addons/ofxUnicode/libs/fribidi/include/fribidi/fribidi-enddecls.h"; sourceTree = SOURCE_ROOT; };
 		B6C9748F5032F2A6E7D5DED8 /* TableLookupOsc.h */ = {isa = PBXFileReference; explicitFileType = sourcecode.c.h; fileEncoding = 30; name = TableLookupOsc.h; path = ../../../addons/ofxTonic/src/Tonic/TableLookupOsc.h; sourceTree = SOURCE_ROOT; };
 		B87C60311EC1FE841C1ECD89 /* ofxLabel.h */ = {isa = PBXFileReference; explicitFileType = sourcecode.c.h; fileEncoding = 30; name = ofxLabel.h; path = ../../../addons/ofxGui/src/ofxLabel.h; sourceTree = SOURCE_ROOT; };
 		B93889B67AEFAF80E132580F /* ADSR.h */ = {isa = PBXFileReference; explicitFileType = sourcecode.c.h; fileEncoding = 30; name = ADSR.h; path = ../../../addons/ofxTonic/src/Tonic/ADSR.h; sourceTree = SOURCE_ROOT; };
 		B979FCAC35BBE495D29574B6 /* Filters.cpp */ = {isa = PBXFileReference; explicitFileType = sourcecode.cpp.cpp; fileEncoding = 30; name = Filters.cpp; path = ../../../addons/ofxTonic/src/Tonic/Filters.cpp; sourceTree = SOURCE_ROOT; };
 		BA1A28B41F62F3FDCF0A67CE /* ControlGenerator.cpp */ = {isa = PBXFileReference; explicitFileType = sourcecode.cpp.cpp; fileEncoding = 30; name = ControlGenerator.cpp; path = ../../../addons/ofxTonic/src/Tonic/ControlGenerator.cpp; sourceTree = SOURCE_ROOT; };
 		BA9FA17BACE0BC9114A35A23 /* Util.h */ = {isa = PBXFileReference; explicitFileType = sourcecode.c.h; fileEncoding = 30; name = Util.h; path = ../../../addons/ofxLibwebsockets/libs/ofxLibwebsockets/include/ofxLibwebsockets/Util.h; sourceTree = SOURCE_ROOT; };
+		BC7102A89DE87CA084D4099D /* tuning.h */ = {isa = PBXFileReference; explicitFileType = sourcecode.c.h; fileEncoding = 30; name = tuning.h; path = ../../../addons/ofxReverb/libs/tuning.h; sourceTree = SOURCE_ROOT; };
 		BDE0C98A54861131ACD7CC7F /* RingBuffer.h */ = {isa = PBXFileReference; explicitFileType = sourcecode.c.h; fileEncoding = 30; name = RingBuffer.h; path = ../../../addons/ofxTonic/src/Tonic/RingBuffer.h; sourceTree = SOURCE_ROOT; };
 		BEF84527D955124E75EAA231 /* SoundManager.hpp */ = {isa = PBXFileReference; explicitFileType = sourcecode.c.h; fileEncoding = 30; name = SoundManager.hpp; path = src/SoundManager.hpp; sourceTree = SOURCE_ROOT; };
 		C1291F0DE19D1635A4F0CD3D /* SawtoothWave.cpp */ = {isa = PBXFileReference; explicitFileType = sourcecode.cpp.cpp; fileEncoding = 30; name = SawtoothWave.cpp; path = ../../../addons/ofxTonic/src/Tonic/SawtoothWave.cpp; sourceTree = SOURCE_ROOT; };
@@ -293,19 +348,28 @@
 		CB12D2602935492A04A59107 /* IOManager.cpp */ = {isa = PBXFileReference; explicitFileType = sourcecode.cpp.cpp; fileEncoding = 30; name = IOManager.cpp; path = src/IOManager.cpp; sourceTree = SOURCE_ROOT; };
 		CB6F4829BDF57C516A335B45 /* SampleTable.cpp */ = {isa = PBXFileReference; explicitFileType = sourcecode.cpp.cpp; fileEncoding = 30; name = SampleTable.cpp; path = ../../../addons/ofxTonic/src/Tonic/SampleTable.cpp; sourceTree = SOURCE_ROOT; };
 		CCCEE1BC957A63A62E7FD406 /* BLEPOscillator.cpp */ = {isa = PBXFileReference; explicitFileType = sourcecode.cpp.cpp; fileEncoding = 30; name = BLEPOscillator.cpp; path = ../../../addons/ofxTonic/src/Tonic/BLEPOscillator.cpp; sourceTree = SOURCE_ROOT; };
+		CCEF707189733DC0E3922D37 /* revmodel.hpp */ = {isa = PBXFileReference; explicitFileType = sourcecode.c.h; fileEncoding = 30; name = revmodel.hpp; path = ../../../addons/ofxReverb/libs/revmodel.hpp; sourceTree = SOURCE_ROOT; };
 		CF4075AE08DCC901080970F7 /* Protocol.h */ = {isa = PBXFileReference; explicitFileType = sourcecode.c.h; fileEncoding = 30; name = Protocol.h; path = ../../../addons/ofxLibwebsockets/libs/ofxLibwebsockets/include/ofxLibwebsockets/Protocol.h; sourceTree = SOURCE_ROOT; };
+		D071C150E8FC9CE863608603 /* fribidi-char-sets.h */ = {isa = PBXFileReference; explicitFileType = sourcecode.c.h; fileEncoding = 30; name = "fribidi-char-sets.h"; path = "../../../addons/ofxUnicode/libs/fribidi/include/fribidi/fribidi-char-sets.h"; sourceTree = SOURCE_ROOT; };
+		D15E442DA7D78DB7BEDDF331 /* helpers.hpp */ = {isa = PBXFileReference; explicitFileType = sourcecode.c.h; fileEncoding = 30; name = helpers.hpp; path = src/helpers.hpp; sourceTree = SOURCE_ROOT; };
+		D17E4D7076B6AC99E0AADDA7 /* OrthoCamera.cpp */ = {isa = PBXFileReference; explicitFileType = sourcecode.cpp.cpp; fileEncoding = 30; name = OrthoCamera.cpp; path = src/OrthoCamera.cpp; sourceTree = SOURCE_ROOT; };
 		D1B31C69FDFF84C427E6B540 /* TriangleWave.h */ = {isa = PBXFileReference; explicitFileType = sourcecode.c.h; fileEncoding = 30; name = TriangleWave.h; path = ../../../addons/ofxTonic/src/Tonic/TriangleWave.h; sourceTree = SOURCE_ROOT; };
+		D273B030B1559B9B0A2C0CF9 /* fribidi-types.h */ = {isa = PBXFileReference; explicitFileType = sourcecode.c.h; fileEncoding = 30; name = "fribidi-types.h"; path = "../../../addons/ofxUnicode/libs/fribidi/include/fribidi/fribidi-types.h"; sourceTree = SOURCE_ROOT; };
 		D31CF822CBBBE0B7167F4738 /* lws_config.h */ = {isa = PBXFileReference; explicitFileType = sourcecode.c.h; fileEncoding = 30; name = lws_config.h; path = ../../../addons/ofxLibwebsockets/libs/libwebsockets/include/lws_config.h; sourceTree = SOURCE_ROOT; };
 		D32DF537073A4386FE4DEDC6 /* SquareWave.h */ = {isa = PBXFileReference; explicitFileType = sourcecode.c.h; fileEncoding = 30; name = SquareWave.h; path = ../../../addons/ofxTonic/src/Tonic/SquareWave.h; sourceTree = SOURCE_ROOT; };
 		D4BF1FFE18E83CA14EBA3B41 /* LetterEvent.cpp */ = {isa = PBXFileReference; explicitFileType = sourcecode.cpp.cpp; fileEncoding = 30; name = LetterEvent.cpp; path = src/LetterEvent.cpp; sourceTree = SOURCE_ROOT; };
 		D536A0C1CE5316F0FE22BD9F /* ControlXYSpeed.h */ = {isa = PBXFileReference; explicitFileType = sourcecode.c.h; fileEncoding = 30; name = ControlXYSpeed.h; path = ../../../addons/ofxTonic/src/Tonic/ControlXYSpeed.h; sourceTree = SOURCE_ROOT; };
+		D802614870C6DEE044965E89 /* denormals.h */ = {isa = PBXFileReference; explicitFileType = sourcecode.c.h; fileEncoding = 30; name = denormals.h; path = ../../../addons/ofxReverb/libs/denormals.h; sourceTree = SOURCE_ROOT; };
 		D8D5E467EBBF786CB8A4F7FB /* BufferFiller.cpp */ = {isa = PBXFileReference; explicitFileType = sourcecode.cpp.cpp; fileEncoding = 30; name = BufferFiller.cpp; path = ../../../addons/ofxTonic/src/Tonic/BufferFiller.cpp; sourceTree = SOURCE_ROOT; };
 		D8EBFB2FE2DA442F07F2AF9D /* BitCrusher.cpp */ = {isa = PBXFileReference; explicitFileType = sourcecode.cpp.cpp; fileEncoding = 30; name = BitCrusher.cpp; path = ../../../addons/ofxTonic/src/Tonic/BitCrusher.cpp; sourceTree = SOURCE_ROOT; };
+		DA1EEFBFEF9EAC1329EA5F36 /* VerticalCaroussel.hpp */ = {isa = PBXFileReference; explicitFileType = sourcecode.c.h; fileEncoding = 30; name = VerticalCaroussel.hpp; path = src/VerticalCaroussel.hpp; sourceTree = SOURCE_ROOT; };
 		DA940AB65E694852A4445693 /* FixedValue.cpp */ = {isa = PBXFileReference; explicitFileType = sourcecode.cpp.cpp; fileEncoding = 30; name = FixedValue.cpp; path = ../../../addons/ofxTonic/src/Tonic/FixedValue.cpp; sourceTree = SOURCE_ROOT; };
+		DE4A802B93801FF2C199FEF0 /* VerticalCarousselContainer.cpp */ = {isa = PBXFileReference; explicitFileType = sourcecode.cpp.cpp; fileEncoding = 30; name = VerticalCarousselContainer.cpp; path = src/VerticalCarousselContainer.cpp; sourceTree = SOURCE_ROOT; };
 		DE8E02409901F4EF247D5467 /* Reverb.h */ = {isa = PBXFileReference; explicitFileType = sourcecode.c.h; fileEncoding = 30; name = Reverb.h; path = ../../../addons/ofxTonic/src/Tonic/Reverb.h; sourceTree = SOURCE_ROOT; };
 		E112B3AEBEA2C091BF2B40AE /* ofxPanel.cpp */ = {isa = PBXFileReference; explicitFileType = sourcecode.cpp.cpp; fileEncoding = 30; name = ofxPanel.cpp; path = ../../../addons/ofxGui/src/ofxPanel.cpp; sourceTree = SOURCE_ROOT; };
 		E1943C13AEB5FD77273B3C72 /* StereoDelay.cpp */ = {isa = PBXFileReference; explicitFileType = sourcecode.cpp.cpp; fileEncoding = 30; name = StereoDelay.cpp; path = ../../../addons/ofxTonic/src/Tonic/StereoDelay.cpp; sourceTree = SOURCE_ROOT; };
 		E2318BC197437E2688871D33 /* CarousselEvent.hpp */ = {isa = PBXFileReference; explicitFileType = sourcecode.c.h; fileEncoding = 30; name = CarousselEvent.hpp; path = src/CarousselEvent.hpp; sourceTree = SOURCE_ROOT; };
+		E24D9D7607931EE882C50190 /* globals.cpp */ = {isa = PBXFileReference; explicitFileType = sourcecode.cpp.cpp; fileEncoding = 30; name = globals.cpp; path = src/globals.cpp; sourceTree = SOURCE_ROOT; };
 		E3261A85562BD2578300F23E /* Client.h */ = {isa = PBXFileReference; explicitFileType = sourcecode.c.h; fileEncoding = 30; name = Client.h; path = ../../../addons/ofxLibwebsockets/libs/ofxLibwebsockets/include/ofxLibwebsockets/Client.h; sourceTree = SOURCE_ROOT; };
 		E3C19F78D15CA0EF3F50659E /* CarousselEvent.cpp */ = {isa = PBXFileReference; explicitFileType = sourcecode.cpp.cpp; fileEncoding = 30; name = CarousselEvent.cpp; path = src/CarousselEvent.cpp; sourceTree = SOURCE_ROOT; };
 		E4328143138ABC890047C5CB /* openFrameworksLib.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = openFrameworksLib.xcodeproj; path = ../../../libs/openFrameworksCompiled/project/osx/openFrameworksLib.xcodeproj; sourceTree = SOURCE_ROOT; };
@@ -322,6 +386,7 @@
 		E8FB2FE823CE7B34CE057593 /* ControlSnapToScale.h */ = {isa = PBXFileReference; explicitFileType = sourcecode.c.h; fileEncoding = 30; name = ControlSnapToScale.h; path = ../../../addons/ofxTonic/src/Tonic/ControlSnapToScale.h; sourceTree = SOURCE_ROOT; };
 		E920101778A591CE7E476ADF /* ControlMetroDivider.h */ = {isa = PBXFileReference; explicitFileType = sourcecode.c.h; fileEncoding = 30; name = ControlMetroDivider.h; path = ../../../addons/ofxTonic/src/Tonic/ControlMetroDivider.h; sourceTree = SOURCE_ROOT; };
 		E96E870C4145622E8AFB8D70 /* ControlMetro.cpp */ = {isa = PBXFileReference; explicitFileType = sourcecode.cpp.cpp; fileEncoding = 30; name = ControlMetro.cpp; path = ../../../addons/ofxTonic/src/Tonic/ControlMetro.cpp; sourceTree = SOURCE_ROOT; };
+		EA52530D6AD8AC807F753C9A /* fribidi-unicode-version.h */ = {isa = PBXFileReference; explicitFileType = sourcecode.c.h; fileEncoding = 30; name = "fribidi-unicode-version.h"; path = "../../../addons/ofxUnicode/libs/fribidi/include/fribidi/fribidi-unicode-version.h"; sourceTree = SOURCE_ROOT; };
 		EC14FAAFBB1143E1C64BF2C3 /* json.h */ = {isa = PBXFileReference; explicitFileType = sourcecode.c.h; fileEncoding = 30; name = json.h; path = ../../../addons/ofxLibwebsockets/libs/jsoncpp/json/json.h; sourceTree = SOURCE_ROOT; };
 		ECF8674C7975F1063C5E30CA /* ofxGuiGroup.cpp */ = {isa = PBXFileReference; explicitFileType = sourcecode.cpp.cpp; fileEncoding = 30; name = ofxGuiGroup.cpp; path = ../../../addons/ofxGui/src/ofxGuiGroup.cpp; sourceTree = SOURCE_ROOT; };
 		ED6AB653C88E69872DD7D662 /* ControlTriggerFilter.cpp */ = {isa = PBXFileReference; explicitFileType = sourcecode.cpp.cpp; fileEncoding = 30; name = ControlTriggerFilter.cpp; path = ../../../addons/ofxTonic/src/Tonic/ControlTriggerFilter.cpp; sourceTree = SOURCE_ROOT; };
@@ -331,48 +396,29 @@
 		EF8EA1AFDF9767C7EACDE5BB /* SawtoothWave.h */ = {isa = PBXFileReference; explicitFileType = sourcecode.c.h; fileEncoding = 30; name = SawtoothWave.h; path = ../../../addons/ofxTonic/src/Tonic/SawtoothWave.h; sourceTree = SOURCE_ROOT; };
 		F0813E968BEF55DAC88B7C7B /* BufferPlayer.cpp */ = {isa = PBXFileReference; explicitFileType = sourcecode.cpp.cpp; fileEncoding = 30; name = BufferPlayer.cpp; path = ../../../addons/ofxTonic/src/Tonic/BufferPlayer.cpp; sourceTree = SOURCE_ROOT; };
 		F11BA8009F1346D2F4A449FD /* Word.h */ = {isa = PBXFileReference; explicitFileType = sourcecode.c.h; fileEncoding = 30; name = Word.h; path = src/Word.h; sourceTree = SOURCE_ROOT; };
+		F249DADE48F59CC88A356665 /* fribidi-deprecated.h */ = {isa = PBXFileReference; explicitFileType = sourcecode.c.h; fileEncoding = 30; name = "fribidi-deprecated.h"; path = "../../../addons/ofxUnicode/libs/fribidi/include/fribidi/fribidi-deprecated.h"; sourceTree = SOURCE_ROOT; };
 		F391CB3C993783D08B18BE62 /* Noise.cpp */ = {isa = PBXFileReference; explicitFileType = sourcecode.cpp.cpp; fileEncoding = 30; name = Noise.cpp; path = ../../../addons/ofxTonic/src/Tonic/Noise.cpp; sourceTree = SOURCE_ROOT; };
+		F3BE28C3663B7F0010E676AF /* fribidi-joining-types-list.h */ = {isa = PBXFileReference; explicitFileType = sourcecode.c.h; fileEncoding = 30; name = "fribidi-joining-types-list.h"; path = "../../../addons/ofxUnicode/libs/fribidi/include/fribidi/fribidi-joining-types-list.h"; sourceTree = SOURCE_ROOT; };
+		F40658A17A816A5238C493AE /* ucdn.c */ = {isa = PBXFileReference; explicitFileType = sourcecode.c.c; fileEncoding = 30; name = ucdn.c; path = ../../../addons/ofxUnicode/libs/ucdn/src/ucdn.c; sourceTree = SOURCE_ROOT; };
 		F8836A0D4C01F8713843CB8F /* ControlValue.h */ = {isa = PBXFileReference; explicitFileType = sourcecode.c.h; fileEncoding = 30; name = ControlValue.h; path = ../../../addons/ofxTonic/src/Tonic/ControlValue.h; sourceTree = SOURCE_ROOT; };
 		F94B5F9261430D3EF3491600 /* ControlFloor.h */ = {isa = PBXFileReference; explicitFileType = sourcecode.c.h; fileEncoding = 30; name = ControlFloor.h; path = ../../../addons/ofxTonic/src/Tonic/ControlFloor.h; sourceTree = SOURCE_ROOT; };
-		FA18B2871DF58A55005A2E07 /* helpers.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = helpers.hpp; sourceTree = "<group>"; };
+		FA3046411E3C93D900457C02 /* MySynth.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = MySynth.cpp; sourceTree = "<group>"; };
+		FA3046421E3C93D900457C02 /* MySynth.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MySynth.h; sourceTree = "<group>"; };
 		FA3806E5CC3407A997C05CEC /* ControlPrinter.cpp */ = {isa = PBXFileReference; explicitFileType = sourcecode.cpp.cpp; fileEncoding = 30; name = ControlPrinter.cpp; path = ../../../addons/ofxTonic/src/Tonic/ControlPrinter.cpp; sourceTree = SOURCE_ROOT; };
-		FA6879DA1DFEFB0800619A40 /* VerticalCaroussel.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = VerticalCaroussel.cpp; sourceTree = "<group>"; };
-		FA6879DB1DFEFB0800619A40 /* VerticalCaroussel.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = VerticalCaroussel.hpp; sourceTree = "<group>"; };
-		FA6879DD1DFEFB5D00619A40 /* VerticalCarousselContainer.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = VerticalCarousselContainer.cpp; sourceTree = "<group>"; };
-		FA6879DE1DFEFB5D00619A40 /* VerticalCarousselContainer.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = VerticalCarousselContainer.hpp; sourceTree = "<group>"; };
-		FA6E66E21E1EFB4E008615E9 /* OrthoCamera.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = OrthoCamera.cpp; sourceTree = "<group>"; };
-		FA6E66E31E1EFB4E008615E9 /* OrthoCamera.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OrthoCamera.h; sourceTree = "<group>"; };
-		FAAAC0491DEF3ACE00F25A4A /* CarousselStackManager.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = CarousselStackManager.cpp; sourceTree = "<group>"; };
-		FAAAC04A1DEF3ACE00F25A4A /* CarousselStackManager.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = CarousselStackManager.hpp; sourceTree = "<group>"; };
-		FAB4EACD1DDC7B1100A5E61E /* tinyxml.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = tinyxml.cpp; sourceTree = "<group>"; };
-		FAB4EACE1DDC7B1100A5E61E /* tinyxml.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = tinyxml.h; sourceTree = "<group>"; };
-		FAB4EACF1DDC7B1100A5E61E /* tinyxmlerror.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = tinyxmlerror.cpp; sourceTree = "<group>"; };
-		FAB4EAD01DDC7B1100A5E61E /* tinyxmlparser.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = tinyxmlparser.cpp; sourceTree = "<group>"; };
-		FAB4EAD21DDC7B1100A5E61E /* ofxXmlSettings.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = ofxXmlSettings.cpp; sourceTree = "<group>"; };
-		FAB4EAD31DDC7B1100A5E61E /* ofxXmlSettings.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ofxXmlSettings.h; sourceTree = "<group>"; };
-		FACC9CDE1E263D4000B488E8 /* Background.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Background.cpp; sourceTree = "<group>"; };
-		FACC9CDF1E263D4000B488E8 /* Background.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Background.h; sourceTree = "<group>"; };
-		FACC9CE01E263D4000B488E8 /* ForegroundSound.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = ForegroundSound.cpp; sourceTree = "<group>"; };
-		FACC9CE11E263D4000B488E8 /* ForegroundSound.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = ForegroundSound.hpp; sourceTree = "<group>"; };
-		FACC9CE61E264CAC00B488E8 /* settings.xml */ = {isa = PBXFileReference; lastKnownFileType = text.xml; name = settings.xml; path = bin/data/settings.xml; sourceTree = SOURCE_ROOT; };
-		FAEE4CFD1E2D025300216A5A /* globals.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = globals.cpp; sourceTree = "<group>"; };
-		FAEE4CFE1E2D025300216A5A /* globals.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = globals.hpp; sourceTree = "<group>"; };
-		FAEE4D001E2D05E500216A5A /* SceneManager.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = SceneManager.hpp; sourceTree = "<group>"; };
-		FAF2838F1E02F55100B07266 /* allpass.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = allpass.cpp; sourceTree = "<group>"; };
-		FAF283901E02F55100B07266 /* allpass.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = allpass.hpp; sourceTree = "<group>"; };
-		FAF283911E02F55100B07266 /* comb.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = comb.cpp; sourceTree = "<group>"; };
-		FAF283921E02F55100B07266 /* comb.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = comb.hpp; sourceTree = "<group>"; };
-		FAF283931E02F55100B07266 /* denormals.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = denormals.h; sourceTree = "<group>"; };
-		FAF283941E02F55100B07266 /* revmodel.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = revmodel.cpp; sourceTree = "<group>"; };
-		FAF283951E02F55100B07266 /* revmodel.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = revmodel.hpp; sourceTree = "<group>"; };
-		FAF283961E02F55100B07266 /* tuning.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = tuning.h; sourceTree = "<group>"; };
-		FAF283971E02F55100B07266 /* README.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = "<group>"; };
-		FAF283991E02F55100B07266 /* ofxReverb.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ofxReverb.h; sourceTree = "<group>"; };
-		FAF2839B1E02F55100B07266 /* ofSoundEffect.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = ofSoundEffect.cpp; sourceTree = "<group>"; };
-		FAF2839C1E02F55100B07266 /* ofSoundEffect.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ofSoundEffect.h; sourceTree = "<group>"; };
-		FAF2839D1E02F55100B07266 /* ofSoundUnit.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = ofSoundUnit.cpp; sourceTree = "<group>"; };
-		FAF2839E1E02F55100B07266 /* ofSoundUnit.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ofSoundUnit.h; sourceTree = "<group>"; };
+		FA462E521E301627009F3D43 /* ofSoundEffect.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = ofSoundEffect.cpp; sourceTree = "<group>"; };
+		FA462E531E301627009F3D43 /* ofSoundEffect.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ofSoundEffect.h; sourceTree = "<group>"; };
+		FA462E541E301627009F3D43 /* ofSoundUnit.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = ofSoundUnit.cpp; sourceTree = "<group>"; };
+		FA462E551E301627009F3D43 /* ofSoundUnit.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ofSoundUnit.h; sourceTree = "<group>"; };
+		FA462E5E1E30238E009F3D43 /* install.xml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = install.xml; sourceTree = "<group>"; };
+		FA462E5F1E30238E009F3D43 /* License.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = License.txt; sourceTree = "<group>"; };
+		FA462E601E30238E009F3D43 /* ofxaddons_thumbnail.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = ofxaddons_thumbnail.png; sourceTree = "<group>"; };
+		FA462E611E30238E009F3D43 /* README.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = "<group>"; };
+		FA462E631E30238E009F3D43 /* ofxTrueTypeFontUC.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = ofxTrueTypeFontUC.cpp; sourceTree = "<group>"; };
+		FA462E641E30238E009F3D43 /* ofxTrueTypeFontUC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ofxTrueTypeFontUC.h; sourceTree = "<group>"; };
+		FA462E6A1E315337009F3D43 /* settings.xml */ = {isa = PBXFileReference; lastKnownFileType = text.xml; name = settings.xml; path = bin/data/settings.xml; sourceTree = SOURCE_ROOT; };
 		FB5AEBCD574AD1AC8CEB20EB /* Noise.h */ = {isa = PBXFileReference; explicitFileType = sourcecode.c.h; fileEncoding = 30; name = Noise.h; path = ../../../addons/ofxTonic/src/Tonic/Noise.h; sourceTree = SOURCE_ROOT; };
+		FC08F5C0B381C6EE1CD9B9AF /* Unicode.cpp */ = {isa = PBXFileReference; explicitFileType = sourcecode.cpp.cpp; fileEncoding = 30; name = Unicode.cpp; path = ../../../addons/ofxUnicode/libs/ofxUnicode/src/Unicode.cpp; sourceTree = SOURCE_ROOT; };
+		FC5DA1C87211D4F6377DA719 /* tinyxmlparser.cpp */ = {isa = PBXFileReference; explicitFileType = sourcecode.cpp.cpp; fileEncoding = 30; name = tinyxmlparser.cpp; path = ../../../addons/ofxXmlSettings/libs/tinyxmlparser.cpp; sourceTree = SOURCE_ROOT; };
 		FD28E2D7F19057D05148E286 /* RingBuffer.cpp */ = {isa = PBXFileReference; explicitFileType = sourcecode.cpp.cpp; fileEncoding = 30; name = RingBuffer.cpp; path = ../../../addons/ofxTonic/src/Tonic/RingBuffer.cpp; sourceTree = SOURCE_ROOT; };
 /* End PBXFileReference section */
 
@@ -388,6 +434,22 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		0602DCBD3C899A0413831297 /* src */ = {
+			isa = PBXGroup;
+			children = (
+				FC08F5C0B381C6EE1CD9B9AF /* Unicode.cpp */,
+			);
+			name = src;
+			sourceTree = "<group>";
+		};
+		0BADB7240DE79240300BF239 /* unibreak */ = {
+			isa = PBXGroup;
+			children = (
+				0FC5281ACC4195CF2E088DEE /* include */,
+			);
+			name = unibreak;
+			sourceTree = "<group>";
+		};
 		0E79F97A89352266EDC34BFD /* Tonic */ = {
 			isa = PBXGroup;
 			children = (
@@ -514,6 +576,18 @@
 			name = Tonic;
 			sourceTree = "<group>";
 		};
+		0FC5281ACC4195CF2E088DEE /* include */ = {
+			isa = PBXGroup;
+			children = (
+				289618F9610B231A3CC1E23A /* linebreak.h */,
+				10B9F3BDEFC359E3670E7B46 /* linebreakdef.h */,
+				7A67C2931749B9D04E3FAE22 /* unibreakbase.h */,
+				9697FF1285A65C0AC8DEE783 /* unibreakdef.h */,
+				56E6F0FA144407B1A831D5BB /* wordbreak.h */,
+			);
+			name = include;
+			sourceTree = "<group>";
+		};
 		108C8D494BF6997F7A730F6E /* include */ = {
 			isa = PBXGroup;
 			children = (
@@ -531,6 +605,52 @@
 			name = json;
 			sourceTree = "<group>";
 		};
+		1321A2FF3E4538FDFEC3B0F1 /* include */ = {
+			isa = PBXGroup;
+			children = (
+				EB91216EEB60D01550254AAB /* ofx */,
+			);
+			name = include;
+			sourceTree = "<group>";
+		};
+		14DA135FD07B2C5255D7EB2B /* fribidi */ = {
+			isa = PBXGroup;
+			children = (
+				16FA4F012E9184C19286F8E6 /* fribidi-arabic.h */,
+				01E31E55B78016AD65139C94 /* fribidi-begindecls.h */,
+				AB579E1E14491AC846004ED2 /* fribidi-bidi-types-list.h */,
+				962BC828F67D3CD325BBC7C3 /* fribidi-bidi-types.h */,
+				5BFB9DDBD832BD4D8BEA2800 /* fribidi-bidi.h */,
+				B15E300CFFDC6EBBE87F1CC6 /* fribidi-char-sets-list.h */,
+				D071C150E8FC9CE863608603 /* fribidi-char-sets.h */,
+				6936B48AED4F2A6AEAE25974 /* fribidi-common.h */,
+				02F39B2C48BCD65D206EA865 /* fribidi-config.h */,
+				F249DADE48F59CC88A356665 /* fribidi-deprecated.h */,
+				B5D6F8D192DFE4361DD554E4 /* fribidi-enddecls.h */,
+				92E2A9B9B019116D24B5D2D5 /* fribidi-flags.h */,
+				F3BE28C3663B7F0010E676AF /* fribidi-joining-types-list.h */,
+				634CF5DB4D0364E8359AC52E /* fribidi-joining-types.h */,
+				A796DA6DFEE7AAEDC900DA52 /* fribidi-joining.h */,
+				77DB58E2F135FCDC55B4F81B /* fribidi-mirroring.h */,
+				95FA5ED9BAEE259E66789724 /* fribidi-shape.h */,
+				D273B030B1559B9B0A2C0CF9 /* fribidi-types.h */,
+				EA52530D6AD8AC807F753C9A /* fribidi-unicode-version.h */,
+				810AEC298096EAFB2F52A40F /* fribidi-unicode.h */,
+				898A0E31A20CBEA249648908 /* fribidi.h */,
+			);
+			name = fribidi;
+			sourceTree = "<group>";
+		};
+		16F8D4B34A697DEE7BE9F949 /* src */ = {
+			isa = PBXGroup;
+			children = (
+				F40658A17A816A5238C493AE /* ucdn.c */,
+				217560FDAF856CC193D076A5 /* ucdn.h */,
+				18F06FF359803571E065B432 /* unicodedata_db.h */,
+			);
+			name = src;
+			sourceTree = "<group>";
+		};
 		18FCCFAA3CEB7C78C4BFC512 /* include */ = {
 			isa = PBXGroup;
 			children = (
@@ -538,6 +658,15 @@
 				D31CF822CBBBE0B7167F4738 /* lws_config.h */,
 			);
 			name = include;
+			sourceTree = "<group>";
+		};
+		1F4FB5C423662B96ADFDCC0B /* ofxXmlSettings */ = {
+			isa = PBXGroup;
+			children = (
+				6ECEF0D76BC33727823EADFF /* src */,
+				6E54289412D2D94F45A05113 /* libs */,
+			);
+			name = ofxXmlSettings;
 			sourceTree = "<group>";
 		};
 		213FDE476BBC2B9B0347CC2F /* src */ = {
@@ -597,11 +726,50 @@
 			name = jsoncpp;
 			sourceTree = "<group>";
 		};
+		5E025EAD4C95B611BFE26F7C /* src */ = {
+			isa = PBXGroup;
+			children = (
+				8C36B274C8F70E7CDE525AC3 /* ofxReverb.h */,
+			);
+			name = src;
+			sourceTree = "<group>";
+		};
 		6948EE371B920CB800B5AC1A /* local_addons */ = {
 			isa = PBXGroup;
 			children = (
 			);
 			name = local_addons;
+			sourceTree = "<group>";
+		};
+		6AC1BBA537347FB96E2D8F8A /* libs */ = {
+			isa = PBXGroup;
+			children = (
+				AEA90C2710275F06F38B3C69 /* fribidi */,
+				90FEBB9B9C649EF8D73ABE17 /* ofxUnicode */,
+				91C1B3C80A35372CFEE1EE7C /* ucdn */,
+				0BADB7240DE79240300BF239 /* unibreak */,
+			);
+			name = libs;
+			sourceTree = "<group>";
+		};
+		6E54289412D2D94F45A05113 /* libs */ = {
+			isa = PBXGroup;
+			children = (
+				2B40EDA85BEB63E46785BC29 /* tinyxml.cpp */,
+				B21E7E5F548EEA92F368040B /* tinyxml.h */,
+				832BDC407620CDBA568B713D /* tinyxmlerror.cpp */,
+				FC5DA1C87211D4F6377DA719 /* tinyxmlparser.cpp */,
+			);
+			name = libs;
+			sourceTree = "<group>";
+		};
+		6ECEF0D76BC33727823EADFF /* src */ = {
+			isa = PBXGroup;
+			children = (
+				50DF87D612C5AAE17AAFA6C0 /* ofxXmlSettings.cpp */,
+				01DCC0911400F9ACF5B65578 /* ofxXmlSettings.h */,
+			);
+			name = src;
 			sourceTree = "<group>";
 		};
 		70911A54686309FC932B3014 /* libs */ = {
@@ -622,10 +790,36 @@
 			name = ofxTonic;
 			sourceTree = "<group>";
 		};
+		90FEBB9B9C649EF8D73ABE17 /* ofxUnicode */ = {
+			isa = PBXGroup;
+			children = (
+				1321A2FF3E4538FDFEC3B0F1 /* include */,
+				0602DCBD3C899A0413831297 /* src */,
+			);
+			name = ofxUnicode;
+			sourceTree = "<group>";
+		};
+		91C1B3C80A35372CFEE1EE7C /* ucdn */ = {
+			isa = PBXGroup;
+			children = (
+				16F8D4B34A697DEE7BE9F949 /* src */,
+			);
+			name = ucdn;
+			sourceTree = "<group>";
+		};
 		97B6E31FFC746B023496BB48 /* src */ = {
 			isa = PBXGroup;
 			children = (
 				330298EC4A89DC9282754FBC /* ofxLibwebsockets.h */,
+			);
+			name = src;
+			sourceTree = "<group>";
+		};
+		A205B7CAD3139FE5D37C4680 /* src */ = {
+			isa = PBXGroup;
+			children = (
+				8D2C5D2DBAE701D317331A6C /* ofxWatchdog.cpp */,
+				62FA1947A2C07A26AEC5F380 /* ofxWatchdog.h */,
 			);
 			name = src;
 			sourceTree = "<group>";
@@ -672,15 +866,41 @@
 			name = ofxLibwebsockets;
 			sourceTree = "<group>";
 		};
+		ABEAF9302FC23ADEE5CCD7FC /* libs */ = {
+			isa = PBXGroup;
+			children = (
+				1283FB785281B120BEB53515 /* allpass.cpp */,
+				50FECBF169B8D396F702EC49 /* allpass.hpp */,
+				6AD72C435068D62F270812E4 /* comb.cpp */,
+				7292868FE2D901CC63F7F94A /* comb.hpp */,
+				D802614870C6DEE044965E89 /* denormals.h */,
+				176580196663C59FB3D76784 /* revmodel.cpp */,
+				CCEF707189733DC0E3922D37 /* revmodel.hpp */,
+				BC7102A89DE87CA084D4099D /* tuning.h */,
+			);
+			name = libs;
+			sourceTree = "<group>";
+		};
+		AEA90C2710275F06F38B3C69 /* fribidi */ = {
+			isa = PBXGroup;
+			children = (
+				EF92C17E47047E32EC9B44E8 /* include */,
+			);
+			name = fribidi;
+			sourceTree = "<group>";
+		};
 		BB4B014C10F69532006C3DED /* addons */ = {
 			isa = PBXGroup;
 			children = (
-				FAF2837C1E02F55000B07266 /* ofxReverb */,
-				FAF2839A1E02F55100B07266 /* ofxDspChain */,
-				FAB4EACB1DDC7B1100A5E61E /* ofxXmlSettings */,
+				FA462E581E30238E009F3D43 /* ofxTrueTypeFontUC */,
+				FA462E511E301627009F3D43 /* ofxDspChain */,
 				480A780D8D0308AE4A368801 /* ofxGui */,
 				AAE50E341C7382A4EF10AF5A /* ofxLibwebsockets */,
+				F7AC7E9D8CD8005D7ABF1B5A /* ofxReverb */,
 				76271A12053DA157D2DB4F78 /* ofxTonic */,
+				DC83E36DCD9D09FB0842EE71 /* ofxUnicode */,
+				CC9929029291A853F87C67E1 /* ofxWatchdog */,
+				1F4FB5C423662B96ADFDCC0B /* ofxXmlSettings */,
 			);
 			name = addons;
 			sourceTree = "<group>";
@@ -691,6 +911,23 @@
 				18FCCFAA3CEB7C78C4BFC512 /* include */,
 			);
 			name = libwebsockets;
+			sourceTree = "<group>";
+		};
+		CC9929029291A853F87C67E1 /* ofxWatchdog */ = {
+			isa = PBXGroup;
+			children = (
+				A205B7CAD3139FE5D37C4680 /* src */,
+			);
+			name = ofxWatchdog;
+			sourceTree = "<group>";
+		};
+		DC83E36DCD9D09FB0842EE71 /* ofxUnicode */ = {
+			isa = PBXGroup;
+			children = (
+				EDB6E66F21E3A65060CA0833 /* src */,
+				6AC1BBA537347FB96E2D8F8A /* libs */,
+			);
+			name = ofxUnicode;
 			sourceTree = "<group>";
 		};
 		E4328144138ABC890047C5CB /* Products */ = {
@@ -717,49 +954,24 @@
 		E4B69E1C0A3A1BDC003C02F2 /* src */ = {
 			isa = PBXGroup;
 			children = (
-				FACC9CDE1E263D4000B488E8 /* Background.cpp */,
-				FACC9CDF1E263D4000B488E8 /* Background.h */,
-				FACC9CE01E263D4000B488E8 /* ForegroundSound.cpp */,
-				FACC9CE11E263D4000B488E8 /* ForegroundSound.hpp */,
-				FA6E66E21E1EFB4E008615E9 /* OrthoCamera.cpp */,
-				FA6E66E31E1EFB4E008615E9 /* OrthoCamera.h */,
-				FA6879DD1DFEFB5D00619A40 /* VerticalCarousselContainer.cpp */,
-				FA6879DE1DFEFB5D00619A40 /* VerticalCarousselContainer.hpp */,
-				FA6879DA1DFEFB0800619A40 /* VerticalCaroussel.cpp */,
-				FA6879DB1DFEFB0800619A40 /* VerticalCaroussel.hpp */,
+				FA462E6C1E3156E9009F3D43 /* Caroussel */,
+				FA462E6B1E3156C6009F3D43 /* Sound */,
 				E4B69E1D0A3A1BDC003C02F2 /* main.cpp */,
 				E4B69E1E0A3A1BDC003C02F2 /* ofApp.cpp */,
 				E4B69E1F0A3A1BDC003C02F2 /* ofApp.h */,
-				7A713BE5573BB5E0030AF5DA /* CarousselContainer.cpp */,
-				4E9A46046F16EA39C2893568 /* CarousselContainer.hpp */,
-				E3C19F78D15CA0EF3F50659E /* CarousselEvent.cpp */,
-				E2318BC197437E2688871D33 /* CarousselEvent.hpp */,
-				6D4FEB2CA9433669368A022C /* CarousselLineManager.cpp */,
-				6C9F8BDF65AC6F7B9F73DB63 /* CarousselLineManager.hpp */,
-				FAAAC0491DEF3ACE00F25A4A /* CarousselStackManager.cpp */,
-				FAAAC04A1DEF3ACE00F25A4A /* CarousselStackManager.hpp */,
-				9C8915CDA201FD63BA747BD0 /* Fragment.cpp */,
-				3FB19E8EFF8E89957581C6CF /* Fragment.hpp */,
+				FA462E6D1E31571C009F3D43 /* Structure */,
+				E24D9D7607931EE882C50190 /* globals.cpp */,
+				8861CBE772437A8AA6559BDE /* globals.hpp */,
+				D15E442DA7D78DB7BEDDF331 /* helpers.hpp */,
 				CB12D2602935492A04A59107 /* IOManager.cpp */,
 				94BE744954B55BD36ADC6C99 /* IOManager.hpp */,
-				7F8CB16CFDCB5893AB42EC5D /* Letter.cpp */,
-				AE4172C4257B7BF71760139A /* Letter.hpp */,
-				D4BF1FFE18E83CA14EBA3B41 /* LetterEvent.cpp */,
-				80C32A10A3EC8FA716033889 /* LetterEvent.hpp */,
 				5489F82C437EA9599501023A /* MovingWords.cpp */,
 				2C50F14C0E9F19764F11A1D0 /* MovingWords.hpp */,
+				D17E4D7076B6AC99E0AADDA7 /* OrthoCamera.cpp */,
+				349BD507FC72A7257D9B0A35 /* OrthoCamera.h */,
 				22EDA5A62C642C37311C4384 /* SceneManager.cpp */,
-				FAEE4D001E2D05E500216A5A /* SceneManager.hpp */,
-				331CDCD4426D65097CFD44C1 /* SoundManager.cpp */,
-				BEF84527D955124E75EAA231 /* SoundManager.hpp */,
-				3F936587F2B56A06D14FEF13 /* User.cpp */,
-				8A73ACD4A7512BA21ADCC36B /* User.hpp */,
-				ADCAEBB25647DC2282922649 /* Word.cpp */,
-				F11BA8009F1346D2F4A449FD /* Word.h */,
-				FA18B2871DF58A55005A2E07 /* helpers.hpp */,
-				FACC9CE61E264CAC00B488E8 /* settings.xml */,
-				FAEE4CFD1E2D025300216A5A /* globals.cpp */,
-				FAEE4CFE1E2D025300216A5A /* globals.hpp */,
+				6FFD838699537542FFEF8CCC /* SceneManager.hpp */,
+				FA462E6A1E315337009F3D43 /* settings.xml */,
 			);
 			path = src;
 			sourceTree = SOURCE_ROOT;
@@ -773,80 +985,122 @@
 			name = openFrameworks;
 			sourceTree = "<group>";
 		};
-		FAB4EACB1DDC7B1100A5E61E /* ofxXmlSettings */ = {
+		EB91216EEB60D01550254AAB /* ofx */ = {
 			isa = PBXGroup;
 			children = (
-				FAB4EACC1DDC7B1100A5E61E /* libs */,
-				FAB4EAD11DDC7B1100A5E61E /* src */,
+				96FAC441E0D5B1BCB60E12DE /* Unicode.h */,
 			);
-			name = ofxXmlSettings;
-			path = ../../../addons/ofxXmlSettings;
+			name = ofx;
 			sourceTree = "<group>";
 		};
-		FAB4EACC1DDC7B1100A5E61E /* libs */ = {
+		EDB6E66F21E3A65060CA0833 /* src */ = {
 			isa = PBXGroup;
 			children = (
-				FAB4EACD1DDC7B1100A5E61E /* tinyxml.cpp */,
-				FAB4EACE1DDC7B1100A5E61E /* tinyxml.h */,
-				FAB4EACF1DDC7B1100A5E61E /* tinyxmlerror.cpp */,
-				FAB4EAD01DDC7B1100A5E61E /* tinyxmlparser.cpp */,
+				98B25A7A7707F1484A3FE476 /* ofxUnicode.h */,
 			);
-			path = libs;
+			name = src;
 			sourceTree = "<group>";
 		};
-		FAB4EAD11DDC7B1100A5E61E /* src */ = {
+		EF92C17E47047E32EC9B44E8 /* include */ = {
 			isa = PBXGroup;
 			children = (
-				FAB4EAD21DDC7B1100A5E61E /* ofxXmlSettings.cpp */,
-				FAB4EAD31DDC7B1100A5E61E /* ofxXmlSettings.h */,
+				14DA135FD07B2C5255D7EB2B /* fribidi */,
 			);
-			path = src;
+			name = include;
 			sourceTree = "<group>";
 		};
-		FAF2837C1E02F55000B07266 /* ofxReverb */ = {
+		F7AC7E9D8CD8005D7ABF1B5A /* ofxReverb */ = {
 			isa = PBXGroup;
 			children = (
-				FAF2838E1E02F55100B07266 /* libs */,
-				FAF283971E02F55100B07266 /* README.md */,
-				FAF283981E02F55100B07266 /* src */,
+				5E025EAD4C95B611BFE26F7C /* src */,
+				ABEAF9302FC23ADEE5CCD7FC /* libs */,
 			);
 			name = ofxReverb;
-			path = ../../../addons/ofxReverb;
 			sourceTree = "<group>";
 		};
-		FAF2838E1E02F55100B07266 /* libs */ = {
+		FA462E511E301627009F3D43 /* ofxDspChain */ = {
 			isa = PBXGroup;
 			children = (
-				FAF2838F1E02F55100B07266 /* allpass.cpp */,
-				FAF283901E02F55100B07266 /* allpass.hpp */,
-				FAF283911E02F55100B07266 /* comb.cpp */,
-				FAF283921E02F55100B07266 /* comb.hpp */,
-				FAF283931E02F55100B07266 /* denormals.h */,
-				FAF283941E02F55100B07266 /* revmodel.cpp */,
-				FAF283951E02F55100B07266 /* revmodel.hpp */,
-				FAF283961E02F55100B07266 /* tuning.h */,
-			);
-			path = libs;
-			sourceTree = "<group>";
-		};
-		FAF283981E02F55100B07266 /* src */ = {
-			isa = PBXGroup;
-			children = (
-				FAF283991E02F55100B07266 /* ofxReverb.h */,
-			);
-			path = src;
-			sourceTree = "<group>";
-		};
-		FAF2839A1E02F55100B07266 /* ofxDspChain */ = {
-			isa = PBXGroup;
-			children = (
-				FAF2839B1E02F55100B07266 /* ofSoundEffect.cpp */,
-				FAF2839C1E02F55100B07266 /* ofSoundEffect.h */,
-				FAF2839D1E02F55100B07266 /* ofSoundUnit.cpp */,
-				FAF2839E1E02F55100B07266 /* ofSoundUnit.h */,
+				FA462E521E301627009F3D43 /* ofSoundEffect.cpp */,
+				FA462E531E301627009F3D43 /* ofSoundEffect.h */,
+				FA462E541E301627009F3D43 /* ofSoundUnit.cpp */,
+				FA462E551E301627009F3D43 /* ofSoundUnit.h */,
 			);
 			name = ofxDspChain;
 			path = ../../../addons/ofxDspChain;
+			sourceTree = "<group>";
+		};
+		FA462E581E30238E009F3D43 /* ofxTrueTypeFontUC */ = {
+			isa = PBXGroup;
+			children = (
+				FA462E5E1E30238E009F3D43 /* install.xml */,
+				FA462E5F1E30238E009F3D43 /* License.txt */,
+				FA462E601E30238E009F3D43 /* ofxaddons_thumbnail.png */,
+				FA462E611E30238E009F3D43 /* README.md */,
+				FA462E621E30238E009F3D43 /* src */,
+			);
+			name = ofxTrueTypeFontUC;
+			path = ../../../addons/ofxTrueTypeFontUC;
+			sourceTree = "<group>";
+		};
+		FA462E621E30238E009F3D43 /* src */ = {
+			isa = PBXGroup;
+			children = (
+				FA462E631E30238E009F3D43 /* ofxTrueTypeFontUC.cpp */,
+				FA462E641E30238E009F3D43 /* ofxTrueTypeFontUC.h */,
+			);
+			path = src;
+			sourceTree = "<group>";
+		};
+		FA462E6B1E3156C6009F3D43 /* Sound */ = {
+			isa = PBXGroup;
+			children = (
+				FA3046411E3C93D900457C02 /* MySynth.cpp */,
+				FA3046421E3C93D900457C02 /* MySynth.h */,
+				78B4DD4C24FC54C8C74248AC /* Background.cpp */,
+				924AF3FA453349835ECBE466 /* Background.h */,
+				49B43B70941D1D3732FF8D4B /* ForegroundSound.cpp */,
+				AAB1C9B995D41052084A8195 /* ForegroundSound.hpp */,
+				331CDCD4426D65097CFD44C1 /* SoundManager.cpp */,
+				BEF84527D955124E75EAA231 /* SoundManager.hpp */,
+			);
+			name = Sound;
+			sourceTree = "<group>";
+		};
+		FA462E6C1E3156E9009F3D43 /* Caroussel */ = {
+			isa = PBXGroup;
+			children = (
+				7A713BE5573BB5E0030AF5DA /* CarousselContainer.cpp */,
+				4E9A46046F16EA39C2893568 /* CarousselContainer.hpp */,
+				E3C19F78D15CA0EF3F50659E /* CarousselEvent.cpp */,
+				E2318BC197437E2688871D33 /* CarousselEvent.hpp */,
+				4F92779076A6D955949EE075 /* CarousselLineManager.cpp */,
+				3B6F6F04BAD90E7E7D96549F /* CarousselLineManager.hpp */,
+				24BD6F2270677F40542F6AF5 /* CarousselStackManager.cpp */,
+				9BB67CC9BC0E3628322BA7A2 /* CarousselStackManager.hpp */,
+				A636E663A77A7C52C41597F5 /* VerticalCaroussel.cpp */,
+				DA1EEFBFEF9EAC1329EA5F36 /* VerticalCaroussel.hpp */,
+				DE4A802B93801FF2C199FEF0 /* VerticalCarousselContainer.cpp */,
+				5284ABE77B72837B4FF826B8 /* VerticalCarousselContainer.hpp */,
+			);
+			name = Caroussel;
+			sourceTree = "<group>";
+		};
+		FA462E6D1E31571C009F3D43 /* Structure */ = {
+			isa = PBXGroup;
+			children = (
+				9C8915CDA201FD63BA747BD0 /* Fragment.cpp */,
+				3FB19E8EFF8E89957581C6CF /* Fragment.hpp */,
+				7F8CB16CFDCB5893AB42EC5D /* Letter.cpp */,
+				AE4172C4257B7BF71760139A /* Letter.hpp */,
+				D4BF1FFE18E83CA14EBA3B41 /* LetterEvent.cpp */,
+				80C32A10A3EC8FA716033889 /* LetterEvent.hpp */,
+				3F936587F2B56A06D14FEF13 /* User.cpp */,
+				8A73ACD4A7512BA21ADCC36B /* User.hpp */,
+				ADCAEBB25647DC2282922649 /* Word.cpp */,
+				F11BA8009F1346D2F4A449FD /* Word.h */,
+			);
+			name = Structure;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -937,30 +1191,32 @@
 			buildActionMask = 2147483647;
 			files = (
 				E4B69E200A3A1BDC003C02F2 /* main.cpp in Sources */,
-				FAB4EAD41DDC7B1100A5E61E /* tinyxml.cpp in Sources */,
 				E4B69E210A3A1BDC003C02F2 /* ofApp.cpp in Sources */,
+				1D6897B825ABE75483AA595E /* Background.cpp in Sources */,
 				BEF9B1ADC9947743FCC7CB61 /* CarousselContainer.cpp in Sources */,
 				6468C686EED25914CE633F3C /* CarousselEvent.cpp in Sources */,
-				FAF283A61E02F55100B07266 /* ofSoundUnit.cpp in Sources */,
-				19E586C8B60FD9B3B70BDC40 /* CarousselLineManager.cpp in Sources */,
+				79A3B06FD145044127D776A7 /* CarousselLineManager.cpp in Sources */,
+				560BABBD6A01FB94A5A00394 /* CarousselStackManager.cpp in Sources */,
+				FA3046431E3C93D900457C02 /* MySynth.cpp in Sources */,
+				F4719BC241F46198F5185EC7 /* ForegroundSound.cpp in Sources */,
 				B93EFBAD27581E0E059272AA /* Fragment.cpp in Sources */,
+				161FDE95984DBAABAF3A15C0 /* globals.cpp in Sources */,
 				7AF35F772B5BBAA52ED23DE4 /* IOManager.cpp in Sources */,
 				3FC056F4F8588B5E3EBDB974 /* Letter.cpp in Sources */,
 				0FDEAE908DF4F7871B7660D8 /* LetterEvent.cpp in Sources */,
 				94CFDE65C69CD26F372F652B /* MovingWords.cpp in Sources */,
+				5027A09737DE983F850557F9 /* OrthoCamera.cpp in Sources */,
 				AC29B7A7FEDB0A378D08F41D /* SceneManager.cpp in Sources */,
-				FAB4EAD51DDC7B1100A5E61E /* tinyxmlerror.cpp in Sources */,
 				620C73F8A367D8F03998125D /* SoundManager.cpp in Sources */,
 				A5C7D7C073773C0816ECA2C4 /* User.cpp in Sources */,
+				4AB34D803E548285EC4D729B /* VerticalCaroussel.cpp in Sources */,
+				0D14E6CA479D37C472F527E9 /* VerticalCarousselContainer.cpp in Sources */,
 				B7B0A80679F24C35A3565878 /* Word.cpp in Sources */,
-				FA6879DF1DFEFB5D00619A40 /* VerticalCarousselContainer.cpp in Sources */,
 				856AA354D08AB4B323081444 /* ofxBaseGui.cpp in Sources */,
+				FA462E571E301627009F3D43 /* ofSoundUnit.cpp in Sources */,
 				5CBB2AB3A60F65431D7B555D /* ofxButton.cpp in Sources */,
 				B266578FC55D23BFEBC042E7 /* ofxGuiGroup.cpp in Sources */,
-				FA6E66E41E1EFB4E008615E9 /* OrthoCamera.cpp in Sources */,
 				483908258D00B98B4BE69F07 /* ofxLabel.cpp in Sources */,
-				FAF283A21E02F55100B07266 /* comb.cpp in Sources */,
-				FAF283A11E02F55100B07266 /* allpass.cpp in Sources */,
 				F285EB3169F1566CA3D93C20 /* ofxPanel.cpp in Sources */,
 				837220E80EB56CD44AD27F2A /* ofxSlider.cpp in Sources */,
 				B56FE57CC35806596D38118C /* ofxSliderGroup.cpp in Sources */,
@@ -970,11 +1226,12 @@
 				A78C77753D562AE8F0E928ED /* Connection.cpp in Sources */,
 				F1AC6AEFB9B93C6AC45C9CA8 /* Events.cpp in Sources */,
 				86135253DC7909CA8590E157 /* Protocol.cpp in Sources */,
-				FAF283A31E02F55100B07266 /* revmodel.cpp in Sources */,
-				FACC9CE31E263D4000B488E8 /* ForegroundSound.cpp in Sources */,
 				6D73A566CFEC0B462FE6E43C /* Reactor.cpp in Sources */,
 				F3AD9E2A2E56B6AF32A0BDAF /* Server.cpp in Sources */,
 				CCD326ED8E01272042317DD2 /* Util.cpp in Sources */,
+				961C938A9DE29978E6071159 /* allpass.cpp in Sources */,
+				43FFE5A7FCAB58406F31511A /* comb.cpp in Sources */,
+				4D818F2B33CCAE20B3ACEBCD /* revmodel.cpp in Sources */,
 				A08D9CF6078FDA57A7CE04C4 /* ofxTonicSynth.cpp in Sources */,
 				92AE3EF9D1E9798885317D7E /* ADSR.cpp in Sources */,
 				D4A9ADF52DC2FA5CFFD80A51 /* Arithmetic.cpp in Sources */,
@@ -991,25 +1248,22 @@
 				D42E8EBCEE4BC7491949F8E5 /* ControlChangeNotifier.cpp in Sources */,
 				BA79E1F539E83C64A29B4AE7 /* ControlComparison.cpp in Sources */,
 				C86222C2F07C6F4623CEDCD5 /* ControlConditioner.cpp in Sources */,
-				FAAAC04B1DEF3ACE00F25A4A /* CarousselStackManager.cpp in Sources */,
-				FAB4EAD61DDC7B1100A5E61E /* tinyxmlparser.cpp in Sources */,
 				3D6F4383B3859873D055D7F5 /* ControlCounter.cpp in Sources */,
 				687619414A00F0D4EDA9E897 /* ControlDbToLinear.cpp in Sources */,
 				7117CFB4C5AA56555CD4B687 /* ControlDelay.cpp in Sources */,
 				FC664DBA581A9170D7221E80 /* ControlFloor.cpp in Sources */,
 				F7E2CD66D34E349722F77978 /* ControlGenerator.cpp in Sources */,
-				FAEE4CFF1E2D025300216A5A /* globals.cpp in Sources */,
 				5649CF5FEB98D7F1C4A0815E /* ControlMetro.cpp in Sources */,
 				310BB1AD9E8C5EDD0F0CA370 /* ControlMetroDivider.cpp in Sources */,
 				6F28F56BB8B8CC2050FE656F /* ControlMidiToFreq.cpp in Sources */,
 				36E37A49AF9F9F219E5E63ED /* ControlParameter.cpp in Sources */,
+				FA462E671E30238E009F3D43 /* README.md in Sources */,
 				9DB461599923EDAAA53F7320 /* ControlPrinter.cpp in Sources */,
 				F0A517320CB42849A4A4A2C7 /* ControlPulse.cpp in Sources */,
 				CF630867D44E3A6D5C97DF69 /* ControlRandom.cpp in Sources */,
 				3F63B4CE561C9ADEF941D745 /* ControlRecorder.cpp in Sources */,
 				08A6D973887595CDADAF4FD7 /* ControlSnapToScale.cpp in Sources */,
 				61FB003EA31E8CC722F7A0EF /* ControlStepper.cpp in Sources */,
-				FACC9CE21E263D4000B488E8 /* Background.cpp in Sources */,
 				F7DBF98108C24B1D576DE0E6 /* ControlSwitcher.cpp in Sources */,
 				23E21567BA4C43105A9339A9 /* ControlTrigger.cpp in Sources */,
 				AAFCC1A80FA3C88E6D1B2A3D /* ControlTriggerFilter.cpp in Sources */,
@@ -1020,10 +1274,9 @@
 				AA6DAFB687721C5B4E20A079 /* Effect.cpp in Sources */,
 				E77DAA583475EFFC0A1B338B /* Filters.cpp in Sources */,
 				EAD9C423EB4CAE8B808F52BB /* FilterUtils.cpp in Sources */,
+				FA462E681E30238E009F3D43 /* ofxTrueTypeFontUC.cpp in Sources */,
 				4833BD459D3123366D3528F0 /* FixedValue.cpp in Sources */,
-				FAB4EAD71DDC7B1100A5E61E /* ofxXmlSettings.cpp in Sources */,
 				190A67A17C3BB24DB37DD44F /* Generator.cpp in Sources */,
-				FAF283A41E02F55100B07266 /* README.md in Sources */,
 				625A58C885E761753345831F /* LFNoise.cpp in Sources */,
 				613570C868C725D3793F33D9 /* Mixer.cpp in Sources */,
 				CCF589C179C92C095BA6EE9D /* MonoToStereoPanner.cpp in Sources */,
@@ -1033,15 +1286,21 @@
 				FB0CEC2120B7ECC76CA7681F /* RectWave.cpp in Sources */,
 				64F4AA5FD33A2E65D8E17217 /* Reverb.cpp in Sources */,
 				2CE855FA9BE7AC5BB1024308 /* RingBuffer.cpp in Sources */,
-				FAF283A51E02F55100B07266 /* ofSoundEffect.cpp in Sources */,
 				507BEC86EF35AAA2F6C91520 /* SampleTable.cpp in Sources */,
 				FEA5296A25F0CE0014A38A0D /* SawtoothWave.cpp in Sources */,
+				FA462E561E301627009F3D43 /* ofSoundEffect.cpp in Sources */,
 				45C0F0010A3C5C850DD0ADCE /* SineWave.cpp in Sources */,
 				6FCAE57DA591456638D24BA3 /* StereoDelay.cpp in Sources */,
 				356D4B680053685FE09C381B /* Synth.cpp in Sources */,
 				7F10C60DBDE2E4FFD7F244DB /* TableLookupOsc.cpp in Sources */,
-				FA6879DC1DFEFB0800619A40 /* VerticalCaroussel.cpp in Sources */,
 				7573AC1CDADE011131CF4541 /* TonicFrames.cpp in Sources */,
+				6B4AB7C991CAD8A65D09003F /* Unicode.cpp in Sources */,
+				A5E7686E7E05CE646DFF4630 /* ucdn.c in Sources */,
+				74CECDA8FA89F918DDA2B94A /* ofxWatchdog.cpp in Sources */,
+				63B57AC5BF4EF088491E0317 /* ofxXmlSettings.cpp in Sources */,
+				933A2227713C720CEFF80FD9 /* tinyxml.cpp in Sources */,
+				9D44DC88EF9E7991B4A09951 /* tinyxmlerror.cpp in Sources */,
+				5A4349E9754D6FA14C0F2A3A /* tinyxmlparser.cpp in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1086,8 +1345,32 @@
 					../../../addons/ofxLibwebsockets/libs/ofxLibwebsockets/include/ofxLibwebsockets,
 					../../../addons/ofxLibwebsockets/libs/ofxLibwebsockets/src,
 					../../../addons/ofxLibwebsockets/src,
+					../../../addons/ofxReverb/libs,
+					../../../addons/ofxReverb/src,
 					../../../addons/ofxTonic/src,
 					../../../addons/ofxTonic/src/Tonic,
+					../../../addons/ofxUnicode/libs,
+					../../../addons/ofxUnicode/libs/fribidi,
+					../../../addons/ofxUnicode/libs/fribidi/include,
+					../../../addons/ofxUnicode/libs/fribidi/include/fribidi,
+					../../../addons/ofxUnicode/libs/fribidi/lib,
+					../../../addons/ofxUnicode/libs/fribidi/lib/osx,
+					../../../addons/ofxUnicode/libs/fribidi/license,
+					../../../addons/ofxUnicode/libs/ofxUnicode,
+					../../../addons/ofxUnicode/libs/ofxUnicode/include,
+					../../../addons/ofxUnicode/libs/ofxUnicode/include/ofx,
+					../../../addons/ofxUnicode/libs/ofxUnicode/src,
+					../../../addons/ofxUnicode/libs/ucdn,
+					../../../addons/ofxUnicode/libs/ucdn/src,
+					../../../addons/ofxUnicode/libs/unibreak,
+					../../../addons/ofxUnicode/libs/unibreak/include,
+					../../../addons/ofxUnicode/libs/unibreak/lib,
+					../../../addons/ofxUnicode/libs/unibreak/lib/osx,
+					../../../addons/ofxUnicode/libs/unibreak/license,
+					../../../addons/ofxUnicode/src,
+					../../../addons/ofxWatchdog/src,
+					../../../addons/ofxXmlSettings/libs,
+					../../../addons/ofxXmlSettings/src,
 				);
 				MACOSX_DEPLOYMENT_TARGET = 10.8;
 				ONLY_ACTIVE_ARCH = YES;
@@ -1099,6 +1382,8 @@
 					"$(OF_CORE_FRAMEWORKS)",
 					"$(OF_CORE_LIBS)",
 					../../../addons/ofxLibwebsockets/libs/libwebsockets/lib/osx/libwebsockets.a,
+					../../../addons/ofxUnicode/libs/fribidi/lib/osx/libfribidi.a,
+					../../../addons/ofxUnicode/libs/unibreak/lib/osx/libunibreak.a,
 				);
 				SDKROOT = macosx;
 			};
@@ -1135,8 +1420,32 @@
 					../../../addons/ofxLibwebsockets/libs/ofxLibwebsockets/include/ofxLibwebsockets,
 					../../../addons/ofxLibwebsockets/libs/ofxLibwebsockets/src,
 					../../../addons/ofxLibwebsockets/src,
+					../../../addons/ofxReverb/libs,
+					../../../addons/ofxReverb/src,
 					../../../addons/ofxTonic/src,
 					../../../addons/ofxTonic/src/Tonic,
+					../../../addons/ofxUnicode/libs,
+					../../../addons/ofxUnicode/libs/fribidi,
+					../../../addons/ofxUnicode/libs/fribidi/include,
+					../../../addons/ofxUnicode/libs/fribidi/include/fribidi,
+					../../../addons/ofxUnicode/libs/fribidi/lib,
+					../../../addons/ofxUnicode/libs/fribidi/lib/osx,
+					../../../addons/ofxUnicode/libs/fribidi/license,
+					../../../addons/ofxUnicode/libs/ofxUnicode,
+					../../../addons/ofxUnicode/libs/ofxUnicode/include,
+					../../../addons/ofxUnicode/libs/ofxUnicode/include/ofx,
+					../../../addons/ofxUnicode/libs/ofxUnicode/src,
+					../../../addons/ofxUnicode/libs/ucdn,
+					../../../addons/ofxUnicode/libs/ucdn/src,
+					../../../addons/ofxUnicode/libs/unibreak,
+					../../../addons/ofxUnicode/libs/unibreak/include,
+					../../../addons/ofxUnicode/libs/unibreak/lib,
+					../../../addons/ofxUnicode/libs/unibreak/lib/osx,
+					../../../addons/ofxUnicode/libs/unibreak/license,
+					../../../addons/ofxUnicode/src,
+					../../../addons/ofxWatchdog/src,
+					../../../addons/ofxXmlSettings/libs,
+					../../../addons/ofxXmlSettings/src,
 				);
 				MACOSX_DEPLOYMENT_TARGET = 10.8;
 				OTHER_CPLUSPLUSFLAGS = (
@@ -1147,6 +1456,8 @@
 					"$(OF_CORE_FRAMEWORKS)",
 					"$(OF_CORE_LIBS)",
 					../../../addons/ofxLibwebsockets/libs/libwebsockets/lib/osx/libwebsockets.a,
+					../../../addons/ofxUnicode/libs/fribidi/lib/osx/libfribidi.a,
+					../../../addons/ofxUnicode/libs/unibreak/lib/osx/libunibreak.a,
 				);
 				SDKROOT = macosx;
 			};
@@ -1177,8 +1488,32 @@
 					../../../addons/ofxLibwebsockets/libs/ofxLibwebsockets/include/ofxLibwebsockets,
 					../../../addons/ofxLibwebsockets/libs/ofxLibwebsockets/src,
 					../../../addons/ofxLibwebsockets/src,
+					../../../addons/ofxReverb/libs,
+					../../../addons/ofxReverb/src,
 					../../../addons/ofxTonic/src,
 					../../../addons/ofxTonic/src/Tonic,
+					../../../addons/ofxUnicode/libs,
+					../../../addons/ofxUnicode/libs/fribidi,
+					../../../addons/ofxUnicode/libs/fribidi/include,
+					../../../addons/ofxUnicode/libs/fribidi/include/fribidi,
+					../../../addons/ofxUnicode/libs/fribidi/lib,
+					../../../addons/ofxUnicode/libs/fribidi/lib/osx,
+					../../../addons/ofxUnicode/libs/fribidi/license,
+					../../../addons/ofxUnicode/libs/ofxUnicode,
+					../../../addons/ofxUnicode/libs/ofxUnicode/include,
+					../../../addons/ofxUnicode/libs/ofxUnicode/include/ofx,
+					../../../addons/ofxUnicode/libs/ofxUnicode/src,
+					../../../addons/ofxUnicode/libs/ucdn,
+					../../../addons/ofxUnicode/libs/ucdn/src,
+					../../../addons/ofxUnicode/libs/unibreak,
+					../../../addons/ofxUnicode/libs/unibreak/include,
+					../../../addons/ofxUnicode/libs/unibreak/lib,
+					../../../addons/ofxUnicode/libs/unibreak/lib/osx,
+					../../../addons/ofxUnicode/libs/unibreak/license,
+					../../../addons/ofxUnicode/src,
+					../../../addons/ofxWatchdog/src,
+					../../../addons/ofxXmlSettings/libs,
+					../../../addons/ofxXmlSettings/src,
 				);
 				ICON = "$(ICON_NAME_DEBUG)";
 				ICON_FILE = "$(ICON_FILE_PATH)$(ICON)";
@@ -1189,6 +1524,8 @@
 					"$(OF_CORE_FRAMEWORKS)",
 					"$(OF_CORE_LIBS)",
 					../../../addons/ofxLibwebsockets/libs/libwebsockets/lib/osx/libwebsockets.a,
+					../../../addons/ofxUnicode/libs/fribidi/lib/osx/libfribidi.a,
+					../../../addons/ofxUnicode/libs/unibreak/lib/osx/libunibreak.a,
 				);
 				PRODUCT_NAME = "$(TARGET_NAME)Debug";
 				WRAPPER_EXTENSION = app;
@@ -1219,8 +1556,32 @@
 					../../../addons/ofxLibwebsockets/libs/ofxLibwebsockets/include/ofxLibwebsockets,
 					../../../addons/ofxLibwebsockets/libs/ofxLibwebsockets/src,
 					../../../addons/ofxLibwebsockets/src,
+					../../../addons/ofxReverb/libs,
+					../../../addons/ofxReverb/src,
 					../../../addons/ofxTonic/src,
 					../../../addons/ofxTonic/src/Tonic,
+					../../../addons/ofxUnicode/libs,
+					../../../addons/ofxUnicode/libs/fribidi,
+					../../../addons/ofxUnicode/libs/fribidi/include,
+					../../../addons/ofxUnicode/libs/fribidi/include/fribidi,
+					../../../addons/ofxUnicode/libs/fribidi/lib,
+					../../../addons/ofxUnicode/libs/fribidi/lib/osx,
+					../../../addons/ofxUnicode/libs/fribidi/license,
+					../../../addons/ofxUnicode/libs/ofxUnicode,
+					../../../addons/ofxUnicode/libs/ofxUnicode/include,
+					../../../addons/ofxUnicode/libs/ofxUnicode/include/ofx,
+					../../../addons/ofxUnicode/libs/ofxUnicode/src,
+					../../../addons/ofxUnicode/libs/ucdn,
+					../../../addons/ofxUnicode/libs/ucdn/src,
+					../../../addons/ofxUnicode/libs/unibreak,
+					../../../addons/ofxUnicode/libs/unibreak/include,
+					../../../addons/ofxUnicode/libs/unibreak/lib,
+					../../../addons/ofxUnicode/libs/unibreak/lib/osx,
+					../../../addons/ofxUnicode/libs/unibreak/license,
+					../../../addons/ofxUnicode/src,
+					../../../addons/ofxWatchdog/src,
+					../../../addons/ofxXmlSettings/libs,
+					../../../addons/ofxXmlSettings/src,
 				);
 				ICON = "$(ICON_NAME_RELEASE)";
 				ICON_FILE = "$(ICON_FILE_PATH)$(ICON)";
@@ -1231,6 +1592,8 @@
 					"$(OF_CORE_FRAMEWORKS)",
 					"$(OF_CORE_LIBS)",
 					../../../addons/ofxLibwebsockets/libs/libwebsockets/lib/osx/libwebsockets.a,
+					../../../addons/ofxUnicode/libs/fribidi/lib/osx/libfribidi.a,
+					../../../addons/ofxUnicode/libs/unibreak/lib/osx/libunibreak.a,
 				);
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				WRAPPER_EXTENSION = app;

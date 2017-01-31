@@ -7,6 +7,8 @@
 #include "globals.hpp"
 
 #include "ofxGui.h"
+#include <fstream>
+
 
 
 
@@ -33,6 +35,7 @@ class ofApp : public ofBaseApp{
     // Typography
     ofTrueTypeFont  font;
     ofTrueTypeFont  bigfont;
+
     
     
     // Server
@@ -49,7 +52,7 @@ class ofApp : public ofBaseApp{
     bool bUpdate=true;
     bool bDraw=true;
     bool bDebug=false;
-    
+    bool muteSound=false;
     
     
     bool bHide=true;

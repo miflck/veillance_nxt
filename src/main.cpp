@@ -1,4 +1,6 @@
 #include "ofMain.h"
+#include "ofAppRunner.h"
+
 #include "ofApp.h"
 
 //========================================================================
@@ -21,7 +23,7 @@ int main( ){
     
     ofAppGLFWWindow window;
     window.setMultiDisplayFullscreen(true);
-    ofSetupOpenGL(&window,100,100,OF_WINDOW);
+    ofSetupOpenGL(&window,10,10,OF_WINDOW);
     ofRunApp(new ofApp());
     
     

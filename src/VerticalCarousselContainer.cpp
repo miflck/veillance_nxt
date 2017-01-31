@@ -33,9 +33,13 @@ void VerticalCarousselContainer::draw(){
     ofPushStyle();
     ofPushMatrix();
     ofTranslate(position);
+
+   // ofScale(0.8,0,8);
     ofColor c=ofColor(255);
     ofNoFill();
-    ofSetColor(c);
+    //ofSetColor(c);
+    ofSetColor(color);
+
     //ofScale(0.6, 0.6);
     font->setLetterSpacing(1);
 
@@ -115,4 +119,8 @@ void VerticalCarousselContainer::setFont(ofTrueTypeFont *f){
     font=f;
     ofRectangle textBounds = font->getStringBoundingBox("H", 0, 0);
     
+}
+
+void VerticalCarousselContainer::setColor(ofColor _color){
+    color=_color;
 }

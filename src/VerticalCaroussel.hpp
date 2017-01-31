@@ -15,7 +15,7 @@
 #include "VerticalCarousselContainer.hpp"
 #include "CarousselEvent.hpp"
 
-
+#include "helpers.hpp"
 #include "Letter.hpp"
 
 
@@ -51,10 +51,14 @@ public:
     
     
     vector<string>buffer;
+    vector<dns>dnsbuffer;
 
 
 
     void addMovement(string _s);
+    
+    void addMovement(dns _dns);
+
 
     
     void setDebugDraw(bool _b);
@@ -64,6 +68,9 @@ public:
     ofTrueTypeFont  *font;
     void setFont(ofTrueTypeFont *f);
 
+    
+    void setColor(ofColor _c);
+    
     
 private:
     int counter=0;

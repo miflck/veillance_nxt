@@ -28,6 +28,8 @@ class Letter {
     
 public:
     Letter();
+    virtual ~Letter();
+
     void setup();
     void update();
     void draw();
@@ -39,8 +41,11 @@ public:
     ofTrueTypeFont  *font;
     void setFont(ofTrueTypeFont *f);
     
-    void setData(char data);
+    //void setData(char data);
+    void setData(string data);
+
     char data;
+    
     
     string myString;
     string getString();
@@ -104,13 +109,16 @@ private:
     bool bIsOnScreen=false;
     
     
-    ofNode node;
-    ofVboMesh letterMesh;
+    //ofNode node;
+    ofMesh letterMesh;
+    ofMesh originalletterMesh;
+
     float angle=0;
     
     ofVboMesh vbom;
-
     
+
+    ofColor myColor;
     
 };
 

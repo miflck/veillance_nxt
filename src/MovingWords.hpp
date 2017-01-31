@@ -100,6 +100,11 @@ public:
     void addSound();
     
     
+    bool bIsLeft =false;
+    
+    
+    
+    
 private:
         
     User * userPointer;
@@ -155,6 +160,10 @@ private:
     string vouwels="";
     
     float maxscale;
+    
+    float distanceToMidscreen;
+    
+    
 };
 
 

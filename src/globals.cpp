@@ -14,9 +14,26 @@ int viewportheight = 1080;
 int entrypoints =  5;
 int linesPerPoint = 7;
 
+ ofParameter<float> suggestionTrigger=0.95;
+
+
 int CCwidth=15;
-int CCheight=20;
+int CCheight=22;
 int bigfontsize=60;
+
+
+ bool bSimUser=false;
+
+bool useBursts=false;
+int burstInterval = 1000;
+int minBurstMovingWords=50;
+int burstAmmount=50;
+bool doBurst=false;
+
+
+ map<string,int> badwords;
+map<string,int> goodwords;
+
 
 ofParameter<int> fadetime;
 ofParameter<int> fadeAlpha;
@@ -32,3 +49,10 @@ ofParameter<int> maxWordsInBuffer;
 
 
 ofParameter<float> movingWordRotationspeed;
+int maxForegroundSound=15;
+
+ofParameter<float> fgmaxScalefact=2.5;
+
+
+ofParameter<float>backgroundcolorlerp=2000;
+

@@ -58,7 +58,7 @@ void IOManager::onIdle( ofxLibwebsockets::Event& args ){
 
 //--------------------------------------------------------------
 void IOManager::onMessage( ofxLibwebsockets::Event& args ){
-    cout<<"message "<<args.json<<endl;
+    //cout<<"message "<<args.json<<endl;
     if(!pause){
         
         
@@ -68,10 +68,10 @@ void IOManager::onMessage( ofxLibwebsockets::Event& args ){
         if ( !args.json.isNull() ){
             
             if(args.json["Type"]=="HTTP"){
-                cout<<"mcounter "<<messagecounter<<endl;
+               // cout<<"mcounter "<<messagecounter<<endl;
                 string username=args.json["Name"].asString();
                
-                if(messagecounter>7){
+                if(messagecounter>7 && bSimUser){
                 username =fakeuser[fakecounter];
                 fakecounter++;
                 if(fakecounter>fakeuser.size()-1)fakecounter=0;
@@ -79,6 +79,7 @@ void IOManager::onMessage( ofxLibwebsockets::Event& args ){
                 
                 string s=args.json["Text"].asString();
                 int maxLength=500;
+                
                 // DEBUG? SPLIT MESSAGE IN TO SEVERAL
                 for (unsigned i = 0; i < s.length(); i += maxLength) {
                     message m;
@@ -93,10 +94,17 @@ void IOManager::onMessage( ofxLibwebsockets::Event& args ){
 
                     m.wordcount=count;
                     
-                    if( STM->getUserByUsername(username)==nullptr &&i<6*maxLength){
+                    
+                    
+                    
+                    if( STM->getUserByUsername(username)==nullptr &&i<4*maxLength){
                         cout<<"++++++++++++++++ PRIORITY +++++++++++++++++++"<<endl;
                         STM->addPriorityMessage(m);
-                    }else{
+                    }else if(STM->getUserByUsername(username)!=nullptr && STM->getUserByUsername(username)->getNumWordsOnScreen()<100 &&i<2*maxLength){
+                        cout<<"+ PRIORITY  Not much words on screen++"<<endl;
+                        STM->addPriorityMessage(m);
+                    }
+                    else{
                         STM->addMessage(m);
                     }
 
@@ -116,12 +124,48 @@ void IOManager::onMessage( ofxLibwebsockets::Event& args ){
             if(args.json["Type"]=="DNS"){
                 dns d;
                 string username=args.json["Name"].asString();
+                
+               // User * u=STM->getUserByUsername(username);
+               // STM->users.push_back(u);
+                
+                bool isUserNew=false;
+
+                User * u=STM->getUserByUsername(username);
+                if(u==nullptr){
+                    int id=STM->users.size();
+                    u=new User();
+                    u->setup();
+                    u->setUserName(username);
+                    u->setUserId(id);
+                    
+                    cout<<"new user "<<u->getUserName()<<" id "<<id<<endl;
+                    isUserNew=true;
+                    
+                }
+                
+                
+                
+
+                ofColor c;
+                if(u!=nullptr){
+                   c=u->getBackgroundColor();
+                }else{
+                    c=ofColor(255,255,255);
+                }
+                
                 string s=args.json["Text"].asString();
                 d.type=args.json["Type"].asString();
                 d.username=username;
                 d.text=s;
                 d.uuid=args.json["Id"].asInt();
+                d.color=c;;
                 STM->addDNSEntity(d);
+                
+                
+                //only push new users
+                if(isUserNew){
+                   STM->users.push_back(u);
+                }
 
                 
             }

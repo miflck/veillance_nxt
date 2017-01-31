@@ -65,6 +65,12 @@ for (int i=0;i<foregrounds.size();i++){
         
         
     }
+    
+    for (int i=0;i<backgrounds.size();i++){
+        backgrounds[i]->update();
+        
+        
+    }
 
     
     
@@ -74,12 +80,14 @@ for (int i=0;i<foregrounds.size();i++){
         if(foregrounds[i]->getBRemove()){
             cout<<"remove! "<<foregrounds[i]<<endl;
             mixer.removeInputFrom(foregrounds[i]);
-            //delete (foregrounds[i]);
-            
-            removedforegrounds.push_back(foregrounds[i]);
+          //  delete (foregrounds[i]);
+            //removedforegrounds.push_back(foregrounds[i]);
             foregrounds.erase(foregrounds.begin()+i);
-
             
+            if(foregrounds.size()<1){
+                if(synths.size()>0)synths.erase(synths.begin());
+
+            }
         }
     }
 
@@ -90,6 +98,18 @@ for (int i=0;i<foregrounds.size();i++){
           //  delete removedforegrounds[i]; // Calls ~object and deallocates *tmp[i]
         }
         //removedforegrounds.clear();
+    }
+    
+    
+    
+    for (int i=backgrounds.size()-1;i>=0;i--){
+        if(backgrounds[i]->getBRemove()){
+            cout<<"remove Background! "<<backgrounds[i]<<endl;
+            mixer.removeInputFrom(backgrounds[i]);
+            //delete (backgrounds[i]);
+            //removedforegrounds.push_back(foregrounds[i]);
+            backgrounds.erase(backgrounds.begin()+i);
+        }
     }
 
 
@@ -150,18 +170,42 @@ void SoundManager::audioOut(float * output, int bufferSize, int nChannels){
 
 
 ForegroundSound* SoundManager::addForegroundSound(int _numSyllables,string _vowels,ofVec3f _p){
+     if(foregrounds.size()<maxForegroundSound){
+
     ForegroundSound *fg = new ForegroundSound();
+         fg->setNumSyllables(_numSyllables);
+         fg->setVowels(_vowels);
+         fg->setTimingSubDiv(10 + int(ofRandom(20)));
+         fg->setPosition(_p);
+
+
     fg->setup();
-    //hello
-    fg->setNumSyllables(_numSyllables);
-    fg->setVowels(_vowels);
-    fg->setPosition(_p);
-    fg->setTimingSubDiv(10 + int(ofRandom(20)));
     mixer.addInputFrom(fg);
     foregrounds.push_back(fg);
+         if(synths.size()<1)addDrone();
     cout<<"Number of foreground sounds: "<<foregrounds.size()<<endl;
-    return fg;
+         return fg;
+     }else{
+         return nullptr;
+     }
 }
+
+
+
+Background* SoundManager::addBackgroundSound(){
+   // return;
+    if(backgrounds.size()<8){
+    Background *bg = new Background();
+    bg->setup(backgrounds.size());
+    mixer.addInputFrom(bg);
+    backgrounds.push_back(bg);
+        cout<<"Number of background sounds: "<<backgrounds.size()<<endl;
+        return bg;
+
+    }else return nullptr;
+}
+
+
 
 void SoundManager::deleteAllDeletedSounds(){
     if(removedforegrounds.size()>0){
@@ -172,4 +216,29 @@ void SoundManager::deleteAllDeletedSounds(){
     }
 
 }
+
+
+void SoundManager::explode(){
+    for (int i=0;i<foregrounds.size();i++){
+        foregrounds[i]->setBRemove();
+    }
+    
+    for (int i=0;i<backgrounds.size();i++){
+        backgrounds[i]->setBRemove();
+    }
+
+
+}
+
+
+void SoundManager::addDrone(){
+MySynth *s = new MySynth();
+s->setup(55);        // ANT frequency here should be from scale
+s->update();
+mixer.addInputFrom(s);
+synths.push_back(s);
+cout<<synths.size()<<endl;
+
+}
+
 
