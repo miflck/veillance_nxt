@@ -20,15 +20,15 @@
 <backgroundcolorlerp_>2512.8</backgroundcolorlerp_>
 <Moving_Words>
 		<movingWord_Rotationspeed_>0.208571</movingWord_Rotationspeed_>
-	<Roll_Scale>0.395816</Roll_Scale>
-		<Pan_Scale>0.01</Pan_Scale>
-		<Tilt_Scale>0.01</Tilt_Scale>
-		<Speed_Scale>1.06592</Speed_Scale>
+	<Roll_Scale>0.54202</Roll_Scale>
+		<Pan_Scale>0.54202</Pan_Scale>
+		<Tilt_Scale>0.54202</Tilt_Scale>
+		<Speed_Scale>0.403939</Speed_Scale>
 	</Moving_Words>
 <Front_Wall>
-		<maxWordsInBuffer_>5000</maxWordsInBuffer_>
-		<speedfactor_>1</speedfactor_>
-		<backgroundcolorlerp_>1626.94</backgroundcolorlerp_>
+		<maxWordsInBuffer_>3485</maxWordsInBuffer_>
+		<speedfactor_>0.952857</speedfactor_>
+		<backgroundcolorlerp_>2343.06</backgroundcolorlerp_>
 	</Front_Wall>
 	<Trails>
 		<fadetime>15</fadetime>
