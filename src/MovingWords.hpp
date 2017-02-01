@@ -163,6 +163,20 @@ private:
     
     float distanceToMidscreen;
     
+    float shrink(float _in,float _acceleration);
+    float shrinkspeed=0;
+    float shrinkmaxspeed=0;
+    
+    
+     float easeIn(float t,float b , float c, float d);
+     float easeOut(float t,float b , float c, float d);
+    
+    bool bIsShrinking=false;
+    int shrinkingstarttime=0;
+    int shrinkingduration=10000;
+    float beginningscalefact;
+    
+    float latestscale;
     
 };
 

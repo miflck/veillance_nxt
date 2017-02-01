@@ -56,7 +56,9 @@ void MovingWords::setup(){
     
     
     maxspeed=ofRandom(0.5,2);
-
+    shrinkmaxspeed=ofMap(maxspeed,0.5,2,0.00003,0.002);
+    
+    
     
     maxscale=ofRandom(1,fgmaxScalefact);
     
@@ -82,6 +84,24 @@ void MovingWords::setup(){
     
 }
 
+
+
+float MovingWords::shrink(float _in, float _acceleration){
+    shrinkspeed+=_acceleration;
+    if(shrinkspeed>shrinkmaxspeed)shrinkspeed=shrinkmaxspeed;
+    _in -= shrinkspeed;
+    if (_in<0) _in=0;
+    return _in;
+}
+
+
+float MovingWords::easeIn (float t,float b , float c, float d) {
+    return c*(t/=d)*t + b;
+}
+float MovingWords::easeOut(float t,float b , float c, float d) {
+    return -c *(t/=d)*(t-2) + b;
+}
+
 void MovingWords::update(){
     
     
@@ -101,8 +121,21 @@ void MovingWords::update(){
         distanceToMidscreen=ABS(-viewportwidth/2-position.x);
         if(position.x>-viewportwidth-viewportwidth/3){
             scalefact=ofLerp(scalefact,maxscale,0.003);
+            
         }else{
-            scalefact=ofLerp(scalefact,0,0.002);
+            
+            
+            if(!bIsShrinking) {
+                bIsShrinking=true;
+                shrinkingstarttime=ofGetElapsedTimeMillis();
+                beginningscalefact=scalefact;
+                
+            }
+            scalefact=shrink(scalefact,0.00001);
+
+            //scalefact=ofLerp(scalefact,0,0.002);
+            //scalefact=ofLerp(shrink(scalefact,0.0001),0,0.2);
+
 
         }
     }
@@ -111,7 +144,16 @@ void MovingWords::update(){
         if(position.x<2*viewportwidth+viewportwidth/3){
             scalefact=ofLerp(scalefact,maxscale,0.003);
         }else{
-            scalefact=ofLerp(scalefact,0,0.002);
+            //  scalefact=ofLerp(scalefact,0,0.002);
+            scalefact=shrink(scalefact,0.00001);
+            
+           /* if(!bIsShrinking) {
+                bIsShrinking=true;
+                shrinkingstarttime=ofGetElapsedTimeMillis();
+                beginningscalefact=scalefact;
+            }
+            scalefact=easeOut(ofGetElapsedTimeMillis()-shrinkingstarttime,beginningscalefact,maxscale,shrinkingduration);
+*/
         }
     }
     
