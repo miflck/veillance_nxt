@@ -1097,54 +1097,26 @@ void SceneManager::addWordFromManager(CarousselStackManager *_s, message _m){
     map<string,int>::iterator it = badwords.find(myword);
     
     if (it != badwords.end()){
-     //   cout << it->first <<" .. "<<myword<< " founded!" <<endl;
         w->setIsSuggestion(true);
-        w->bIsLeft=true;
-    }
-    }
-    
-    
-    if(myword!=""){
-        
-        map<string,int>::iterator it = goodwords.find(myword);
-        
-        if (it != goodwords.end()){
-         //   cout << it->first <<" .goodwords. "<<myword<< " founded!" <<endl;
-            w->setIsSuggestion(true);
-            w->bIsLeft=false;
-
+        float r=ofRandom(1);
+        if(r>0.5){
+           w->bIsLeft=true;
+        }else{
+           w->bIsLeft=false;
         }
     }
+        
+        
+    }
     
     
-    
-    /*if(myword!=""){
-    map<string,int>::iterator it; // make the iterator, say it's going to iterate over a map<float, string>
 
-    if (badwords.find(myword) != badwords.end()){
-        cout <<"- "<<myword<< " ---------found----------" <<endl;
-    w->setIsSuggestion(true);
-    }
-    }
-*/
-    
-    
-  /*  float r=ofRandom(1);
-    if(r>suggestionTrigger){
-        w->setIsSuggestion(true);
-    }
-*/
-    int lifeTime=ofGetElapsedTimeMillis()+int(ofRandom(10000,50000));
+    int lifeTime=ofGetElapsedTimeMillis()+int(ofRandom(10000,2000));
     w->setLifeTime(lifeTime);
     w->setFragmentPointer(f);
     w->setUserPointer(u);
     
-    /* std::wstring_convert<std::codecvt_utf8<char32_t>, char32_t> converter;
-     for(char32_t c : myword)
-     {
-     std::cout << converter.to_bytes(c) << std::endl;
-     }*/
-    
+   
     
     
     // Convert it to utf32 text for easier output.

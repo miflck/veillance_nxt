@@ -116,11 +116,10 @@ void ofApp::setup(){
     
     gui.loadFromFile("gui.xml");
     
-       // badwords["hello"]=1;
     
     
     
-    string filename = ofToDataPath("badwords_2.txt");
+    string filename = ofToDataPath("dangerwords.txt");
     ifstream f(filename.c_str(),ios::in);
     string line;
     while (getline(f,line)) {
@@ -132,41 +131,9 @@ void ofApp::setup(){
     }
     f.close();
 
-    for (const auto& words : badwords )
-        cout << words.first << endl;
+ 
     
-    
-    string filename2 = ofToDataPath("goodwords.txt");
-    ifstream f2(filename2.c_str(),ios::in);
-    string line2;
-    while (getline(f2,line2)) {
-        //lines.push_back(ofxTrimStringRight(line));
-        vector<string> items = ofSplitString(line2, " ");
-        for (int i=0; i<items.size(); i++) {
-            goodwords[ofToUpper(items[i])]++;
-        }
     }
-    f2.close();
-    cout << "------------ Good -------------" << endl;
-
-    for (const auto& words2 : goodwords )
-        cout << words2.first << endl;
-    
-
-    
-    
-    //auto it = my_map.find("x");
-  //  if (it != my_map.end()) std::cout << "x: " << it->second << "\n";
-    
-   /*
-    map<string,int>::iterator it = badwords.find("Trump");
-    
-    if (it != badwords.end())
-        cout << it->first << " founded!" <<endl;
-    else
-        cout << "city not found" << endl;
-*/
-}
 
 //--------------------------------------------------------------
 void ofApp::update(){
