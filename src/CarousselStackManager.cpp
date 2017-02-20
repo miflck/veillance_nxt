@@ -54,7 +54,7 @@ void CarousselStackManager::setup(int _id, ofVec2f _position,float _mywidth, flo
     float speed;
     containerHeight=CCheight;
     float w=CCwidth;
-    float time=int(ofRandom(90000,300000));
+    float time=int(ofRandom(112500,375000));
     
     int lines=floor(myheight/containerHeight);
    // cout<<"lines "<<lines<<endl;
@@ -68,7 +68,7 @@ void CarousselStackManager::setup(int _id, ofVec2f _position,float _mywidth, flo
         
         containerWidth=w+dl;
         double dv=containerWidth/time;
-        cout<<dv<<endl;
+        cout<<"dv "<<dv<<endl;
         double speed=dv;
         cm->setup(lines,stackId,i,ofVec2f(position.x,position.y+(i*containerHeight)),mywidth,myheight,containerWidth,containerHeight);
         cm->time=time;

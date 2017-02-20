@@ -6,6 +6,9 @@
 //--------------------------------------------------------------
 void ofApp::setup(){
     
+    ofHideCursor();
+
+    
     settings.loadFile("settings.xml");
     string host = settings.getValue("serversettings:host","localhost");
     int port = settings.getValue("serversettings:port", 8080);
@@ -61,7 +64,7 @@ void ofApp::setup(){
     maxWordsInBuffer.set("maxWordsInBuffer ",5000,500,10000);
     frontwall.add(maxWordsInBuffer);
     
-    speedfactor.set("speedfactor ",1,0.1,20);
+    speedfactor.set("speedfactor ",1,0.1,5);
     frontwall.add(speedfactor);
     
     // suggestionTrigger.set("suggestionTrigger ",1,0.1,1);
@@ -273,9 +276,15 @@ void ofApp::keyReleased(int key){
     
     
     if(key=='c'){
-       STM->drawMode=(STM->drawMode+1)%3;
+        ofShowCursor();
+
+      // STM->drawMode=(STM->drawMode+1)%3;
     }
     
+    if(key=='C'){
+        ofHideCursor();
+        // STM->drawMode=(STM->drawMode+1)%3;
+    }
     
     if(key=='p'){
         IOmanager.setPause(!IOmanager.getPause());

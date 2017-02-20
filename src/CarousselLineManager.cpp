@@ -27,9 +27,6 @@ CarousselLineManager::~CarousselLineManager(){
 }
 
 void CarousselLineManager::setup(int _numlines, int _stackId, int _lineId, ofVec2f _position,float _mywidth, float _myheight, float _width,float _height){
-    
-    
-    
     numlines=_numlines;
     stackId=_stackId;
     lineId = _lineId;
@@ -108,13 +105,15 @@ void CarousselLineManager::move(){
         for(int i=0;i<containers.size();i++){
             ofVec2f p=containers[i]->getPosition();
             p.x-= deltaTime*maxspeed*speedfactor;
-            //p.x-= deltaTime*maxspeed;
+           // p.x-= deltaTime*maxspeed;
 
             containers[i]->setPosition(p);
         }
         
-        if(elapsedTime*speedfactor+(8000*speedfactor)>time){
-           // if(elapsedTime>time){
+       // if(elapsedTime>time){
+
+      //  if(elapsedTime*speedfactor+(8000*speedfactor)>time){
+            if(elapsedTime*speedfactor>time){
                //cout<<elapsedTime<<" "<<time<<" "<<time-(elapsedTime)<<" "<<deltaTime<<endl;
 
            // cout<<elapsedTime*speedfactor<<" "<<time<<" "<<time-(elapsedTime*speedfactor+(10000*speedfactor))<<" "<<deltaTime<<endl;
@@ -122,7 +121,8 @@ void CarousselLineManager::move(){
         //    if(elapsedTime*speedfactor>time){
 
             for(int i=0;i<containers.size();i++){
-                containers[i]->setPosition(containers[i]->getTarget());
+                
+                //containers[i]->setPosition(containers[i]->getTarget());
                 containers[i]->bIsMoving=false;
             }
             stopMoving();

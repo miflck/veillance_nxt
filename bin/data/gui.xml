@@ -14,6 +14,7 @@
 		<Pan_Scale>0.034</Pan_Scale>
 		<Tilt_Scale>0.014</Tilt_Scale>
 		<Speed_Scale>0.75</Speed_Scale>
+	<slow_Popout>0</slow_Popout>
 	</Moving_Words>
 	<Trails>
 		<fadetime>4</fadetime>
