@@ -1301,13 +1301,18 @@ void SceneManager::addMovingWord(Word *_w){
     
     bool l=_w->bIsLeft;
     ofVec3f t;
+    float rand=ofRandom(-ofGetHeight()/3,ofGetHeight()/3);
     if(l){
-        t=clusterpointleft.position;
+        t.set(clusterpointleft.position.x,ofGetHeight()/2+rand,0);
+
+       // t=clusterpointleft.position;
         mw->bIsLeft=true;
       
         
     }else{
-        t=clusterpointright.position;
+        //t=clusterpointright.position;
+        t.set(clusterpointright.position.x,ofGetHeight()/2+rand,0);
+
         mw->bIsLeft=false;
     }
 

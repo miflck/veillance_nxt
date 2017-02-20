@@ -30,6 +30,14 @@ void Word::setup(int _index){
     lerpColorAmount=0.0f;
     bIsDrawn=true;
     
+    float r=ofRandom(1);
+    if(r>0.5){
+      bIsLeft=true;
+    }else{
+       bIsLeft=false;
+    }
+
+    
     
 }
 
