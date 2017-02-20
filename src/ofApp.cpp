@@ -104,6 +104,11 @@ void ofApp::setup(){
     movingwordSpeedFact.set("Speed Scale",1,0.01,2);
     movingwords.add(movingwordSpeedFact);
     
+    slowpop.set("slow Popout",false);
+    movingwords.add(slowpop);
+
+    
+    
     gui.add(movingwords);
     
     

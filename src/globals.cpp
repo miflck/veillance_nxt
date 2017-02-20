@@ -66,4 +66,5 @@ ofParameter<float>backgroundcolorlerp=2000;
 
 ofParameter<bool> background=false;
 
+ ofParameter<bool>  slowpop=false;
 

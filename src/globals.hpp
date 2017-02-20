@@ -79,6 +79,9 @@ extern ofParameter<float> movingwordSpeedFact;
 
 extern ofParameter<bool>  background;
 
+extern ofParameter<bool>  slowpop;
+
+
 
 
 

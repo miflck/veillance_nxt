@@ -120,8 +120,11 @@ void MovingWords::update(){
     if(bIsLeft){
         distanceToMidscreen=ABS(-viewportwidth/2-position.x);
         if(position.x>-viewportwidth-viewportwidth/3){
+            if(slowpop){
+            scalefact=ofLerp(scalefact,maxscale,0.0005);
+            }else{
             scalefact=ofLerp(scalefact,maxscale,0.003);
-            
+            }
         }else{
             
             
@@ -141,8 +144,14 @@ void MovingWords::update(){
     }
     if(!bIsLeft){
         distanceToMidscreen=ABS(viewportwidth+viewportwidth/2-position.x);
+        
         if(position.x<2*viewportwidth+viewportwidth/3){
-            scalefact=ofLerp(scalefact,maxscale,0.003);
+            if(slowpop){
+                scalefact=ofLerp(scalefact,maxscale,0.0005);
+            }else{
+                scalefact=ofLerp(scalefact,maxscale,0.003);
+
+            }
         }else{
             //  scalefact=ofLerp(scalefact,0,0.002);
             scalefact=shrink(scalefact,0.00001);

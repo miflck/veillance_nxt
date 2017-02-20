@@ -894,10 +894,10 @@ void SceneManager::draw(){
     //   }
     
     checkRemove();
-    
+    ofEnableBlendMode(OF_BLENDMODE_ALPHA);
+
     ofPushStyle();
-    ofSetColor(255, 0, 0);
-    ofNoFill();
+    ofSetColor(0, 0, 0);
     ofDrawRectangle(0, 0, 7680, 139);
     ofPopStyle();
     
