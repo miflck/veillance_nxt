@@ -200,6 +200,9 @@ public:
     ofRectangle viewRight;
     
     
+    ofRectangle blende;
+    
+    
    // int viewportwidth; // FULLHD
     //int viewportwidth=1280; //WXGA
    // int viewportheight;

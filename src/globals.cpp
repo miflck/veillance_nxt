@@ -64,3 +64,6 @@ ofParameter<float> fgmaxScalefact=2.5;
 
 ofParameter<float>backgroundcolorlerp=2000;
 
+ofParameter<bool> background=false;
+
+

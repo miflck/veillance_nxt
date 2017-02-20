@@ -77,6 +77,9 @@ extern ofParameter<float> tiltfact;
 
 extern ofParameter<float> movingwordSpeedFact;
 
+extern ofParameter<bool>  background;
+
+
 
 
 

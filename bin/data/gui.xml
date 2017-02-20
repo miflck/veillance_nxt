@@ -3,21 +3,22 @@
 		<maxWordsInBuffer_>4571</maxWordsInBuffer_>
 		<speedfactor_>1</speedfactor_>
 		<backgroundcolorlerp_>3000</backgroundcolorlerp_>
+	<background>0</background>
 	</Front_Wall>
 	<DNS_Placement>
 		<DNS_Fadetime_>61</DNS_Fadetime_>
 		<DNS_Alpha_>2</DNS_Alpha_>
 	</DNS_Placement>
 	<Moving_Words>
-		<Roll_Scale>0.562327</Roll_Scale>
-		<Pan_Scale>0.0668571</Pan_Scale>
-		<Tilt_Scale>0.0627959</Tilt_Scale>
-		<Speed_Scale>0.801939</Speed_Scale>
+		<Roll_Scale>0.168</Roll_Scale>
+		<Pan_Scale>0.034</Pan_Scale>
+		<Tilt_Scale>0.014</Tilt_Scale>
+		<Speed_Scale>0.75</Speed_Scale>
 	</Moving_Words>
 	<Trails>
 		<fadetime>4</fadetime>
-		<fadealpha>3</fadealpha>
-		<FBO_Alpha>168</FBO_Alpha>
+		<fadealpha>5</fadealpha>
+		<FBO_Alpha>120</FBO_Alpha>
 	</Trails>
 <GUI/>
 </GUI>

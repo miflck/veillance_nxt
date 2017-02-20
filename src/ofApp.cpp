@@ -69,6 +69,12 @@ void ofApp::setup(){
     
     backgroundcolorlerp.set("backgroundcolorlerp ",100,100,3000);
     frontwall.add(backgroundcolorlerp);
+    
+    
+    background.set("background",false);
+    frontwall.add(background);
+
+    
     gui.add(frontwall);
 
  

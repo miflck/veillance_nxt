@@ -47,7 +47,7 @@ void SceneManager::initializeCaroussel(){
         CarousselStackManager * sm = new CarousselStackManager();
         sm->minspeed=speeds[i];
         ofVec2f position;
-        position.set(0,(i*managerheight));
+        position.set(0,(i*managerheight)+139);
         float p=ABS((managerheight/2)-((i*CCheight)));
         sm->setup(i,position,viewportwidth,managerheight);
         csm.push_back(sm);
@@ -518,47 +518,17 @@ void SceneManager::checkRemove(){
     }
     
     
-    
-    /*  int size=letters.size();
-     for (int i=0;i<size;i++){
-     if(letters[i]->getBRemove()){
-     cout<<"delete "<<letters[i]<<endl;
-     
-     letters[i]->myWordPointer->unregisterLetter(letters[i]);
-     letters[i]->myFragmentPointer->unregisterLetter(letters[i]);
-     letters[i]->myUserPointer->unregisterLetter(letters[i]);
-     
-     delete (letters[i]);
-     letters.erase(letters.begin()+i);
-     
-     
-     
-     }
-     }*/
-    
     int size=letters.size();
     for (int i=letters.size()-1;i>=0;i--){
         if(letters[i]->getBRemove()){
-            // cout<<"delete "<<letters[i]<<endl;
-            
-            /*       letters[i]->myWordPointer->unregisterLetter(letters[i]);
-             letters[i]->myFragmentPointer->unregisterLetter(letters[i]);
-             letters[i]->myUserPointer->unregisterLetter(letters[i]);*/
-            
             delete (letters[i]);
             letters.erase(letters.begin()+i);
-            
-            
-            
         }
     }
     
     
-    //sinTheta+=0.02;
-    
-    
-    float s=sin(leftTheta);
-    float s2=sin(rightTheta);
+   // float s=sin(leftTheta);
+   // float s2=sin(rightTheta);
     
    // clusterpointleft.position.x-=s;
    // clusterpointright.position.x+=s2;
@@ -584,35 +554,31 @@ void SceneManager::draw(){
     }
     
     
-    ofEnableBlendMode(OF_BLENDMODE_ALPHA);
-    ofColor usercolor;
-    usercolor.setHsb(0,0,0);
-    
-    if(bGetMostUser){
-        if(users.size()>0){
-            User *u=getUserWithMostWordsInBuffer();
-            if(u!=nullptr)
-                usercolor=getUserWithMostWordsInBuffer()->getBackgroundColor();
+    if(background){
+        ofEnableBlendMode(OF_BLENDMODE_ALPHA);
+        ofColor usercolor;
+        usercolor.setHsb(0,0,0);
+        if(bGetMostUser){
+            if(users.size()>0){
+                User *u=getUserWithMostWordsInBuffer();
+                if(u!=nullptr)
+                    usercolor=getUserWithMostWordsInBuffer()->getBackgroundColor();
+            }
+            if(!bIsExploding){
+                ofColor c;
+                float  h=ofMap(totalWordsInBuffer, 0, backgroundcolorlerp, 0, 255,true);
+                float  s=ofMap(totalWordsInBuffer, 0, backgroundcolorlerp, 0, 255,true);
+                float  b=ofMap(totalWordsInBuffer, 0, backgroundcolorlerp, 0, 255,true);
+                c.setHsb(usercolor.getHue(), s, b);
+                backgroundcolor.lerp(c,0.05);
+            }else{
+                backgroundcolor.lerp(ofColor(0),0.1);
+            }
+            ofSetColor(backgroundcolor,200);
+            png.draw(0, -2000,4000,4000);
+            png.draw(2000, -2000,4000,4000);
         }
-        if(!bIsExploding){
-            ofColor c;
-            float  h=ofMap(totalWordsInBuffer, 0, backgroundcolorlerp, 0, 255,true);
-            float  s=ofMap(totalWordsInBuffer, 0, backgroundcolorlerp, 0, 255,true);
-            float  b=ofMap(totalWordsInBuffer, 0, backgroundcolorlerp, 0, 255,true);
-            c.setHsb(usercolor.getHue(), s, b);
-            backgroundcolor.lerp(c,0.05);
-        }else{
-            backgroundcolor.lerp(ofColor(0),0.1);
-            
-        }
-        ofSetColor(backgroundcolor,200);
-        png.draw(0, -2000,4000,4000);
-        png.draw(2000, -2000,4000,4000);
-        
-        
     }
-    
-    
     
     /*
      
@@ -922,7 +888,6 @@ void SceneManager::draw(){
         backgroundFBO1.draw(viewportwidth*2,0);
         
         
-        
         backgroundFBO2.draw(0,0);
         backgroundFBO3.draw(viewportwidth*3,0);
     }
@@ -930,7 +895,11 @@ void SceneManager::draw(){
     
     checkRemove();
     
-    
+    ofPushStyle();
+    ofSetColor(255, 0, 0);
+    ofNoFill();
+    ofDrawRectangle(0, 0, 7680, 139);
+    ofPopStyle();
     
 }
 
