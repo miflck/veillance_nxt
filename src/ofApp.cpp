@@ -31,7 +31,7 @@ void ofApp::setup(){
     
     ofSetWindowShape(width,viewportheight);
     ofSetWindowPosition(10, 10);
-    
+
     STM->initialize();
     SoundM->initialize();
     
@@ -160,7 +160,7 @@ void ofApp::draw(){
     
    SoundM->draw();
     if(bDebug)	{
-    ofDisableBlendMode();
+    //ofDisableBlendMode();
         int spacer=20;
         int spaceroffset=20;
     ofSetColor(255);
