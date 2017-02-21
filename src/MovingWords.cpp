@@ -56,7 +56,11 @@ void MovingWords::setup(){
     
     
     maxspeed=ofRandom(0.5,2);
-    shrinkmaxspeed=ofMap(maxspeed,0.5,2,0.00003,0.002);
+  //  shrinkmaxspeed=ofMap(maxspeed,0.5,2,0.00003,0.002);
+    
+    //fade
+    shrinkmaxspeed=ofMap(maxspeed,0.5,2,0.06,0.15);
+
     
     
     
@@ -81,6 +85,8 @@ void MovingWords::setup(){
     foregroundSound=nullptr;
     
     // addSound();
+    
+    alphafact=200;
     
 }
 
@@ -119,7 +125,7 @@ void MovingWords::update(){
     
     if(bIsLeft){
         distanceToMidscreen=ABS(-viewportwidth/2-position.x);
-        if(position.x>-viewportwidth-viewportwidth/3){
+        if(position.x>-viewportwidth){//-viewportwidth/3){
             if(slowpop){
             scalefact=ofLerp(scalefact,maxscale,0.0005);
             }else{
@@ -127,14 +133,16 @@ void MovingWords::update(){
             }
         }else{
             
-            
             if(!bIsShrinking) {
                 bIsShrinking=true;
                 shrinkingstarttime=ofGetElapsedTimeMillis();
                 beginningscalefact=scalefact;
                 
             }
-            scalefact=shrink(scalefact,0.00001);
+            alphafact=shrink(alphafact,7);
+            cout<<"alphafact "<<alphafact<<endl;
+            myColor=ofColor(myColor,alphafact);
+          //  scalefact=shrink(scalefact,0.00001);
 
             //scalefact=ofLerp(scalefact,0,0.002);
             //scalefact=ofLerp(shrink(scalefact,0.0001),0,0.2);
@@ -145,7 +153,7 @@ void MovingWords::update(){
     if(!bIsLeft){
         distanceToMidscreen=ABS(viewportwidth+viewportwidth/2-position.x);
         
-        if(position.x<2*viewportwidth+viewportwidth/3){
+        if(position.x<2*viewportwidth){//+viewportwidth/3){
             if(slowpop){
                 scalefact=ofLerp(scalefact,maxscale,0.0005);
             }else{
@@ -154,7 +162,10 @@ void MovingWords::update(){
             }
         }else{
             //  scalefact=ofLerp(scalefact,0,0.002);
-            scalefact=shrink(scalefact,0.00001);
+            //scalefact=shrink(scalefact,0.00001);
+            alphafact=shrink(alphafact,7);
+            cout<<"alphafact "<<alphafact<<endl;
+            myColor=ofColor(myColor,alphafact);
             
            /* if(!bIsShrinking) {
                 bIsShrinking=true;
