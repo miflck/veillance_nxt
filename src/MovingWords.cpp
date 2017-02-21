@@ -59,7 +59,9 @@ void MovingWords::setup(){
   //  shrinkmaxspeed=ofMap(maxspeed,0.5,2,0.00003,0.002);
     
     //fade
-    shrinkmaxspeed=ofMap(maxspeed,0.5,2,0.06,0.15);
+   // shrinkmaxspeed=ofMap(maxspeed,0.5,2,0.06,0.15);
+    shrinkmaxspeed=ofMap(maxspeed,0.5,2,0.08,0.2);
+
 
     
     
@@ -139,7 +141,7 @@ void MovingWords::update(){
                 beginningscalefact=scalefact;
                 
             }
-            alphafact=shrink(alphafact,7);
+            alphafact=shrink(alphafact,7);//7
             cout<<"alphafact "<<alphafact<<endl;
             myColor=ofColor(myColor,alphafact);
           //  scalefact=shrink(scalefact,0.00001);
