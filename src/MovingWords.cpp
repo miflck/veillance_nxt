@@ -142,7 +142,6 @@ void MovingWords::update(){
                 
             }
             alphafact=shrink(alphafact,7);//7
-            cout<<"alphafact "<<alphafact<<endl;
             myColor=ofColor(myColor,alphafact);
           //  scalefact=shrink(scalefact,0.00001);
 
@@ -166,7 +165,6 @@ void MovingWords::update(){
             //  scalefact=ofLerp(scalefact,0,0.002);
             //scalefact=shrink(scalefact,0.00001);
             alphafact=shrink(alphafact,7);
-            cout<<"alphafact "<<alphafact<<endl;
             myColor=ofColor(myColor,alphafact);
             
            /* if(!bIsShrinking) {
@@ -482,81 +480,6 @@ void MovingWords::stopLifeTimer(){
     userPointer->unregisterMovingWord(this);
     bIsLifetimeRunning=false;
     bIsAlive=false;
-    
-    
-    
-    
-    /*
-    STM->backgroundFBO1.begin();
-    // ofSetColor(255,0,0);
-    STM->cam[0].begin();
-    ofEnableBlendMode(OF_BLENDMODE_ADD);
-    ofEnableAlphaBlending();
-    ofPushMatrix();
-    ofTranslate(-2*viewportwidth,0);
-    font->getFontTexture().bind();
-    getUpdatedVboMesh().draw();
-    font->getFontTexture().unbind();
-    ofPopMatrix();
-    STM->cam[0].end();
-    STM->backgroundFBO1.end();
-    
-    
-    STM->backgroundFBO2.begin();
-    // ofSetColor(255,0,0);
-    STM->cam[0].begin();
-    ofEnableBlendMode(OF_BLENDMODE_ADD);
-    ofEnableAlphaBlending();
-    ofPushMatrix();
-    // ofTranslate(-3*viewportwidth,0);
-    font->getFontTexture().bind();
-    getUpdatedVboMesh().draw();
-    font->getFontTexture().unbind();
-    ofPopMatrix();
-    STM->cam[0].end();
-    STM->backgroundFBO2.end();
-    
-    
-    STM->backgroundFBO3.begin();
-    // ofSetColor(255,0,0);
-    STM->cam[0].begin();
-    ofEnableBlendMode(OF_BLENDMODE_ADD);
-    ofEnableAlphaBlending();
-    ofPushMatrix();
-    ofTranslate(viewportwidth,0);
-    font->getFontTexture().bind();
-    getUpdatedVboMesh().draw();
-    font->getFontTexture().unbind();
-    ofPopMatrix();
-    
-    ofPushMatrix();
-    ofTranslate(-3*viewportwidth,0);
-    font->getFontTexture().bind();
-    getUpdatedVboMesh().draw();
-    font->getFontTexture().unbind();
-    ofPopMatrix();
-    
-    
-    STM->cam[0].end();
-    STM->backgroundFBO3.end();
-    
-    */
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
 }
 
 bool MovingWords:: isVowel(char c) {

@@ -198,7 +198,7 @@ void SceneManager::initialize() {
     backgroundFBO.end();
     
     
-    
+    /*
     backgroundFBO0.allocate(viewportwidth, ofGetHeight(),GL_RGBA);
     backgroundFBO0.begin();
     ofClear(0,0,0,0);
@@ -213,6 +213,7 @@ void SceneManager::initialize() {
     backgroundFBO2.begin();
     ofClear(0,0,0,0);
     backgroundFBO2.end();
+     */
     
     
     backgroundFBO3.allocate(viewportwidth, ofGetHeight(),GL_RGBA);
@@ -374,7 +375,7 @@ void SceneManager::update(){
     
     if(bDrawTrails){
         
-        
+    if(!bIsExploding){
         // ADD BLACK SQUARE TO BACKGROUNDCOLOR
         backgroundFBO.begin();
         ofSetColor(0,0,0,fadeAlpha);
@@ -383,9 +384,9 @@ void SceneManager::update(){
         if(ofGetFrameNum()%fadetime==0) ofDrawRectangle(0, 0, backgroundFBO.getWidth(), backgroundFBO.getHeight());
         backgroundFBO.end();
         
+
         
-        
-        backgroundFBO0.begin();
+      /*  backgroundFBO0.begin();
         ofEnableAlphaBlending();
         
         ofSetColor(0,0,0,100);
@@ -436,7 +437,7 @@ void SceneManager::update(){
         if(ofGetFrameNum()%fadetime==0) ofDrawRectangle(0, 0, backgroundFBO3.getWidth(), backgroundFBO3.getHeight());
         backgroundFBO3.end();
         
-        
+        }
         
     }
     
@@ -653,7 +654,7 @@ void SceneManager::draw(){
     
     
     ofVboMesh m;
-    if(!bIsExploding){
+   // if(!bIsExploding){
         ofPushStyle();
         // moving words mesh
         ofEnableAlphaBlending();
@@ -665,7 +666,7 @@ void SceneManager::draw(){
         m.draw();
         bigfont.getFontTexture().unbind();
         ofPopStyle();
-    }
+   // }
     
     
     cam[0].end();
@@ -876,19 +877,15 @@ void SceneManager::draw(){
     // if(!bIsExploding){
     
     if(bDrawTrails){
-        ofEnableBlendMode(OF_BLENDMODE_ALPHA);
+        //ofEnableBlendMode(OF_BLENDMODE_ALPHA);
+         ofEnableBlendMode(OF_BLENDMODE_ADD);
+
         ofSetColor(255,255,255,fboAlpha);
         backgroundFBO.draw(0,0);
-        
-        ofSetColor(255,255,255,255);
-        
-        ofEnableBlendMode(OF_BLENDMODE_ADD);
-        
-        backgroundFBO0.draw(viewportwidth,0);
-        backgroundFBO1.draw(viewportwidth*2,0);
-        
-        
-        backgroundFBO2.draw(0,0);
+       // ofEnableBlendMode(OF_BLENDMODE_ADD);
+       // backgroundFBO0.draw(viewportwidth,0);
+       // backgroundFBO1.draw(viewportwidth*2,0);
+       // backgroundFBO2.draw(0,0);
         backgroundFBO3.draw(viewportwidth*3,0);
     }
     //   }
@@ -1272,38 +1269,16 @@ void SceneManager::addWordFromManager(CarousselStackManager *_s, message _m){
 
 
 void SceneManager::addMovingWord(Word *_w){
-    
+    if(bIsExploding)return;
     _w->setIsDrawn(false);
     MovingWords *mw=new MovingWords();
     mw->setup();
-    
-    
-    
-    
-    
-   /*
-    float r=ofRandom(0,1);
-    ofVec3f t;
-    if(r>0.5){
-        //  t=ofVec3f(viewportwidth+(2*viewportwidth/3),ofGetHeight()/2,0);
-        // t=ofVec3f(2*viewportwidth-300,ofGetHeight()/2,0);
-        t=clusterpointright.position;
-        
-        mw->bIsLeft=false;
-        
-    }else{
-        // t=ofVec3f(-viewportwidth+300,ofGetHeight()/2,0);
-        t=clusterpointleft.position;
-        mw->bIsLeft=true;
-
-        
-    }*/
     
     bool l=_w->bIsLeft;
     ofVec3f t;
     float rand=ofRandom(0,ofGetHeight()/3);
     if(l){
-        t.set(clusterpointleft.position.x,ofGetHeight()/2+rand,0);
+        t.set(clusterpointleft.position.x,ofGetHeight()/2-rand,0);
 
        // t=clusterpointleft.position;
         mw->bIsLeft=true;
@@ -1311,7 +1286,7 @@ void SceneManager::addMovingWord(Word *_w){
         
     }else{
         //t=clusterpointright.position;
-        t.set(clusterpointright.position.x,ofGetHeight()/2+rand,0);
+        t.set(clusterpointright.position.x,ofGetHeight()/2-rand,0);
 
         mw->bIsLeft=false;
     }
@@ -1321,58 +1296,13 @@ void SceneManager::addMovingWord(Word *_w){
     
     mw->setTarget(t);
     mw->myColor=ofColor(_w->getBackgroundColor(),200);
-   // mw->setLifeSpan(ofRandom(3000,10000));
     mw->setLifeSpan(ofRandom(10000,30000));
-
-    //mw->setLifeSpan(1000);
-    
-    
-    
-    /*  if(movingWordPositions.size()>0){
-     int i=int(ofRandom(movingWordPositions.size()));
-     mw->setTarget(movingWordPositions[i]);
-     movingWordPositions.erase(movingWordPositions.begin()+i);
-     }*/
-    
-    // mw->myColor=_w->getBackgroundColor();
     mw->setFont(&bigfont);
     mw->setData(_w->getMyData());
     
     User *u= _w->getUserPointer();
     u->registerMovingWord(mw);
     mw->setUserPointer(u);
-    
-    /*
-     string n=u->getUserName();
-     int i=getUserIndexByUsername(n);
-     
-     
-     switch (i) {
-     case 0:
-     //Send info to soundmanager -> hacky
-     SoundM->user1vowelcount.set(mw->getSyllablescount());
-     SoundM->user1sylcont1.set(mw->getVowelcount());
-     break;
-     
-     case 1:
-     //Send info to soundmanager -> hacky
-     SoundM->user2vowelcount.set(mw->getSyllablescount());
-     SoundM->user2sylcont1.set(mw->getVowelcount());
-     break;
-     
-     case 2:
-     //Send info to soundmanager -> hacky
-     SoundM->user3vowelcount.set(mw->getSyllablescount());
-     SoundM->user3sylcont1.set(mw->getVowelcount());
-     break;
-     
-     default:
-     break;
-     }
-     
-     */
-    
-    
     
     //set position an initial speed
     mw->setStartPosition(_w->getPosition());
@@ -1641,6 +1571,55 @@ void SceneManager::explode(){
 
 void SceneManager::reset(){
     cout<<"reset"<<endl;
+    
+    
+    ofVboMesh trailmesh;
+    for(auto movingWord:movingWords){
+        // if(!movingWord->bIsLeft)
+        trailmesh.append(movingWord->getUpdatedVboMesh());
+    }
+    
+    
+    
+    backgroundFBO.begin();
+    STM->cam[0].begin();
+    ofEnableAlphaBlending();
+    ofEnableBlendMode(OF_BLENDMODE_ADD);
+    ofPushMatrix();
+    ofTranslate(-viewportwidth/2-viewportwidth,0);
+    bigfont.getFontTexture().bind();
+    trailmesh.draw();
+    bigfont.getFontTexture().unbind();
+    
+    ofSetColor(255,0,0);
+    ofFill();
+    // ofDrawRectangle(clusterpointleft.position.x,clusterpointleft.position.y,50,50);
+    
+    
+    ofPopMatrix();
+    STM->cam[0].end();
+    backgroundFBO.end();
+    
+    
+    STM->backgroundFBO3.begin();
+    STM->cam[0].begin();
+    ofEnableAlphaBlending();
+    ofEnableBlendMode(OF_BLENDMODE_ADD);
+    ofPushMatrix();
+    ofTranslate(viewportwidth,0);
+    bigfont.getFontTexture().bind();
+    trailmesh.draw();
+    bigfont.getFontTexture().unbind();
+    
+    
+    ofPopMatrix();
+    
+    
+    STM->cam[0].end();
+    STM->backgroundFBO3.end();
+    
+    
+    
     bShouldReset=false;
     explodestopcounter=0;
     messageBuffer.clear();

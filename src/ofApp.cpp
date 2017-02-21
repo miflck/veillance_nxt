@@ -163,7 +163,7 @@ void ofApp::draw(){
     //ofDisableBlendMode();
         int spacer=20;
         int spaceroffset=20;
-    ofSetColor(255);
+        ofSetColor(255);
         ofDrawBitmapString("Framerate", 0,spacer);
         ofDrawBitmapString(ofToString(ofGetFrameRate()), 110,spacer);
         spacer+=spaceroffset;
@@ -244,11 +244,7 @@ void ofApp::keyReleased(int key){
     
     if(key=='q'){
         SoundM->deleteAllDeletedSounds();
-        //SoundM->addForegroundSound();
     }
-    
-    
-    
     
     if(key=='b'){
         STM->makeRandomBurst(100);        //SoundM->addForegroundSound();
@@ -258,8 +254,6 @@ void ofApp::keyReleased(int key){
       toggleGui();
     }
     
-    
-    
     if(key=='H'){
         bSound=!bSound;
     }
@@ -267,26 +261,15 @@ void ofApp::keyReleased(int key){
     
     if(key=='c'){
         ofShowCursor();
-
-      // STM->drawMode=(STM->drawMode+1)%3;
     }
     
     if(key=='C'){
         ofHideCursor();
-        // STM->drawMode=(STM->drawMode+1)%3;
     }
     
     if(key=='p'){
         IOmanager.setPause(!IOmanager.getPause());
     }
-    
-    
-    
-    if(key=='F'){
-        STM->makeMovingWordByFragmentId(0,0);
-        
-    }
-    
     
     if(key=='f'){
         STM->makeRandomMovingWord();
@@ -295,7 +278,6 @@ void ofApp::keyReleased(int key){
     
     
     if(key=='m'){
-        //STM->bSoundStuff=!STM->bSoundStuff;
         muteSound=!muteSound;
     }
 
@@ -305,29 +287,16 @@ void ofApp::keyReleased(int key){
     }
     
     
-    
     if(key=='u'){
-       // bUpdate=!bUpdate;
         STM->bGetMostUser=!STM->bGetMostUser;
     }
     
     if(key=='d'){
-        // bDraw=!bDraw;
-        // STM->setDebug(false);
         bDebug=!bDebug;
-    }
-    
-    if(key=='D'){
-        // bDraw=!bDraw;
-        bDraw=!bDraw;
-        // STM->setDebug(bDraw);
     }
     
     
     if(key=='l'){
-        // bDraw=!bDraw;
-        //bDraw=!bDraw;
-        // STM->debug=!STM->debug;
         STM->bIsDNSList=!STM->bIsDNSList;
     }
     
@@ -337,7 +306,6 @@ void ofApp::keyReleased(int key){
     
     
     if(key=='E'){
-        // bDraw=!bDraw;
         STM->reset();
     }
     
@@ -365,19 +333,7 @@ void ofApp::keyReleased(int key){
         }
     }
     
-    
-    
-    if(key=='w'){
-        STM->addDNS("hello");
-       // for (auto line : data){
-          //  STM->addData(line,fragmentId);
-            fragmentId++;
-       // }
-    }
-    
-    
     if(key=='x'){
-        // bDraw=!bDraw;
         STM->toggleDrawTrails();
     }
     

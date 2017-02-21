@@ -149,9 +149,9 @@ public:
     // BACKGROUNDS
     ofFbo backgroundFBO; //FBO for all screens
     
-    ofFbo backgroundFBO0; // FBO for screen two. Holds the freezed Moving Words and fades out
-    ofFbo backgroundFBO1; // FBO for screen two. Holds the freezed Moving Words and fades out
-    ofFbo backgroundFBO2; // FBO for screen two. Holds the freezed Moving Words and fades out
+    //ofFbo backgroundFBO0; // FBO for screen two. Holds the freezed Moving Words and fades out
+    //ofFbo backgroundFBO1; // FBO for screen two. Holds the freezed Moving Words and fades out
+    //ofFbo backgroundFBO2; // FBO for screen two. Holds the freezed Moving Words and fades out
     ofFbo backgroundFBO3; // FBO for screen two. Holds the freezed Moving Words and fades out
 
     ofFbo backgroundDNSFBO; // FBO for screen two. Holds the freezed Moving Words and fades out

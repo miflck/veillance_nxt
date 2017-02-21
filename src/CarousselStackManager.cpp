@@ -43,13 +43,6 @@ void CarousselStackManager::setup(int _id, ofVec2f _position,float _mywidth, flo
     myheight=_myheight;
     
     bIsExploding=false;
-
-    
-    //float minspeed=2;
-   //minspeed=ofRandom(3,7);
-    
-    
-    
     
     float speed;
     containerHeight=CCheight;
@@ -57,7 +50,6 @@ void CarousselStackManager::setup(int _id, ofVec2f _position,float _mywidth, flo
     float time=int(ofRandom(112500,375000));
     
     int lines=floor(myheight/containerHeight);
-   // cout<<"lines "<<lines<<endl;
     for(int i = 0; i < lines; i++){
         CarousselLineManager * cm=new CarousselLineManager();
         cm->parentposition=ofVec2f(position);
@@ -77,7 +69,6 @@ void CarousselStackManager::setup(int _id, ofVec2f _position,float _mywidth, flo
         cms.push_back(cm);
 
     }
-   // cout<<"cms size "<<cms.size()<<endl;
     ofAddListener(CarousselEvent::events, this, &CarousselStackManager::carousselEvent);
     cout<<"Setup Stack Manager "<<stackId<<" "<<cms.size()<<endl;
     messagestring.clear();
@@ -90,19 +81,8 @@ void CarousselStackManager::setup(int _id, ofVec2f _position,float _mywidth, flo
 }
 
 void CarousselStackManager::update(){
-    // UPDATE CAROUSSEL
-   // position.y+=0.1;
-    
-   /* for(int i=0;i<cms.size();i++){
-        cms[i].setPosition(ofVec2f(position.x-mywidth,position.y+(i*containerHeight)));
-    }*/
-    
-    
-   // cout<<"update from "<<stackId<< " "<<cms.size()<<endl;
-
-    
     int now=ofGetElapsedTimeMillis();
-    
+
     if(bIsCountingDown && now>lifetime){
         stopCountDown();
     }
@@ -118,20 +98,14 @@ void CarousselStackManager::update(){
 
     if(backgroundSound!=nullptr){
         if(ismoving){
-            backgroundSound->setNumWords(    ofMap(getStringsize(),0,200,1,100,true));
+            backgroundSound->setNumWords(ofMap(getStringsize(),0,200,1,100,true));
         }else{
             backgroundSound->setNumWords(0);
         }
-        //backgroundSound->setNumWords(myWords.size());
     }
-
-
 }
 
 void CarousselStackManager::draw(){
-   // ofSetColor(255, 0, 0);
-   // ofDrawRectangle(position.x, position.y, 20, 20);
-
     for(auto cm:cms){
         cm->draw();
     }
@@ -176,7 +150,6 @@ void CarousselStackManager::carousselEvent(CarousselEvent &e){
                 cms[e.lineId-1]->addMovement(l);
             }
         }
-     //cms[e.lineId]->explode();
     }
 
     
@@ -184,61 +157,15 @@ void CarousselStackManager::carousselEvent(CarousselEvent &e){
         if(e.id==cms.size()-1){
         addDataFromBuffer();
         }
-        
-        /*if(e.id==cms.size()-1){
-         STM->registerStackManagerReady(this);
-        }*/
     }
     
     
     if(e.message=="EXPLODE STOP"){
-       // cout<<"explode from csm "<<stackId<<endl;
-       // STM->reset();
+
     }
     
     
-    
-   /* if(e.message=="STOP"){
-        if(e.id>0){
-            Letter *l=cms[e.id].getLastElementPointer();
-            if(l!=nullptr){
-                cms[e.id-1].addMovement(l);
-            }
-        }
-        
-        if(e.id==0){
-            Letter *l=cms[e.id].getLastElementPointer();
-            auto it = std::find(letters.begin(), letters.end(), l);
-            if (it != letters.end()) {
-                int i= it - letters.begin();
-                if(i>0)letters[i-1]->setBRemove(true);
-            }
-        }
-        
-    }
-    
-    
-    
-    if(e.message=="EXPLODE"){
-        reset();
-    }
-    
-    
-    
-    if(e.message=="START"){
-        if(e.id>0){
-            //cms[e.id-1].addMovement(cms[e.id].getLastElementChar());
-        }
-    }
-    
-    
-    if(e.message=="BUFFER EMPTY"){
-        if(e.id==cms.size()-1){
-            bIsReadyForData=true;
-            
-        }
-    }*/
-}
+ }
 
 
 void CarousselStackManager::addDataFromBuffer(){
