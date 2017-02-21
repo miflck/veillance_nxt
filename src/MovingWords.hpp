@@ -54,6 +54,8 @@ public:
     void setTarget(ofVec3f _t);
     ofVec3f getTarget();
     
+    vector <ofVec3f> waypoints;
+    
     
     void move();
     void startMoving();
@@ -61,6 +63,7 @@ public:
     bool bIsMoving=false;
     float maxspeed=10;
     
+    bool bIsSlowingDown=false;
     
     void setIsAlive(bool _b);
     bool checkIsAlive();

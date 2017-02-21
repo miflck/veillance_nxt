@@ -267,31 +267,44 @@ void MovingWords::draw(){
 
 void MovingWords::move(){
     if(bIsMoving){
+        
+        
+        
         ofVec3f acc;
         ofVec3f p=position;
-        ofVec3f t=target;
+        ofVec3f t=waypoints[0];
+        
+        // ofVec3f t=target;
         ofVec3f dist=t-p;
         ofVec3f desired=t-p;
         desired.normalize();
         float d=dist.length();
-        if(d < 500){
-            float m = ofMap(d,0,500,0,maxspeed*movingwordSpeedFact);
-            desired*=m;
-            
-        }else{
-            desired*=maxspeed*movingwordSpeedFact;
+        if(d < 50){
+            if(waypoints.size()>0){
+                waypoints.erase( waypoints.begin() );
+            }
         }
+        //  float m = ofMap(d,0,500,0,maxspeed*movingwordSpeedFact);
+        
+        //  desired*=m;
+        
+    // }else{
+        desired*=maxspeed*movingwordSpeedFact;
+        // }
         
         ofVec3f steer=desired-velocity;
+        //steer.limit(0.09);
         steer.limit(0.09);
+
         acc+=steer;
         velocity+=acc;
         p+=velocity;
         
         if(d<4){
-            //p.set(target);
-            stopMoving();
-        }
+                //p.set(target);
+                stopMoving();
+            }
+        
         position.set(p);
     }
 }
@@ -417,6 +430,20 @@ void MovingWords::setStartPosition(ofVec3f _p){
     float dl= ofMap(p*(p/4),0,ofGetHeight()/2*(ofGetHeight()/2/4),1,10);
     spacingFact=dl;
     font->setLetterSpacing(spacingFact);
+    
+    
+    for (int i=0;i<6;i++){
+        ofVec3f v=target-position;
+        v/=6;
+        v*=i;
+        float r=ofRandom(-ofGetHeight()/3,ofGetHeight()/3);
+        v.y=ofRandom(ofGetHeight()/2+r);
+        waypoints.push_back(v);
+
+    }
+    waypoints.push_back(target);
+
+    
 }
 
 
