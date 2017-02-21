@@ -182,6 +182,8 @@ void MovingWords::update(){
     //do the rotation
     if(spacingFact<1.6 && bIsRotating){
         rollangle+=(rollspeed*rollfact);
+        
+        
         panangle+=(panspeed*panfact);
         tiltangle+=(tiltspeed*tiltfact);
         
@@ -272,25 +274,25 @@ void MovingWords::move(){
         
         ofVec3f acc;
         ofVec3f p=position;
-        ofVec3f t=waypoints[0];
+        ofVec3f t=target;
         
         // ofVec3f t=target;
         ofVec3f dist=t-p;
         ofVec3f desired=t-p;
         desired.normalize();
         float d=dist.length();
-        if(d < 50){
-            if(waypoints.size()>0){
-                waypoints.erase( waypoints.begin() );
-            }
-        }
-        //  float m = ofMap(d,0,500,0,maxspeed*movingwordSpeedFact);
+        if(d < 500){
+           // if(waypoints.size()>0){
+             //   waypoints.erase( waypoints.begin() );
+            //}
+        //}
+          float m = ofMap(d,0,500,0,maxspeed*movingwordSpeedFact);
         
-        //  desired*=m;
+          desired*=m;
         
-    // }else{
+     }else{
         desired*=maxspeed*movingwordSpeedFact;
-        // }
+         }
         
         ofVec3f steer=desired-velocity;
         //steer.limit(0.09);
