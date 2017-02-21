@@ -29,18 +29,8 @@ void ofApp::setup(){
      entrypoints = settings.getValue("rendering:entrypoints", 5);
      linesPerPoint = settings.getValue("rendering:numlines", 7);
     
-    
-    
-    
-    
-    
-
-
-    
-    
     ofSetWindowShape(width,viewportheight);
     ofSetWindowPosition(10, 10);
-
     
     STM->initialize();
     SoundM->initialize();
