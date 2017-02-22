@@ -122,7 +122,7 @@ private:
     bool bIsExploding=false;
     bool bStoppedExploding=false;
     
-    
+    double timefailure;
    // Letter HackBaseLetter;
 
     

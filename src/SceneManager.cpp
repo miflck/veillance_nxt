@@ -174,6 +174,8 @@ void SceneManager::initialize() {
     cam[2].setPosition(-viewportwidth/2, ofGetHeight()/2, d);
     
     cam[3].setVFlip(true);
+     d=cam[3].getImagePlaneDistance(viewLeft);
+
     cam[3].setNearClip(10);
     cam[3].enableOrtho();
     cam[3].setPosition(-viewportwidth/2, ofGetHeight()/2, d);

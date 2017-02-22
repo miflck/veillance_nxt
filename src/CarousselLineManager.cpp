@@ -104,7 +104,7 @@ void CarousselLineManager::move(){
     if(!bIsExploding){
         for(int i=0;i<containers.size();i++){
             ofVec2f p=containers[i]->getPosition();
-            p.x-= deltaTime*maxspeed*speedfactor;
+            p.x-= deltaTime*maxspeed;//*speedfactor;
            // p.x-= deltaTime*maxspeed;
 
             containers[i]->setPosition(p);
@@ -113,7 +113,9 @@ void CarousselLineManager::move(){
        // if(elapsedTime>time){
 
       //  if(elapsedTime*speedfactor+(8000*speedfactor)>time){
-            if(elapsedTime*speedfactor>time){
+           // if(elapsedTime*speedfactor>time){
+                if(elapsedTime>time){
+
                //cout<<elapsedTime<<" "<<time<<" "<<time-(elapsedTime)<<" "<<deltaTime<<endl;
 
            // cout<<elapsedTime*speedfactor<<" "<<time<<" "<<time-(elapsedTime*speedfactor+(10000*speedfactor))<<" "<<deltaTime<<endl;
@@ -122,7 +124,7 @@ void CarousselLineManager::move(){
 
             for(int i=0;i<containers.size();i++){
                 
-                //containers[i]->setPosition(containers[i]->getTarget());
+               // containers[i]->setPosition(containers[i]->getTarget());
                 containers[i]->bIsMoving=false;
             }
             stopMoving();
@@ -207,9 +209,11 @@ void CarousselLineManager::startMoving(){
     buffer.erase(buffer.begin());
     containers[containers.size()-1]->setLetterPointer(l);
     
-    
-    starttime=ofGetElapsedTimeMicros();
-    
+   // if(timefailure>12000){
+   // starttime=ofGetElapsedTimeMicros()-timefailure;
+   // }else{
+        starttime=ofGetElapsedTimeMicros();
+   // }
     
     // if first line
     if(lineId==numlines-1){
@@ -249,6 +253,14 @@ void CarousselLineManager::startMoving(){
 }
 
 void CarousselLineManager::stopMoving(){
+    timefailure=elapsedTime-time;
+   // cout<<"fail "<<timefailure<<" "<<timefailure*maxspeed<<" "<<maxspeed<<endl;
+
+    float nw=letterWidth-(timefailure*maxspeed);
+    if(nw > letterWidth-5)maxspeed=nw/time;
+   // cout<<"ns "<<maxspeed<<endl;
+
+    
     if(!bIsExploding){
         bIsMoving=false;
         static CarousselEvent newEvent;
@@ -359,7 +371,7 @@ void CarousselLineManager::explode(){
     
     explosionspeed=ofRandom(10,15);
     
-    for(int i=1;i<containers.size();i++){
+    for(int i=0;i<containers.size();i++){
         containers[i]->explode();
         ofVec2f p=containers[i]->getPosition();
         ofVec2f middle=parentposition+ofVec2f(mywidth/2,myheight/2);//+ofVec2f(mywidth/2,myheight/2);
