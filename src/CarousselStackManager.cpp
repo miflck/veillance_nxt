@@ -47,7 +47,9 @@ void CarousselStackManager::setup(int _id, ofVec2f _position,float _mywidth, flo
     float speed;
     containerHeight=CCheight;
     float w=CCwidth;
-    float time=int(ofRandom(112500,375000));
+   // float time=int(ofRandom(112500,375000));
+    float time=int(ofRandom(222500,375000));
+
     //float time=int(100000);
 
     

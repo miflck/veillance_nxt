@@ -98,40 +98,34 @@ void CarousselLineManager::draw(){
     //}
 }
 
-
 void CarousselLineManager::move(){
     
     if(!bIsExploding){
         for(int i=0;i<containers.size();i++){
             ofVec2f p=containers[i]->getPosition();
-            p.x-= deltaTime*maxspeed;//*speedfactor;
-           // p.x-= deltaTime*maxspeed;
-
+            p.x-= deltaTime*maxspeed*speedfactor;
+            //p.x-= deltaTime*maxspeed;
+            
             containers[i]->setPosition(p);
         }
         
-       // if(elapsedTime>time){
-
-      //  if(elapsedTime*speedfactor+(8000*speedfactor)>time){
-           // if(elapsedTime*speedfactor>time){
-                if(elapsedTime>time){
-
-               //cout<<elapsedTime<<" "<<time<<" "<<time-(elapsedTime)<<" "<<deltaTime<<endl;
-
-           // cout<<elapsedTime*speedfactor<<" "<<time<<" "<<time-(elapsedTime*speedfactor+(10000*speedfactor))<<" "<<deltaTime<<endl;
-
-        //    if(elapsedTime*speedfactor>time){
-
+        if(elapsedTime*speedfactor+(8000*speedfactor)>time){
+            // if(elapsedTime>time){
+            //cout<<elapsedTime<<" "<<time<<" "<<time-(elapsedTime)<<" "<<deltaTime<<endl;
+            
+            // cout<<elapsedTime*speedfactor<<" "<<time<<" "<<time-(elapsedTime*speedfactor+(10000*speedfactor))<<" "<<deltaTime<<endl;
+            
+            //    if(elapsedTime*speedfactor>time){
+            
             for(int i=0;i<containers.size();i++){
-                
-               // containers[i]->setPosition(containers[i]->getTarget());
+                containers[i]->setPosition(containers[i]->getTarget());
                 containers[i]->bIsMoving=false;
             }
             stopMoving();
         }
     }
-        
-        
+    
+    
     if(bIsExploding){
         for(int i=0;i<containers.size();i++){
             ofVec2f p=containers[i]->getPosition();
@@ -142,7 +136,7 @@ void CarousselLineManager::move(){
             speed.limit(explosionspeed);
             p+=speed;
             containers[i]->setPosition(p);
-
+            
             
             if(explosionspeed<0.1){
                 p.set(target);
@@ -151,16 +145,16 @@ void CarousselLineManager::move(){
             
             
             //check if finished;
-             bool move=false;
-             for(int i=0;i<containers.size();i++){
-             if(containers[i]->bIsMoving){
-             move=true;
-             break;
-             }
-             }
-             if(!move){
-            stopMoving();
-             }
+            bool move=false;
+            for(int i=0;i<containers.size();i++){
+                if(containers[i]->bIsMoving){
+                    move=true;
+                    break;
+                }
+            }
+            if(!move){
+                stopMoving();
+            }
             
             
             
@@ -168,14 +162,14 @@ void CarousselLineManager::move(){
             
         }
         
-      
+        
         
         
         
     }
     
     
-   
+    
     
 }
 
@@ -253,14 +247,6 @@ void CarousselLineManager::startMoving(){
 }
 
 void CarousselLineManager::stopMoving(){
-    timefailure=elapsedTime-time;
-   // cout<<"fail "<<timefailure<<" "<<timefailure*maxspeed<<" "<<maxspeed<<endl;
-
-    float nw=letterWidth-(timefailure*maxspeed);
-    if(nw > letterWidth-5)maxspeed=nw/time;
-   // cout<<"ns "<<maxspeed<<endl;
-
-    
     if(!bIsExploding){
         bIsMoving=false;
         static CarousselEvent newEvent;
@@ -282,7 +268,6 @@ void CarousselLineManager::stopMoving(){
         ofNotifyEvent(CarousselEvent::events, newEvent);
     }
 }
-
 
 void CarousselLineManager::checkBuffer(){
     //check if we have some movement in buffer

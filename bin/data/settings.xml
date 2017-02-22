@@ -3,6 +3,13 @@
     <port>8080</port>
     <channel>/entry</channel>
 </serversettings>
+<!--
+<serversettings>
+ <host>localhost</host>
+ <port>8080</port>
+ <channel>/entry</channel>
+ </serversettings>
+-->
 
 <rendering>
     <entrypoints>9</entrypoints>
