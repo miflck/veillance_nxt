@@ -128,6 +128,7 @@ void CarousselStackManager::carousselEvent(CarousselEvent &e){
     if(e.stackId != stackId) return;
    
     if(e.message=="STOP" &&!bIsExploding){
+        
         if(e.lineId>0 ){
             Letter *l=cms[e.lineId]->getLastElementPointer();
             if(l!=nullptr){
