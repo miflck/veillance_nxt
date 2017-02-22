@@ -44,7 +44,7 @@ void VerticalCaroussel::setup( ofVec2f _position,float _mywidth, float _myheight
 
 
 void VerticalCaroussel::update(){
-    maxspeed=ofMap(buffer.size(),0,10,3,40,true);
+    maxspeed=ofMap(dnsbuffer.size(),0,10,2,8,true);
 
     if(bIsMoving){
         move();
@@ -153,6 +153,7 @@ void VerticalCaroussel::startMoving(){
 }
 
 void VerticalCaroussel::stopMoving(){
+    cout<<"stop Moving"<<endl;
     bIsMoving=false;
     checkBuffer();
    /* if(!bIsExploding){
@@ -179,7 +180,7 @@ void VerticalCaroussel::stopMoving(){
 void VerticalCaroussel::checkBuffer(){
     //check if we have some movement in buffer
     if(!bIsMoving){
-        if(buffer.size()>0){
+        if(dnsbuffer.size()>0){
             cicle();
         }
     }

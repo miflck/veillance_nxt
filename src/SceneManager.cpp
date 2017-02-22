@@ -314,6 +314,8 @@ void SceneManager::update(){
     if(dnsBuffer.size()>0){
         for (int i=0;i<dnsBuffer.size();i++){
             dns d=dnsBuffer[i];
+            cout<<"add DNS "<<d.text<<endl;
+
             addDNS(d);//d.text);
             
             dnsBuffer.erase(dnsBuffer.begin()+i);
