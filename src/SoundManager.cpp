@@ -80,7 +80,7 @@ for (int i=0;i<foregrounds.size();i++){
         if(foregrounds[i]->getBRemove()){
             cout<<"remove! "<<foregrounds[i]<<endl;
             mixer.removeInputFrom(foregrounds[i]);
-          //  delete (foregrounds[i]);
+            delete (foregrounds[i]);
             //removedforegrounds.push_back(foregrounds[i]);
             foregrounds.erase(foregrounds.begin()+i);
             

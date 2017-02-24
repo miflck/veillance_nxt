@@ -240,8 +240,8 @@ void SceneManager::initialize() {
     color2=ofColor(0);
     
     
-    clusterpointright.position.set(4*viewportwidth,ofGetHeight()/2,-1000);
-    clusterpointleft.position.set(-3*viewportwidth,ofGetHeight()/2,-1000);
+    clusterpointright.position.set(3.5*viewportwidth,ofGetHeight()/2,0);
+    clusterpointleft.position.set(-2.5*viewportwidth,ofGetHeight()/2,0);
     
     
     //letterMesh.setUsage(GL_DYNAMIC_DRAW);

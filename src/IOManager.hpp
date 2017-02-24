@@ -61,5 +61,8 @@ public:
     //DEBUG
     int fakecounter=0;
     int messagecounter=0;
+    
+    void testMessage();
+    
 };
 #endif

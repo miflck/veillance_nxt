@@ -337,6 +337,10 @@ void ofApp::keyReleased(int key){
         STM->toggleDrawTrails();
     }
     
+    if(key=='t'){
+        IOmanager.testMessage();
+    }
+    
 }
 
 //--------------------------------------------------------------
