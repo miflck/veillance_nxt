@@ -1,6 +1,6 @@
 <GUI>
 	<Front_Wall>
-		<maxWordsInBuffer_>4571</maxWordsInBuffer_>
+		<maxWordsInBuffer_>6571</maxWordsInBuffer_>
 		<speedfactor_>1</speedfactor_>
 		<backgroundcolorlerp_>3000</backgroundcolorlerp_>
 	<background>0</background>
@@ -17,9 +17,9 @@
 	<slow_Popout>0</slow_Popout>
 	</Moving_Words>
 	<Trails>
-		<fadetime>4</fadetime>
-		<fadealpha>5</fadealpha>
-		<FBO_Alpha>120</FBO_Alpha>
+		<fadetime>8</fadetime>
+		<fadealpha>4</fadealpha>
+		<FBO_Alpha>160</FBO_Alpha>
 	</Trails>
 <GUI/>
 </GUI>
