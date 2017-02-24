@@ -39,7 +39,7 @@ void ofApp::setup(){
     
     
     ofBackground(0);
-    ofSetVerticalSync(true);
+    //ofSetVerticalSync(true);
     //ofSetFrameRate(60);
     
    

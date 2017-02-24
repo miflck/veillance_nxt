@@ -55,7 +55,7 @@ void MovingWords::setup(){
     node.setScale(scalefact);
     
     
-    maxspeed=ofRandom(0.5,2);
+    maxspeed=ofRandom(0.5,1.7);
   //  shrinkmaxspeed=ofMap(maxspeed,0.5,2,0.00003,0.002);
     
     //fade
