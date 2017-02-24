@@ -23,7 +23,7 @@ int main( ){
     
     ofAppGLFWWindow window;
     window.setMultiDisplayFullscreen(true);
-    ofSetupOpenGL(&window,7680,1080,OF_WINDOW);
+    ofSetupOpenGL(&window,7680,1080,OF_FULLSCREEN);
 
     ofxWatchdog::watch(3000, true, true, true);
 
