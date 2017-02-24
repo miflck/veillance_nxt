@@ -153,7 +153,6 @@ void VerticalCaroussel::startMoving(){
 }
 
 void VerticalCaroussel::stopMoving(){
-    cout<<"stop Moving"<<endl;
     bIsMoving=false;
     checkBuffer();
    /* if(!bIsExploding){

@@ -118,7 +118,7 @@ void CarousselLineManager::move(){
             //    if(elapsedTime*speedfactor>time){
             
             for(int i=0;i<containers.size();i++){
-                containers[i]->setPosition(containers[i]->getTarget());
+              //  containers[i]->setPosition(containers[i]->getTarget());
                 containers[i]->bIsMoving=false;
             }
             stopMoving();
