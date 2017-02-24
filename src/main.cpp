@@ -1,6 +1,6 @@
 #include "ofMain.h"
 #include "ofAppRunner.h"
-
+#include "ofxWatchdog.h"
 #include "ofApp.h"
 
 //========================================================================
@@ -24,6 +24,9 @@ int main( ){
     ofAppGLFWWindow window;
     window.setMultiDisplayFullscreen(true);
     ofSetupOpenGL(&window,7680,1080,OF_WINDOW);
+
+    ofxWatchdog::watch(3000, true, true, true);
+
     ofRunApp(new ofApp());
     
     

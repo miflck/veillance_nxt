@@ -40,7 +40,7 @@ void ofApp::setup(){
     
     ofBackground(0);
     ofSetVerticalSync(true);
-    ofSetFrameRate(60);
+    //ofSetFrameRate(60);
     
    
        
@@ -340,6 +340,14 @@ void ofApp::keyReleased(int key){
     if(key=='t'){
         IOmanager.testMessage();
     }
+    
+    if(key=='p'){
+        char* volatile p = 0;
+
+         *p = 0xAB;
+    }
+    
+
     
 }
 

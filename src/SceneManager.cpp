@@ -1555,7 +1555,7 @@ User * SceneManager::getUserWithMostWordsInBuffer(){
 
 void SceneManager::explode(){
     
-    SoundM->explode();
+    //SoundM->explode();
     bIsExploding=true;
     // UPDATE CAROUSSEL
     /*  for(int i=0;i<cms.size();i++){
@@ -1576,7 +1576,8 @@ void SceneManager::explode(){
 void SceneManager::reset(){
     cout<<"reset"<<endl;
     
-    
+    SoundM->explode();
+
     ofVboMesh trailmesh;
     for(auto movingWord:movingWords){
         // if(!movingWord->bIsLeft)
