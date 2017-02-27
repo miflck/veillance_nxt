@@ -278,11 +278,19 @@ void IOManager::setupConnection(){
     options.host = host;
     options.port=port;
     options.channel=channel;
+    
+    
+    options.reconnect = true;
+    options.reconnectInterval = 4000;
+    
+    
     client.connect(options);
     client.addListener(this);
     ofSetLogLevel(OF_LOG_ERROR);
     
     pause=false;
+    
+    
 
     
 }

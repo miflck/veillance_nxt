@@ -64,5 +64,10 @@ public:
     
     void testMessage();
     
+    bool isConnected=false;
+    
+    int reconnectionTimer;
+    int reconnectionInterval;
+    
 };
 #endif
